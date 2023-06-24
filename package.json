@@ -1,15 +1,15 @@
 {
   "name": "app",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "scripts": {
     "ng": "ng",
     "start": "node server.js",
     "build": "ng build",
-    "heroku-postbuild": "ng build — prod",
+    "heroku-postbuild": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
-  "engines": { "node": "x.x.x", "npm": "x.x.x" },
+  "engines": { "node": "18.16.0", "npm": "9.6.7" },
   "private": true,
   "dependencies": {
     "@angular/animations": "^16.0.0",
