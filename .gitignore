@@ -128,3 +128,6 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+/app/.vscode
+/app/.angular/cache/16.1.0
+/app/.editorconfig

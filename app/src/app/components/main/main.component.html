@@ -1,0 +1,12 @@
+<div class="flex flex-col h-screen justify-around items-center">
+    <h1 class="text-2xl font-bold basis-1/12 cursor-default">
+        Équipement des chars pour les incu et clan war
+    </h1>
+
+    <div class="basis-8/12 w-[70%] flex items-center flex-col">
+        <div class="flex items-center justify-around flex-col w-full" *ngFor="let data of datas, let i = index">
+            <app-tank-small class="w-full" [data]="data" [id]="i" [idClick]="idDisplayed" (emitterForClick)="displayTankConfig($event)"></app-tank-small>
+            <app-tank-full *ngIf="i == idDisplayed"></app-tank-full>
+        </div>
+    </div>
+</div>

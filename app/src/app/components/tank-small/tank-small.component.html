@@ -1,0 +1,16 @@
+<div (click)="onClick()" class="
+    flex items-center justify-evenly
+    bg-secondary
+    border-[1px]
+    w-full  h-10
+    pt-1 pb-1 
+    cursor-pointer group
+    hover:bg-hoverSecondary">
+    <img src="/assets/tanks/{{data.name | lowercase | replace: ' ' : '_' }}_icon.svg" alt="Icon de {{ data.name }}"
+        class="w-28">
+    <span class="w-fit flex items-center">{{ data.name }}</span>
+    <img src="/assets/other/arrow.svg" alt="flêche"
+        class="filter invert sepia-[59%] saturate-[580%] hue-rotate-[232deg] contrast-[100%] h-[50%] 
+        transition ease-in-out duration-500
+        {{ arrowClass }}">
+</div>
