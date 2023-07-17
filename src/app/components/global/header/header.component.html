@@ -1,0 +1,31 @@
+<mat-drawer-container [hasBackdrop]="true">
+    <div id="conteneurHeader"
+        class="w-full h-[70px] bg-primaryLight dark:bg-primaryDark border-b-secondaryLight dark:border-b-secondaryDark border-b-[1px] flex items-center justify-center pl-3 pr-3">
+        <div id="leftHeader" class="flex-auto w-0">
+            <a *ngIf="showHome" [routerLink]="['']" class="text-2xl">
+                {{ wording.accueil | uppercase }}
+            </a>
+        </div>
+
+        <div id="centerHeader" class="flex-auto w-0 flex justify-center">
+            <a href="https://eu.wargaming.net/clans/wot/500179430/" target="_blank"
+                class="border-secondaryLight dark:border-secondaryDark border-[1px] rounded-full flex items-center w-max">
+                <img src="assets/other/logo.png" alt="Logo du clan LCHP" class="h-[53px] w-[52px] m-1" />
+            </a>
+        </div>
+
+        <div id="rightHeader" class="flex-auto w-0 flex justify-end">
+            <div>
+                <a *ngIf="showTank" class="mr-5 hover:underline hover:cursor-pointer text-2xl">
+                    {{ wording.charEtEquipement | uppercase }}
+                </a>
+            </div>
+            <div>
+                <a *ngIf="showWar && inventory.featureFlipping.clanWar"
+                    class="hover:underline hover:cursor-pointer text-2xl">
+                    {{ wording.clanWar | uppercase }}
+                </a>
+            </div>
+        </div>
+    </div>
+</mat-drawer-container>

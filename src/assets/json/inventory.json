@@ -1,0 +1,12 @@
+{
+    "wargamingApi": {
+        "applicationID": "d5cfa347c97b1997c50c1797e2f1cfdc",
+        "gameServers": "https://api.worldoftanks.eu/wgn/servers/info/?application_id=d5cfa347c97b1997c50c1797e2f1cfdc&game=wot&language=fr",
+        "gameServersMock": "assets/mock/server.json",
+        "clanRatings": "https://api.worldoftanks.eu/wot/clanratings/clans/?application_id=d5cfa347c97b1997c50c1797e2f1cfdc&clan_id=500179430",
+        "clanRatingsMock": "assets/mock/clanRatings.json"
+    },
+    "featureFlipping": {
+        "clanWar": true
+    }
+}

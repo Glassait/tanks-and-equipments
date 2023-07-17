@@ -5,6 +5,6 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class ReplacePipe implements PipeTransform {
     transform(value: string, ...args: string[]): string {
-        return value.replace(args[0], args[1]);
+        return value.replace(new RegExp(args[0], 'g'), args[1]);
     }
 }
