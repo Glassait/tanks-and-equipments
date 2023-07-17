@@ -10,6 +10,7 @@ export class HeaderComponent {
     @Input() showHome: boolean = false;
     @Input() showTank: boolean = false;
     @Input() showWar: boolean = false;
+    @Input() isSidenav: boolean = false;
 
     protected wording = wording.header;
     protected inventory = inventory;
