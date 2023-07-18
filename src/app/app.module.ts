@@ -15,9 +15,10 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { HeaderComponent } from './components/global/header/header.component';
 import { HomeComponent } from './components/home/home.component';
 import { HttpClientModule } from '@angular/common/http';
+import { TanksEquipmentComponent } from './components/tanks-equipment/tanks-equipment.component';
 
 @NgModule({
-    declarations: [AppComponent, ReplacePipe, HeaderComponent, HomeComponent],
+    declarations: [AppComponent, ReplacePipe, HeaderComponent, HomeComponent, TanksEquipmentComponent],
     imports: [
         BrowserModule,
         AppRoutingModule,

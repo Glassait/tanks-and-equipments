@@ -7,6 +7,10 @@
         "clanRatingsMock": "assets/mock/clanRatings.json"
     },
     "featureFlipping": {
-        "clanWar": true
+        "clanWar": false
+    },
+    "path": {
+        "home": "",
+        "charsEtEquipements": "charsEtEquipement"
     }
 }

@@ -5,7 +5,7 @@
     <div id="leftHeader" class="hidden flex-auto w-0 md:block">
         <a
             *ngIf="showHome"
-            [routerLink]="['']"
+            [routerLink]="[inventory.path.home]"
             class="text-2xl hover:underline hover:cursor-pointer"
         >
             {{ wording.accueil | uppercase }}
@@ -30,6 +30,7 @@
         <div>
             <a
                 *ngIf="showTank"
+                [routerLink]="[inventory.path.charsEtEquipements]"
                 class="mr-5 hover:underline hover:cursor-pointer text-2xl"
             >
                 {{ wording.charEtEquipement | uppercase }}
@@ -50,7 +51,7 @@
     <div id="leftHeader" class="flex-auto ml-2">
         <a
             *ngIf="showHome"
-            [routerLink]="['']"
+            [routerLink]="[inventory.path.home]"
             class="text-2xl hover:underline hover:cursor-pointer"
         >
             {{ wording.accueil | uppercase }}
@@ -60,6 +61,7 @@
     <div class="ml-2">
         <a
             *ngIf="showTank"
+            [routerLink]="[inventory.path.charsEtEquipements]"
             class="hover:underline hover:cursor-pointer text-2xl"
         >
             {{ wording.charEtEquipement | uppercase }}
