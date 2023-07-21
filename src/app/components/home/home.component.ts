@@ -3,9 +3,10 @@ import {
     WotApiService,
     WotClanRatingsRequest,
     WotServerRequest,
-} from 'src/app/class/wotApi.service';
-import wording from '../../../assets/json/wording.json';
-import information from '../../../assets/json/information.json';
+} from 'src/app/commons/class/wotApi.service';
+import { HeaderStore } from 'src/app/commons/stores/header.store';
+import { WordingClass } from 'src/app/commons/class/wording.class';
+import { InformationClass } from 'src/app/commons/class/information.class';
 
 @Component({
     selector: 'app-home',
@@ -17,13 +18,40 @@ export class HomeComponent implements OnInit {
     protected showClanRatingsCard = true;
     protected wotServer!: WotServerRequest;
     protected wotClanRatings!: WotClanRatingsRequest;
-    protected wording = wording.home;
-    protected information = information;
 
-    constructor(private wotApi: WotApiService) {}
+    constructor(
+        private wotApiService: WotApiService,
+        protected wordingClass: WordingClass,
+        protected informationClass: InformationClass,
+        private headerStore: HeaderStore
+    ) {
+        this.setHeaderVariables();
+    }
 
     ngOnInit(): void {
-        this.wotApi.getServeurStatus().subscribe({
+        this.getWotServerStatus();
+
+        if (
+            this.isClanRatingsCardDisplayed(
+                document.querySelector('#rightHome')
+            )
+        ) {
+            this.getClanRatings();
+        } else {
+            this.showSpinnerClanRatings = false;
+            this.showClanRatingsCard = false;
+        }
+    }
+
+    private isClanRatingsCardDisplayed(clanRatingsCard: Element | null) {
+        return (
+            clanRatingsCard !== null &&
+            window.getComputedStyle(clanRatingsCard).display !== 'none'
+        );
+    }
+
+    private getWotServerStatus() {
+        this.wotApiService.getServeurStatus().subscribe({
             next: (reponse: WotServerRequest) => {
                 this.wotServer = reponse;
             },
@@ -34,26 +62,25 @@ export class HomeComponent implements OnInit {
                 this.showSpinnerServer = false;
             },
         });
+    }
 
-        const clanRatingsCard = document.querySelector('#rightHome');
-        if (
-            clanRatingsCard !== null &&
-            window.getComputedStyle(clanRatingsCard).display !== 'none'
-        ) {
-            this.wotApi.getClanRatings().subscribe({
-                next: (reponse: WotClanRatingsRequest) => {
-                    this.wotClanRatings = reponse;
-                },
-                error(err) {
-                    console.log(err);
-                },
-                complete: () => {
-                    this.showSpinnerClanRatings = false;
-                },
-            });
-        } else {
-            this.showSpinnerClanRatings = false;
-            this.showClanRatingsCard = false;
-        }
+    private getClanRatings() {
+        this.wotApiService.getClanRatings().subscribe({
+            next: (reponse: WotClanRatingsRequest) => {
+                this.wotClanRatings = reponse;
+            },
+            error(err) {
+                console.log(err);
+            },
+            complete: () => {
+                this.showSpinnerClanRatings = false;
+            },
+        });
+    }
+
+    private setHeaderVariables() {
+        this.headerStore.set('showHome', false);
+        this.headerStore.set('showTank', true);
+        this.headerStore.set('showWar', true);
     }
 }

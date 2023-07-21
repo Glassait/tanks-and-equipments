@@ -1,0 +1,159 @@
+<div class="flex flex-col md:flex-row pt-5 pb-4">
+    <div class="flex-grow-[0.2] space-y-5">
+        <div class="flex space-x-6">
+            <img
+                src="assets/crew/{{
+                    crew | lowercase | replace: ' ' : '_'
+                }}.webp"
+                class="border-secondaryLight dark:border-secondaryDark border-[1px] rounded w-[70px]"
+                alt="{{ crew }}"
+                title="{{ crew }}"
+                *ngFor="let crew of tankData?.crew"
+            />
+        </div>
+
+        <div class="flex space-x-6" *ngFor="let skills of tankData?.skills">
+            <img
+                src="assets/skills/{{
+                    skill | lowercase | replace: ' ' : '_'
+                }}.png"
+                class="border-secondaryLight dark:border-secondaryDark border-[1px] rounded w-[70px]"
+                alt="{{ skill }}"
+                title="{{ skill }}"
+                *ngFor="let skill of skills"
+            />
+        </div>
+    </div>
+
+    <div
+        id="conteneurTankEquipementDescriptionRight"
+        class="flex flex-col justify-between items-end flex-grow-[2] mr-10"
+    >
+        <div class="flex items-center justify-center space-x-20">
+            <div>
+                <img
+                    src="assets/tanks/{{
+                        tankData.name
+                            | lowercase
+                            | replace: ' ' : '_'
+                            | replace: '/' : '_'
+                    }}.png"
+                    alt=""
+                    class="w-[350px]"
+                />
+            </div>
+
+            <div class="flex flex-col justify-around items-center space-y-6">
+                <div *ngFor="let shell of tankData.shells">
+                    <div class="text-xl relative -top-[5px] h-0 w-0">
+                        {{ shell.amount }}
+                    </div>
+                    <img
+                        src="assets/shells/{{ shell.premium ? 'prem-' : '' }}{{
+                            shell.name
+                        }}.png"
+                        alt="{{ shell.name }}"
+                        title="{{ shell.name }}"
+                        class="w-[70px] border-secondaryLight dark:border-secondaryDark border-[1px] rounded"
+                    />
+                </div>
+            </div>
+
+            <div class="space-y-6">
+                <div class="flex items-center justify-evenly space-x-20">
+                    <div class="flex space-x-4">
+                        <img
+                            src="assets/equipments/{{
+                                equipment.name | lowercase | replace: ' ' : '_'
+                            }}.png"
+                            alt="{{ equipment.name }}"
+                            title="{{ equipment.name }}"
+                            *ngFor="let equipment of tankData.equipments.first"
+                            class="w-[70px] border-secondaryLight dark:border-secondaryDark border-[1px] rounded"
+                        />
+                    </div>
+
+                    <div class="flex space-x-4">
+                        <img
+                            src="assets/consomables/{{
+                                consomable | lowercase | replace: ' ' : '_'
+                            }}.png"
+                            alt="{{ consomable }}"
+                            title="{{ consomable }}"
+                            *ngFor="
+                                let consomable of tankData.consomables.first
+                            "
+                            class="w-[70px] border-secondaryLight dark:border-secondaryDark border-[1px] rounded"
+                        />
+                    </div>
+                </div>
+
+                <div class="flex justify-center items-center">
+                    <img
+                        src="assets/equipments/{{
+                            tankData.directive.image
+                        }}.png"
+                        alt="{{ tankData.directive.name }}"
+                        class="w-[70px] bg-secondaryLight dark:bg-secondaryDark rounded -mr-[70px]"
+                    />
+                    <img src="assets/equipments/directive.png" alt="directive icone" title="{{ tankData.directive.name }}" class="relative w-[70px]">
+                </div>
+
+                <div class="flex items-center justify-evenly space-x-20">
+                    <div class="flex space-x-4">
+                        <img
+                            src="assets/equipments/{{
+                                equipment.name | lowercase | replace: ' ' : '_'
+                            }}.png"
+                            alt="{{ equipment.name }}"
+                            title="{{ equipment.name }}"
+                            *ngFor="let equipment of tankData.equipments.second"
+                            class="w-[70px] border-secondaryLight dark:border-secondaryDark border-[1px] rounded"
+                        />
+                    </div>
+
+                    <div class="flex space-x-4">
+                        <img
+                            src="assets/consomables/{{
+                                consomable | lowercase | replace: ' ' : '_'
+                            }}.png"
+                            alt="{{ consomable }}"
+                            title="{{ consomable }}"
+                            *ngFor="
+                                let consomable of tankData.consomables.second
+                            "
+                            class="w-[70px] border-secondaryLight dark:border-secondaryDark border-[1px] rounded"
+                        />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex justify-center space-x-5">
+            <div *ngFor="let field of tankData?.fields" class="flex">
+                <img
+                    src="assets/fields/roman_number_{{ field.level }}.png"
+                    alt=""
+                    class="relative z-[3] -top-4 left-[50%] w-8 h-8"
+                />
+
+                <div
+                    *ngFor="let part of field.field | keyvalue"
+                    class="w-[70px]"
+                    title="{{ part.value.name }}"
+                >
+                    <img
+                        src="{{ getURL(part.value) }}"
+                        alt="{{ part.value.name }}"
+                        class="absolute w-[70px]"
+                    />
+                    <img
+                        *ngIf="part.value.active"
+                        src="assets/fields/active.png"
+                        class="relative top-0 left-0 z-[2]"
+                    />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

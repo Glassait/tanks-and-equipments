@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import dataJson from '../../src/assets/json/data.json';
-import { scrollTarget } from 'src/app/class/global';
+import { scrollTarget } from 'src/app/commons/class/global';
 
 // @Component({
 //     selector: 'app-main',
@@ -10,7 +10,7 @@ export class MainComponent {
     public datas: any[];
     public idDisplayed: number = -1;
     public scrollName = scrollTarget;
-    public panelOpenState = false
+    public panelOpenState = false;
 
     constructor() {
         this.datas = dataJson.data;

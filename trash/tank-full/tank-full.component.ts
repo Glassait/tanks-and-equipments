@@ -1,5 +1,5 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { scrollTarget } from 'src/app/class/global';
+import { scrollTarget } from 'src/app/commons/class/global';
 
 // @Component({
 //     selector: 'app-tank-full',

@@ -4,7 +4,7 @@
 /*                                   IMPORT                                   */
 /* -------------------------------------------------------------------------- */
 
-@use "@angular/material" as mat;
+@use '@angular/material' as mat;
 
 /* -------------------------------------------------------------------------- */
 /*                                   ANGULAR                                  */
@@ -68,4 +68,8 @@ $my-theme: mat.define-light-theme(
 body,
 app-root {
     height: inherit;
+}
+
+.mat-expansion-panel-header-description {
+    flex-grow: 1.2 !important;
 }

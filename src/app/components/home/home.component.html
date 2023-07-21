@@ -1,40 +1,73 @@
-<div id="conteneurHome"
-    class="p-4 md:pt-16 flex flex-col 2xl:flex-row justify-center items-center space-y-10 2xl:space-y-0">
-    <div id="leftHome" class="flex flex-auto flex-col justify-around items-center space-y-10 2xl:space-y-12">
+<div
+    id="conteneurHome"
+    class="p-4 md:pt-16 flex flex-col 2xl:flex-row justify-center items-center space-y-10 2xl:space-y-0"
+>
+    <div
+        id="leftHome"
+        class="flex flex-auto flex-col justify-around items-center space-y-10 2xl:space-y-12"
+    >
         <mat-spinner *ngIf="showSpinnerServer"></mat-spinner>
-        <mat-card *ngIf="!showSpinnerServer"
-            class="w-[320px] md:w-[750px] 2xl:w-[500px] h-min border-secondaryLight dark:border-x-secondaryDark border-[1px]">
+        <mat-card
+            *ngIf="!showSpinnerServer"
+            class="w-[320px] md:w-[750px] 2xl:w-[500px] h-min border-secondaryLight dark:border-x-secondaryDark border-[1px]"
+        >
             <mat-card-header>
-                <img mat-card-avatar src="assets/other/server.svg" alt=""
-                    class="filter invert-0 sepia-[94%] saturate-[100%] hue-rotate-[57deg] brightness-0 contrast-[105%]" />
-                <mat-card-title class="[--mat-card-title-text-size:24px] underline">
-                    {{ wording.statusServer }}
+                <img
+                    mat-card-avatar
+                    src="assets/other/server.svg"
+                    alt=""
+                    class="filter invert-0 sepia-[94%] saturate-[100%] hue-rotate-[57deg] brightness-0 contrast-[105%]"
+                />
+                <mat-card-title
+                    class="[--mat-card-title-text-size:24px] underline"
+                >
+                    {{ wordingClass.getHome().statusServer }}
                 </mat-card-title>
             </mat-card-header>
 
             <mat-card-content id="contentServeur" class="space-y-2">
-                <div *ngFor="let server of wotServer.data.wot" class="flex items-center space-x-10 text-xl">
+                <div
+                    *ngFor="let server of wotServer.data.wot"
+                    class="flex items-center space-x-10 text-xl"
+                >
                     <strong>{{ server.server }}</strong>
                     <img src="assets/other/ok.svg" alt="" class="w-[25px]" />
-                    <div>{{ server.players_online }} {{ wording.joueurs }}</div>
+                    <div
+                        >{{ server.players_online }}
+                        {{ wordingClass.getHome().joueurs }}</div
+                    >
                 </div>
             </mat-card-content>
         </mat-card>
 
         <mat-card
-            class="w-[320px] md:w-[750px] 2xl:w-[500px] h-min border-secondaryLight dark:border-x-secondaryDark border-[1px]">
+            class="w-[320px] md:w-[750px] 2xl:w-[500px] h-min border-secondaryLight dark:border-x-secondaryDark border-[1px]"
+        >
             <mat-card-header>
-                <img mat-card-avatar src="assets/other/information.svg" alt="" />
+                <img
+                    mat-card-avatar
+                    src="assets/other/information.svg"
+                    alt=""
+                />
                 <mat-card-title
-                    class="[--mat-card-title-text-size:24px] underline">{{wording.information}}</mat-card-title>
+                    class="[--mat-card-title-text-size:24px] underline"
+                    >{{ wordingClass.getHome().information }}</mat-card-title
+                >
             </mat-card-header>
 
             <mat-card-content class="text-xl whitespace-pre-line space-y-4">
-                <div>{{ information.text }}</div>
+                <div>{{ informationClass.getText() }}</div>
                 <div class="flex justify-end">
-                    <a href="{{ information.lien.url }}" target="_blank" class="text-link underline flex space-x-4">
-                        <div>{{ information.lien.text }}</div>
-                        <img src="assets/tanks/super_conqueror_icon.svg" alt="" />
+                    <a
+                        href="{{ informationClass.getURL() }}"
+                        target="_blank"
+                        class="text-link underline flex space-x-4"
+                    >
+                        <div>{{ informationClass.getLinkText() }}</div>
+                        <img
+                            src="assets/tanks/super_conqueror.icon.svg"
+                            alt=""
+                        />
                     </a>
                 </div>
             </mat-card-content>
@@ -44,55 +77,91 @@
     <div id="rightHome" class="hidden md:flex flex-auto md:justify-center">
         <mat-spinner *ngIf="showSpinnerClanRatings"></mat-spinner>
 
-        <mat-card *ngIf="!showSpinnerClanRatings && showClanRatingsCard"
-            class="w-[750px] h-fit border-secondaryLight dark:border-x-secondaryDark border-[1px]">
+        <mat-card
+            *ngIf="!showSpinnerClanRatings && showClanRatingsCard"
+            class="w-[750px] h-fit border-secondaryLight dark:border-x-secondaryDark border-[1px]"
+        >
             <mat-card-header class="justify-center items-center">
                 <img src="assets/other/logo.png" alt="" />
             </mat-card-header>
 
-            <mat-card-content class="bg-[url('/assets/other/clan_ratings_little.jpg')] h-full">
+            <mat-card-content
+                class="bg-[url('/assets/other/clan_ratings_little.jpg')] h-full"
+            >
                 <div class="flex text-primaryLight text-2xl mt-4 space-x-10">
-                    <div class="grid gap-4 grid-cols-2 grid-rows-4 flex-auto pl-10">
-                        <img src="assets/other/castle.svg" alt=""
-                            class="filter brightness-0 saturate-[100%] invert-[100%] sepia-[3%] hue-rotate-[81deg] contrast-[106%] h-[60px]" />
+                    <div
+                        class="grid gap-4 grid-cols-2 grid-rows-4 flex-auto pl-10"
+                    >
+                        <img
+                            src="assets/other/castle.svg"
+                            alt=""
+                            class="filter brightness-0 saturate-[100%] invert-[100%] sepia-[3%] hue-rotate-[81deg] contrast-[106%] h-[60px]"
+                        />
 
-                        <span class="underline self-center">{{wording.bastion | titlecase}}</span>
+                        <span class="underline self-center">{{
+                            wordingClass.getHome().bastion | titlecase
+                        }}</span>
 
                         <div class="self-center">X</div>
                         <div class="self-center">
-                            {{wotClanRatings.data["500179430"].fb_elo_rating_10.value}}
+                            {{
+                                wotClanRatings.data['500179430']
+                                    .fb_elo_rating_10.value
+                            }}
                         </div>
 
                         <div class="self-center">VIII</div>
                         <div class="self-center">
-                            {{wotClanRatings.data["500179430"].fb_elo_rating_8.value}}
+                            {{
+                                wotClanRatings.data['500179430'].fb_elo_rating_8
+                                    .value
+                            }}
                         </div>
 
                         <div class="self-center">VI</div>
                         <div class="self-center">
-                            {{wotClanRatings.data["500179430"].fb_elo_rating_6.value}}
+                            {{
+                                wotClanRatings.data['500179430'].fb_elo_rating_6
+                                    .value
+                            }}
                         </div>
                     </div>
 
-                    <div class="grid gap-4 grid-cols-2 grid-rows-4 flex-auto pr-10">
-                        <img src="assets/other/map.svg" alt=""
-                            class="filter brightness-0 saturate-[100%] invert-[100%] sepia-[3%] hue-rotate-[81deg] contrast-[106%] h-[60px] justify-self-end" />
+                    <div
+                        class="grid gap-4 grid-cols-2 grid-rows-4 flex-auto pr-10"
+                    >
+                        <img
+                            src="assets/other/map.svg"
+                            alt=""
+                            class="filter brightness-0 saturate-[100%] invert-[100%] sepia-[3%] hue-rotate-[81deg] contrast-[106%] h-[60px] justify-self-end"
+                        />
 
-                        <span class="underline self-center text-end">{{wording.clanWar | titlecase}}</span>
+                        <span class="underline self-center text-end">{{
+                            wordingClass.getHome().clanWar | titlecase
+                        }}</span>
 
                         <div class="self-center text-end">X</div>
                         <div class="self-center text-end">
-                            {{wotClanRatings.data["500179430"].gm_elo_rating_10.value}}
+                            {{
+                                wotClanRatings.data['500179430']
+                                    .gm_elo_rating_10.value
+                            }}
                         </div>
 
                         <div class="self-center text-end">VIII</div>
                         <div class="self-center text-end">
-                            {{wotClanRatings.data["500179430"].gm_elo_rating_8.value}}
+                            {{
+                                wotClanRatings.data['500179430'].gm_elo_rating_8
+                                    .value
+                            }}
                         </div>
 
                         <div class="self-center text-end">VI</div>
                         <div class="self-center text-end">
-                            {{wotClanRatings.data["500179430"].gm_elo_rating_6.value}}
+                            {{
+                                wotClanRatings.data['500179430'].gm_elo_rating_6
+                                    .value
+                            }}
                         </div>
                     </div>
                 </div>

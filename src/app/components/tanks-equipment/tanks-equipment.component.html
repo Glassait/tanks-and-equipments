@@ -1,1 +1,29 @@
-<p>tanks-equipment works!</p>
+<div id="conteneurTankEquipement" class="flex items-center justify-center">
+    <mat-accordion class="w-full md:w-[90%] mt-20">
+        <mat-expansion-panel *ngFor="let tankData of tanksDataClass.tanksData.data">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    <img
+                        src="assets/tanks/{{
+                            tankData.name
+                                | lowercase
+                                | replace: ' ' : '_'
+                                | replace: '/' : '_'
+                        }}.icon.svg"
+                        alt=""
+                        class="h-full"
+                    />
+                </mat-panel-title>
+                <mat-panel-description
+                    class="[--mat-expansion-header-description-color:primaryLight] dark:[--mat-expansion-header-description-color:primaryDark] text-xl"
+                >
+                    {{ tankData.name | uppercase }}
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+
+            <app-tank-equipment-description
+                [tankData]="tankData"
+            ></app-tank-equipment-description>
+        </mat-expansion-panel>
+    </mat-accordion>
+</div>

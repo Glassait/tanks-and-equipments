@@ -16,9 +16,10 @@ import { HeaderComponent } from './components/global/header/header.component';
 import { HomeComponent } from './components/home/home.component';
 import { HttpClientModule } from '@angular/common/http';
 import { TanksEquipmentComponent } from './components/tanks-equipment/tanks-equipment.component';
+import { TankEquipmentDescriptionComponent } from './components/tanks-equipment/tank-equipment-description/tank-equipment-description.component';
 
 @NgModule({
-    declarations: [AppComponent, ReplacePipe, HeaderComponent, HomeComponent, TanksEquipmentComponent],
+    declarations: [AppComponent, ReplacePipe, HeaderComponent, HomeComponent, TanksEquipmentComponent, TankEquipmentDescriptionComponent],
     imports: [
         BrowserModule,
         AppRoutingModule,

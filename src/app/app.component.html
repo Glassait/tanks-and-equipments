@@ -1,5 +1,7 @@
 <header>
-    <div class="scale-[1.5] absolute w-[50px] h-[50px] cursor-pointer top-3 left-3 md:hidden">
+    <div
+        class="scale-[1.5] absolute w-[50px] h-[50px] cursor-pointer top-3 left-3 md:hidden"
+    >
         <input
             mat-raised-button
             class="block w-full h-full absolute cursor-pointer z-[2] opacity-0 peer"
@@ -9,26 +11,21 @@
         <div
             class="m-auto absolute top-0 right-0 left-0 bottom-0 w-[22px] h-[12px]"
         >
-            <span class="absolute block w-full h-[2px] bg-secondaryLight dark:bg-secondaryDark rounded-[1px] transition-all top-0 peer-checked:rotate-90"></span>
-            <span class="absolute block w-full h-[2px] bg-secondaryLight dark:bg-secondaryDark rounded-[1px] transition-all bottom-0 peer-checked:rotate-90"></span>
+            <span
+                class="absolute block w-full h-[2px] bg-secondaryLight dark:bg-secondaryDark rounded-[1px] transition-all top-0 peer-checked:rotate-90"
+            ></span>
+            <span
+                class="absolute block w-full h-[2px] bg-secondaryLight dark:bg-secondaryDark rounded-[1px] transition-all bottom-0 peer-checked:rotate-90"
+            ></span>
         </div>
     </div>
 
-    <app-header
-        [showHome]="showHome"
-        [showTank]="showTank"
-        [showWar]="showWar"
-    ></app-header>
+    <app-header></app-header>
 </header>
 
 <mat-drawer-container [hasBackdrop]="true">
     <mat-drawer class="w-[320px]" #drawer mode="over">
-        <app-header
-            [showHome]="true"
-            [showTank]="showTank"
-            [showWar]="showWar"
-            [isSidenav]="true"
-        ></app-header>
+        <app-header [isSidenav]="true"></app-header>
     </mat-drawer>
     <mat-drawer-content class="bg-backgroundLight dark:bg-backgroundDark">
         <main>
