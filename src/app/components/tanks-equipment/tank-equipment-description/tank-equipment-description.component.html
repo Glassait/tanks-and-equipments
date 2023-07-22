@@ -1,23 +1,32 @@
-<div class="flex flex-col md:flex-row pt-5 pb-4">
-    <div class="flex-grow-[0.2] space-y-5">
-        <div class="flex space-x-6">
+<div
+    class="flex flex-col lg:flex-row pt-5 pb-4 flex-wrap lg:justify-center 2xl:justify-start lg:space-y-5 2xl:space-y-0"
+>
+    <div
+        class="flex 2xl:block flex-col lg:flex-row 2xl:flex-col items-center flex-grow-[0.2] space-y-5 lg:space-y-0 2xl:space-y-5 lg:space-x-5 2xl:space-x-0"
+    >
+        <div
+            class="flex lg:flex-col 2xl:flex-row space-x-2 md:space-x-6 lg:space-x-0 2xl:space-x-6 lg:space-y-4 2xl:space-y-0"
+        >
             <img
                 src="assets/crew/{{
                     crew | lowercase | replace: ' ' : '_'
                 }}.webp"
-                class="border-secondaryLight dark:border-secondaryDark border-[1px] rounded w-[70px]"
+                class="border-secondaryLight dark:border-secondaryDark border-[1px] rounded w-[53px] md:w-[70px] md:h-[70px]"
                 alt="{{ crew }}"
                 title="{{ crew }}"
                 *ngFor="let crew of tankData?.crew"
             />
         </div>
 
-        <div class="flex space-x-6" *ngFor="let skills of tankData?.skills">
+        <div
+            class="flex lg:flex-col 2xl:flex-row space-x-2 md:space-x-6 lg:space-x-0 2xl:space-x-6 lg:space-y-4 2xl:space-y-0"
+            *ngFor="let skills of tankData?.skills"
+        >
             <img
                 src="assets/skills/{{
                     skill | lowercase | replace: ' ' : '_'
                 }}.png"
-                class="border-secondaryLight dark:border-secondaryDark border-[1px] rounded w-[70px]"
+                class="border-secondaryLight dark:border-secondaryDark border-[1px] rounded w-[53px] md:w-[70px]"
                 alt="{{ skill }}"
                 title="{{ skill }}"
                 *ngFor="let skill of skills"
@@ -27,9 +36,11 @@
 
     <div
         id="conteneurTankEquipementDescriptionRight"
-        class="flex flex-col justify-between items-end flex-grow-[2] mr-10"
+        class="flex flex-col justify-between lg:items-end flex-grow-[2] lg:mr-10 space-y-5 lg:space-y-0"
     >
-        <div class="flex items-center justify-center space-x-20">
+        <div
+            class="flex flex-col lg:flex-row flex-wrap items-center justify-center space-y-5 lg:space-y-0 lg:space-x-20"
+        >
             <div>
                 <img
                     src="assets/tanks/{{
@@ -43,9 +54,11 @@
                 />
             </div>
 
-            <div class="flex flex-col justify-around items-center space-y-6">
+            <div
+                class="flex flex-row lg:flex-col justify-around items-center space-x-4lg:space-x-0 lg:space-y-6"
+            >
                 <div *ngFor="let shell of tankData.shells">
-                    <div class="text-xl relative -top-[5px] h-0 w-0">
+                    <div class="text-xl relative -top-[3px] left-[2px] h-0 w-0">
                         {{ shell.amount }}
                     </div>
                     <img
@@ -59,8 +72,10 @@
                 </div>
             </div>
 
-            <div class="space-y-6">
-                <div class="flex items-center justify-evenly space-x-20">
+            <div class="space-y-4 md:space-y-6 lg:mt-5 2xl:mt-0">
+                <div
+                    class="flex flex-col md:flex-row items-center justify-evenly space-y-4 md:space-y-0 md:space-x-20"
+                >
                     <div class="flex space-x-4">
                         <img
                             src="assets/equipments/{{
@@ -96,10 +111,17 @@
                         alt="{{ tankData.directive.name }}"
                         class="w-[70px] bg-secondaryLight dark:bg-secondaryDark rounded -mr-[70px]"
                     />
-                    <img src="assets/equipments/directive.png" alt="directive icone" title="{{ tankData.directive.name }}" class="relative w-[70px]">
+                    <img
+                        src="assets/equipments/directive.png"
+                        alt="directive icone"
+                        title="{{ tankData.directive.name }}"
+                        class="relative w-[70px]"
+                    />
                 </div>
 
-                <div class="flex items-center justify-evenly space-x-20">
+                <div
+                    class="flex flex-col md:flex-row items-center justify-evenly space-y-4 md:space-y-0 md:space-x-20"
+                >
                     <div class="flex space-x-4">
                         <img
                             src="assets/equipments/{{
@@ -129,8 +151,13 @@
             </div>
         </div>
 
-        <div class="flex justify-center space-x-5">
-            <div *ngFor="let field of tankData?.fields" class="flex">
+        <div
+            class="flex flex-col md:flex-row md:flex-wrap xl:flex-nowrap items-center lg:items-start md:justify-between lg:justify-center space-y-5 lg:space-x-5"
+        >
+            <div
+                *ngFor="let field of tankData?.fields"
+                class="flex h-[70px] -ml-[32px] lg:-ml-0 first:md:mt-5"
+            >
                 <img
                     src="assets/fields/roman_number_{{ field.level }}.png"
                     alt=""
@@ -139,18 +166,18 @@
 
                 <div
                     *ngFor="let part of field.field | keyvalue"
-                    class="w-[70px]"
+                    class="w-[70px] -mb-[70px]"
                     title="{{ part.value.name }}"
                 >
                     <img
                         src="{{ getURL(part.value) }}"
                         alt="{{ part.value.name }}"
-                        class="absolute w-[70px]"
+                        class="w-[70px]"
                     />
                     <img
                         *ngIf="part.value.active"
                         src="assets/fields/active.png"
-                        class="relative top-0 left-0 z-[2]"
+                        class="relative -top-[70px] left-0 z-[2]"
                     />
                 </div>
             </div>

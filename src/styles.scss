@@ -57,7 +57,7 @@ $my-theme: mat.define-light-theme(
 
 @layer components {
     .dark {
-        @apply bg-secondaryDark text-secondaryDark;
+        @apply bg-backgroundDark text-secondaryDark;
     }
 }
 
@@ -72,4 +72,14 @@ app-root {
 
 .mat-expansion-panel-header-description {
     flex-grow: 1.2 !important;
+}
+
+.mat-expansion-panel-body {
+    padding: 0 !important;
+}
+
+@media (min-width: 768px) {
+    .mat-expansion-panel-body {
+        padding: 0 24px 16px !important;
+    }
 }
