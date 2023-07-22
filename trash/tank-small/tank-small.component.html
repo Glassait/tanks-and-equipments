@@ -1,8 +1,0 @@
-<div (click)="onClick()"
-    class="flex items-center justify-evenly max-ssm:justify-start bg-secondary hover:bg-hoverSecondary border-[1px] w-full  h-10 max-sm:h-16 pt-1 pb-1 cursor-pointer relative">
-    <img src="/assets/tanks/{{data.name | lowercase | replace: ' ' : '_' | replace: '/' : '_' }}_icon.svg"
-        alt="Icon de {{ data.name }}" class="max-w-[7rem] max-md:max-w-[5rem] w-full absolute left-52 max-sm:hidden max-xl:left-10" title="{{ data.name }}">
-    <span class="w-auto flex items-center text-xl max-ssm:text-base max-ssm:pl-2">{{ data.name }}</span>
-    <img src="/assets/other/arrow.svg" alt="flêche"
-        class="filter-white max-w-[2rem] max-ssm:max-w-[1.5rem] w-full transition ease-in-out duration-500 absolute right-52 max-sm:right-3 max-xl:right-10 {{ arrowClass }}">
-</div>

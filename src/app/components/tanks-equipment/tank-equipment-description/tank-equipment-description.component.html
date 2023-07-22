@@ -63,7 +63,7 @@
                     </div>
                     <img
                         src="assets/shells/{{ shell.premium ? 'prem-' : '' }}{{
-                            shell.name
+                            shell.name | lowercase
                         }}.png"
                         alt="{{ shell.name }}"
                         title="{{ shell.name }}"
