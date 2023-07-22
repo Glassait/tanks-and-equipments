@@ -1,0 +1,16 @@
+{
+    "header": {
+        "accueil": "page d'accueil",
+        "charEtEquipement": "chars & équipements",
+        "clanWar": "clan War"
+    },
+    "home": {
+        "statusServer": "État des serveurs ",
+        "loading": "Chagement...",
+        "error": "Erreur",
+        "joueurs": "joueur(s)",
+        "information": "Information du clan",
+        "bastion": "bastion",
+        "clanWar": "clan War"
+    }
+}

@@ -1,0 +1,15 @@
+<div [ngClass]="divClass" class="flex max-sm:flex-col w-full border-[1px] border-t-0 p-1 pb-2 pt-2bg-hoverSecondary">
+    <div class="pl-2 max-md:pl-0 flex flex-col w-[25%] max-sm:w-[100%]">
+        <span class="font-bold flex justify-center pb-1">Équipage</span>
+
+        <app-crew class="w-full" [crew]="data.crew"></app-crew>
+        <app-skills class="w-full" [skills]="data.skills"></app-skills>
+    </div>
+
+    <div class="w-[50%] max-sm:w-full flex flex-col items-center">
+        <img class="border-white border-[1px] w-full max-w-[20rem] max-md:max-w-[15rem] mt-[35px]"
+            src="/assets/tanks/{{data.name | lowercase | replace: ' ' : '_' | replace : '/' : '_'}}_image.png"
+            alt="{{data.name}}" title="{{data.name}}">
+
+    </div>
+</div>

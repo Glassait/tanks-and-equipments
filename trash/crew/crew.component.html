@@ -1,0 +1,4 @@
+<div class="flex justify-evenly w-full">
+    <img *ngFor="let c of crew" class="block border-[1px] border-white filter-white min-h-0 min-w-0 overflow-hidden"
+        width="80" height="80" src="/assets/crew/{{ c | lowercase | replace: ' ' : '_' }}.webp" alt="{{ c }}" title="{{ c }}">
+</div>

@@ -1,0 +1,42 @@
+<mat-accordion>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          This is the expansion title
+        </mat-panel-title>
+        <mat-panel-description>
+          This is a summary of the content
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <app-tank-full id="{{scrollName}}_{{0}}" class="w-full min-w-[12rem]" [data]="datas[0]" [numerous]="0" [idClick]="1"></app-tank-full>
+    </mat-expansion-panel>
+    
+    <mat-expansion-panel (opened)="panelOpenState = true"
+                         (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Self aware panel
+        </mat-panel-title>
+        <mat-panel-description>
+          Currently I am {{panelOpenState ? 'open' : 'closed'}}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <p>I'm visible because I am open</p>
+    </mat-expansion-panel>
+  </mat-accordion>
+
+
+<!-- <div class="flex flex-col justify-around items-center overflow-hidden h-full">
+    <h1 class="text-2xl text-center font-bold basis-1/12 cursor-default m-2 mt-10 mb-10">
+        Équipement des chars pour les incu et clan war
+    </h1>
+
+    <div class="basis-8/12 w-[80%] flex items-center flex-col max-md:w-[90%] max-h-fit mb-5">
+        <div class="flex items-center justify-around flex-col w-full" *ngFor="let data of datas, let i = index">
+            <app-tank-small class="w-full min-w-[12rem]" [data]="data" [id]="i" [idClick]="idDisplayed"
+                (emitterForClick)="displayTankConfig($event)"></app-tank-small>
+            <app-tank-full id="{{scrollName}}_{{i}}" class="w-full min-w-[12rem]" [data]="data" [numerous]="i" [idClick]="idDisplayed"></app-tank-full>
+        </div>
+    </div>
+</div> -->

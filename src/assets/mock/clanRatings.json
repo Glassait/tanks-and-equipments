@@ -1,0 +1,73 @@
+{
+    "status": "ok",
+    "meta": { "count": 1 },
+    "data": {
+        "500179430": {
+            "gm_elo_rating_10": {
+                "rank_delta": null,
+                "rank": null,
+                "value": 808
+            },
+            "gm_elo_rating_8": {
+                "rank_delta": null,
+                "rank": null,
+                "value": 867
+            },
+            "fb_elo_rating_8": { "rank_delta": -4, "rank": 365, "value": 1128 },
+            "fb_elo_rating_6": { "rank_delta": 6, "rank": 326, "value": 1076 },
+            "exclude_reasons": {
+                "gm_elo_rating_8": "inactivity",
+                "gm_elo_rating": "limits",
+                "gm_elo_rating_6": "limits",
+                "gm_elo_rating_10": "inactivity"
+            },
+            "efficiency": { "rank_delta": -3, "rank": 168, "value": 10556 },
+            "rating_fort": { "rank_delta": -11, "rank": 339, "value": 2912.12 },
+            "fb_elo_rating_10": {
+                "rank_delta": -5,
+                "rank": 314,
+                "value": 1061
+            },
+            "clan_tag": "LCHP",
+            "battles_count_avg_daily": {
+                "rank_delta": -2,
+                "rank": 137,
+                "value": 13.65
+            },
+            "global_rating_weighted_avg": {
+                "rank_delta": -3,
+                "rank": 852,
+                "value": 5502.22
+            },
+            "clan_id": 500179430,
+            "fb_elo_rating": {
+                "rank_delta": -9,
+                "rank": 381,
+                "value": 1332.24
+            },
+            "gm_elo_rating_6": {
+                "rank_delta": null,
+                "rank": null,
+                "value": 1000
+            },
+            "wins_ratio_avg": {
+                "rank_delta": -4,
+                "rank": 1464,
+                "value": 51.06
+            },
+            "clan_name": "Les Helvetes Poilus",
+            "gm_elo_rating": { "rank_delta": null, "rank": null, "value": 0.0 },
+            "battles_count_avg": {
+                "rank_delta": 4,
+                "rank": 80,
+                "value": 46015.95
+            },
+            "v10l_avg": { "rank_delta": 0, "rank": 82, "value": 39.84 },
+            "global_rating_avg": {
+                "rank_delta": -1,
+                "rank": 967,
+                "value": 6792.86
+            }
+        }
+    }
+}

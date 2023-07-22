@@ -1,0 +1,5 @@
+<div class="flex justify-evenly" *ngFor="let skill of skills">
+    <div class="border-[1px] border-white mt-[10px]" *ngFor="let s of skill">
+        <img src="/assets/skills/{{ s | lowercase | replace: ' ' : '_' }}.png" alt="{{ s }}" title="{{ s }}" width="80" height="80">
+    </div>
+</div>

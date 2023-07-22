@@ -1,0 +1,85 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* -------------------------------------------------------------------------- */
+/*                                   IMPORT                                   */
+/* -------------------------------------------------------------------------- */
+
+@use '@angular/material' as mat;
+
+/* -------------------------------------------------------------------------- */
+/*                                   ANGULAR                                  */
+/* -------------------------------------------------------------------------- */
+
+@include mat.core();
+
+$my-primary: mat.define-palette(mat.$indigo-palette);
+$my-accent: mat.define-palette(mat.$pink-palette);
+$my-warn: mat.define-palette(mat.$red-palette);
+$font-familly: "ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'";
+
+$my-theme: mat.define-light-theme(
+    (
+        color: (
+            primary: $my-primary,
+            accent: $my-accent,
+            warn: $my-warn,
+        ),
+        typography: mat.define-typography-config($font-familly),
+        density: 0,
+    )
+);
+
+@include mat.core-theme($my-theme);
+@include mat.all-component-themes($my-theme);
+
+/* -------------------------------------------------------------------------- */
+/*                                  TAILWINDS                                 */
+/* -------------------------------------------------------------------------- */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    html {
+        @apply w-full h-full bg-backgroundLight text-secondaryLight;
+    }
+    body {
+        @apply w-full;
+    }
+    app-root {
+        @apply block;
+    }
+    app-main {
+        @apply block;
+    }
+}
+
+@layer components {
+    .dark {
+        @apply bg-backgroundDark text-secondaryDark;
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                STANDART CSS                                */
+/* -------------------------------------------------------------------------- */
+
+body,
+app-root {
+    height: inherit;
+}
+
+.mat-expansion-panel-header-description {
+    flex-grow: 1.2 !important;
+}
+
+.mat-expansion-panel-body {
+    padding: 0 !important;
+}
+
+@media (min-width: 768px) {
+    .mat-expansion-panel-body {
+        padding: 0 24px 16px !important;
+    }
+}
