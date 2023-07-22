@@ -7,8 +7,8 @@ import {
     WotClanRatingsRequest,
     WotServerRequest,
 } from 'src/app/commons/types/clanRatings.types';
-import { AuthenticationClient } from 'src/app/commons/service/authenticationClient';
 import { AuthenticationService } from 'src/app/commons/service/authentication.service';
+import { MemberStore } from 'src/app/commons/stores/member.store';
 
 @Component({
     selector: 'app-home',
@@ -26,13 +26,16 @@ export class HomeComponent implements OnInit {
         protected wordingClass: WordingClass,
         protected informationClass: InformationClass,
         private headerStore: HeaderStore,
+        protected memberStore: MemberStore,
         private auth: AuthenticationService
     ) {
         this.setHeaderVariables();
     }
 
     ngOnInit(): void {
-        this.auth.login();
+        if (!this.auth.isLoggedIn()) {
+            this.auth.login();
+        }
 
         this.getWotServerStatus();
 

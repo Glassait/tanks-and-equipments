@@ -41,6 +41,7 @@
         </mat-card>
 
         <mat-card
+            *ngIf="!memberStore.get('isVisitor')"
             class="w-[320px] md:w-[750px] 2xl:w-[500px] h-min border-secondaryLight dark:border-x-secondaryDark border-[1px]"
         >
             <mat-card-header>

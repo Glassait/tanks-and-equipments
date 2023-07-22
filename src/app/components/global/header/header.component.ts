@@ -3,6 +3,7 @@ import { HeaderStore } from 'src/app/commons/stores/header.store';
 import { HeaderInterface } from 'src/app/commons/interfaces/header.interface';
 import { WordingClass } from 'src/app/commons/class/wording.class';
 import { InventoryClass } from 'src/app/commons/class/inventory.class';
+import { MemberStore } from 'src/app/commons/stores/member.store';
 
 @Component({
     selector: 'app-header',
@@ -17,6 +18,7 @@ export class HeaderComponent {
 
     constructor(
         private headerStore: HeaderStore,
+        protected memberStore: MemberStore,
         protected wordingClass: WordingClass,
         protected inventoryClass: InventoryClass
     ) {

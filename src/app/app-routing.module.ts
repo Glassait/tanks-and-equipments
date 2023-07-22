@@ -8,10 +8,14 @@ import inventory from 'src/assets/json/inventory.json';
 import { AuthGuard } from './commons/service/authGuard';
 
 const routes: Routes = [
-    { path: inventory.path.home, component: HomeComponent },
+    {
+        path: inventory.path.home,
+        component: HomeComponent,
+    },
     {
         path: inventory.path.charsEtEquipements,
         component: TanksEquipmentComponent,
+        canActivate: [AuthGuard],
     },
     {
         path: inventory.path.charsEtEquipements,
@@ -21,6 +25,12 @@ const routes: Routes = [
     {
         path: inventory.path.clanMembers,
         component: ClanMembersComponent,
+        canActivate: [AuthGuard],
+    },
+    {
+        path: inventory.path.clanWar,
+        component: ClanWarComponent,
+        canActivate: [AuthGuard],
     },
 ];
 
