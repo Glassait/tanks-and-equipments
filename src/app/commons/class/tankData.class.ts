@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Tanks } from 'src/app/commons/types/data.types';
+import { Tanks } from 'src/app/commons/types/tanksData.types';
 import tanksData from 'src/assets/json/tanksData.json';
 
 @Injectable({

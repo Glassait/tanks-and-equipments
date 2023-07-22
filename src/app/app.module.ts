@@ -17,9 +17,11 @@ import { HomeComponent } from './components/home/home.component';
 import { HttpClientModule } from '@angular/common/http';
 import { TanksEquipmentComponent } from './components/tanks-equipment/tanks-equipment.component';
 import { TankEquipmentDescriptionComponent } from './components/tanks-equipment/tank-equipment-description/tank-equipment-description.component';
+import { ClanWarComponent } from './components/clan-war/clan-war.component';
+import { ClanMembersComponent } from './components/clan-members/clan-members.component';
 
 @NgModule({
-    declarations: [AppComponent, ReplacePipe, HeaderComponent, HomeComponent, TanksEquipmentComponent, TankEquipmentDescriptionComponent],
+    declarations: [AppComponent, ReplacePipe, HeaderComponent, HomeComponent, TanksEquipmentComponent, TankEquipmentDescriptionComponent, ClanWarComponent, ClanMembersComponent],
     imports: [
         BrowserModule,
         AppRoutingModule,

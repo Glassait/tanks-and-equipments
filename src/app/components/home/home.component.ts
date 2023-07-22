@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import {
-    WotApiService,
-    WotClanRatingsRequest,
-    WotServerRequest,
-} from 'src/app/commons/class/wotApi.service';
+import { WotApiService } from 'src/app/commons/service/wotApi.service';
 import { HeaderStore } from 'src/app/commons/stores/header.store';
 import { WordingClass } from 'src/app/commons/class/wording.class';
 import { InformationClass } from 'src/app/commons/class/information.class';
+import {
+    WotClanRatingsRequest,
+    WotServerRequest,
+} from 'src/app/commons/types/clanRatings.types';
+import { AuthenticationClient } from 'src/app/commons/service/authenticationClient';
+import { AuthenticationService } from 'src/app/commons/service/authentication.service';
 
 @Component({
     selector: 'app-home',
@@ -23,12 +25,15 @@ export class HomeComponent implements OnInit {
         private wotApiService: WotApiService,
         protected wordingClass: WordingClass,
         protected informationClass: InformationClass,
-        private headerStore: HeaderStore
+        private headerStore: HeaderStore,
+        private auth: AuthenticationService
     ) {
         this.setHeaderVariables();
     }
 
     ngOnInit(): void {
+        this.auth.login();
+
         this.getWotServerStatus();
 
         if (

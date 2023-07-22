@@ -1,5 +1,8 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { FieldComposant, TankData } from 'src/app/commons/types/data.types';
+import {
+    FieldComposant,
+    TankData,
+} from 'src/app/commons/types/tanksData.types';
 
 @Component({
     selector: 'app-tank-equipment-description',
