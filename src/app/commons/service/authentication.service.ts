@@ -5,9 +5,6 @@ import { MemberStore } from '../stores/member.store';
 import { MembersClass } from '../class/members.class';
 import { CheckGrade } from '../class/CheckGrade.class';
 import { GradeEnum } from '../enum/grade.enum';
-import { TokenInterface } from '../interfaces/token.interface';
-import { ArrayToObject } from '../class/ArrayToObject.class';
-import { MemberInterface } from '../interfaces/member.interface';
 
 @Injectable({
     providedIn: 'root',
