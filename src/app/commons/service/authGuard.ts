@@ -27,8 +27,6 @@ export class AuthGuard {
 
     checkLogin() {
         if (!this.authService.isLoggedIn()) {
-            console.log('pass here ?');
-
             this.router.navigate([this.inventoryClass.getPath().home]);
             return of(false);
         }
