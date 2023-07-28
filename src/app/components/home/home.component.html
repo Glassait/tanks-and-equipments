@@ -1,25 +1,26 @@
 <div
     id="conteneurHome"
-    class="p-4 md:pt-16 flex flex-col 2xl:flex-row justify-center items-center space-y-10 2xl:space-y-0"
+    class="flex flex-col flex-wrap items-center justify-center space-y-10 p-4 pt-8 desktop:flex-row desktop:space-y-0"
 >
     <div
         id="leftHome"
-        class="flex flex-auto flex-col justify-around items-center space-y-10 2xl:space-y-12"
+        class="flex w-0 flex-auto flex-col items-center justify-around space-y-10"
     >
         <mat-spinner *ngIf="showSpinnerServer"></mat-spinner>
         <mat-card
             *ngIf="!showSpinnerServer"
-            class="w-[320px] md:w-[750px] 2xl:w-[500px] h-min border-secondaryLight dark:border-x-secondaryDark border-[1px]"
+            class="h-min w-[320px] border-[1px] border-secondaryLight tablette:w-[730px] desktop:w-[500px]"
+            id="statusOfServer"
         >
-            <mat-card-header>
+            <mat-card-header class="mb-3 flex items-center">
                 <img
                     mat-card-avatar
                     src="assets/other/server.svg"
                     alt=""
-                    class="filter invert-0 sepia-[94%] saturate-[100%] hue-rotate-[57deg] brightness-0 contrast-[105%]"
+                    class="brightness-0 contrast-[105%] hue-rotate-[57deg] invert-0 saturate-[100%] sepia-[94%] filter"
                 />
                 <mat-card-title
-                    class="[--mat-card-title-text-size:24px] underline"
+                    class="underline [--mat-card-title-text-size:25px]"
                 >
                     {{ wordingClass.getHome().statusServer }}
                 </mat-card-title>
@@ -28,7 +29,7 @@
             <mat-card-content id="contentServeur" class="space-y-2">
                 <div
                     *ngFor="let server of wotServer.data.wot"
-                    class="flex items-center space-x-10 text-xl"
+                    class="flex items-center space-x-8 tablette:space-x-10"
                 >
                     <strong>{{ server.server }}</strong>
                     <img src="assets/other/ok.svg" alt="" class="w-[25px]" />
@@ -42,27 +43,30 @@
 
         <mat-card
             *ngIf="!memberStore.get('isVisitor')"
-            class="w-[320px] md:w-[750px] 2xl:w-[500px] h-min border-secondaryLight dark:border-x-secondaryDark border-[1px]"
+            class="h-min w-[320px] border-[1px] border-secondaryLight tablette:w-[730px] desktop:w-[500px]"
+            id="clanInformation"
         >
-            <mat-card-header>
+            <mat-card-header class="mb-3 flex items-center">
                 <img
                     mat-card-avatar
                     src="assets/other/information.svg"
                     alt=""
                 />
                 <mat-card-title
-                    class="[--mat-card-title-text-size:24px] underline"
+                    class="underline [--mat-card-title-text-size:25px]"
                     >{{ wordingClass.getHome().information }}</mat-card-title
                 >
             </mat-card-header>
 
-            <mat-card-content class="text-xl whitespace-pre-line space-y-4">
+            <mat-card-content
+                class="space-y-4 whitespace-pre-line text-justify"
+            >
                 <div>{{ informationClass.getText() }}</div>
                 <div class="flex justify-end">
                     <a
                         href="{{ informationClass.getURL() }}"
                         target="_blank"
-                        class="text-link underline flex space-x-4"
+                        class="flex space-x-4 text-link underline"
                     >
                         <div>{{ informationClass.getLinkText() }}</div>
                         <img
@@ -75,52 +79,60 @@
         </mat-card>
     </div>
 
-    <div id="rightHome" class="hidden md:flex flex-auto md:justify-center">
+    <div
+        id="rightHome"
+        class="hidden desktop:flex desktop:w-0 desktop:flex-auto desktop:justify-center"
+    >
         <mat-spinner *ngIf="showSpinnerClanRatings"></mat-spinner>
 
         <mat-card
             *ngIf="!showSpinnerClanRatings && showClanRatingsCard"
-            class="w-[750px] h-fit border-secondaryLight dark:border-x-secondaryDark border-[1px]"
+            class="h-fit w-[600px]"
         >
-            <mat-card-header class="justify-center items-center">
+            <mat-card-header class="mb-2 flex items-center justify-center">
                 <img src="assets/other/logo.png" alt="" />
             </mat-card-header>
 
             <mat-card-content
-                class="bg-[url('/assets/other/clan_ratings_little.jpg')] h-full"
+                class="h-full bg-[url('/assets/other/clan_ratings_little.jpg')]"
             >
-                <div class="flex text-primaryLight text-2xl mt-4 space-x-10">
+                <div class="mt-4 flex space-x-12 text-secondaryDark">
                     <div
-                        class="grid gap-4 grid-cols-2 grid-rows-4 flex-auto pl-10"
+                        class="grid w-0 flex-auto grid-cols-2 grid-rows-4 gap-3 pl-4"
                     >
-                        <img
-                            src="assets/other/castle.svg"
-                            alt=""
-                            class="filter brightness-0 saturate-[100%] invert-[100%] sepia-[3%] hue-rotate-[81deg] contrast-[106%] h-[60px]"
-                        />
+                        <div class="flex h-full w-full justify-center">
+                            <img
+                                src="assets/other/castle.svg"
+                                alt=""
+                                class="h-[60px] brightness-0 contrast-[106%] hue-rotate-[81deg] invert-[100%] saturate-[100%] sepia-[3%] filter"
+                            />
+                        </div>
 
-                        <span class="underline self-center">{{
-                            wordingClass.getHome().bastion | titlecase
-                        }}</span>
+                        <span
+                            class="self-center text-center text-title underline"
+                            >{{
+                                wordingClass.getHome().bastion | titlecase
+                            }}</span
+                        >
 
-                        <div class="self-center">X</div>
-                        <div class="self-center">
+                        <div class="self-center text-center">X</div>
+                        <div class="self-center text-center">
                             {{
                                 wotClanRatings.data['500179430']
                                     .fb_elo_rating_10.value
                             }}
                         </div>
 
-                        <div class="self-center">VIII</div>
-                        <div class="self-center">
+                        <div class="self-center text-center">VIII</div>
+                        <div class="self-center text-center">
                             {{
                                 wotClanRatings.data['500179430'].fb_elo_rating_8
                                     .value
                             }}
                         </div>
 
-                        <div class="self-center">VI</div>
-                        <div class="self-center">
+                        <div class="self-center text-center">VI</div>
+                        <div class="self-center text-center">
                             {{
                                 wotClanRatings.data['500179430'].fb_elo_rating_6
                                     .value
@@ -129,36 +141,41 @@
                     </div>
 
                     <div
-                        class="grid gap-4 grid-cols-2 grid-rows-4 flex-auto pr-10"
+                        class="grid w-0 flex-auto grid-cols-2 grid-rows-4 gap-3 pr-4"
                     >
-                        <img
-                            src="assets/other/map.svg"
-                            alt=""
-                            class="filter brightness-0 saturate-[100%] invert-[100%] sepia-[3%] hue-rotate-[81deg] contrast-[106%] h-[60px] justify-self-end"
-                        />
+                        <div class="flex h-full w-full justify-center">
+                            <img
+                                src="assets/other/map.svg"
+                                alt=""
+                                class="h-[60px] justify-self-end brightness-0 contrast-[106%] hue-rotate-[81deg] invert-[100%] saturate-[100%] sepia-[3%] filter"
+                            />
+                        </div>
 
-                        <span class="underline self-center text-end">{{
-                            wordingClass.getHome().clanWar | titlecase
-                        }}</span>
+                        <span
+                            class="self-center text-center text-title underline"
+                            >{{
+                                wordingClass.getHome().clanWar | titlecase
+                            }}</span
+                        >
 
-                        <div class="self-center text-end">X</div>
-                        <div class="self-center text-end">
+                        <div class="self-center text-center">X</div>
+                        <div class="self-center text-center">
                             {{
                                 wotClanRatings.data['500179430']
                                     .gm_elo_rating_10.value
                             }}
                         </div>
 
-                        <div class="self-center text-end">VIII</div>
-                        <div class="self-center text-end">
+                        <div class="self-center text-center">VIII</div>
+                        <div class="self-center text-center">
                             {{
                                 wotClanRatings.data['500179430'].gm_elo_rating_8
                                     .value
                             }}
                         </div>
 
-                        <div class="self-center text-end">VI</div>
-                        <div class="self-center text-end">
+                        <div class="self-center text-center">VI</div>
+                        <div class="self-center text-center">
                             {{
                                 wotClanRatings.data['500179430'].gm_elo_rating_6
                                     .value

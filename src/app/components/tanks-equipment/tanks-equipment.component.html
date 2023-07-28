@@ -1,21 +1,21 @@
 <div id="conteneurTankEquipement" class="flex items-center justify-center">
-    <mat-accordion class="w-full md:w-[90%] mt-20">
-        <mat-expansion-panel *ngFor="let tankData of tanksDataClass.tanksData.data">
+    <mat-accordion class="mt-10 w-full desktop:mt-14 desktop:w-[90%]">
+        <mat-expansion-panel
+            *ngFor="let tankData of tanksDataClass.tanksData.data"
+        >
             <mat-expansion-panel-header>
-                <mat-panel-title>
+                <mat-panel-title class="w-10 tablette:w-24">
                     <img
                         src="assets/tanks/{{
                             tankData.name
-                                | lowercase
-                                | replace: ' ' : '_'
-                                | replace: '/' : '_'
+                            | image
                         }}.icon.svg"
                         alt=""
                         class="h-full"
                     />
                 </mat-panel-title>
                 <mat-panel-description
-                    class="[--mat-expansion-header-description-color:primaryLight] dark:[--mat-expansion-header-description-color:primaryDark] text-xl"
+                    class="flex justify-center text-petit [--mat-expansion-header-description-color:primaryLight] tablette:-ml-24 tablette:text-normal"
                 >
                     {{ tankData.name | uppercase }}
                 </mat-panel-description>
