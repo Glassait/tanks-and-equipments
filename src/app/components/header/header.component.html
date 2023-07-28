@@ -1,0 +1,91 @@
+<div
+    *ngIf="!isSidenav"
+    class="flex h-[70px] w-full items-center border-b-[1px] border-b-secondaryLight bg-primaryLight pl-3 pr-3"
+>
+    <div id="leftHeader" class="hidden w-0 flex-auto desktop:block">
+        <a
+            *ngIf="showHome"
+            [routerLink]="[inventoryClass.getPath().home]"
+            class="text-title hover:cursor-pointer hover:underline"
+        >
+            {{ wordingClass.getHeader().accueil | uppercase }}
+        </a>
+    </div>
+
+    <div id="centerHeader" class="flex w-0 flex-auto justify-center">
+        <a
+            href="https://eu.wargaming.net/clans/wot/500179430/"
+            target="_blank"
+            class="flex w-max items-center rounded-full border-[1px] border-secondaryLight"
+            rel="noopener"
+        >
+            <img
+                src="assets/other/logo.png"
+                alt="Logo du clan LCHP"
+                class="m-1 h-[53px] w-[52px]"
+            />
+        </a>
+    </div>
+
+    <div id="rightHeader" class="hidden w-0 flex-auto justify-end desktop:flex">
+        <div id="charEtEquipement">
+            <a
+                *ngIf="showTank && !memberStore.get('isVisitor')"
+                [routerLink]="[inventoryClass.getPath().charsEtEquipements]"
+                class="mr-5 text-title hover:cursor-pointer hover:underline"
+            >
+                {{ wordingClass.getHeader().charEtEquipement | uppercase }}
+            </a>
+        </div>
+
+        <div id="clanWar">
+            <a
+                *ngIf="
+                    showWar &&
+                    inventoryClass.getFeatureFlipping().clanWar &&
+                    !memberStore.get('isVisitor')
+                "
+                [routerLink]="[inventoryClass.getPath().clanWar]"
+                class="text-title hover:cursor-pointer hover:underline"
+            >
+                {{ wordingClass.getHeader().clanWar | uppercase }}
+            </a>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="isSidenav" class="space-y-10 first:mt-5">
+    <div id="homeSidenav" class="ml-2">
+        <a
+            *ngIf="showHome"
+            [routerLink]="[inventoryClass.getPath().home]"
+            class="text-title underline tablette:no-underline tablette:hover:cursor-pointer tablette:hover:underline"
+        >
+            {{ wordingClass.getHeader().accueil | uppercase }}
+        </a>
+    </div>
+
+    <div id="charEtEquipementSidenav" class="ml-2">
+        <a
+            *ngIf="showTank && !memberStore.get('isVisitor')"
+            [routerLink]="[inventoryClass.getPath().charsEtEquipements]"
+            class="text-title underline tablette:no-underline tablette:hover:cursor-pointer tablette:hover:underline"
+        >
+            {{ wordingClass.getHeader().charEtEquipement | uppercase }}
+        </a>
+    </div>
+
+    <div id="clanWarSidenav" class="ml-2">
+        <a
+            *ngIf="
+                showWar &&
+                inventoryClass.getFeatureFlipping().clanWar &&
+                !memberStore.get('isVisitor')
+            "
+            [routerLink]="[inventoryClass.getPath().clanWar]"
+            class="text-title underline tablette:no-underline tablette:hover:cursor-pointer tablette:hover:underline"
+        >
+            {{ wordingClass.getHeader().clanWar | uppercase }}
+        </a>
+    </div>
+</div>

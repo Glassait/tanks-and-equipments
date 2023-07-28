@@ -42,7 +42,11 @@ $my-theme: mat.define-light-theme(
 
 @layer base {
     html {
-        @apply w-full h-full bg-backgroundLight text-secondaryLight;
+        @apply h-full w-full font-ui text-normal;
+    }
+    main,
+    html {
+        @apply light;
     }
     body {
         @apply w-full;
@@ -58,6 +62,9 @@ $my-theme: mat.define-light-theme(
 @layer components {
     .dark {
         @apply bg-backgroundDark text-secondaryDark;
+    }
+    .light {
+        @apply bg-backgroundLight text-secondaryLight;
     }
 }
 
@@ -76,6 +83,15 @@ app-root {
 
 .mat-expansion-panel-body {
     padding: 0 !important;
+}
+
+.mat-mdc-card-avatar {
+    margin: 0 !important;
+}
+
+.mat-expansion-panel-header-title {
+    flex-grow: unset !important;
+    flex-basis: unset !important;
 }
 
 @media (min-width: 768px) {

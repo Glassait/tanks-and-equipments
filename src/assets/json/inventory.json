@@ -11,7 +11,7 @@
         "loginMock": "assets/mock/connexion.json"
     },
     "featureFlipping": {
-        "clanWar": false
+        "clanWar": true
     },
     "path": {
         "home": "",

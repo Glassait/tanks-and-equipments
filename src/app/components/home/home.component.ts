@@ -87,8 +87,10 @@ export class HomeComponent implements OnInit {
     }
 
     private setHeaderVariables() {
-        this.headerStore.set('showHome', false);
-        this.headerStore.set('showTank', true);
-        this.headerStore.set('showWar', true);
+        this.headerStore.patch({
+            showHome: true,
+            showTank: true,
+            showWar: true,
+        });
     }
 }

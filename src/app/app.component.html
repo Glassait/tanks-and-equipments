@@ -1,21 +1,27 @@
 <header>
     <div
-        class="scale-[1.5] absolute w-[50px] h-[50px] cursor-pointer top-3 left-3 md:hidden"
+        class="absolute left-2 top-[14px] h-[40px] w-[40px] scale-[1.5] cursor-pointer desktop:hidden"
     >
         <input
             mat-raised-button
-            class="block w-full h-full absolute cursor-pointer z-[2] opacity-0 peer"
+            class="absolute z-[2] block h-full w-full cursor-pointer opacity-0"
             type="checkbox"
+            #checkBoxDrawer
+            (change)="updateCSS()"
             (click)="drawer.toggle()"
         />
         <div
-            class="m-auto absolute top-0 right-0 left-0 bottom-0 w-[22px] h-[12px]"
+            class="absolute bottom-0 left-0 right-0 top-0 m-auto h-[12px] w-[22px]"
         >
             <span
-                class="absolute block w-full h-[2px] bg-secondaryLight dark:bg-secondaryDark rounded-[1px] transition-all top-0 peer-checked:rotate-90"
+                class="absolute block w-full h-[2px] bg-secondaryLight rounded-[1px] transition-all duration-500 {{
+                    cssClassTop
+                }}"
             ></span>
             <span
-                class="absolute block w-full h-[2px] bg-secondaryLight dark:bg-secondaryDark rounded-[1px] transition-all bottom-0 peer-checked:rotate-90"
+                class="absolute block w-full h-[2px] bg-secondaryLight rounded-[1px] transition-all duration-500 {{
+                    cssClassBottom
+                }}"
             ></span>
         </div>
     </div>
@@ -24,10 +30,10 @@
 </header>
 
 <mat-drawer-container [hasBackdrop]="true">
-    <mat-drawer class="w-[320px]" #drawer mode="over">
+    <mat-drawer class="dark:dark w-[320px]" #drawer mode="over">
         <app-header [isSidenav]="true"></app-header>
     </mat-drawer>
-    <mat-drawer-content class="bg-backgroundLight dark:bg-backgroundDark">
+    <mat-drawer-content>
         <main>
             <router-outlet role="none"></router-outlet>
         </main>
