@@ -9,7 +9,7 @@
         <mat-spinner *ngIf="showSpinnerServer"></mat-spinner>
         <mat-card
             *ngIf="!showSpinnerServer"
-            class="h-min w-[320px] dark:[--mdc-elevated-card-container-color:#000000] tablette:w-[730px] desktop:w-[500px]"
+            class="h-min w-[320px] dark:[--mdc-elevated-card-container-color:#000000] tablette:w-[730px] desktop:w-[500px]"head
             id="statusOfServer"
         >
             <mat-card-header class="mb-3 flex items-center">
@@ -65,8 +65,7 @@
                 <div>{{ informationClass.getText() }}</div>
                 <div class="flex justify-end">
                     <a
-                        href="{{ informationClass.getURL() }}"
-                        target="_blank"
+                        [routerLink]="informationClass.getURL()"
                         class="flex space-x-4 text-linkLight underline dark:text-linkDark"
                     >
                         <div>{{ informationClass.getLinkText() }}</div>

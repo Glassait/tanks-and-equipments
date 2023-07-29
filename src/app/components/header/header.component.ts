@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { HeaderStore } from 'src/app/commons/stores/header.store';
 import { HeaderInterface } from 'src/app/commons/interfaces/header.interface';
 import { WordingClass } from 'src/app/commons/class/wording.class';
