@@ -53,8 +53,10 @@ export class HeaderComponent implements AfterViewInit {
     protected changeMode($event: MatSlideToggleChange) {
         if ($event.checked) {
             document.documentElement.classList.add('dark');
+            this.modeStore.set('dark', true);
         } else {
             document.documentElement.classList.remove('dark');
+            this.modeStore.set('dark', false);
         }
     }
 }
