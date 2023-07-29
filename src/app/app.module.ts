@@ -10,7 +10,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatMenuModule } from '@angular/material/menu';
 
 import { HomeComponent } from './components/home/home.component';
 import { TanksEquipmentComponent } from './components/tanks-equipment/tanks-equipment.component';
@@ -43,7 +43,7 @@ import { ReplacePipe } from './pipes/replace/replace.pipe';
         MatIconModule,
         HttpClientModule,
         MatProgressSpinnerModule,
-        MatSidenavModule,
+        MatMenuModule,
     ],
     providers: [],
     bootstrap: [AppComponent],
