@@ -12,7 +12,7 @@
 
 @include mat.core();
 
-$my-primary: mat.define-palette(mat.$indigo-palette);
+$my-primary: mat.define-palette(mat.$grey-palette);
 $my-accent: mat.define-palette(mat.$pink-palette);
 $my-warn: mat.define-palette(mat.$red-palette);
 $font-familly: "ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'";

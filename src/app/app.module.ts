@@ -11,6 +11,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 import { HomeComponent } from './components/home/home.component';
 import { TanksEquipmentComponent } from './components/tanks-equipment/tanks-equipment.component';
@@ -44,6 +45,7 @@ import { ReplacePipe } from './pipes/replace/replace.pipe';
         HttpClientModule,
         MatProgressSpinnerModule,
         MatMenuModule,
+        MatSlideToggleModule,
     ],
     providers: [],
     bootstrap: [AppComponent],
