@@ -94,6 +94,17 @@ app-root {
     flex-basis: unset !important;
 }
 
+.mat-mdc-menu-item {
+    justify-content: flex-end !important;
+    text-align: end !important;
+}
+
+.mat-mdc-menu-content > :not([hidden]) ~ :not([hidden]) {
+    --tw-space-y-reverse: 0;
+    margin-top: calc(0.50rem * calc(1 - var(--tw-space-y-reverse)));
+    margin-bottom: calc(0.50rem * var(--tw-space-y-reverse));
+}
+
 @media (min-width: 768px) {
     .mat-expansion-panel-body {
         padding: 0 24px 16px !important;

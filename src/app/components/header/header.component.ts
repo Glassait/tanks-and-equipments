@@ -10,8 +10,6 @@ import { MemberStore } from 'src/app/commons/stores/member.store';
     templateUrl: './header.component.html',
 })
 export class HeaderComponent {
-    @Input() isSidenav: boolean = false;
-
     protected showHome: boolean;
     protected showTank: boolean;
     protected showWar: boolean;

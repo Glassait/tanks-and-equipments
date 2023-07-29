@@ -1,41 +1,5 @@
-<header>
-    <div
-        class="absolute left-2 top-[14px] h-[40px] w-[40px] scale-[1.5] cursor-pointer desktop:hidden"
-    >
-        <input
-            mat-raised-button
-            class="absolute z-[2] block h-full w-full cursor-pointer opacity-0"
-            type="checkbox"
-            #checkBoxDrawer
-            (change)="updateCSS()"
-            (click)="drawer.toggle()"
-        />
-        <div
-            class="absolute bottom-0 left-0 right-0 top-0 m-auto h-[12px] w-[22px]"
-        >
-            <span
-                class="absolute block w-full h-[2px] bg-secondaryLight rounded-[1px] transition-all duration-500 {{
-                    cssClassTop
-                }}"
-            ></span>
-            <span
-                class="absolute block w-full h-[2px] bg-secondaryLight rounded-[1px] transition-all duration-500 {{
-                    cssClassBottom
-                }}"
-            ></span>
-        </div>
-    </div>
+<app-header></app-header>
 
-    <app-header></app-header>
-</header>
-
-<mat-drawer-container [hasBackdrop]="true">
-    <mat-drawer class="dark:dark w-[320px]" #drawer mode="over">
-        <app-header [isSidenav]="true"></app-header>
-    </mat-drawer>
-    <mat-drawer-content>
-        <main>
-            <router-outlet role="none"></router-outlet>
-        </main>
-    </mat-drawer-content>
-</mat-drawer-container>
+<main>
+    <router-outlet role="none"></router-outlet>
+</main>
