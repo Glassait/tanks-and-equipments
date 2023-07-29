@@ -8,8 +8,8 @@
             class="flex space-x-2 tablette:flex-col tablette:space-x-0 tablette:space-y-4 desktop:flex-row desktop:space-x-4 desktop:space-y-0"
         >
             <img
-                src="assets/crew/{{ crew | image }}.webp"
-                class="h-11 w-11 rounded border-[1px] border-secondaryLight tablette:h-[70px] tablette:w-[70px]"
+                src="assets/crew/{{ crew | image }}.svg"
+                class="h-11 w-11 rounded border-[1px] border-secondaryLight dark:contrast-[101%] dark:hue-rotate-[164deg] dark:invert-[100%] dark:saturate-[100%] dark:sepia-[100%] tablette:h-[70px] tablette:w-[70px]"
                 alt="{{ crew }}"
                 title="{{ crew }}"
                 *ngFor="let crew of tankData?.crew"
@@ -22,7 +22,7 @@
         >
             <img
                 src="assets/skills/{{ skill | image }}.png"
-                class="h-11 w-11 rounded border-[1px] border-secondaryLight tablette:h-[70px] tablette:w-[70px]"
+                class="h-11 w-11 rounded border-[1px] border-secondaryLight dark:border-secondaryDark tablette:h-[70px] tablette:w-[70px]"
                 alt="{{ skill }}"
                 title="{{ skill }}"
                 *ngFor="let skill of skills"
@@ -59,7 +59,7 @@
                         }}.png"
                         alt="{{ shell.name }}"
                         title="{{ shell.name }}"
-                        class="w-[70px] rounded border-[1px] border-secondaryLight"
+                        class="w-[70px] rounded border-[1px] border-secondaryLight dark:border-secondaryDark"
                     />
                 </div>
             </div>
@@ -76,7 +76,7 @@
                             alt="{{ equipment.name }}"
                             title="{{ equipment.name }}"
                             *ngFor="let equipment of tankData.equipments.first"
-                            class="w-[70px] rounded border-[1px] border-secondaryLight"
+                            class="w-[70px] rounded border-[1px] border-secondaryLight dark:border-secondaryDark"
                         />
                     </div>
 
@@ -90,7 +90,7 @@
                             *ngFor="
                                 let consomable of tankData.consomables.first
                             "
-                            class="w-[70px] rounded border-[1px] border-secondaryLight"
+                            class="w-[70px] rounded border-[1px] border-secondaryLight dark:border-secondaryDark"
                         />
                     </div>
                 </div>
@@ -122,7 +122,7 @@
                             alt="{{ equipment.name }}"
                             title="{{ equipment.name }}"
                             *ngFor="let equipment of tankData.equipments.second"
-                            class="w-[70px] rounded border-[1px] border-secondaryLight"
+                            class="w-[70px] rounded border-[1px] border-secondaryLight dark:border-secondaryDark"
                         />
                     </div>
 
@@ -136,7 +136,7 @@
                             *ngFor="
                                 let consomable of tankData.consomables.second
                             "
-                            class="w-[70px] rounded border-[1px] border-secondaryLight"
+                            class="w-[70px] rounded border-[1px] border-secondaryLight dark:border-secondaryDark"
                         />
                     </div>
                 </div>
