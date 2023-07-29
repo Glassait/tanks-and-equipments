@@ -44,7 +44,6 @@ $my-theme: mat.define-light-theme(
     html {
         @apply h-full w-full font-ui text-normal;
     }
-    main,
     html {
         @apply light;
     }
@@ -103,6 +102,10 @@ app-root {
     --tw-space-y-reverse: 0;
     margin-top: calc(0.50rem * calc(1 - var(--tw-space-y-reverse)));
     margin-bottom: calc(0.50rem * var(--tw-space-y-reverse));
+}
+
+.mat-mdc-slide-toggle .mdc-switch__ripple::after {
+    opacity: 0.3 !important;
 }
 
 @media (min-width: 768px) {

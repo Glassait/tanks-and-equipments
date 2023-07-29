@@ -1,10 +1,10 @@
 <div
-    class="flex h-[70px] w-full items-center border-b-[1px] border-b-secondaryLight bg-primaryLight pl-3 pr-3"
+    class="flex h-[70px] w-full items-center border-b-[1px] border-b-secondaryLight bg-primaryLight pl-3 pr-3 dark:border-b-secondaryDark dark:bg-primaryDark"
 >
     <div id="leftHeader" class="w-0 flex-auto">
         <mat-slide-toggle
             #darkModeSwitch
-            class="mb-1 ml-2 scale-[1.3] [--mdc-switch-unselected-handle-color:#000000] [--mdc-switch-unselected-track-color:#E9E9E9]"
+            class="mb-1 ml-2 scale-[1.3] [--mdc-switch-unselected-focus-state-layer-color:#E9E9E9] [--mdc-switch-unselected-handle-color:#000000] [--mdc-switch-unselected-hover-state-layer-color:#E9E9E9] [--mdc-switch-unselected-pressed-state-layer-color:#E9E9E9] [--mdc-switch-unselected-track-color:#E9E9E9] dark:[--mdc-switch-selected-focus-handle-color:#FFFFFF] dark:[--mdc-switch-selected-focus-state-layer-color:#202020] dark:[--mdc-switch-selected-handle-color:#FFFFFF] dark:[--mdc-switch-selected-hover-handle-color:#E9E9E9] dark:[--mdc-switch-selected-hover-state-layer-color:#202020] dark:[--mdc-switch-selected-icon-color:#000000] dark:[--mdc-switch-selected-pressed-handle-color:#E9E9E9] dark:[--mdc-switch-selected-pressed-state-layer-color:#202020]"
             [disableRipple]="true"
             color="primary"
             (change)="changeMode($event)"
@@ -16,7 +16,7 @@
         <a
             href="https://eu.wargaming.net/clans/wot/500179430/"
             target="_blank"
-            class="flex w-max items-center rounded-full border-[1px] border-secondaryLight"
+            class="flex w-max items-center rounded-full border-[1px] border-secondaryLight hover:bg-backgroundLight dark:border-secondaryDark dark:hover:bg-backgroundDark"
             rel="noreferrer"
         >
             <img
@@ -31,14 +31,14 @@
         <button
             mat-button
             [matMenuTriggerFor]="menu"
-            class="rounded p-1 text-title hover:bg-backgroundLight"
+            class="rounded p-1 text-title hover:bg-backgroundLight dark:hover:bg-backgroundDark"
         >
             {{ wordingClass.getHeader().menu | titlecase }}
         </button>
         <mat-menu
             #menu="matMenu"
             xPosition="before"
-            class="space-y-1 [--mat-menu-item-label-text-size:25px]"
+            class="space-y-1 [--mat-menu-item-label-text-size:25px] dark:[--mat-menu-container-color:#202020] dark:[--mat-menu-item-label-text-color:#FFFFFF]"
         >
             <button mat-menu-item *ngIf="showHome">
                 <a [routerLink]="[inventoryClass.getPath().home]">{{
