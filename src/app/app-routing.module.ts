@@ -18,11 +18,6 @@ const routes: Routes = [
         canActivate: [AuthGuard],
     },
     {
-        path: inventory.path.charsEtEquipements,
-        component: ClanWarComponent,
-        canActivate: [AuthGuard],
-    },
-    {
         path: inventory.path.clanMembers,
         component: ClanMembersComponent,
         canActivate: [AuthGuard],
