@@ -9,6 +9,7 @@
             color="primary"
             (change)="changeMode($event)"
             [checked]="modeStore.get('dark')"
+            aria-label="Couleur switch"
         ></mat-slide-toggle>
     </div>
 
@@ -40,7 +41,7 @@
         <mat-menu
             #menu="matMenu"
             xPosition="before"
-            class="space-y-1 [--mat-menu-item-label-text-size:25px] dark:[--mat-menu-container-color:#202020] dark:[--mat-menu-item-label-text-color:#FFFFFF]"
+            class="space-y-1 [--mat-menu-item-focus-state-layer-color:#E9E9E9] [--mat-menu-item-hover-state-layer-color:#E9E9E9] [--mat-menu-item-label-text-size:22px] [--mat-menu-item-label-text-tracking:0] dark:[--mat-menu-container-color:#202020] dark:[--mat-menu-item-focus-state-layer-color:#161616] dark:[--mat-menu-item-hover-state-layer-color:#161616] dark:[--mat-menu-item-label-text-color:#FFFFFF]"
         >
             <button mat-menu-item *ngIf="showHome">
                 <a [routerLink]="[inventory.getPath().home]">

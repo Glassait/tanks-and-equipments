@@ -12,10 +12,11 @@ module.exports = {
             primaryDark: '#000000',
             secondaryDark: '#FFFFFF',
             backgroundDark: '#202020',
+            hoverbackgroundDark: '#161616',
             ok: '#51E839',
             ko: '#EE1E1E',
             linkLight: '#0500FF',
-            linkDark: '#3733FF',
+            linkDark: '#908DFF',
         },
         screens: {
             tablette: '768px',
