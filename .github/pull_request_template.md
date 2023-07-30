@@ -1,11 +1,3 @@
----
-name: Pull request
-about: Merge a new feature or a bug correction
-title: '[PR] :'
-labels: ''
-assignees: Glassait
----
-
 ## Description
 
 <!--
