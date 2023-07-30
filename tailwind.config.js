@@ -32,7 +32,9 @@ module.exports = {
         extend: {},
     },
     plugins: [
+        require('tailwindcss'),
         require('@tailwindcss/container-queries'),
         require('prettier-plugin-tailwindcss'),
+        require('autoprefixer'),
     ],
 };
