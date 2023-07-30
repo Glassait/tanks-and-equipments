@@ -10,6 +10,7 @@ import {
 import { AuthenticationService } from 'src/app/commons/services/authentication.service';
 import { MemberStore } from 'src/app/commons/stores/member.store';
 import { WindowsCustom } from 'src/app/commons/classes/windows-custom.class';
+import { ArrayCustom } from 'src/app/commons/classes/array-custom.class';
 
 @Component({
     selector: 'app-home',
@@ -67,6 +68,11 @@ export class HomeComponent implements OnInit {
         this.wotApi.getServeurStatus().subscribe({
             next: (reponse: WotServerRequest) => {
                 this.wotServer = reponse;
+                this.wotServer.data.wot =
+                    ArrayCustom.sortArrayOfObjectFromNumberDecroissant(
+                        reponse.data.wot,
+                        'players_online'
+                    );
             },
             error(err) {
                 console.log(err);

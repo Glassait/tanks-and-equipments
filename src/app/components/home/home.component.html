@@ -6,28 +6,14 @@
         id="leftHome"
         class="flex w-0 flex-auto flex-col items-center justify-around space-y-10"
     >
-        <mat-spinner *ngIf="showSpinnerServer"></mat-spinner>
-        <mat-card
-            *ngIf="!showSpinnerServer"
-            class="h-min w-[320px] dark:[--mdc-elevated-card-container-color:#000000] tablette:w-[730px] desktop:w-[500px]"
-            head
-            id="statusOfServer"
+        <app-card-little
+            [hasSpinner]="true"
+            [showSpinner]="showSpinnerServer"
+            id="server"
+            iconPath="assets/other/server.svg"
+            [title]="wording.getHome().statusServer"
         >
-            <mat-card-header class="mb-3 flex items-center">
-                <img
-                    mat-card-avatar
-                    src="assets/other/server.svg"
-                    alt=""
-                    class="brightness-0 contrast-[105%] hue-rotate-[57deg] invert-0 saturate-[100%] sepia-[94%] filter dark:contrast-[101%] dark:hue-rotate-[164deg] dark:invert-[100%] dark:saturate-[100%] dark:sepia-[100%]"
-                />
-                <mat-card-title
-                    class="underline [--mat-card-title-text-size:25px]"
-                >
-                    {{ wording.getHome().statusServer }}
-                </mat-card-title>
-            </mat-card-header>
-
-            <mat-card-content id="contentServeur" class="space-y-2">
+            <div *ngIf="!showSpinnerServer" class="space-y-2">
                 <div
                     *ngFor="let server of wotServer.data.wot"
                     class="flex items-center space-x-8 tablette:space-x-10"
@@ -40,30 +26,16 @@
                         }}{{ server.players_online > 1 ? 's' : '' }}
                     </div>
                 </div>
-            </mat-card-content>
-        </mat-card>
+            </div>
+        </app-card-little>
 
-        <mat-card
+        <app-card-little
             *ngIf="!memberStore.get('isVisitor')"
-            class="h-min w-[320px] dark:[--mdc-elevated-card-container-color:#000000] tablette:w-[730px] desktop:w-[500px]"
-            id="clanInformation"
+            id="information"
+            iconPath="assets/other/information.svg"
+            [title]="wording.getHome().information"
         >
-            <mat-card-header class="mb-3 flex items-center">
-                <img
-                    mat-card-avatar
-                    src="assets/other/information.svg"
-                    alt=""
-                    class="dark:contrast-[101%] dark:hue-rotate-[164deg] dark:invert-[100%] dark:saturate-[100%] dark:sepia-[100%]"
-                />
-                <mat-card-title
-                    class="underline [--mat-card-title-text-size:25px]"
-                    >{{ wording.getHome().information }}</mat-card-title
-                >
-            </mat-card-header>
-
-            <mat-card-content
-                class="space-y-4 whitespace-pre-line text-justify"
-            >
+            <div class="space-y-4 whitespace-pre-line text-justify">
                 <div>{{ information.getText() }}</div>
                 <div class="flex justify-end">
                     <a
@@ -79,8 +51,21 @@
                         />
                     </a>
                 </div>
-            </mat-card-content>
-        </mat-card>
+            </div>
+        </app-card-little>
+
+        <app-card-little
+            *ngIf="memberStore.get('isVisitor')"
+            id="visitor"
+            iconPath="assets/other/visitor.svg"
+            [title]="wording.getHome().visitorTitle"
+        >
+            <div class="whitespace-pre-line text-justify">
+                {{ wording.getHome().visitorText }}
+                <br><br>
+                {{ wording.getHome().visitorHelp }}
+            </div>
+        </app-card-little>
     </div>
 
     <div
