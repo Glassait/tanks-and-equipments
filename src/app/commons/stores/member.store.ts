@@ -12,4 +12,12 @@ export class MemberStore extends Store<MemberInterface> {
     constructor() {
         super(INTITIAL_STATE_MEMBER);
     }
+
+    public isVisitor(): boolean {
+        return this.get('isVisitor');
+    }
+
+    public isAdmin(): boolean {
+        return this.get('isAdmin');
+    }
 }
