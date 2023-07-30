@@ -1,7 +1,7 @@
 <div id="conteneurTankEquipement" class="flex items-center justify-center">
     <mat-accordion class="mt-10 w-full desktop:mt-14 desktop:w-[90%]">
         <mat-expansion-panel
-            *ngFor="let tankData of tanksDataClass.tanksData.data"
+            *ngFor="let tankData of tanksData.getTankDataArray()"
             class="dark:[--mat-expansion-container-background-color:#000000] dark:[--mat-expansion-container-text-color:#FFFFFF] dark:[--mat-expansion-header-indicator-color:#FFFFFF]"
         >
             <mat-expansion-panel-header>

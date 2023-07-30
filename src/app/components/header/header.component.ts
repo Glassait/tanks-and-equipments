@@ -1,10 +1,15 @@
-import { AfterViewInit, Component, ElementRef, Input, ViewChild } from '@angular/core';
+import {
+    AfterViewInit,
+    Component,
+    ElementRef,
+    ViewChild,
+} from '@angular/core';
 import { HeaderStore } from 'src/app/commons/stores/header.store';
 import { HeaderInterface } from 'src/app/commons/interfaces/header.interface';
-import { WordingClass } from 'src/app/commons/class/wording.class';
-import { InventoryClass } from 'src/app/commons/class/inventory.class';
+import { WordingService } from 'src/app/commons/services/wording.service';
+import { InventoryService } from 'src/app/commons/services/inventory.service';
 import { MemberStore } from 'src/app/commons/stores/member.store';
-import { SVG } from 'src/app/commons/class/SVG.class';
+import { SvgCustom } from 'src/app/commons/classes/svg-custom.class';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { ModeStore } from 'src/app/commons/stores/mode.store';
 
@@ -25,8 +30,8 @@ export class HeaderComponent implements AfterViewInit {
         private headerStore: HeaderStore,
         protected modeStore: ModeStore,
         protected memberStore: MemberStore,
-        protected wordingClass: WordingClass,
-        protected inventoryClass: InventoryClass
+        protected wording: WordingService,
+        protected inventory: InventoryService
     ) {
         this.watchStore();
     }
@@ -35,10 +40,10 @@ export class HeaderComponent implements AfterViewInit {
         if (this.element) {
             this.element.nativeElement
                 .querySelector('.mdc-switch__icon--on')
-                .firstChild.setAttribute('d', SVG.sun);
+                .firstChild.setAttribute('d', SvgCustom.sun);
             this.element.nativeElement
                 .querySelector('.mdc-switch__icon--off')
-                .firstChild.setAttribute('d', SVG.moon);
+                .firstChild.setAttribute('d', SvgCustom.moon);
         }
     }
 

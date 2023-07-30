@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { InventoryClass } from 'src/app/commons/class/inventory.class';
-import { WotApiService } from 'src/app/commons/service/wotApi.service';
+import { WotApiService } from 'src/app/commons/services/wot-api.service';
 
 @Component({
     selector: 'app-clan-members',
@@ -8,7 +7,6 @@ import { WotApiService } from 'src/app/commons/service/wotApi.service';
 })
 export class ClanMembersComponent {
     constructor(
-        private inventoryClass: InventoryClass,
         private wotApiService: WotApiService
     ) {
         wotApiService.getMembers().subscribe({

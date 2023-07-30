@@ -3,12 +3,10 @@
         "applicationID": "d5cfa347c97b1997c50c1797e2f1cfdc",
         "clanID": "500179430",
         "gameServers": "https://api.worldoftanks.eu/wgn/servers/info/?application_id=d5cfa347c97b1997c50c1797e2f1cfdc&game=wot&language=fr",
-        "gameServersMock": "assets/mock/server.json",
         "clanRatings": "https://api.worldoftanks.eu/wot/clanratings/clans/?application_id=d5cfa347c97b1997c50c1797e2f1cfdc&clan_id=500179430",
-        "clanRatingsMock": "assets/mock/clanRatings.json",
         "clanMembers": "https://api.worldoftanks.eu/wot/clans/info/?application_id=d5cfa347c97b1997c50c1797e2f1cfdc&clan_id=500179430&language=fr&fields=members",
         "login": "https://api.worldoftanks.eu/wot/auth/login/?application_id=d5cfa347c97b1997c50c1797e2f1cfdc&display=popup",
-        "loginMock": "assets/mock/connexion.json"
+        "loginMock": "assets/mocks/connection.json"
     },
     "featureFlipping": {
         "clanWar": true

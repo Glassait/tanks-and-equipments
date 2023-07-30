@@ -22,7 +22,7 @@
                 <mat-card-title
                     class="underline [--mat-card-title-text-size:25px]"
                 >
-                    {{ wordingClass.getHome().statusServer }}
+                    {{ wording.getHome().statusServer }}
                 </mat-card-title>
             </mat-card-header>
 
@@ -35,7 +35,7 @@
                     <img src="assets/other/ok.svg" alt="" class="w-[25px]" />
                     <div
                         >{{ server.players_online }}
-                        {{ wordingClass.getHome().joueurs }}</div
+                        {{ wording.getHome().joueurs }}</div
                     >
                 </div>
             </mat-card-content>
@@ -55,20 +55,20 @@
                 />
                 <mat-card-title
                     class="underline [--mat-card-title-text-size:25px]"
-                    >{{ wordingClass.getHome().information }}</mat-card-title
+                    >{{ wording.getHome().information }}</mat-card-title
                 >
             </mat-card-header>
 
             <mat-card-content
                 class="space-y-4 whitespace-pre-line text-justify"
             >
-                <div>{{ informationClass.getText() }}</div>
+                <div>{{ information.getText() }}</div>
                 <div class="flex justify-end">
                     <a
-                        [routerLink]="informationClass.getURL()"
+                        [routerLink]="information.getURL()"
                         class="flex space-x-4 text-linkLight underline dark:text-linkDark"
                     >
-                        <div class="w-full">{{ informationClass.getLinkText() }}</div>
+                        <div class="w-full">{{ information.getLinkText() }}</div>
                         <img
                             src="assets/tanks/super_conqueror.icon.svg"
                             alt=""
@@ -111,7 +111,7 @@
                         <span
                             class="self-center text-center text-title underline"
                             >{{
-                                wordingClass.getHome().bastion | titlecase
+                                wording.getHome().bastion | titlecase
                             }}</span
                         >
 
@@ -154,7 +154,7 @@
                         <span
                             class="self-center text-center text-title underline"
                             >{{
-                                wordingClass.getHome().clanWar | titlecase
+                                wording.getHome().clanWar | titlecase
                             }}</span
                         >
 

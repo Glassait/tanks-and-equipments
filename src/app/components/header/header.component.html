@@ -33,7 +33,7 @@
             [matMenuTriggerFor]="menu"
             class="rounded p-1 text-title hover:bg-backgroundLight dark:hover:bg-backgroundDark"
         >
-            {{ wordingClass.getHeader().menu | titlecase }}
+            {{ wording.getHeader().menu | titlecase }}
         </button>
         <mat-menu
             #menu="matMenu"
@@ -41,8 +41,8 @@
             class="space-y-1 [--mat-menu-item-label-text-size:25px] dark:[--mat-menu-container-color:#202020] dark:[--mat-menu-item-label-text-color:#FFFFFF]"
         >
             <button mat-menu-item *ngIf="showHome">
-                <a [routerLink]="[inventoryClass.getPath().home]">{{
-                    wordingClass.getHeader().accueil | uppercase
+                <a [routerLink]="[inventory.getPath().home]">{{
+                    wording.getHeader().accueil | uppercase
                 }}</a>
             </button>
             <button
@@ -51,9 +51,9 @@
                 id="charEtEquipement"
             >
                 <a
-                    [routerLink]="[inventoryClass.getPath().charsEtEquipements]"
+                    [routerLink]="[inventory.getPath().charsEtEquipements]"
                     >{{
-                        wordingClass.getHeader().charEtEquipement | uppercase
+                        wording.getHeader().charEtEquipement | uppercase
                     }}</a
                 >
             </button>
@@ -61,13 +61,13 @@
                 mat-menu-item
                 *ngIf="
                     showWar &&
-                    inventoryClass.getFeatureFlipping().clanWar &&
+                    inventory.getFeatureFlipping().clanWar &&
                     !memberStore.get('isVisitor')
                 "
                 id="clanWar"
             >
-                <a [routerLink]="[inventoryClass.getPath().clanWar]">{{
-                    wordingClass.getHeader().clanWar | uppercase
+                <a [routerLink]="[inventory.getPath().clanWar]">{{
+                    wording.getHeader().clanWar | uppercase
                 }}</a>
             </button>
         </mat-menu>
