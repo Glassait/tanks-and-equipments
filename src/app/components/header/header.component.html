@@ -29,33 +29,32 @@
 
     <div id="rightHeader" class="flex w-0 flex-auto justify-end">
         <button
+            *ngIf="!memberStore.get('isVisitor')"
             mat-button
             [matMenuTriggerFor]="menu"
             class="rounded p-1 text-title hover:bg-backgroundLight dark:hover:bg-backgroundDark"
         >
             {{ wording.getHeader().menu | titlecase }}
         </button>
+
         <mat-menu
             #menu="matMenu"
             xPosition="before"
             class="space-y-1 [--mat-menu-item-label-text-size:25px] dark:[--mat-menu-container-color:#202020] dark:[--mat-menu-item-label-text-color:#FFFFFF]"
         >
             <button mat-menu-item *ngIf="showHome">
-                <a [routerLink]="[inventory.getPath().home]">{{
-                    wording.getHeader().accueil | uppercase
-                }}</a>
+                <a [routerLink]="[inventory.getPath().home]">
+                    {{ wording.getHeader().accueil | uppercase }}
+                </a>
             </button>
             <button
                 mat-menu-item
                 *ngIf="showTank && !memberStore.get('isVisitor')"
                 id="charEtEquipement"
             >
-                <a
-                    [routerLink]="[inventory.getPath().charsEtEquipements]"
-                    >{{
-                        wording.getHeader().charEtEquipement | uppercase
-                    }}</a
-                >
+                <a [routerLink]="[inventory.getPath().charsEtEquipements]">
+                    {{ wording.getHeader().charEtEquipement | uppercase }}
+                </a>
             </button>
             <button
                 mat-menu-item
@@ -66,9 +65,9 @@
                 "
                 id="clanWar"
             >
-                <a [routerLink]="[inventory.getPath().clanWar]">{{
-                    wording.getHeader().clanWar | uppercase
-                }}</a>
+                <a [routerLink]="[inventory.getPath().clanWar]">
+                    {{ wording.getHeader().clanWar | uppercase }}
+                </a>
             </button>
         </mat-menu>
     </div>

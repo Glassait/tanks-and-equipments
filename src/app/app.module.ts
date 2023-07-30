@@ -20,6 +20,7 @@ import { TankEquipmentDescriptionComponent } from './components/tanks-equipment/
 import { ClanWarComponent } from './components/clan-war/clan-war.component';
 import { ClanMembersComponent } from './components/clan-members/clan-members.component';
 import { HeaderComponent } from './components/header/header.component';
+import { CardLittleComponent } from './components/card-little/card-little.component';
 
 import { ImagePipe } from './pipes/image/image.pipe';
 import { ReplacePipe } from './pipes/replace/replace.pipe';
@@ -47,6 +48,7 @@ if (environment.production) {
         ClanMembersComponent,
         HeaderComponent,
         ImagePipe,
+        CardLittleComponent,
     ],
     imports: [
         BrowserModule,

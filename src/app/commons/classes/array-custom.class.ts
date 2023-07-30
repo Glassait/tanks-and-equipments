@@ -10,4 +10,11 @@ export class ArrayCustom {
         });
         return obj;
     }
+
+    public static sortArrayOfObjectFromNumberDecroissant<T>(
+        array: T[],
+        key: keyof T
+    ) {
+        return array.sort((a, b) => (b[key] as number) - (a[key] as number));
+    }
 }

@@ -12,6 +12,9 @@
         "joueur": "joueur",
         "information": "Information du clan",
         "bastion": "bastion",
-        "clanWar": "clan War"
+        "clanWar": "clan War",
+        "visitorTitle": "Bienvenue visiteur !",
+        "visitorText": "Si tu vois cette carte, c'est que tu n'es pas connecté(e) ou que tu ne fais pas partie du clan. Si tu fais bien partie du clan, essaye de supprimer les cookies et de recharger la page pour te connecter !",
+        "visitorHelp": "Si le problème persiste, vérifie que tu utilises le bon compte Wargaming. Si le problème persiste toujours, veuillez contacter un admin sur Discord !"
     }
 }
