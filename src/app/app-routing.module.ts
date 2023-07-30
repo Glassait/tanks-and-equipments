@@ -5,7 +5,7 @@ import { TanksEquipmentComponent } from './components/tanks-equipment/tanks-equi
 import { ClanWarComponent } from './components/clan-war/clan-war.component';
 import { ClanMembersComponent } from './components/clan-members/clan-members.component';
 import inventory from 'src/assets/json/inventory.json';
-import { AuthGuard } from './commons/service/authGuard';
+import { AuthGuardService } from './commons/services/auth-guard.service';
 
 const routes: Routes = [
     {
@@ -15,17 +15,17 @@ const routes: Routes = [
     {
         path: inventory.path.charsEtEquipements,
         component: TanksEquipmentComponent,
-        canActivate: [AuthGuard],
+        canActivate: [AuthGuardService],
     },
     {
         path: inventory.path.clanMembers,
         component: ClanMembersComponent,
-        canActivate: [AuthGuard],
+        canActivate: [AuthGuardService],
     },
     {
         path: inventory.path.clanWar,
         component: ClanWarComponent,
-        canActivate: [AuthGuard],
+        canActivate: [AuthGuardService],
     },
 ];
 

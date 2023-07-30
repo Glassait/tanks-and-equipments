@@ -1,5 +1,5 @@
-export class ArrayToObject {
-    static transform(array: string[]) {
+export class ArrayCustom {
+    public static transformToObject<TArray extends string>(array: TArray[]) {
         let obj = {};
         array.forEach(valeur => {
             const st = valeur.split('=');

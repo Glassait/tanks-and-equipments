@@ -1,33 +1,28 @@
 import { Injectable } from '@angular/core';
 import {
-    ActivatedRouteSnapshot,
     Router,
-    RouterStateSnapshot,
 } from '@angular/router';
 import { AuthenticationService } from './authentication.service';
-import { InventoryClass } from '../class/inventory.class';
+import { InventoryService } from './inventory.service';
 import { Observable, of } from 'rxjs';
 
 @Injectable({
     providedIn: 'root',
 })
-export class AuthGuard {
+export class AuthGuardService {
     constructor(
         private authService: AuthenticationService,
         private router: Router,
-        private inventoryClass: InventoryClass
+        private inventory: InventoryService
     ) {}
 
-    canActivate(
-        route: ActivatedRouteSnapshot,
-        state: RouterStateSnapshot
-    ): boolean | Observable<boolean> {
+    canActivate(): boolean | Observable<boolean> {
         return this.checkLogin();
     }
 
     checkLogin() {
         if (!this.authService.isLoggedIn()) {
-            this.router.navigate([this.inventoryClass.getPath().home]);
+            this.router.navigate([this.inventory.getPath().home]);
             return of(false);
         }
 

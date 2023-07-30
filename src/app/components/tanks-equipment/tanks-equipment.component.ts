@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { TanksDataClass } from 'src/app/commons/class/tankData.class';
+import { TanksDataService } from 'src/app/commons/services/tank-data.service';
 import { HeaderStore } from 'src/app/commons/stores/header.store';
 
 @Component({
@@ -9,14 +9,12 @@ import { HeaderStore } from 'src/app/commons/stores/header.store';
 export class TanksEquipmentComponent {
     constructor(
         private headerStore: HeaderStore,
-        protected tanksDataClass: TanksDataClass
+        protected tanksData: TanksDataService
     ) {
-        this.setHeaderVariables();
-    }
-
-    private setHeaderVariables() {
-        this.headerStore.set('showHome', true);
-        this.headerStore.set('showTank', false);
-        this.headerStore.set('showWar', true);
+        headerStore.patch({
+            showHome: true,
+            showTank: false,
+            showWar: true,
+        });
     }
 }

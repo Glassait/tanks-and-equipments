@@ -4,7 +4,7 @@ import inventory from 'src/assets/json/inventory.json';
 @Injectable({
     providedIn: 'root',
 })
-export class InventoryClass {
+export class InventoryService {
     private _inventory = inventory;
 
     public getWargammingApi() {

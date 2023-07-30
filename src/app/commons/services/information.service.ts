@@ -4,7 +4,7 @@ import information from 'src/assets/json/information.json';
 @Injectable({
     providedIn: 'root',
 })
-export class InformationClass {
+export class InformationService {
     private _information = information;
 
     public getText(): string {

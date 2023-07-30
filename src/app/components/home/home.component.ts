@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { WotApiService } from 'src/app/commons/service/wotApi.service';
+import { WotApiService } from 'src/app/commons/services/wot-api.service';
 import { HeaderStore } from 'src/app/commons/stores/header.store';
-import { WordingClass } from 'src/app/commons/class/wording.class';
-import { InformationClass } from 'src/app/commons/class/information.class';
+import { WordingService } from 'src/app/commons/services/wording.service';
+import { InformationService } from 'src/app/commons/services/information.service';
 import {
     WotClanRatingsRequest,
     WotServerRequest,
-} from 'src/app/commons/types/clanRatings.types';
-import { AuthenticationService } from 'src/app/commons/service/authentication.service';
+} from 'src/app/commons/types/clan-ratings.type';
+import { AuthenticationService } from 'src/app/commons/services/authentication.service';
 import { MemberStore } from 'src/app/commons/stores/member.store';
+import { WindowsCustom } from 'src/app/commons/classes/windows-custom.class';
 
 @Component({
     selector: 'app-home',
@@ -18,18 +19,22 @@ export class HomeComponent implements OnInit {
     protected showSpinnerServer = true;
     protected showSpinnerClanRatings = true;
     protected showClanRatingsCard = true;
-    protected wotServer!: WotServerRequest;
-    protected wotClanRatings!: WotClanRatingsRequest;
+    protected wotServer: WotServerRequest;
+    protected wotClanRatings: WotClanRatingsRequest;
 
     constructor(
-        private wotApiService: WotApiService,
-        protected wordingClass: WordingClass,
-        protected informationClass: InformationClass,
+        private wotApi: WotApiService,
+        protected wording: WordingService,
+        protected information: InformationService,
         private headerStore: HeaderStore,
         protected memberStore: MemberStore,
         private auth: AuthenticationService
     ) {
-        this.setHeaderVariables();
+        this.headerStore.patch({
+            showHome: false,
+            showTank: true,
+            showWar: true,
+        });
     }
 
     ngOnInit(): void {
@@ -54,12 +59,12 @@ export class HomeComponent implements OnInit {
     private isClanRatingsCardDisplayed(clanRatingsCard: Element | null) {
         return (
             clanRatingsCard !== null &&
-            window.getComputedStyle(clanRatingsCard).display !== 'none'
+            WindowsCustom.getDisplay(clanRatingsCard) !== 'none'
         );
     }
 
     private getWotServerStatus() {
-        this.wotApiService.getServeurStatus().subscribe({
+        this.wotApi.getServeurStatus().subscribe({
             next: (reponse: WotServerRequest) => {
                 this.wotServer = reponse;
             },
@@ -73,7 +78,7 @@ export class HomeComponent implements OnInit {
     }
 
     private getClanRatings() {
-        this.wotApiService.getClanRatings().subscribe({
+        this.wotApi.getClanRatings().subscribe({
             next: (reponse: WotClanRatingsRequest) => {
                 this.wotClanRatings = reponse;
             },
@@ -83,14 +88,6 @@ export class HomeComponent implements OnInit {
             complete: () => {
                 this.showSpinnerClanRatings = false;
             },
-        });
-    }
-
-    private setHeaderVariables() {
-        this.headerStore.patch({
-            showHome: false,
-            showTank: true,
-            showWar: true,
         });
     }
 }

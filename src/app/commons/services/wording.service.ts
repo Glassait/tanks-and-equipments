@@ -4,7 +4,7 @@ import wording from 'src/assets/json/wording.json';
 @Injectable({
     providedIn: 'root',
 })
-export class WordingClass {
+export class WordingService {
     private _wording = wording;
 
     get wording() {

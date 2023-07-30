@@ -1,4 +1,4 @@
-import { ShellEnum } from '../enum/tanksData.enum';
+import { ShellEnum } from '../enums/shell.enum';
 
 export type Shell = {
     name: ShellEnum;
@@ -38,7 +38,7 @@ export type Consomables = {
 export type Directive = {
     name: string;
     image: string;
-}
+};
 
 export type TankData = {
     name: string;
@@ -49,7 +49,7 @@ export type TankData = {
     fields: Field[];
     equipments: Equipments;
     consomables: Consomables;
-    directive: Directive
+    directive: Directive;
 };
 
 export type Tanks = {
