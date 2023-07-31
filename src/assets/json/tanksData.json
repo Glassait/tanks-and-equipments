@@ -198,7 +198,7 @@
             ],
             "shells": [
                 { "name": "APCR", "amount": 5, "premium": false },
-                { "name": "HEAT", "amount": 25, "premium": true },
+                { "name": "HEAT", "amount": 30, "premium": true },
                 { "name": "HE", "amount": 5, "premium": false }
             ],
             "fields": [
@@ -372,9 +372,9 @@
                 ]
             ],
             "shells": [
-                { "name": "APCR", "amount": 20, "premium": false },
-                { "name": "HEAT", "amount": 22, "premium": true },
-                { "name": "HE", "amount": 3, "premium": false }
+                { "name": "APCR", "amount": 18, "premium": false },
+                { "name": "HEAT", "amount": 20, "premium": true },
+                { "name": "HE", "amount": 7, "premium": false }
             ],
             "fields": [
                 {
@@ -547,9 +547,9 @@
                 ]
             ],
             "shells": [
-                { "name": "APCR", "amount": 23, "premium": false },
-                { "name": "HEAT", "amount": 24, "premium": true },
-                { "name": "HE", "amount": 3, "premium": false }
+                { "name": "APCR", "amount": 22, "premium": false },
+                { "name": "HEAT", "amount": 22, "premium": true },
+                { "name": "HE", "amount": 7, "premium": false }
             ],
             "fields": [
                 {
@@ -1267,7 +1267,7 @@
                     "Précision",
                     "As du volant",
                     "Râtelier sécurisé",
-                    "Râtelier sécurisé"
+                    "Poussée d'adrénaline"
                 ],
                 [
                     "Œil de lynx",
@@ -1771,6 +1771,737 @@
                 ],
                 "second": [
                     "Grande trousse de premiers secours",
+                    "Grand kit de réparation",
+                    "Rations de combat supplémentaires"
+                ]
+            }
+        },
+        {
+            "name": "Object 268 version 4",
+            "priority": 4,
+            "crew": [
+                "Commandant",
+                "Pilote de char",
+                "Tireur",
+                "Chargeur",
+                "Chargeur"
+            ],
+            "skills": [
+                [
+                    "Frères d'armes",
+                    "Frères d'armes",
+                    "Frères d'armes",
+                    "Frères d'armes",
+                    "Frères d'armes"
+                ],
+                [
+                    "Réparations",
+                    "Réparations",
+                    "Réparations",
+                    "Réparations",
+                    "Réparations"
+                ],
+                [
+                    "Longue-vue",
+                    "Conduite souple",
+                    "Coup mortel",
+                    "Râtelier sécurisé",
+                    "Lutte contre les incendies"
+                ],
+                [
+                    "Lutte contre les incendies",
+                    "As du volant",
+                    "Précision",
+                    "Lutte contre les incendies",
+                    "Intuition"
+                ],
+                [
+                    "Œil de lynx",
+                    "Lutte contre les incendies",
+                    "Lutte contre les incendies",
+                    "Intuition",
+                    "Poussée d'adrénaline"
+                ]
+            ],
+            "shells": [
+                { "name": "AP", "amount": 16, "premium": false },
+                { "name": "HEAT", "amount": 10, "premium": true },
+                { "name": "HE", "amount": 4, "premium": false }
+            ],
+            "fields": [
+                {
+                    "level": 2,
+                    "field": {
+                        "left": {
+                            "name": "Suspension renforcée",
+                            "image": "additionalGrousers",
+                            "active": true
+                        },
+                        "right": {
+                            "name": "Suspension légère",
+                            "image": "betterFriction",
+                            "active": false
+                        }
+                    }
+                },
+                {
+                    "level": 4,
+                    "field": {
+                        "left": {
+                            "name": "Rodage des mécanismes de visée",
+                            "image": "improvedAimingHandling",
+                            "active": false
+                        },
+                        "right": {
+                            "name": "Ajustement parallaxe",
+                            "image": "improvedScope",
+                            "active": false
+                        }
+                    }
+                },
+                {
+                    "level": 5,
+                    "field": {
+                        "left": {
+                            "name": "Ajustement de l'éjecteur",
+                            "image": "improvedMuzzleBreak",
+                            "active": false
+                        },
+                        "right": {
+                            "name": "Périscope à angle droit",
+                            "image": "improvedObservationDevice",
+                            "active": true
+                        }
+                    }
+                },
+                {
+                    "level": 6,
+                    "field": {
+                        "left": {
+                            "name": "Reconnaissance",
+                            "image": "stealth",
+                            "active": false
+                        },
+                        "right": {
+                            "name": "Capacité de survie",
+                            "image": "survivability",
+                            "active": true
+                        }
+                    }
+                },
+                {
+                    "level": 7,
+                    "field": {
+                        "left": {
+                            "name": "Systéme de sécurité passif",
+                            "image": "increasedThickness",
+                            "active": true
+                        },
+                        "right": {
+                            "name": "Reconfiguration du râtelier à munitions",
+                            "image": "improvedGunBreech",
+                            "active": false
+                        }
+                    }
+                },
+                {
+                    "level": 8,
+                    "field": {
+                        "left": {
+                            "name": "Chenilles réparables",
+                            "image": "improvedSelfRepairingTracks",
+                            "active": true
+                        },
+                        "right": {
+                            "name": "Ajustement du compartiment moteur",
+                            "image": "improvedSpeedIndicatorBackwards",
+                            "active": false
+                        }
+                    }
+                }
+            ],
+            "directive": {
+                "name": "Maintenance d'avant-bataille",
+                "image": "configuration_modifiée"
+            },
+            "equipments": {
+                "first": [
+                    {
+                        "name": "Turbocompresseur",
+                        "modernized": false
+                    },
+                    {
+                        "name": "Durcissant amélioré",
+                        "modernized": false
+                    },
+                    {
+                        "name": "Configuration modifiée",
+                        "modernized": false
+                    }
+                ],
+                "second": [
+                    {
+                        "name": "Fouloir de canon",
+                        "modernized": false
+                    },
+                    {
+                        "name": "Durcissant amélioré",
+                        "modernized": false
+                    },
+                    {
+                        "name": "Configuration modifiée",
+                        "modernized": false
+                    }
+                ]
+            },
+            "consomables": {
+                "first": [
+                    "Grande trousse de premiers secours",
+                    "Grand kit de réparation",
+                    "Rations de combat supplémentaires"
+                ],
+                "second": [
+                    "Grande trousse de premiers secours",
+                    "Grand kit de réparation",
+                    "Rations de combat supplémentaires"
+                ]
+            }
+        },
+        {
+            "name": "Leopard 1",
+            "priority": 4,
+            "crew": ["Commandant", "Pilote de char", "Tireur", "Chargeur"],
+            "skills": [
+                [
+                    "Frères d'armes",
+                    "Frères d'armes",
+                    "Frères d'armes",
+                    "Frères d'armes"
+                ],
+                [
+                    "Longue-vue",
+                    "Dissimulation",
+                    "Dissimulation",
+                    "Dissimulation"
+                ],
+                [
+                    "Œil de lynx",
+                    "Conduite souple",
+                    "Réparations",
+                    "Réparations"
+                ],
+                [
+                    "Dissimulation",
+                    "Réparations",
+                    "Lutte contre les incendies",
+                    "Lutte contre les incendies"
+                ],
+                [
+                    "Réparations",
+                    "Maintenance préventive",
+                    "Précision",
+                    "Râtelier sécurisé"
+                ]
+            ],
+            "shells": [
+                { "name": "APCR", "amount": 0, "premium": false },
+                { "name": "APCR", "amount": 55, "premium": true },
+                { "name": "HE", "amount": 5, "premium": false }
+            ],
+            "fields": [
+                {
+                    "level": 2,
+                    "field": {
+                        "left": {
+                            "name": "Augmentation de la durabilité de l'élément",
+                            "image": "increasedThickness",
+                            "active": true
+                        },
+                        "right": {
+                            "name": "Points de fixation en alliage léger",
+                            "image": "betterFriction",
+                            "active": false
+                        }
+                    }
+                },
+                {
+                    "level": 4,
+                    "field": {
+                        "left": {
+                            "name": "Ajustement du bras de suspension",
+                            "image": "improvedChassisStability",
+                            "active": false
+                        },
+                        "right": {
+                            "name": "Vision améliorée",
+                            "image": "improvedScope",
+                            "active": true
+                        }
+                    }
+                },
+                {
+                    "level": 5,
+                    "field": {
+                        "left": {
+                            "name": "Ajustement du Turbocompresseur",
+                            "image": "improvedSpeedIndicatorBackwards",
+                            "active": true
+                        },
+                        "right": {
+                            "name": "Phares antireflets",
+                            "image": "improvedLightFilters",
+                            "active": false
+                        }
+                    }
+                },
+                {
+                    "level": 6,
+                    "field": {
+                        "left": {
+                            "name": "Reconnaissance",
+                            "image": "stealth",
+                            "active": false
+                        },
+                        "right": {
+                            "name": "Capacité de survie",
+                            "image": "survivability",
+                            "active": false
+                        }
+                    }
+                },
+                {
+                    "level": 7,
+                    "field": {
+                        "left": {
+                            "name": "Ajustement du mécanisme de chargement",
+                            "image": "improvedGunBreech",
+                            "active": false
+                        },
+                        "right": {
+                            "name": "Ajustement du mécanisme de visée",
+                            "image": "improvedScope",
+                            "active": true
+                        }
+                    }
+                },
+                {
+                    "level": 8,
+                    "field": {
+                        "left": {
+                            "name": "Ajustement de l'OPV",
+                            "image": "improvedEnginePower",
+                            "active": false
+                        },
+                        "right": {
+                            "name": "Systéme de visée électrique",
+                            "image": "improvedAimingHandling",
+                            "active": true
+                        }
+                    }
+                }
+            ],
+            "directive": {
+                "name": "Râtelier de munitions en ordre",
+                "image": "fouloir_de_canon"
+            },
+            "equipments": {
+                "first": [
+                    {
+                        "name": "Ventilation améliorée",
+                        "modernized": false
+                    },
+                    {
+                        "name": "Fouloir de canon",
+                        "modernized": false
+                    },
+                    {
+                        "name": "Stabilisateur vertical",
+                        "modernized": false
+                    }
+                ],
+                "second": [
+                    {
+                        "name": "Ventilation améliorée",
+                        "modernized": false
+                    },
+                    {
+                        "name": "Fouloir de canon",
+                        "modernized": false
+                    },
+                    {
+                        "name": "Stabilisateur vertical",
+                        "modernized": false
+                    }
+                ]
+            },
+            "consomables": {
+                "first": [
+                    "Grande trousse de premiers secours",
+                    "Grand kit de réparation",
+                    "Chocolat"
+                ],
+                "second": [
+                    "Grande trousse de premiers secours",
+                    "Grand kit de réparation",
+                    "Chocolat"
+                ]
+            }
+        },
+        {
+            "name": "STRV 103B",
+            "priority": 4,
+            "crew": ["Commandant", "Pilote de char", "Opérateur radio"],
+            "skills": [
+                [
+                    "Frères d'armes",
+                    "Frères d'armes",
+                    "Frères d'armes"
+                ],
+                [
+                    "Dissimulation",
+                    "Dissimulation",
+                    "Dissimulation"
+                ],
+                [
+                    "Réparations",
+                    "Réparations",
+                    "Réparations"
+                ],
+                [
+                    "Œil de lynx",
+                    "Lutte contre les incendies",
+                    "Longue-vue"
+                ],
+                [
+                    "Lutte contre les incendies",
+                    "Maintenance préventive",
+                    "Lutte contre les incendies"
+                ]
+            ],
+            "shells": [
+                { "name": "APCR", "amount": 0, "premium": false },
+                { "name": "APCR", "amount": 46, "premium": true },
+                { "name": "HE", "amount": 4, "premium": false }
+            ],
+            "fields": [
+                {
+                    "level": 2,
+                    "field": {
+                        "left": {
+                            "name": "Suspension renforcée",
+                            "image": "improvedChassisStability",
+                            "active": false
+                        },
+                        "right": {
+                            "name": "Suspension légère",
+                            "image": "betterFriction",
+                            "active": false
+                        }
+                    }
+                },
+                {
+                    "level": 4,
+                    "field": {
+                        "left": {
+                            "name": "Rodage des mécanismes de visée",
+                            "image": "improvedAimingHandling",
+                            "active": false
+                        },
+                        "right": {
+                            "name": "Ajustement parallaxe",
+                            "image": "improvedScope",
+                            "active": true
+                        }
+                    }
+                },
+                {
+                    "level": 5,
+                    "field": {
+                        "left": {
+                            "name": "Ajustement de l'éjecteur",
+                            "image": "improvedMuzzleBreak",
+                            "active": true
+                        },
+                        "right": {
+                            "name": "Périscope à angle droit",
+                            "image": "improvedObservationDevice",
+                            "active": false
+                        }
+                    }
+                },
+                {
+                    "level": 6,
+                    "field": {
+                        "left": {
+                            "name": "Reconnaissance",
+                            "image": "stealth",
+                            "active": true
+                        },
+                        "right": {
+                            "name": "Capacité de survie",
+                            "image": "survivability",
+                            "active": false
+                        }
+                    }
+                },
+                {
+                    "level": 7,
+                    "field": {
+                        "left": {
+                            "name": "Ajustement du mécanisme de chargement",
+                            "image": "improvedGunBreech",
+                            "active": false
+                        },
+                        "right": {
+                            "name": "Ajustement du mécanisme de visée",
+                            "image": "improvedScope",
+                            "active": false
+                        }
+                    }
+                },
+                {
+                    "level": 8,
+                    "field": {
+                        "left": {
+                            "name": "Ajustement de l'OPV",
+                            "image": "improvedEnginePower",
+                            "active": false
+                        },
+                        "right": {
+                            "name": "Systéme de visée électrique",
+                            "image": "improvedAimingHandling",
+                            "active": true
+                        }
+                    }
+                }
+            ],
+            "directive": {
+                "name": "Râtelier de munitions en ordre",
+                "image": "fouloir_de_canon"
+            },
+            "equipments": {
+                "first": [
+                    {
+                        "name": "Fouloir de canon",
+                        "modernized": false
+                    },
+                    {
+                        "name": "Ventilation améliorée",
+                        "modernized": false
+                    },
+                    {
+                        "name": "Filet de camouflage",
+                        "modernized": false
+                    }
+                ],
+                "second": [
+                    {
+                        "name": "Fouloir de canon",
+                        "modernized": false
+                    },
+                    {
+                        "name": "Ventilation améliorée",
+                        "modernized": false
+                    },
+                    {
+                        "name": "Filet de camouflage",
+                        "modernized": false
+                    }
+                ]
+            },
+            "consomables": {
+                "first": [
+                    "Grande trousse de premiers secours",
+                    "Grand kit de réparation",
+                    "Café avec brioches à la cannelle"
+                ],
+                "second": [
+                    "Grande trousse de premiers secours",
+                    "Grand kit de réparation",
+                    "Café avec brioches à la cannelle"
+                ]
+            }
+        },
+        {
+            "name": "IS-7",
+            "priority": 4,
+            "crew": ["Commandant", "Pilote de char", "Tireur", "Chargeur", "Chargeur"],
+            "skills": [
+                [
+                    "Frères d'armes",
+                    "Frères d'armes",
+                    "Frères d'armes",
+                    "Frères d'armes",
+                    "Frères d'armes"
+                ],
+                [
+                    "Réparations",
+                    "Réparations",
+                    "Réparations",
+                    "Réparations",
+                    "Réparations"
+                ],
+                [
+                    "Longue-vue",
+                    "Conduite souple",
+                    "Coup mortel",
+                    "Râtelier sécurisé",
+                    "Intuition"
+                ],
+                [
+                    "Détection sonore",
+                    "Bélier",
+                    "Précision",
+                    "Lutte contre les incendies",
+                    "Lutte contre les incendies"
+                ],
+                [
+                    "Œil de lynx",
+                    "As du volant",
+                    "Lutte contre les incendies",
+                    "Intuition",
+                    "Poussée d'adrénaline"
+                ]
+            ],
+            "shells": [
+                { "name": "AP", "amount": 0, "premium": false },
+                { "name": "APCR", "amount": 23, "premium": true },
+                { "name": "HE", "amount": 7, "premium": false }
+            ],
+            "fields": [
+                {
+                    "level": 2,
+                    "field": {
+                        "left": {
+                            "name": "Suspension tout-terrain",
+                            "image": "additionalGrousers",
+                            "active": true
+                        },
+                        "right": {
+                            "name": "Suspension légère",
+                            "image": "betterFriction",
+                            "active": false
+                        }
+                    }
+                },
+                {
+                    "level": 4,
+                    "field": {
+                        "left": {
+                            "name": "Ajustement parallaxe",
+                            "image": "improvedScope",
+                            "active": false
+                        },
+                        "right": {
+                            "name": "Rodage des mécanismes de visée",
+                            "image": "improvedAimingHandling",
+                            "active": false
+                        }
+                    }
+                },
+                {
+                    "level": 5,
+                    "field": {
+                        "left": {
+                            "name": "Isolation sonore",
+                            "image": "improvedSpallingResistance",
+                            "active": false
+                        },
+                        "right": {
+                            "name": "Motorisation électrique du périscope",
+                            "image": "improvedObservationDevice",
+                            "active": true
+                        }
+                    }
+                },
+                {
+                    "level": 6,
+                    "field": {
+                        "left": {
+                            "name": "Mobilité",
+                            "image": "mobility",
+                            "active": true
+                        },
+                        "right": {
+                            "name": "Puissance de feu",
+                            "image": "firepower",
+                            "active": false
+                        }
+                    }
+                },
+                {
+                    "level": 7,
+                    "field": {
+                        "left": {
+                            "name": "Recâblage de l'alimentation électrique (Réglage 1)",
+                            "image": "improvedSpeedIndicator",
+                            "active": true
+                        },
+                        "right": {
+                            "name": "Recâblage de l'alimentation électrique (Réglage 2)",
+                            "image": "improvedTurretTurningWheels",
+                            "active": false
+                        }
+                    }
+                },
+                {
+                    "level": 8,
+                    "field": {
+                        "left": {
+                            "name": "Plateforme renforcée",
+                            "image": "increasedThickness",
+                            "active": false
+                        },
+                        "right": {
+                            "name": "Plateform légère",
+                            "image": "improvedChassisStability",
+                            "active": false
+                        }
+                    }
+                }
+            ],
+            "directive": {
+                "name": "Râtelier de munitions en ordre",
+                "image": "fouloir_de_canon"
+            },
+            "equipments": {
+                "first": [
+                    {
+                        "name": "Durcissant amélioré",
+                        "modernized": false
+                    },
+                    {
+                        "name": "Turbocompresseur",
+                        "modernized": false
+                    },
+                    {
+                        "name": "Fouloir de canon",
+                        "modernized": false
+                    }
+                ],
+                "second": [
+                    {
+                        "name": "Durcissant amélioré",
+                        "modernized": false
+                    },
+                    {
+                        "name": "Turbocompresseur",
+                        "modernized": false
+                    },
+                    {
+                        "name": "Optiques traitées",
+                        "modernized": false
+                    }
+                ]
+            },
+            "consomables": {
+                "first": [
+                    "Grande trousse de premiers secours",
+                    "Grand kit de réparation",
+                    "Rations de combat supplémentaires"
+                ],
+                "second": [
+                    "Huile prêt-bail",
                     "Grand kit de réparation",
                     "Rations de combat supplémentaires"
                 ]
