@@ -1,5 +1,5 @@
 <div
-    class="flex flex-wrap justify-center pb-4 pt-5 tablette:space-y-6 desktop:justify-around desktop:space-y-0"
+    class="flex flex-wrap justify-center pb-4 pt-5 tablette:space-y-6 desktop:justify-around min-[]::space-y-0"
 >
     <div
         class="flex flex-grow-[0.2] flex-col items-center justify-center space-y-5 tablette:flex-row tablette:space-x-4 tablette:space-y-0 desktop:flex-grow-0 desktop:flex-col desktop:space-x-0 desktop:space-y-4"
@@ -48,9 +48,7 @@
                 class="flex flex-row items-center justify-around space-x-4 tablette:flex-col tablette:space-x-0 tablette:space-y-4"
             >
                 <div *ngFor="let shell of tankData.shells">
-                    <div
-                        class="relative left-[2px] h-0 w-0 text-normal"
-                    >
+                    <div class="relative left-[2px] h-0 w-0 text-normal">
                         {{ shell.amount }}
                     </div>
                     <img
@@ -101,7 +99,7 @@
                             tankData.directive.image
                         }}.png"
                         alt="{{ tankData.directive.name }}"
-                        class="-mr-[70px] w-[70px] rounded bg-secondaryLight opacity-80 border-ok border-[1px]"
+                        class="-mr-[70px] w-[70px] rounded border-[1px] border-ok bg-secondaryLight opacity-80"
                     />
                     <img
                         src="assets/equipments/directive.png"
@@ -144,11 +142,11 @@
         </div>
 
         <div
-            class="ml-7 mr-7 flex flex-wrap justify-center space-y-5 tablette:-ml-10 tablette:mr-0 tablette:space-y-0 desktop:-ml-0"
+            class="ml-7 mr-7 flex flex-wrap justify-center space-y-5 min-[390px]:max-[428px]:-ml-1 min-[390px]:max-[428px]:space-y-reverse tablette:-ml-10 tablette:mr-0 tablette:space-y-0 desktop:-ml-0"
         >
             <div
                 *ngFor="let field of tankData?.fields"
-                class="-ml-10 flex h-[70px] tablette:-ml-0 first:tablette:mb-10 desktop:-ml-6 first:desktop:mb-0 min-[1632px]:-ml-0"
+                class="-ml-10 flex h-[70px] min-[390px]:max-[428px]:-m-0 tablette:-ml-0 first:tablette:mb-10 desktop:-ml-6 first:desktop:mb-0 min-[1632px]:-ml-0"
             >
                 <img
                     src="assets/fields/roman_number_{{ field.level }}.png"
@@ -158,18 +156,18 @@
 
                 <div
                     *ngFor="let part of field.field | keyvalue"
-                    class="-mb-[70px] w-[70px]"
+                    class="relative -mb-[70px] w-[70px]"
                     title="{{ part.value.name }}"
                 >
                     <img
                         src="{{ getURL(part.value) }}"
                         alt="{{ part.value.name }}"
-                        class="w-[70px]"
+                        class="absolute inset-0 w-[70px]"
                     />
                     <img
                         *ngIf="part.value.active"
                         src="assets/fields/active.png"
-                        class="relative -top-[70px] left-0 z-[2]"
+                        class="absolute inset-0"
                     />
                 </div>
             </div>
