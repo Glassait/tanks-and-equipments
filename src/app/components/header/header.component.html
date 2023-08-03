@@ -34,16 +34,18 @@
             mat-button
             [matMenuTriggerFor]="menu"
             class="rounded p-1 text-title hover:bg-backgroundLight dark:hover:bg-backgroundDark"
+            role="button"
         >
             {{ wording.getHeader().menu | titlecase }}
         </button>
 
         <mat-menu
+            role="menu"
             #menu="matMenu"
             xPosition="before"
             class="space-y-1 [--mat-menu-item-focus-state-layer-color:#E9E9E9] [--mat-menu-item-hover-state-layer-color:#E9E9E9] [--mat-menu-item-label-text-size:22px] [--mat-menu-item-label-text-tracking:0] dark:[--mat-menu-container-color:#202020] dark:[--mat-menu-item-focus-state-layer-color:#161616] dark:[--mat-menu-item-hover-state-layer-color:#161616] dark:[--mat-menu-item-label-text-color:#FFFFFF]"
         >
-            <button mat-menu-item *ngIf="showHome">
+            <button mat-menu-item *ngIf="showHome" role="menuitem">
                 <a [routerLink]="[inventory.getPath().home]">
                     {{ wording.getHeader().accueil | uppercase }}
                 </a>
@@ -51,7 +53,7 @@
             <button
                 mat-menu-item
                 *ngIf="showTank && !memberStore.get('isVisitor')"
-                id="charEtEquipement"
+                role="menuitem"
             >
                 <a [routerLink]="[inventory.getPath().charsEtEquipements]">
                     {{ wording.getHeader().charEtEquipement | uppercase }}
@@ -64,7 +66,7 @@
                     inventory.getFeatureFlipping().clanWar &&
                     !memberStore.get('isVisitor')
                 "
-                id="clanWar"
+                role="menuitem"
             >
                 <a [routerLink]="[inventory.getPath().clanWar]">
                     {{ wording.getHeader().clanWar | uppercase }}
