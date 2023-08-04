@@ -3,12 +3,12 @@
 >
     <div id="leftHeader" class="w-0 flex-auto">
         <mat-slide-toggle
-            #darkModeSwitch
+            (change)="changeMode($event)"
             class="mb-1 ml-2 scale-[1.3] [--mdc-switch-unselected-focus-state-layer-color:#E9E9E9] [--mdc-switch-unselected-handle-color:#000000] [--mdc-switch-unselected-hover-state-layer-color:#E9E9E9] [--mdc-switch-unselected-pressed-state-layer-color:#E9E9E9] [--mdc-switch-unselected-track-color:#E9E9E9] dark:[--mdc-switch-selected-focus-handle-color:#FFFFFF] dark:[--mdc-switch-selected-focus-state-layer-color:#202020] dark:[--mdc-switch-selected-handle-color:#FFFFFF] dark:[--mdc-switch-selected-hover-handle-color:#E9E9E9] dark:[--mdc-switch-selected-hover-state-layer-color:#202020] dark:[--mdc-switch-selected-icon-color:#000000] dark:[--mdc-switch-selected-pressed-handle-color:#E9E9E9] dark:[--mdc-switch-selected-pressed-state-layer-color:#202020]"
             [disableRipple]="true"
+            [checked]="isDark"
+            #darkModeSwitch
             color="primary"
-            (change)="changeMode($event)"
-            [checked]="modeStore.get('dark')"
             aria-label="Couleur switch"
         ></mat-slide-toggle>
     </div>
@@ -30,13 +30,13 @@
 
     <div id="rightHeader" class="flex w-0 flex-auto justify-end">
         <button
-            *ngIf="!memberStore.get('isVisitor')"
-            mat-button
+            *ngIf="!isVisitor"
             [matMenuTriggerFor]="menu"
+            mat-button
             class="rounded p-1 text-title hover:bg-backgroundLight dark:hover:bg-backgroundDark"
             role="button"
         >
-            {{ wording.getHeader().menu | titlecase }}
+            {{ (wording | getHeader).menu | titlecase }}
         </button>
 
         <mat-menu
@@ -46,30 +46,30 @@
             class="space-y-1 [--mat-menu-item-focus-state-layer-color:#E9E9E9] [--mat-menu-item-hover-state-layer-color:#E9E9E9] [--mat-menu-item-label-text-size:22px] [--mat-menu-item-label-text-tracking:0] dark:[--mat-menu-container-color:#202020] dark:[--mat-menu-item-focus-state-layer-color:#161616] dark:[--mat-menu-item-hover-state-layer-color:#161616] dark:[--mat-menu-item-label-text-color:#FFFFFF]"
         >
             <button mat-menu-item *ngIf="showHome" role="menuitem">
-                <a [routerLink]="[inventory.getPath().home]">
-                    {{ wording.getHeader().accueil | uppercase }}
+                <a [routerLink]="(inventory | getPath).home">
+                    {{ (wording | getHeader).accueil | uppercase }}
                 </a>
             </button>
             <button
                 mat-menu-item
-                *ngIf="showTank && !memberStore.get('isVisitor')"
+                *ngIf="showTank && !isVisitor"
                 role="menuitem"
             >
-                <a [routerLink]="[inventory.getPath().charsEtEquipements]">
-                    {{ wording.getHeader().charEtEquipement | uppercase }}
+                <a [routerLink]="(inventory | getPath).charsEtEquipements">
+                    {{ (wording | getHeader).charEtEquipement | uppercase }}
                 </a>
             </button>
             <button
                 mat-menu-item
                 *ngIf="
                     showWar &&
-                    inventory.getFeatureFlipping().clanWar &&
-                    !memberStore.get('isVisitor')
+                    (inventory | getFeatureFlipping).clanWar &&
+                    !isVisitor
                 "
                 role="menuitem"
             >
-                <a [routerLink]="[inventory.getPath().clanWar]">
-                    {{ wording.getHeader().clanWar | uppercase }}
+                <a [routerLink]="(inventory | getPath).clanWar">
+                    {{ (wording | getHeader).clanWar | uppercase }}
                 </a>
             </button>
         </mat-menu>

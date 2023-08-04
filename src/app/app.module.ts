@@ -21,9 +21,13 @@ import { ClanWarComponent } from './components/clan-war/clan-war.component';
 import { ClanMembersComponent } from './components/clan-members/clan-members.component';
 import { HeaderComponent } from './components/header/header.component';
 import { CardLittleComponent } from './components/card-little/card-little.component';
+import { IconComponent } from './components/icon/icon.component';
 
 import { ImagePipe } from './pipes/image/image.pipe';
 import { ReplacePipe } from './pipes/replace/replace.pipe';
+import { HeaderPipe } from './pipes/wording/header.pipe';
+import { FeatureFlippingPipe } from './pipes/inventory/feature-flipping.pipe';
+import { PathPipe } from './pipes/inventory/path.pipe';
 
 const MOCK_INTERCEPTOR_PROVIDER: Provider = {
     provide: HTTP_INTERCEPTORS,
@@ -40,15 +44,19 @@ if (environment.production) {
 @NgModule({
     declarations: [
         AppComponent,
-        ReplacePipe,
         HomeComponent,
         TanksEquipmentComponent,
         TankEquipmentDescriptionComponent,
         ClanWarComponent,
         ClanMembersComponent,
         HeaderComponent,
-        ImagePipe,
         CardLittleComponent,
+        IconComponent,
+        ImagePipe,
+        HeaderPipe,
+        ReplacePipe,
+        FeatureFlippingPipe,
+        PathPipe,
     ],
     imports: [
         BrowserModule,

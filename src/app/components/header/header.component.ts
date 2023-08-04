@@ -1,7 +1,9 @@
 import {
     AfterViewInit,
+    ChangeDetectorRef,
     Component,
     ElementRef,
+    OnInit,
     ViewChild,
 } from '@angular/core';
 import { HeaderStore } from 'src/app/commons/stores/header.store';
@@ -12,12 +14,14 @@ import { MemberStore } from 'src/app/commons/stores/member.store';
 import { SvgCustom } from 'src/app/commons/classes/svg-custom.class';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { ModeStore } from 'src/app/commons/stores/mode.store';
+import { MemberInterface } from 'src/app/commons/interfaces/member.interface';
+import { ModeInterface } from 'src/app/commons/interfaces/mode.interface';
 
 @Component({
     selector: 'app-header',
     templateUrl: './header.component.html',
 })
-export class HeaderComponent implements AfterViewInit {
+export class HeaderComponent implements OnInit, AfterViewInit {
     @ViewChild('darkModeSwitch', { read: ElementRef }) element:
         | ElementRef
         | undefined;
@@ -25,6 +29,8 @@ export class HeaderComponent implements AfterViewInit {
     protected showHome: boolean;
     protected showTank: boolean;
     protected showWar: boolean;
+    protected isVisitor: boolean;
+    protected isDark: boolean;
 
     constructor(
         private headerStore: HeaderStore,
@@ -32,7 +38,9 @@ export class HeaderComponent implements AfterViewInit {
         protected memberStore: MemberStore,
         protected wording: WordingService,
         protected inventory: InventoryService
-    ) {
+    ) {}
+
+    ngOnInit(): void {
         this.watchStore();
     }
 
@@ -52,6 +60,14 @@ export class HeaderComponent implements AfterViewInit {
             this.showHome = value.showHome;
             this.showTank = value.showTank;
             this.showWar = value.showWar;
+        });
+
+        this.memberStore.watch().subscribe((value: MemberInterface): void => {
+            this.isVisitor = value.isVisitor;
+        });
+
+        this.modeStore.watch().subscribe((value: ModeInterface): void => {
+            this.isDark = value.dark;
         });
     }
 
