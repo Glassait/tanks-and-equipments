@@ -12,6 +12,8 @@ export class InventoryService {
     }
 
     public getPath() {
+        console.log("get path called");
+        
         return this._inventory.path;
     }
 

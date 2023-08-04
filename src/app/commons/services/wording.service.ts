@@ -12,6 +12,8 @@ export class WordingService {
     }
 
     public getHeader() {
+        console.log('Get header called');
+
         return this._wording.header;
     }
 
