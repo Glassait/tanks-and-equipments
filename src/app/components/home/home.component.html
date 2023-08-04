@@ -9,9 +9,9 @@
         <app-card-little
             [hasSpinner]="true"
             [showSpinner]="showSpinnerServer"
+            [title]="(wording | getHome).statusServer"
             id="server"
             iconPath="assets/other/server.svg"
-            [title]="wording.getHome().statusServer"
         >
             <div *ngIf="!showSpinnerServer" class="space-y-2">
                 <div
@@ -22,7 +22,7 @@
                     <img src="assets/other/ok.svg" alt="" class="w-[25px]" />
                     <div>
                         {{ server.players_online }}
-                        {{ wording.getHome().joueur
+                        {{ (wording | getHome).joueur
                         }}{{ server.players_online > 1 ? 's' : '' }}
                     </div>
                 </div>
@@ -30,21 +30,21 @@
         </app-card-little>
 
         <app-card-little
-            *ngIf="!memberStore.get('isVisitor')"
+            *ngIf="!isVisitor"
             id="information"
             iconPath="assets/other/information.svg"
-            [title]="wording.getHome().information"
+            [title]="(wording | getHome).information"
         >
             <div class="space-y-4 whitespace-pre-line text-justify">
-                <div>{{ information.getText() }}</div>
+                <div>{{ information | getText }}</div>
                 <div class="flex justify-end">
                     <a
-                        [routerLink]="information.getURL()"
+                        [routerLink]="information | getUrl"
                         class="flex space-x-4 text-linkLight underline dark:text-linkDark"
                     >
-                        <div class="w-full">{{
-                            information.getLinkText()
-                        }}</div>
+                        <div class="w-full">
+                            {{ information | getLinkText }}
+                        </div>
                         <img
                             src="assets/tanks/super_conqueror.icon.svg"
                             alt=""
@@ -55,15 +55,15 @@
         </app-card-little>
 
         <app-card-little
-            *ngIf="memberStore.get('isVisitor')"
+            *ngIf="isVisitor"
             id="visitor"
             iconPath="assets/other/visitor.svg"
-            [title]="wording.getHome().visitorTitle"
+            [title]="(wording | getHome).visitorTitle"
         >
             <div class="whitespace-pre-line text-justify">
-                {{ wording.getHome().visitorText }}
-                <br><br>
-                {{ wording.getHome().visitorHelp }}
+                {{ (wording | getHome).visitorText }}
+                <br /><br />
+                {{ (wording | getHome).visitorHelp }}
             </div>
         </app-card-little>
     </div>
@@ -99,7 +99,7 @@
 
                         <span
                             class="self-center text-center text-title underline"
-                            >{{ wording.getHome().bastion | titlecase }}</span
+                            >{{ (wording | getHome).bastion | titlecase }}</span
                         >
 
                         <div class="self-center text-center">X</div>
@@ -140,7 +140,7 @@
 
                         <span
                             class="self-center text-center text-title underline"
-                            >{{ wording.getHome().clanWar | titlecase }}</span
+                            >{{ (wording | getHome).clanWar | titlecase }}</span
                         >
 
                         <div class="self-center text-center">X</div>

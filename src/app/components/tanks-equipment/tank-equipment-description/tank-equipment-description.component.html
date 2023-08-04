@@ -160,7 +160,7 @@
                     title="{{ part.value.name }}"
                 >
                     <img
-                        src="{{ getURL(part.value) }}"
+                        src="{{ part.value | getFieldUrl }}"
                         alt="{{ part.value.name }}"
                         class="absolute inset-0 w-[70px]"
                     />

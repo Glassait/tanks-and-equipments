@@ -8,16 +8,6 @@ import {
     selector: 'app-tank-equipment-description',
     templateUrl: './tank-equipment-description.component.html',
 })
-export class TankEquipmentDescriptionComponent implements OnChanges {
+export class TankEquipmentDescriptionComponent {
     @Input() tankData: TankData;
-
-    ngOnChanges(changes: SimpleChanges): void {
-        this.tankData = changes['tankData']['currentValue'];
-    }
-
-    protected getURL(field: FieldComposant) {
-        return `/assets/fields/${field.image}${
-            field.active ? '' : '.disabled'
-        }.png`;
-    }
 }

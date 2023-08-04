@@ -11,6 +11,7 @@ import { AuthenticationService } from 'src/app/commons/services/authentication.s
 import { MemberStore } from 'src/app/commons/stores/member.store';
 import { WindowsCustom } from 'src/app/commons/classes/windows-custom.class';
 import { ArrayCustom } from 'src/app/commons/classes/array-custom.class';
+import { MemberInterface } from 'src/app/commons/interfaces/member.interface';
 
 @Component({
     selector: 'app-home',
@@ -22,6 +23,7 @@ export class HomeComponent implements OnInit {
     protected showClanRatingsCard = true;
     protected wotServer: WotServerRequest;
     protected wotClanRatings: WotClanRatingsRequest;
+    protected isVisitor: boolean;
 
     constructor(
         private wotApi: WotApiService,
@@ -55,6 +57,14 @@ export class HomeComponent implements OnInit {
             this.showSpinnerClanRatings = false;
             this.showClanRatingsCard = false;
         }
+
+        this.watchStore();
+    }
+
+    private watchStore() {
+        this.memberStore.watch().subscribe((value: MemberInterface): void => {
+            this.isVisitor = value.isVisitor;
+        });
     }
 
     private isClanRatingsCardDisplayed(clanRatingsCard: Element | null) {

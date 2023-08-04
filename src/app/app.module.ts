@@ -28,6 +28,12 @@ import { ReplacePipe } from './pipes/replace/replace.pipe';
 import { HeaderPipe } from './pipes/wording/header.pipe';
 import { FeatureFlippingPipe } from './pipes/inventory/feature-flipping.pipe';
 import { PathPipe } from './pipes/inventory/path.pipe';
+import { HomePipe } from './pipes/wording/home.pipe';
+import { TextPipe } from './pipes/information/text.pipe';
+import { UrlPipe } from './pipes/information/url.pipe';
+import { LinkTextPipe } from './pipes/information/link-text.pipe';
+import { DataPipe } from './pipes/tank/data.pipe';
+import { FieldUrlPipe } from './pipes/field/url.pipe';
 
 const MOCK_INTERCEPTOR_PROVIDER: Provider = {
     provide: HTTP_INTERCEPTORS,
@@ -57,6 +63,12 @@ if (environment.production) {
         ReplacePipe,
         FeatureFlippingPipe,
         PathPipe,
+        HomePipe,
+        TextPipe,
+        UrlPipe,
+        LinkTextPipe,
+        DataPipe,
+        FieldUrlPipe,
     ],
     imports: [
         BrowserModule,
