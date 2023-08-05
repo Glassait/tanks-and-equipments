@@ -1,23 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { ArrayCustom } from 'src/app/commons/classes/array-custom.class';
+import { WindowsCustom } from 'src/app/commons/classes/windows-custom.class';
+import { MemberInterface } from 'src/app/commons/interfaces/member.interface';
+import { AuthenticationService } from 'src/app/commons/services/authentication.service';
+import { InformationService } from 'src/app/commons/services/information.service';
+import { WordingService } from 'src/app/commons/services/wording.service';
 import { WotApiService } from 'src/app/commons/services/wot-api.service';
 import { HeaderStore } from 'src/app/commons/stores/header.store';
-import { WordingService } from 'src/app/commons/services/wording.service';
-import { InformationService } from 'src/app/commons/services/information.service';
+import { MemberStore } from 'src/app/commons/stores/member.store';
 import {
     WotClanRatingsRequest,
     WotServerRequest,
 } from 'src/app/commons/types/clan-ratings.type';
-import { AuthenticationService } from 'src/app/commons/services/authentication.service';
-import { MemberStore } from 'src/app/commons/stores/member.store';
-import { WindowsCustom } from 'src/app/commons/classes/windows-custom.class';
-import { ArrayCustom } from 'src/app/commons/classes/array-custom.class';
-import { MemberInterface } from 'src/app/commons/interfaces/member.interface';
 
 @Component({
     selector: 'app-home',
     templateUrl: './home.component.html',
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
     protected showSpinnerServer: boolean = true;
     protected showSpinnerClanRatings: boolean = true;
     protected showClanRatingsCard: boolean = true;
@@ -25,15 +26,17 @@ export class HomeComponent implements OnInit {
     protected wotClanRatings: WotClanRatingsRequest;
     protected isVisitor: boolean;
 
+    private memberSubscribe: Subscription;
+
     constructor(
-        private wotApi: WotApiService,
         protected wording: WordingService,
         protected information: InformationService,
+        private memberStore: MemberStore,
         private headerStore: HeaderStore,
-        protected memberStore: MemberStore,
+        private wotApi: WotApiService,
         private auth: AuthenticationService
     ) {
-        this.setHeaderVariable();
+        this.patchHeader();
     }
 
     ngOnInit(): void {
@@ -45,7 +48,7 @@ export class HomeComponent implements OnInit {
 
         if (
             this.isClanRatingsCardDisplayed(
-                document.querySelector('#rightHome')
+                document.querySelector('#right-home')
             )
         ) {
             this.getClanRatings();
@@ -54,10 +57,14 @@ export class HomeComponent implements OnInit {
             this.showClanRatingsCard = false;
         }
 
-        this.watchStore();
+        this.createSubscribe();
     }
 
-    private setHeaderVariable(): void {
+    ngOnDestroy(): void {
+        this.memberSubscribe.unsubscribe();
+    }
+
+    private patchHeader(): void {
         this.headerStore.patch({
             showHome: false,
             showTank: true,
@@ -65,10 +72,12 @@ export class HomeComponent implements OnInit {
         });
     }
 
-    private watchStore(): void {
-        this.memberStore.watch().subscribe((value: MemberInterface): void => {
-            this.isVisitor = value.isVisitor;
-        });
+    private createSubscribe(): void {
+        this.memberSubscribe = this.memberStore
+            .watch()
+            .subscribe((value: MemberInterface): void => {
+                this.isVisitor = value.isVisitor;
+            });
     }
 
     private isClanRatingsCardDisplayed(

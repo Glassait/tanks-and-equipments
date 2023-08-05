@@ -6,7 +6,11 @@
         >
             <mat-expansion-panel-header>
                 <mat-panel-title class="w-10 tablette:w-24">
-                    <icon [height]="45" [icon]="tankData.name | image" [width]="80"></icon>
+                    <icon
+                        [height]="45"
+                        [icon]="tankData.name | image"
+                        [width]="80"
+                    ></icon>
                 </mat-panel-title>
                 <mat-panel-description
                     class="flex justify-center text-petit [--mat-expansion-header-description-color:primary_light] tablette:-ml-24 tablette:text-normal"
@@ -17,6 +21,7 @@
 
             <app-tank-equipment-description
                 [tankData]="tankData"
+                [isDark]="isDark"
             ></app-tank-equipment-description>
         </mat-expansion-panel>
     </mat-accordion>

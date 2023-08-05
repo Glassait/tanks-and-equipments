@@ -1,7 +1,7 @@
 <div
     class="flex h-[70px] w-full items-center border-b-[1px] border-b-secondary_light bg-primary_light pl-3 pr-3 dark:border-b-secondary_dark dark:bg-primary_dark"
 >
-    <div id="left_header" class="w-0 flex-auto">
+    <div class="w-0 flex-auto" id="left-header">
         <mat-slide-toggle
             #darkModeSwitch
             (change)="changeMode($event)"
@@ -13,7 +13,7 @@
         ></mat-slide-toggle>
     </div>
 
-    <div class="flex w-0 flex-auto justify-center" id="center_header">
+    <div class="flex w-0 flex-auto justify-center" id="center-header">
         <a
             class="flex w-max items-center rounded-full border-[1px] border-secondary_light hover:bg-background_light dark:border-secondary_dark dark:hover:bg-background_dark"
             href="https://eu.wargaming.net/clans/wot/500179430/"
@@ -30,7 +30,7 @@
         </a>
     </div>
 
-    <div class="flex w-0 flex-auto justify-end" id="right_header">
+    <div class="flex w-0 flex-auto justify-end" id="right-header">
         <button
             *ngIf="!isVisitor"
             [matMenuTriggerFor]="menu"

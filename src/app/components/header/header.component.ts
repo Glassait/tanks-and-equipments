@@ -2,25 +2,27 @@ import {
     AfterViewInit,
     Component,
     ElementRef,
+    OnDestroy,
     OnInit,
     ViewChild,
 } from '@angular/core';
-import { HeaderStore } from 'src/app/commons/stores/header.store';
-import { HeaderInterface } from 'src/app/commons/interfaces/header.interface';
-import { WordingService } from 'src/app/commons/services/wording.service';
-import { InventoryService } from 'src/app/commons/services/inventory.service';
-import { MemberStore } from 'src/app/commons/stores/member.store';
-import { SvgCustom } from 'src/app/commons/classes/svg-custom.class';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
-import { ModeStore } from 'src/app/commons/stores/mode.store';
+import { Subscription } from 'rxjs';
+import { SvgCustom } from 'src/app/commons/classes/svg-custom.class';
+import { HeaderInterface } from 'src/app/commons/interfaces/header.interface';
 import { MemberInterface } from 'src/app/commons/interfaces/member.interface';
 import { ModeInterface } from 'src/app/commons/interfaces/mode.interface';
+import { InventoryService } from 'src/app/commons/services/inventory.service';
+import { WordingService } from 'src/app/commons/services/wording.service';
+import { HeaderStore } from 'src/app/commons/stores/header.store';
+import { MemberStore } from 'src/app/commons/stores/member.store';
+import { ModeStore } from 'src/app/commons/stores/mode.store';
 
 @Component({
     selector: 'app-header',
     templateUrl: './header.component.html',
 })
-export class HeaderComponent implements OnInit, AfterViewInit {
+export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
     @ViewChild('darkModeSwitch', { read: ElementRef }) element:
         | ElementRef
         | undefined;
@@ -31,16 +33,20 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     protected isVisitor: boolean;
     protected isDark: boolean;
 
+    private headerSubscribe: Subscription;
+    private memberSubscribe: Subscription;
+    private modeSubscribe: Subscription;
+
     constructor(
-        private headerStore: HeaderStore,
         protected modeStore: ModeStore,
         protected memberStore: MemberStore,
         protected wording: WordingService,
-        protected inventory: InventoryService
+        protected inventory: InventoryService,
+        private headerStore: HeaderStore
     ) {}
 
     ngOnInit(): void {
-        this.watchStore();
+        this.createSubscribe();
     }
 
     ngAfterViewInit(): void {
@@ -54,20 +60,10 @@ export class HeaderComponent implements OnInit, AfterViewInit {
         }
     }
 
-    private watchStore() {
-        this.headerStore.watch().subscribe((value: HeaderInterface): void => {
-            this.showHome = value.showHome;
-            this.showTank = value.showTank;
-            this.showWar = value.showWar;
-        });
-
-        this.memberStore.watch().subscribe((value: MemberInterface): void => {
-            this.isVisitor = value.isVisitor;
-        });
-
-        this.modeStore.watch().subscribe((value: ModeInterface): void => {
-            this.isDark = value.dark;
-        });
+    ngOnDestroy(): void {
+        this.memberSubscribe.unsubscribe();
+        this.headerSubscribe.unsubscribe();
+        this.modeSubscribe.unsubscribe();
     }
 
     protected changeMode($event: MatSlideToggleChange): void {
@@ -78,5 +74,27 @@ export class HeaderComponent implements OnInit, AfterViewInit {
             document.documentElement.classList.remove('dark');
             this.modeStore.set('dark', false);
         }
+    }
+
+    private createSubscribe(): void {
+        this.headerSubscribe = this.headerStore
+            .watch()
+            .subscribe((value: HeaderInterface): void => {
+                this.showHome = value.showHome;
+                this.showTank = value.showTank;
+                this.showWar = value.showWar;
+            });
+
+        this.memberSubscribe = this.memberStore
+            .watch()
+            .subscribe((value: MemberInterface): void => {
+                this.isVisitor = value.isVisitor;
+            });
+
+        this.modeSubscribe = this.modeStore
+            .watch()
+            .subscribe((value: ModeInterface): void => {
+                this.isDark = value.dark;
+            });
     }
 }

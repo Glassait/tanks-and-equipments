@@ -1,5 +1,4 @@
 export type Icons =
-    | 'chargeur'
     | 'castle'
     | 'map'
     | 'ok'
@@ -17,4 +16,9 @@ export type Icons =
     | 'object_907'
     | 'strv_103b'
     | 't95_fv4201_chieftain'
-    | 't110e3';
+    | 't110e3'
+    | 'chargeur'
+    | 'commandant'
+    | 'opérateur_radio'
+    | 'pilote_de_char'
+    | 'tireur';
