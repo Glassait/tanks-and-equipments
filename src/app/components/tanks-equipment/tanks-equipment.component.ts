@@ -13,6 +13,7 @@ import { ModeStore } from '../../commons/stores/mode.store';
 })
 export class TanksEquipmentComponent implements OnDestroy {
     protected isDark: boolean;
+    protected isMobile: boolean;
 
     private modeSubscribe: Subscription;
 
@@ -55,6 +56,7 @@ export class TanksEquipmentComponent implements OnDestroy {
             .watch()
             .subscribe((modeInterface: ModeInterface): void => {
                 this.isDark = modeInterface.dark;
+                this.isMobile = modeInterface.mobile;
             });
     }
 }

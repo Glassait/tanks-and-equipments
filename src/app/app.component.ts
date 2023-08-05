@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { IconRegistryService } from './commons/services/icon-registry.service';
+import { ModeStore } from './commons/stores/mode.store';
 import { chargeurIcon } from './components/icon/files/crews/chargeur.icon';
 import { commandantIcon } from './components/icon/files/crews/commandant.icon';
 import { operateurRadioIcon } from './components/icon/files/crews/operateur-radio.icon';
@@ -31,8 +32,21 @@ import { t95Fv4201ChieftainIcon } from './components/icon/files/tanks/t95_fv4201
 export class AppComponent {
     protected title: string = 'app';
 
-    constructor(private iconRegistry: IconRegistryService) {
+    constructor(
+        private iconRegistry: IconRegistryService,
+        private modeStore: ModeStore
+    ) {
         this.registerIcons();
+        this.onResize({});
+    }
+
+    @HostListener('window:resize', ['$event'])
+    protected onResize(_event: any): void {
+        if (window.innerWidth <= 425) {
+            this.modeStore.set('mobile', true);
+        } else {
+            this.modeStore.set('mobile', false);
+        }
     }
 
     private registerIcons(): void {

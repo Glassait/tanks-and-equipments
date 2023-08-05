@@ -30,7 +30,7 @@ export type Equipments = {
     second: Equipment[];
 };
 
-export type Consomables = {
+export type Consumables = {
     first: string[];
     second: string[];
 };
@@ -48,7 +48,7 @@ export type TankData = {
     shells: Shell[];
     fields: Field[];
     equipments: Equipments;
-    consomables: Consomables;
+    consumables: Consumables;
     directive: Directive;
 };
 

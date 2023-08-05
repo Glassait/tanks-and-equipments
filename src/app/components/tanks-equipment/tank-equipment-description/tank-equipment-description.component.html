@@ -1,8 +1,8 @@
 <div
-    class="flex flex-wrap justify-center pb-4 pt-5 tablette:space-y-6 desktop:justify-around"
+    class="flex flex-wrap justify-center gap-6 pb-4 pt-5 desktop:justify-around"
 >
     <div
-        class="flex flex-grow-[0.2] flex-col items-center justify-center space-y-5 tablette:flex-row tablette:space-x-4 tablette:space-y-0 desktop:flex-grow-0 desktop:flex-col desktop:space-x-0 desktop:space-y-4"
+        class="flex flex-grow-[0.2] flex-col items-center justify-center gap-4 tablette:flex-row tablette:gap-4 desktop:flex-grow-0 desktop:flex-col"
     >
         <div
             class="flex gap-2 tablette:flex-col tablette:gap-4 desktop:flex-row"
@@ -10,93 +10,107 @@
             <icon
                 *ngFor="let crew of tankData?.crew"
                 [filter]="isDark ? 'white' : 'black'"
-                [size]="70"
+                [size]="isMobile ? 54 : 69"
                 class="rounded border-[1px] border-secondary_light dark:border-secondary_dark"
                 icon="{{ crew | image }}"
                 title="{{ crew }}"
             ></icon>
-            <!--<img
-                *ngFor="let crew of tankData?.crew"
-                alt="{{ crew }}"
-                class="h-11 w-11 rounded border-[1px] border-secondary_light dark:contrast-[101%] dark:hue-rotate-[164deg] dark:invert-[100%] dark:saturate-[100%] dark:sepia-[100%] tablette:h-[70px] tablette:w-[70px]"
-                src="assets/crew/{{ crew | image }}.svg"
-                title="{{ crew }}"
-            />-->
         </div>
 
         <div
             *ngFor="let skills of tankData?.skills"
-            class="flex space-x-2 tablette:flex-col tablette:space-x-0 tablette:space-y-4 desktop:flex-row desktop:space-x-4 desktop:space-y-0"
+            class="flex gap-2 tablette:flex-col tablette:gap-4 desktop:flex-row"
         >
             <img
                 *ngFor="let skill of skills"
+                [height]="isMobile ? 55 : 70"
+                [width]="isMobile ? 55 : 70"
                 alt="{{ skill }}"
-                class="h-11 w-11 rounded border-[1px] border-secondary_light dark:border-secondary_dark tablette:h-[70px] tablette:w-[70px]"
-                src="assets/skills/{{ skill | image }}.png"
+                class="rounded border-[1px] border-secondary_light dark:border-secondary_dark"
+                ngSrc="assets/skills/{{ skill | image }}.png"
                 title="{{ skill }}"
             />
         </div>
     </div>
 
     <div
-        class="flex flex-wrap justify-center space-y-8 tablette:space-y-10 desktop:flex-col desktop:justify-around"
+        class="flex flex-wrap justify-center gap-10 desktop:flex-col desktop:justify-around"
     >
-        <div
-            class="flex flex-wrap items-center justify-center space-y-6 min-[1025px]:space-x-2 desktop:space-y-0 min-[1632px]:space-x-5"
-        >
+        <div class="flex flex-wrap items-center justify-center gap-6">
             <div>
                 <img
-                    alt=""
-                    class="w-[350px] max-[1632px]:min-[1025px]:w-48"
-                    src="assets/tanks/{{ tankData.name | image }}.png"
+                    alt="Image de {{ tankData.name }}"
+                    class="max-[1632px]:min-[1450px]:w-48"
+                    height="350"
+                    ngSrc="assets/tanks/{{ tankData.name | image }}.png"
+                    title="{{ tankData.name }}"
+                    width="350"
                 />
             </div>
 
             <div
-                class="flex flex-row items-center justify-around space-x-4 tablette:flex-col tablette:space-x-0 tablette:space-y-4"
+                class="flex flex-row items-center justify-around gap-4 tablette:flex-col"
             >
                 <div *ngFor="let shell of tankData.shells">
                     <div class="relative left-[2px] h-0 w-0 text-normal">
                         {{ shell.amount }}
                     </div>
                     <img
-                        alt="{{ shell.name }}"
-                        class="w-[70px] rounded border-[1px] border-secondary_light dark:border-secondary_dark"
-                        src="assets/shells/{{ shell.premium ? 'prem-' : '' }}{{
-                            shell.name | image
-                        }}.png"
+                        alt="Image de {{ shell.name }}"
+                        class="rounded border-[1px] border-secondary_light dark:border-secondary_dark"
+                        height="70"
+                        ngSrc="assets/shells/{{
+                            shell.premium ? 'prem-' : ''
+                        }}{{ shell.name | image }}.png"
                         title="{{ shell.name }}"
+                        width="70"
                     />
                 </div>
             </div>
 
-            <div class="space-y-4">
+            <div class="flex flex-col gap-4">
                 <div
-                    class="flex flex-wrap items-center justify-evenly space-y-4 tablette:space-x-12 tablette:space-y-0"
+                    class="flex flex-wrap items-center justify-evenly gap-4 tablette:gap-12"
                 >
-                    <div class="flex space-x-4">
-                        <img
+                    <div class="flex h-[70px] gap-4">
+                        <div
                             *ngFor="let equipment of tankData.equipments.first"
-                            alt="{{ equipment.name }}"
-                            class="w-[70px] rounded border-[1px] border-secondary_light dark:border-secondary_dark"
-                            src="assets/equipments/{{
-                                equipment.name | image
-                            }}.png"
-                            title="{{ equipment.name }}"
-                        />
+                            class="relative w-[70px]"
+                        >
+                            <img
+                                alt="Image de {{ equipment.name }}"
+                                class="absolute inset-0 rounded border-[1px] border-secondary_light dark:border-secondary_dark"
+                                height="70"
+                                ngSrc="assets/equipments/{{
+                                    equipment.name | image
+                                }}.png"
+                                title="{{ equipment.name }}"
+                                width="70"
+                            />
+                            <img
+                                *ngIf="equipment.modernized"
+                                alt="Équipement modernizé"
+                                class="absolute inset-0 left-0.5 top-0.5"
+                                height="20"
+                                ngSrc="assets/equipments/modernized_3.png"
+                                width="20"
+                            />
+                        </div>
                     </div>
 
-                    <div class="flex space-x-4">
+                    <div class="flex gap-4">
                         <img
                             *ngFor="
-                                let consumable of tankData.consomables.first
+                                let consumable of tankData.consumables.first
                             "
                             alt="{{ consumable }}"
-                            class="w-[70px] rounded border-[1px] border-secondary_light dark:border-secondary_dark"
-                            src="assets/consumables/{{
+                            class="rounded border-[1px] border-secondary_light dark:border-secondary_dark"
+                            height="70"
+                            ngSrc="assets/consumables/{{
                                 consumable | image
                             }}.png"
                             title="{{ consumable }}"
+                            width="70"
                         />
                     </div>
                 </div>
@@ -104,45 +118,65 @@
                 <div class="flex items-center justify-center">
                     <img
                         alt="{{ tankData.directive.name }}"
-                        class="-mr-[70px] w-[70px] rounded border-[1px] border-ok bg-secondary_light opacity-80"
-                        src="assets/equipments/{{
+                        class="-mr-[70px] rounded border-[1px] border-ok bg-secondary_light opacity-80"
+                        height="70"
+                        ngSrc="assets/equipments/{{
                             tankData.directive.image
                         }}.png"
+                        width="70"
                     />
                     <img
                         alt="directive icon"
                         class="relative w-[70px]"
-                        src="assets/equipments/directive.png"
+                        height="54"
+                        ngSrc="assets/equipments/directive.png"
                         title="{{ tankData.directive.name }}"
+                        width="53"
                     />
                 </div>
 
                 <div
-                    class="flex flex-wrap items-center justify-evenly space-y-4 tablette:space-x-12 tablette:space-y-0"
+                    class="flex flex-wrap items-center justify-evenly gap-4 tablette:gap-12"
                 >
-                    <div class="flex space-x-4">
-                        <img
+                    <div class="flex h-[70px] gap-4">
+                        <div
                             *ngFor="let equipment of tankData.equipments.second"
-                            alt="{{ equipment.name }}"
-                            class="w-[70px] rounded border-[1px] border-secondary_light dark:border-secondary_dark"
-                            src="assets/equipments/{{
-                                equipment.name | image
-                            }}.png"
-                            title="{{ equipment.name }}"
-                        />
+                            class="relative w-[70px]"
+                        >
+                            <img
+                                alt="Image de {{ equipment.name }}"
+                                class="absolute inset-0 rounded border-[1px] border-secondary_light dark:border-secondary_dark"
+                                height="70"
+                                ngSrc="assets/equipments/{{
+                                    equipment.name | image
+                                }}.png"
+                                title="{{ equipment.name }}"
+                                width="70"
+                            />
+                            <img
+                                *ngIf="equipment.modernized"
+                                alt="Équipement modernizé"
+                                class="absolute inset-0 left-0.5 top-1"
+                                height="20"
+                                ngSrc="assets/equipments/modernized_3.png"
+                                width="20"
+                            />
+                        </div>
                     </div>
 
-                    <div class="flex space-x-4">
+                    <div class="flex gap-4">
                         <img
                             *ngFor="
-                                let consumable of tankData.consomables.second
+                                let consumable of tankData.consumables.second
                             "
                             alt="{{ consumable }}"
-                            class="w-[70px] rounded border-[1px] border-secondary_light dark:border-secondary_dark"
-                            src="/assets/consumables/{{
+                            class="rounded border-[1px] border-secondary_light dark:border-secondary_dark"
+                            height="70"
+                            ngSrc="/assets/consumables/{{
                                 consumable | image
                             }}.png"
                             title="{{ consumable }}"
+                            width="70"
                         />
                     </div>
                 </div>
@@ -150,33 +184,39 @@
         </div>
 
         <div
-            class="ml-7 mr-7 flex flex-wrap justify-center space-y-5 min-[390px]:max-[428px]:-ml-1 min-[390px]:max-[428px]:space-y-reverse tablette:-ml-10 tablette:mr-0 tablette:space-y-0 desktop:-ml-0"
+            class="flex flex-wrap justify-center gap-6"
         >
             <div
                 *ngFor="let field of tankData?.fields"
-                class="-ml-10 flex h-[70px] min-[390px]:max-[428px]:-m-0 tablette:-ml-0 first:tablette:mb-10 desktop:-ml-6 first:desktop:mb-0 min-[1632px]:-ml-0"
+                class="-ml-10 flex h-[70px]"
             >
                 <img
-                    alt=""
-                    class="relative -top-4 left-[50%] z-[3] h-8 w-8"
-                    src="assets/fields/roman_number_{{ field.level }}.png"
+                    alt="Level {{ field.level }} of field"
+                    class="relative -top-4 left-[50%] z-[1] h-8 w-8"
+                    height="32"
+                    ngSrc="assets/fields/roman_number_{{ field.level }}.png"
+                    width="32"
                 />
 
                 <div
                     *ngFor="let part of field.field | keyvalue"
-                    class="relative -mb-[70px] w-[70px]"
+                    class="relative w-[70px]"
                     title="{{ part.value.name }}"
                 >
                     <img
-                        alt="{{ part.value.name }}"
-                        class="absolute inset-0 w-[70px]"
-                        src="{{ part.value | getFieldUrl }}"
+                        alt="Image de {{ part.value.name }}"
+                        class="absolute inset-0"
+                        height="70"
+                        ngSrc="{{ part.value | getFieldUrl }}"
+                        width="70"
                     />
                     <img
                         *ngIf="part.value.active"
-                        alt=""
+                        alt="Field modification active"
                         class="absolute inset-0"
-                        src="assets/fields/active.png"
+                        height="82"
+                        ngSrc="assets/fields/active.png"
+                        width="82"
                     />
                 </div>
             </div>

@@ -8,4 +8,5 @@ import { TankData } from 'src/app/commons/types/tanks-data.type';
 export class TankEquipmentDescriptionComponent {
     @Input() tankData: TankData;
     @Input() isDark: boolean;
+    @Input() isMobile: boolean;
 }

@@ -70,14 +70,14 @@
     </div>
 
     <div
-        class="hidden desktop:flex desktop:w-0 desktop:flex-auto desktop:justify-center"
+        class="hidden tablette:flex desktop:w-0 desktop:flex-auto desktop:justify-center"
         id="right-home"
     >
         <mat-spinner *ngIf="showSpinnerClanRatings"></mat-spinner>
 
         <mat-card
             *ngIf="!showSpinnerClanRatings && showClanRatingsCard"
-            class="h-fit w-[600px] dark:[--mdc-elevated-card-container-color:#000000]"
+            class="h-fit tablette:w-[730px] desktop:w-[600px] dark:[--mdc-elevated-card-container-color:#000000]"
         >
             <mat-card-header class="mb-2 flex items-center justify-center">
                 <img
@@ -89,7 +89,7 @@
             </mat-card-header>
 
             <mat-card-content
-                class="h-full bg-[url('/assets/other/clan_ratings_little.jpg')]"
+                class="h-full bg-[url('/assets/other/clan_ratings_little.jpg')] bg-no-repeat bg-center bg-cover"
             >
                 <div class="mt-4 flex space-x-12 text-secondary_dark">
                     <div
