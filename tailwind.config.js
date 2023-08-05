@@ -1,18 +1,17 @@
-const defaultTheme = require('tailwindcss/defaultTheme');
-
+require('tailwindcss/defaultTheme');
 /** @type {import('tailwindcss').Config} */
 module.exports = {
     darkMode: 'class',
     content: ['./src/**/*.{html,ts}'],
     theme: {
         colors: {
-            primaryLight: '#FFFFFF',
-            secondaryLight: '#000000',
-            backgroundLight: '#E9E9E9',
-            primaryDark: '#000000',
-            secondaryDark: '#FFFFFF',
-            backgroundDark: '#202020',
-            hoverbackgroundDark: '#161616',
+            primary_light: '#FFFFFF',
+            secondary_light: '#000000',
+            background_light: '#E9E9E9',
+            primary_dark: '#000000',
+            secondary_dark: '#FFFFFF',
+            background_dark: '#202020',
+            hover_background_dark: '#161616',
             ok: '#51E839',
             ko: '#EE1E1E',
             linkLight: '#0500FF',
@@ -28,9 +27,32 @@ module.exports = {
             title: ['25px'],
         },
         fontFamily: {
-            ui: "ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'",
+            ui: "ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto",
         },
-        extend: {},
+        sepia: {
+            white: '100%',
+            black: '94%',
+        },
+        brightness: {
+            white: '0',
+            black: '0',
+        },
+        hueRotate: {
+            white: '164deg',
+            black: '57deg',
+        },
+        invert: {
+            white: '100%',
+            black: '0',
+        },
+        saturate: {
+            white: '100%',
+            black: '100%',
+        },
+        contrast: {
+            white: '101%',
+            black: '105%',
+        },
     },
     plugins: [
         require('tailwindcss'),

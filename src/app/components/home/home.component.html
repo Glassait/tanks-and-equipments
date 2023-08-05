@@ -1,17 +1,17 @@
 <div
-    id="conteneurHome"
     class="flex flex-col flex-wrap items-center justify-center space-y-10 p-4 pt-8 desktop:flex-row desktop:space-y-0"
+    id="conteneur-home"
 >
     <div
-        id="leftHome"
         class="flex w-0 flex-auto flex-col items-center justify-around space-y-10"
+        id="left-home"
     >
         <app-card-little
             [hasSpinner]="true"
             [showSpinner]="showSpinnerServer"
-            id="server"
+            [title]="(wording | getHome).statusServer"
             iconPath="assets/other/server.svg"
-            [title]="wording.getHome().statusServer"
+            id="server"
         >
             <div *ngIf="!showSpinnerServer" class="space-y-2">
                 <div
@@ -19,10 +19,10 @@
                     class="flex items-center space-x-8 tablette:space-x-10"
                 >
                     <strong>{{ server.server | replace: '20' : 'EU' }}</strong>
-                    <img src="assets/other/ok.svg" alt="" class="w-[25px]" />
+                    <icon [size]="25" icon="ok"></icon>
                     <div>
                         {{ server.players_online }}
-                        {{ wording.getHome().joueur
+                        {{ (wording | getHome).joueur
                         }}{{ server.players_online > 1 ? 's' : '' }}
                     </div>
                 </div>
@@ -30,90 +30,101 @@
         </app-card-little>
 
         <app-card-little
-            *ngIf="!memberStore.get('isVisitor')"
-            id="information"
+            *ngIf="!isVisitor"
+            [title]="(wording | getHome).information"
             iconPath="assets/other/information.svg"
-            [title]="wording.getHome().information"
+            id="information"
         >
             <div class="space-y-4 whitespace-pre-line text-justify">
-                <div>{{ information.getText() }}</div>
+                <div>{{ information | getText }}</div>
                 <div class="flex justify-end">
                     <a
-                        [routerLink]="information.getURL()"
+                        [routerLink]="information | getUrl"
                         class="flex space-x-4 text-linkLight underline dark:text-linkDark"
                     >
-                        <div class="w-full">{{
-                            information.getLinkText()
-                        }}</div>
-                        <img
-                            src="assets/tanks/super_conqueror.icon.svg"
-                            alt=""
-                        />
+                        <div class="w-full">
+                            {{ information | getLinkText }}
+                        </div>
+                        <icon
+                            [height]="30"
+                            [width]="80"
+                            icon="super_conqueror"
+                        ></icon>
                     </a>
                 </div>
             </div>
         </app-card-little>
 
         <app-card-little
-            *ngIf="memberStore.get('isVisitor')"
-            id="visitor"
+            *ngIf="isVisitor"
+            [title]="(wording | getHome).visitorTitle"
             iconPath="assets/other/visitor.svg"
-            [title]="wording.getHome().visitorTitle"
+            id="visitor"
         >
             <div class="whitespace-pre-line text-justify">
-                {{ wording.getHome().visitorText }}
-                <br><br>
-                {{ wording.getHome().visitorHelp }}
+                {{ (wording | getHome).visitorText }}
+                <br /><br />
+                {{ (wording | getHome).visitorHelp }}
             </div>
         </app-card-little>
     </div>
 
     <div
-        id="rightHome"
-        class="hidden desktop:flex desktop:w-0 desktop:flex-auto desktop:justify-center"
+        class="hidden tablette:flex desktop:w-0 desktop:flex-auto desktop:justify-center"
+        id="right-home"
     >
         <mat-spinner *ngIf="showSpinnerClanRatings"></mat-spinner>
 
         <mat-card
             *ngIf="!showSpinnerClanRatings && showClanRatingsCard"
-            class="h-fit w-[600px] dark:[--mdc-elevated-card-container-color:#000000]"
+            class="h-fit tablette:w-[730px] desktop:w-[600px] dark:[--mdc-elevated-card-container-color:#000000]"
         >
             <mat-card-header class="mb-2 flex items-center justify-center">
-                <img src="assets/other/logo.png" alt="" />
+                <picture>
+                    <source srcset="assets/other/logo.avif" type="image/avif">
+                    <img
+                        alt="Logo du clan LCHP"
+                        class="m-1"
+                        height="195"
+                        ngSrc="assets/other/logo.png"
+                        width="195"
+                    />
+                </picture>
             </mat-card-header>
 
             <mat-card-content
-                class="h-full bg-[url('/assets/other/clan_ratings_little.jpg')]"
+                class="h-full bg-[url('/assets/other/clan_ratings_little.jpg')] bg-no-repeat bg-center bg-cover"
             >
-                <div class="mt-4 flex space-x-12 text-secondaryDark">
+                <div class="mt-4 flex space-x-12 text-secondary_dark">
                     <div
                         class="grid w-0 flex-auto grid-cols-2 grid-rows-4 gap-3 pl-4"
                     >
                         <div class="flex h-full w-full justify-center">
-                            <img
-                                src="assets/other/castle.svg"
-                                alt=""
-                                class="h-[60px] brightness-0 contrast-[106%] hue-rotate-[81deg] invert-[100%] saturate-[100%] sepia-[3%] filter"
-                            />
+                            <icon
+                                [size]="60"
+                                color="white"
+                                icon="castle"
+                            ></icon>
                         </div>
 
                         <span
                             class="self-center text-center text-title underline"
-                            >{{ wording.getHome().bastion | titlecase }}</span
                         >
+                            {{ (wording | getHome).bastion | titlecase }}
+                        </span>
 
                         <div class="self-center text-center">X</div>
                         <div class="self-center text-center">
                             {{
-                                wotClanRatings.data['500179430']
-                                    .fb_elo_rating_10.value
+                                (wotClanRatings | getClanData).fb_elo_rating_10
+                                    .value
                             }}
                         </div>
 
                         <div class="self-center text-center">VIII</div>
                         <div class="self-center text-center">
                             {{
-                                wotClanRatings.data['500179430'].fb_elo_rating_8
+                                (wotClanRatings | getClanData).fb_elo_rating_8
                                     .value
                             }}
                         </div>
@@ -121,7 +132,7 @@
                         <div class="self-center text-center">VI</div>
                         <div class="self-center text-center">
                             {{
-                                wotClanRatings.data['500179430'].fb_elo_rating_6
+                                (wotClanRatings | getClanData).fb_elo_rating_6
                                     .value
                             }}
                         </div>
@@ -131,30 +142,26 @@
                         class="grid w-0 flex-auto grid-cols-2 grid-rows-4 gap-3 pr-4"
                     >
                         <div class="flex h-full w-full justify-center">
-                            <img
-                                src="assets/other/map.svg"
-                                alt=""
-                                class="h-[60px] justify-self-end brightness-0 contrast-[106%] hue-rotate-[81deg] invert-[100%] saturate-[100%] sepia-[3%] filter"
-                            />
+                            <icon [size]="60" color="white" icon="map"></icon>
                         </div>
 
                         <span
                             class="self-center text-center text-title underline"
-                            >{{ wording.getHome().clanWar | titlecase }}</span
+                            >{{ (wording | getHome).clanWar | titlecase }}</span
                         >
 
                         <div class="self-center text-center">X</div>
                         <div class="self-center text-center">
                             {{
-                                wotClanRatings.data['500179430']
-                                    .gm_elo_rating_10.value
+                                (wotClanRatings | getClanData).gm_elo_rating_10
+                                    .value
                             }}
                         </div>
 
                         <div class="self-center text-center">VIII</div>
                         <div class="self-center text-center">
                             {{
-                                wotClanRatings.data['500179430'].gm_elo_rating_8
+                                (wotClanRatings | getClanData).gm_elo_rating_8
                                     .value
                             }}
                         </div>
@@ -162,7 +169,7 @@
                         <div class="self-center text-center">VI</div>
                         <div class="self-center text-center">
                             {{
-                                wotClanRatings.data['500179430'].gm_elo_rating_6
+                                (wotClanRatings | getClanData).gm_elo_rating_6
                                     .value
                             }}
                         </div>

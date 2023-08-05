@@ -13,14 +13,23 @@ export class ClanWarComponent {
         private memberStore: MemberStore,
         private router: Router
     ) {
-        if (memberStore.isVisitor()) {
-            router.navigate(['/']);
-        }
+        this.checkUser();
+        this.setHeaderVariable();
+    }
 
-        headerStore.patch({
+    private setHeaderVariable(): void {
+        this.headerStore.patch({
             showHome: true,
             showTank: true,
             showWar: false,
         });
+    }
+
+    private checkUser(): void {
+        if (this.memberStore.isVisitor()) {
+            this.router.navigate(['/']).then((_r: boolean): void => {
+                // Ignored
+            });
+        }
     }
 }
