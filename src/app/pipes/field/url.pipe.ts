@@ -8,6 +8,6 @@ export class FieldUrlPipe implements PipeTransform {
     transform(value: FieldComposant, ...args: unknown[]): string {
         return `/assets/fields/${value.image}${
             value.active ? '' : '.disabled'
-        }.png`;
+        }.${args[0]}`;
     }
 }
