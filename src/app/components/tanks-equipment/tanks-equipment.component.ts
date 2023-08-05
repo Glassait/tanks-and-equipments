@@ -15,11 +15,20 @@ export class TanksEquipmentComponent {
         private router: Router,
         protected tanksData: TanksDataService
     ) {
-        if (memberStore.isVisitor()) {
-            router.navigate(['/']);
-        }
+        this.checkUser();
+        this.setHeaderVariable();
+    }
 
-        headerStore.patch({
+    private checkUser(): void {
+        if (this.memberStore.isVisitor()) {
+            this.router.navigate(['/']).then((_r: boolean): void => {
+                // Ignored
+            });
+        }
+    }
+
+    private setHeaderVariable(): void {
+        this.headerStore.patch({
             showHome: true,
             showTank: false,
             showWar: true,

@@ -1,58 +1,60 @@
 <div
-    class="flex h-[70px] w-full items-center border-b-[1px] border-b-secondaryLight bg-primaryLight pl-3 pr-3 dark:border-b-secondaryDark dark:bg-primaryDark"
+    class="flex h-[70px] w-full items-center border-b-[1px] border-b-secondary_light bg-primary_light pl-3 pr-3 dark:border-b-secondary_dark dark:bg-primary_dark"
 >
-    <div id="leftHeader" class="w-0 flex-auto">
+    <div id="left_header" class="w-0 flex-auto">
         <mat-slide-toggle
-            (change)="changeMode($event)"
-            class="mb-1 ml-2 scale-[1.3] [--mdc-switch-unselected-focus-state-layer-color:#E9E9E9] [--mdc-switch-unselected-handle-color:#000000] [--mdc-switch-unselected-hover-state-layer-color:#E9E9E9] [--mdc-switch-unselected-pressed-state-layer-color:#E9E9E9] [--mdc-switch-unselected-track-color:#E9E9E9] dark:[--mdc-switch-selected-focus-handle-color:#FFFFFF] dark:[--mdc-switch-selected-focus-state-layer-color:#202020] dark:[--mdc-switch-selected-handle-color:#FFFFFF] dark:[--mdc-switch-selected-hover-handle-color:#E9E9E9] dark:[--mdc-switch-selected-hover-state-layer-color:#202020] dark:[--mdc-switch-selected-icon-color:#000000] dark:[--mdc-switch-selected-pressed-handle-color:#E9E9E9] dark:[--mdc-switch-selected-pressed-state-layer-color:#202020]"
-            [disableRipple]="true"
-            [checked]="isDark"
             #darkModeSwitch
-            color="primary"
+            (change)="changeMode($event)"
+            [checked]="isDark"
+            [disableRipple]="true"
             aria-label="Couleur switch"
+            class="mb-1 ml-2 scale-[1.3] [--mdc-switch-unselected-focus-state-layer-color:#E9E9E9] [--mdc-switch-unselected-handle-color:#000000] [--mdc-switch-unselected-hover-state-layer-color:#E9E9E9] [--mdc-switch-unselected-pressed-state-layer-color:#E9E9E9] [--mdc-switch-unselected-track-color:#E9E9E9] dark:[--mdc-switch-selected-focus-handle-color:#FFFFFF] dark:[--mdc-switch-selected-focus-state-layer-color:#202020] dark:[--mdc-switch-selected-handle-color:#FFFFFF] dark:[--mdc-switch-selected-hover-handle-color:#E9E9E9] dark:[--mdc-switch-selected-hover-state-layer-color:#202020] dark:[--mdc-switch-selected-icon-color:#000000] dark:[--mdc-switch-selected-pressed-handle-color:#E9E9E9] dark:[--mdc-switch-selected-pressed-state-layer-color:#202020]"
+            color="primary"
         ></mat-slide-toggle>
     </div>
 
-    <div id="centerHeader" class="flex w-0 flex-auto justify-center">
+    <div class="flex w-0 flex-auto justify-center" id="center_header">
         <a
+            class="flex w-max items-center rounded-full border-[1px] border-secondary_light hover:bg-background_light dark:border-secondary_dark dark:hover:bg-background_dark"
             href="https://eu.wargaming.net/clans/wot/500179430/"
-            target="_blank"
-            class="flex w-max items-center rounded-full border-[1px] border-secondaryLight hover:bg-backgroundLight dark:border-secondaryDark dark:hover:bg-backgroundDark"
             rel="noreferrer"
+            target="_blank"
         >
             <img
-                src="assets/other/logo.avif"
                 alt="Logo du clan LCHP"
-                class="m-1 h-[53px] w-[52px]"
+                class="m-1"
+                height="53"
+                ngSrc="assets/other/logo.avif"
+                width="52"
             />
         </a>
     </div>
 
-    <div id="rightHeader" class="flex w-0 flex-auto justify-end">
+    <div class="flex w-0 flex-auto justify-end" id="right_header">
         <button
             *ngIf="!isVisitor"
             [matMenuTriggerFor]="menu"
+            class="rounded p-1 text-title [--mdc-text-button-label-text-color:text-primary_dark] hover:bg-background_light dark:[--mdc-text-button-label-text-color:text-primary_light] dark:hover:bg-background_dark"
             mat-button
-            class="rounded p-1 text-title hover:bg-backgroundLight dark:hover:bg-backgroundDark"
             role="button"
         >
             {{ (wording | getHeader).menu | titlecase }}
         </button>
 
         <mat-menu
-            role="menu"
             #menu="matMenu"
-            xPosition="before"
             class="space-y-1 [--mat-menu-item-focus-state-layer-color:#E9E9E9] [--mat-menu-item-hover-state-layer-color:#E9E9E9] [--mat-menu-item-label-text-size:22px] [--mat-menu-item-label-text-tracking:0] dark:[--mat-menu-container-color:#202020] dark:[--mat-menu-item-focus-state-layer-color:#161616] dark:[--mat-menu-item-hover-state-layer-color:#161616] dark:[--mat-menu-item-label-text-color:#FFFFFF]"
+            role="menu"
+            xPosition="before"
         >
-            <button mat-menu-item *ngIf="showHome" role="menuitem">
+            <button *ngIf="showHome" mat-menu-item role="menuitem">
                 <a [routerLink]="(inventory | getPath).home">
                     {{ (wording | getHeader).accueil | uppercase }}
                 </a>
             </button>
             <button
-                mat-menu-item
                 *ngIf="showTank && !isVisitor"
+                mat-menu-item
                 role="menuitem"
             >
                 <a [routerLink]="(inventory | getPath).charsEtEquipements">
@@ -60,12 +62,12 @@
                 </a>
             </button>
             <button
-                mat-menu-item
                 *ngIf="
                     showWar &&
                     (inventory | getFeatureFlipping).clanWar &&
                     !isVisitor
                 "
+                mat-menu-item
                 role="menuitem"
             >
                 <a [routerLink]="(inventory | getPath).clanWar">

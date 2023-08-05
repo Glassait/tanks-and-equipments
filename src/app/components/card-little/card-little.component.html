@@ -1,16 +1,18 @@
 <mat-spinner *ngIf="showSpinner"></mat-spinner>
 <mat-card
-    head
     *ngIf="!showSpinner"
     [id]="'cardFor' + id"
     class="h-min w-[320px] dark:[--mdc-elevated-card-container-color:#000000] tablette:w-[730px] desktop:w-[500px]"
+    head
 >
     <mat-card-header [id]="'cardHeaderFor' + id" class="mb-3 flex items-center">
         <img
-            mat-card-avatar
-            [src]="iconPath"
+            [ngSrc]="iconPath"
             alt=""
-            class="brightness-0 contrast-[105%] hue-rotate-[57deg] invert-0 saturate-[100%] sepia-[94%] filter dark:contrast-[101%] dark:hue-rotate-[164deg] dark:invert-[100%] dark:saturate-[100%] dark:sepia-[100%]"
+            class="brightness-black contrast-black hue-rotate-black invert-black saturate-black sepia-black dark:brightness-white dark:contrast-white dark:hue-rotate-white dark:invert-white dark:saturate-white dark:sepia-white"
+            height="40"
+            mat-card-avatar
+            width="40"
         />
         <mat-card-title class="underline [--mat-card-title-text-size:25px]">
             {{ title }}

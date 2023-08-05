@@ -1,6 +1,7 @@
 import { NgModule, Provider, forwardRef } from '@angular/core';
 import { HttpMockInterceptor } from './commons/interceptors/http-mock.interceptor';
 import { environment } from 'src/environments/environment';
+import { NgOptimizedImage } from '@angular/common';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
@@ -12,6 +13,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatButtonModule } from '@angular/material/button';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
@@ -83,6 +85,8 @@ if (environment.production) {
         MatProgressSpinnerModule,
         MatMenuModule,
         MatSlideToggleModule,
+        NgOptimizedImage,
+        MatButtonModule,
     ],
     providers: [...mockProviders],
     bootstrap: [AppComponent],

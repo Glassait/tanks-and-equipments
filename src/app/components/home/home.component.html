@@ -1,17 +1,17 @@
 <div
-    id="conteneurHome"
     class="flex flex-col flex-wrap items-center justify-center space-y-10 p-4 pt-8 desktop:flex-row desktop:space-y-0"
+    id="conteneurHome"
 >
     <div
-        id="leftHome"
         class="flex w-0 flex-auto flex-col items-center justify-around space-y-10"
+        id="leftHome"
     >
         <app-card-little
             [hasSpinner]="true"
             [showSpinner]="showSpinnerServer"
             [title]="(wording | getHome).statusServer"
-            id="server"
             iconPath="assets/other/server.svg"
+            id="server"
         >
             <div *ngIf="!showSpinnerServer" class="space-y-2">
                 <div
@@ -19,7 +19,7 @@
                     class="flex items-center space-x-8 tablette:space-x-10"
                 >
                     <strong>{{ server.server | replace: '20' : 'EU' }}</strong>
-                    <icon icon="ok" [size]="25"></icon>
+                    <icon [size]="25" icon="ok"></icon>
                     <div>
                         {{ server.players_online }}
                         {{ (wording | getHome).joueur
@@ -31,9 +31,9 @@
 
         <app-card-little
             *ngIf="!isVisitor"
-            id="information"
-            iconPath="assets/other/information.svg"
             [title]="(wording | getHome).information"
+            iconPath="assets/other/information.svg"
+            id="information"
         >
             <div class="space-y-4 whitespace-pre-line text-justify">
                 <div>{{ information | getText }}</div>
@@ -46,9 +46,9 @@
                             {{ information | getLinkText }}
                         </div>
                         <icon
-                            icon="super_conqueror"
-                            [width]="80"
                             [height]="30"
+                            [width]="80"
+                            icon="super_conqueror"
                         ></icon>
                     </a>
                 </div>
@@ -57,9 +57,9 @@
 
         <app-card-little
             *ngIf="isVisitor"
-            id="visitor"
-            iconPath="assets/other/visitor.svg"
             [title]="(wording | getHome).visitorTitle"
+            iconPath="assets/other/visitor.svg"
+            id="visitor"
         >
             <div class="whitespace-pre-line text-justify">
                 {{ (wording | getHome).visitorText }}
@@ -70,8 +70,8 @@
     </div>
 
     <div
-        id="rightHome"
         class="hidden desktop:flex desktop:w-0 desktop:flex-auto desktop:justify-center"
+        id="rightHome"
     >
         <mat-spinner *ngIf="showSpinnerClanRatings"></mat-spinner>
 
@@ -80,21 +80,26 @@
             class="h-fit w-[600px] dark:[--mdc-elevated-card-container-color:#000000]"
         >
             <mat-card-header class="mb-2 flex items-center justify-center">
-                <img src="assets/other/logo.avif" alt="" />
+                <img
+                    alt=""
+                    height="195"
+                    ngSrc="assets/other/logo.avif"
+                    width="195"
+                />
             </mat-card-header>
 
             <mat-card-content
                 class="h-full bg-[url('/assets/other/clan_ratings_little.jpg')]"
             >
-                <div class="mt-4 flex space-x-12 text-secondaryDark">
+                <div class="mt-4 flex space-x-12 text-secondary_dark">
                     <div
                         class="grid w-0 flex-auto grid-cols-2 grid-rows-4 gap-3 pl-4"
                     >
                         <div class="flex h-full w-full justify-center">
                             <icon
-                                icon="castle"
-                                color="white"
                                 [size]="60"
+                                color="white"
+                                icon="castle"
                             ></icon>
                         </div>
 
@@ -133,7 +138,7 @@
                         class="grid w-0 flex-auto grid-cols-2 grid-rows-4 gap-3 pr-4"
                     >
                         <div class="flex h-full w-full justify-center">
-                            <icon icon="map" color="white" [size]="60"></icon>
+                            <icon [size]="60" color="white" icon="map"></icon>
                         </div>
 
                         <span

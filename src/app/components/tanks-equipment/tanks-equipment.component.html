@@ -1,4 +1,4 @@
-<div id="conteneurTankEquipement" class="flex items-center justify-center">
+<div class="flex items-center justify-center" id="conteneur-tank-equipment">
     <mat-accordion class="mb-10 mt-10 w-full desktop:mt-14 desktop:w-[90%]">
         <mat-expansion-panel
             *ngFor="let tankData of tanksData | getData"
@@ -6,10 +6,10 @@
         >
             <mat-expansion-panel-header>
                 <mat-panel-title class="w-10 tablette:w-24">
-                    <icon [icon]="tankData.name | image" [height]="45" [width]="80"></icon>
+                    <icon [height]="45" [icon]="tankData.name | image" [width]="80"></icon>
                 </mat-panel-title>
                 <mat-panel-description
-                    class="flex justify-center text-petit [--mat-expansion-header-description-color:primaryLight] tablette:-ml-24 tablette:text-normal"
+                    class="flex justify-center text-petit [--mat-expansion-header-description-color:primary_light] tablette:-ml-24 tablette:text-normal"
                 >
                     {{ tankData.name | uppercase }}
                 </mat-panel-description>

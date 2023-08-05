@@ -1,6 +1,5 @@
 import {
     AfterViewInit,
-    ChangeDetectorRef,
     Component,
     ElementRef,
     OnInit,
@@ -56,7 +55,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     }
 
     private watchStore() {
-        this.headerStore.watch().subscribe((value: HeaderInterface) => {
+        this.headerStore.watch().subscribe((value: HeaderInterface): void => {
             this.showHome = value.showHome;
             this.showTank = value.showTank;
             this.showWar = value.showWar;
@@ -71,7 +70,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
         });
     }
 
-    protected changeMode($event: MatSlideToggleChange) {
+    protected changeMode($event: MatSlideToggleChange): void {
         if ($event.checked) {
             document.documentElement.classList.add('dark');
             this.modeStore.set('dark', true);

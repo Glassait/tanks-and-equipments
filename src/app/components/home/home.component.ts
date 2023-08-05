@@ -18,9 +18,9 @@ import { MemberInterface } from 'src/app/commons/interfaces/member.interface';
     templateUrl: './home.component.html',
 })
 export class HomeComponent implements OnInit {
-    protected showSpinnerServer = true;
-    protected showSpinnerClanRatings = true;
-    protected showClanRatingsCard = true;
+    protected showSpinnerServer: boolean = true;
+    protected showSpinnerClanRatings: boolean = true;
+    protected showClanRatingsCard: boolean = true;
     protected wotServer: WotServerRequest;
     protected wotClanRatings: WotClanRatingsRequest;
     protected isVisitor: boolean;
@@ -33,11 +33,7 @@ export class HomeComponent implements OnInit {
         protected memberStore: MemberStore,
         private auth: AuthenticationService
     ) {
-        this.headerStore.patch({
-            showHome: false,
-            showTank: true,
-            showWar: true,
-        });
+        this.setHeaderVariable();
     }
 
     ngOnInit(): void {
@@ -61,47 +57,57 @@ export class HomeComponent implements OnInit {
         this.watchStore();
     }
 
-    private watchStore() {
+    private setHeaderVariable(): void {
+        this.headerStore.patch({
+            showHome: false,
+            showTank: true,
+            showWar: true,
+        });
+    }
+
+    private watchStore(): void {
         this.memberStore.watch().subscribe((value: MemberInterface): void => {
             this.isVisitor = value.isVisitor;
         });
     }
 
-    private isClanRatingsCardDisplayed(clanRatingsCard: Element | null) {
+    private isClanRatingsCardDisplayed(
+        clanRatingsCard: Element | null
+    ): boolean {
         return (
             clanRatingsCard !== null &&
             WindowsCustom.getDisplay(clanRatingsCard) !== 'none'
         );
     }
 
-    private getWotServerStatus() {
+    private getWotServerStatus(): void {
         this.wotApi.getServeurStatus().subscribe({
-            next: (reponse: WotServerRequest) => {
-                this.wotServer = reponse;
+            next: (serverRequest: WotServerRequest): void => {
+                this.wotServer = serverRequest;
                 this.wotServer.data.wot =
                     ArrayCustom.sortArrayOfObjectFromNumberDecroissant(
-                        reponse.data.wot,
+                        serverRequest.data.wot,
                         'players_online'
                     );
             },
-            error(err) {
+            error(err): void {
                 console.log(err);
             },
-            complete: () => {
+            complete: (): void => {
                 this.showSpinnerServer = false;
             },
         });
     }
 
-    private getClanRatings() {
+    private getClanRatings(): void {
         this.wotApi.getClanRatings().subscribe({
-            next: (reponse: WotClanRatingsRequest) => {
-                this.wotClanRatings = reponse;
+            next: (clanRatingsRequest: WotClanRatingsRequest): void => {
+                this.wotClanRatings = clanRatingsRequest;
             },
-            error(err) {
+            error(err): void {
                 console.log(err);
             },
-            complete: () => {
+            complete: (): void => {
                 this.showSpinnerClanRatings = false;
             },
         });

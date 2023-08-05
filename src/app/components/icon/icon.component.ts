@@ -52,7 +52,10 @@ export class IconComponent implements OnInit {
         div.innerHTML = svgContent;
         const svgElement = div.querySelector('svg');
         svgElement.setAttribute('width', this.width ? this.width : this.size);
-        svgElement.setAttribute('height', this.height ? this.height : this.size);
+        svgElement.setAttribute(
+            'height',
+            this.height ? this.height : this.size
+        );
         svgElement.style.display = 'block';
         return svgElement;
     }
