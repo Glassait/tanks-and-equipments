@@ -19,7 +19,7 @@
                     class="flex items-center space-x-8 tablette:space-x-10"
                 >
                     <strong>{{ server.server | replace: '20' : 'EU' }}</strong>
-                    <img src="assets/other/ok.svg" alt="" class="w-[25px]" />
+                    <icon icon="ok" [size]="25"></icon>
                     <div>
                         {{ server.players_online }}
                         {{ (wording | getHome).joueur
@@ -45,10 +45,11 @@
                         <div class="w-full">
                             {{ information | getLinkText }}
                         </div>
-                        <img
-                            src="assets/tanks/super_conqueror.icon.svg"
-                            alt=""
-                        />
+                        <icon
+                            icon="super_conqueror"
+                            [width]="80"
+                            [height]="30"
+                        ></icon>
                     </a>
                 </div>
             </div>
@@ -79,7 +80,7 @@
             class="h-fit w-[600px] dark:[--mdc-elevated-card-container-color:#000000]"
         >
             <mat-card-header class="mb-2 flex items-center justify-center">
-                <img src="assets/other/logo.png" alt="" />
+                <img src="assets/other/logo.avif" alt="" />
             </mat-card-header>
 
             <mat-card-content
@@ -90,30 +91,31 @@
                         class="grid w-0 flex-auto grid-cols-2 grid-rows-4 gap-3 pl-4"
                     >
                         <div class="flex h-full w-full justify-center">
-                            <img
-                                src="assets/other/castle.svg"
-                                alt=""
-                                class="h-[60px] brightness-0 contrast-[106%] hue-rotate-[81deg] invert-[100%] saturate-[100%] sepia-[3%] filter"
-                            />
+                            <icon
+                                icon="castle"
+                                color="white"
+                                [size]="60"
+                            ></icon>
                         </div>
 
                         <span
                             class="self-center text-center text-title underline"
-                            >{{ (wording | getHome).bastion | titlecase }}</span
                         >
+                            {{ (wording | getHome).bastion | titlecase }}
+                        </span>
 
                         <div class="self-center text-center">X</div>
                         <div class="self-center text-center">
                             {{
-                                wotClanRatings.data['500179430']
-                                    .fb_elo_rating_10.value
+                                (wotClanRatings | getClanData).fb_elo_rating_10
+                                    .value
                             }}
                         </div>
 
                         <div class="self-center text-center">VIII</div>
                         <div class="self-center text-center">
                             {{
-                                wotClanRatings.data['500179430'].fb_elo_rating_8
+                                (wotClanRatings | getClanData).fb_elo_rating_8
                                     .value
                             }}
                         </div>
@@ -121,7 +123,7 @@
                         <div class="self-center text-center">VI</div>
                         <div class="self-center text-center">
                             {{
-                                wotClanRatings.data['500179430'].fb_elo_rating_6
+                                (wotClanRatings | getClanData).fb_elo_rating_6
                                     .value
                             }}
                         </div>
@@ -131,11 +133,7 @@
                         class="grid w-0 flex-auto grid-cols-2 grid-rows-4 gap-3 pr-4"
                     >
                         <div class="flex h-full w-full justify-center">
-                            <img
-                                src="assets/other/map.svg"
-                                alt=""
-                                class="h-[60px] justify-self-end brightness-0 contrast-[106%] hue-rotate-[81deg] invert-[100%] saturate-[100%] sepia-[3%] filter"
-                            />
+                            <icon icon="map" color="white" [size]="60"></icon>
                         </div>
 
                         <span
@@ -146,15 +144,15 @@
                         <div class="self-center text-center">X</div>
                         <div class="self-center text-center">
                             {{
-                                wotClanRatings.data['500179430']
-                                    .gm_elo_rating_10.value
+                                (wotClanRatings | getClanData).gm_elo_rating_10
+                                    .value
                             }}
                         </div>
 
                         <div class="self-center text-center">VIII</div>
                         <div class="self-center text-center">
                             {{
-                                wotClanRatings.data['500179430'].gm_elo_rating_8
+                                (wotClanRatings | getClanData).gm_elo_rating_8
                                     .value
                             }}
                         </div>
@@ -162,7 +160,7 @@
                         <div class="self-center text-center">VI</div>
                         <div class="self-center text-center">
                             {{
-                                wotClanRatings.data['500179430'].gm_elo_rating_6
+                                (wotClanRatings | getClanData).gm_elo_rating_6
                                     .value
                             }}
                         </div>

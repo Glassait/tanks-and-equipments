@@ -34,6 +34,7 @@ import { UrlPipe } from './pipes/information/url.pipe';
 import { LinkTextPipe } from './pipes/information/link-text.pipe';
 import { DataPipe } from './pipes/tank/data.pipe';
 import { FieldUrlPipe } from './pipes/field/url.pipe';
+import { ClanDataPipe } from './pipes/clanRatings/clan-data.pipe';
 
 const MOCK_INTERCEPTOR_PROVIDER: Provider = {
     provide: HTTP_INTERCEPTORS,
@@ -69,6 +70,7 @@ if (environment.production) {
         LinkTextPipe,
         DataPipe,
         FieldUrlPipe,
+        ClanDataPipe,
     ],
     imports: [
         BrowserModule,
