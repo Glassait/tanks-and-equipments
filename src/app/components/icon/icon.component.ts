@@ -15,7 +15,7 @@ import { Icons } from 'src/app/commons/types/icon.type';
     template: '<div class="{{ filter }}"></div>',
 })
 export class IconComponent implements OnInit {
-    @Input() icon: Icons;
+    @Input() icon: Icons | string;
     @Input() size: number = 70;
     @Input() width: number;
     @Input() height: number;

@@ -6,11 +6,7 @@
         >
             <mat-expansion-panel-header>
                 <mat-panel-title class="w-10 tablette:w-24">
-                    <img
-                        src="assets/tanks/{{ tankData.name | image }}.icon.svg"
-                        alt=""
-                        class="h-full"
-                    />
+                    <icon [icon]="tankData.name | image" [height]="45" [width]="80"></icon>
                 </mat-panel-title>
                 <mat-panel-description
                     class="flex justify-center text-petit [--mat-expansion-header-description-color:primaryLight] tablette:-ml-24 tablette:text-normal"
