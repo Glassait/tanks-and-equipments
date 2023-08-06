@@ -17,6 +17,7 @@ export type Icons =
     | 'strv_103b'
     | 't95_fv4201_chieftain'
     | 't110e3'
+    | 'kampfpanzer_07_p(e)'
     | 'chargeur'
     | 'commandant'
     | 'opérateur_radio'

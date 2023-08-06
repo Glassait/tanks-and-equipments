@@ -1,11 +1,14 @@
 import { Component, OnDestroy } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { TanksDataService } from 'src/app/commons/services/tank-data.service';
 import { HeaderStore } from 'src/app/commons/stores/header.store';
 import { MemberStore } from 'src/app/commons/stores/member.store';
 import { ModeInterface } from '../../commons/interfaces/mode.interface';
+import { WordingService } from '../../commons/services/wording.service';
 import { ModeStore } from '../../commons/stores/mode.store';
+import { SentenceCasePipe } from '../../pipes/sentenceCase/sentence-case.pipe';
 
 @Component({
     selector: 'app-tanks-equipment',
@@ -19,14 +22,22 @@ export class TanksEquipmentComponent implements OnDestroy {
 
     constructor(
         protected tanksData: TanksDataService,
+        private wording: WordingService,
         private headerStore: HeaderStore,
         private memberStore: MemberStore,
         private modeStore: ModeStore,
-        private router: Router
+        private router: Router,
+        private title: Title
     ) {
         this.checkUser();
         this.patchHeader();
         this.createSubscribe();
+
+        this.title.setTitle(
+            new SentenceCasePipe().transform(
+                this.wording.getHeader().charEtEquipement
+            )
+        );
     }
 
     ngOnDestroy(): void {

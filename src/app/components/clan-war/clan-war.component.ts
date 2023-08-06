@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { HeaderStore } from 'src/app/commons/stores/header.store';
 import { MemberStore } from 'src/app/commons/stores/member.store';
+import { WordingService } from '../../commons/services/wording.service';
+import { SentenceCasePipe } from '../../pipes/sentenceCase/sentence-case.pipe';
 
 @Component({
     selector: 'app-clan-war',
@@ -9,12 +12,18 @@ import { MemberStore } from 'src/app/commons/stores/member.store';
 })
 export class ClanWarComponent {
     constructor(
+        private wording: WordingService,
         private headerStore: HeaderStore,
         private memberStore: MemberStore,
-        private router: Router
+        private router: Router,
+        private title: Title
     ) {
         this.checkUser();
         this.setHeaderVariable();
+
+        this.title.setTitle(
+            new SentenceCasePipe().transform(this.wording.getHeader().clanWar)
+        );
     }
 
     private setHeaderVariable(): void {
