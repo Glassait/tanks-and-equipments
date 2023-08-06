@@ -22,8 +22,8 @@
     "@angular/core": "^16.1.5",
     "@angular/forms": "^16.1.7",
     "@angular/material": "^16.1.6",
-    "@angular/platform-browser": "^16.1.5",
-    "@angular/platform-browser-dynamic": "^16.1.7",
+    "@angular/platform-browser": "^16.1.8",
+    "@angular/platform-browser-dynamic": "^16.1.8",
     "@angular/router": "^16.1.8",
     "@elie29/store": "^2.0.0",
     "@tailwindcss/container-queries": "^0.1.1",
@@ -36,7 +36,7 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^16.1.6",
-    "@angular/cli": "~16.1.6",
+    "@angular/cli": "~16.1.8",
     "@angular/compiler-cli": "^16.1.7",
     "@types/jasmine": "~4.3.5",
     "@types/node": "^20.4.5",
@@ -48,7 +48,7 @@
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
     "postcss": "^8.4.26",
-    "prettier": "^3.0.0",
+    "prettier": "^3.0.1",
     "prettier-plugin-tailwindcss": "^0.4.1",
     "tailwindcss": "^3.3.3",
     "typescript": "~5.1.6"
