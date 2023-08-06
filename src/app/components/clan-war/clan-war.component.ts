@@ -36,7 +36,7 @@ export class ClanWarComponent {
 
     private checkUser(): void {
         if (this.memberStore.isVisitor()) {
-            this.router.navigate(['/']).then((_r: boolean): void => {
+            this.router.navigate(['/']).then((): void => {
                 // Ignored
             });
         }

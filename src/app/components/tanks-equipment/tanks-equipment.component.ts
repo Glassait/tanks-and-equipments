@@ -49,7 +49,7 @@ export class TanksEquipmentComponent implements OnDestroy {
             return;
         }
 
-        this.router.navigate(['/']).then((_r: boolean): void => {
+        this.router.navigate(['/']).then((): void => {
             // Ignored
         });
     }

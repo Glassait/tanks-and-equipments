@@ -6,7 +6,7 @@ import { Member } from '../types/member.type';
     providedIn: 'root',
 })
 export class MembersService {
-    private _members = members.members;
+    private _members: Member[] = members.members;
 
     public isClanMembers(id: number | undefined): Member | undefined {
         if (!id) {

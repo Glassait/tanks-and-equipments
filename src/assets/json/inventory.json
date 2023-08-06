@@ -3,8 +3,8 @@
         "applicationID": "d5cfa347c97b1997c50c1797e2f1cfdc",
         "clanID": "500179430",
         "gameServers": "https://api.worldoftanks.eu/wgn/servers/info/?application_id=d5cfa347c97b1997c50c1797e2f1cfdc&game=wot&language=fr",
-        "clanRatings": "https://api.worldoftanks.eu/wot/clanratings/clans/?application_id=d5cfa347c97b1997c50c1797e2f1cfdc&clan_id=500179430",
-        "clanMembers": "https://api.worldoftanks.eu/wot/clans/info/?application_id=d5cfa347c97b1997c50c1797e2f1cfdc&clan_id=500179430&language=fr&fields=members",
+        "clanRatings": "https://api.worldoftanks.eu/wot/clanratings/clans/?application_id=d5cfa347c97b1997c50c1797e2f1cfdc&clan_id=500179430&language=fr&fields=fb_elo_rating_10.value%2Cfb_elo_rating_8.value%2Cfb_elo_rating_6.value%2Cgm_elo_rating_10.value%2Cgm_elo_rating_8.value%2Cgm_elo_rating_6.value",
+        "clanMembers": "https://api.worldoftanks.eu/wot/clans/info/?application_id=d5cfa347c97b1997c50c1797e2f1cfdc&clan_id=500179430&language=fr&fields=members.account_id%2Cmembers.role",
         "login": "https://api.worldoftanks.eu/wot/auth/login/?application_id=d5cfa347c97b1997c50c1797e2f1cfdc&display=popup",
         "loginMock": "assets/mocks/connection.json"
     },

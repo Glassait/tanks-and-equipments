@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
+import { CookieService } from 'ngx-cookie-service';
 import { Subscription } from 'rxjs';
 import { ArrayCustom } from 'src/app/commons/classes/array-custom.class';
 import { WindowsCustom } from 'src/app/commons/classes/windows-custom.class';
@@ -29,6 +30,10 @@ export class HomeComponent implements OnInit, OnDestroy {
     protected isVisitor: boolean;
 
     private memberSubscribe: Subscription;
+    private cookieName = {
+        serverStatus: 'serverStatus',
+        clanRatings: 'clanRatings',
+    };
 
     constructor(
         protected wording: WordingService,
@@ -37,6 +42,7 @@ export class HomeComponent implements OnInit, OnDestroy {
         private headerStore: HeaderStore,
         private wotApi: WotApiService,
         private auth: AuthenticationService,
+        private cookie: CookieService,
         private title: Title
     ) {
         this.patchHeader();
@@ -97,6 +103,14 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
 
     private getWotServerStatus(): void {
+        const cookie: string = this.cookie.get(this.cookieName.serverStatus);
+        if (cookie) {
+            console.log(cookie);
+            this.wotServer = JSON.parse(cookie);
+            this.showSpinnerServer = false;
+            return;
+        }
+
         this.wotApi.getServeurStatus().subscribe({
             next: (serverRequest: WotServerRequest): void => {
                 this.wotServer = serverRequest;
@@ -110,12 +124,24 @@ export class HomeComponent implements OnInit, OnDestroy {
                 console.log(err);
             },
             complete: (): void => {
+                this.cookie.set(
+                    this.cookieName.serverStatus,
+                    JSON.stringify(this.wotServer),
+                    this.getTodayDatePlusTenMinute()
+                );
                 this.showSpinnerServer = false;
             },
         });
     }
 
     private getClanRatings(): void {
+        const cookie: string = this.cookie.get(this.cookieName.clanRatings);
+        if (cookie) {
+            this.wotClanRatings = JSON.parse(cookie);
+            this.showSpinnerClanRatings = false;
+            return;
+        }
+
         this.wotApi.getClanRatings().subscribe({
             next: (clanRatingsRequest: WotClanRatingsRequest): void => {
                 this.wotClanRatings = clanRatingsRequest;
@@ -124,8 +150,19 @@ export class HomeComponent implements OnInit, OnDestroy {
                 console.log(err);
             },
             complete: (): void => {
+                this.cookie.set(
+                    this.cookieName.clanRatings,
+                    JSON.stringify(this.wotClanRatings),
+                    this.getTodayDatePlusTenMinute()
+                );
                 this.showSpinnerClanRatings = false;
             },
         });
+    }
+
+    private getTodayDatePlusTenMinute(): Date {
+        const today: Date = new Date();
+        today.setMinutes(today.getMinutes() + 10);
+        return today;
     }
 }

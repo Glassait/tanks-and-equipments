@@ -29,6 +29,7 @@
     "@tailwindcss/container-queries": "^0.1.1",
     "express": "^4.18.2",
     "express-rate-limit": "^6.9.0",
+    "ngx-cookie-service": "^16.0.0",
     "path": "^0.12.7",
     "rxjs": "~7.8.1",
     "tslib": "^2.6.1",

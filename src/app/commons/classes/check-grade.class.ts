@@ -1,7 +1,7 @@
 import { GradeEnum } from '../enums/grade.enum';
 
 export class CheckGrade {
-    public static isAdmin(grade: GradeEnum | string | undefined) {
+    public static isAdmin(grade: GradeEnum | string | undefined): boolean {
         if (!grade) {
             return false;
         }
