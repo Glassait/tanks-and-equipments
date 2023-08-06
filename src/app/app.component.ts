@@ -13,6 +13,7 @@ import { amxM4Mle54Icon } from './components/icon/files/tanks/amx_m4_mle54.icon'
 import { cs63Icon } from './components/icon/files/tanks/cs-63.icon';
 import { ebr105Icon } from './components/icon/files/tanks/ebr_105.icon';
 import { is7Icon } from './components/icon/files/tanks/is-7.icon';
+import { kpz07pEIcon } from './components/icon/files/tanks/kampfpanzer_07_p(e)';
 import { leopard1Icon } from './components/icon/files/tanks/leopard_1.icon';
 import { object140Icon } from './components/icon/files/tanks/object_140.icon';
 import { object260Icon } from './components/icon/files/tanks/object_260.icon';
@@ -69,6 +70,7 @@ export class AppComponent {
             superConquerorIcon,
             t95Fv4201ChieftainIcon,
             t110e3Icon,
+            kpz07pEIcon,
             chargeurIcon,
             commandantIcon,
             operateurRadioIcon,

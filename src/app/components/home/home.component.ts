@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
 import { ArrayCustom } from 'src/app/commons/classes/array-custom.class';
 import { WindowsCustom } from 'src/app/commons/classes/windows-custom.class';
@@ -13,6 +14,7 @@ import {
     WotClanRatingsRequest,
     WotServerRequest,
 } from 'src/app/commons/types/clan-ratings.type';
+import { SentenceCasePipe } from '../../pipes/sentenceCase/sentence-case.pipe';
 
 @Component({
     selector: 'app-home',
@@ -34,9 +36,14 @@ export class HomeComponent implements OnInit, OnDestroy {
         private memberStore: MemberStore,
         private headerStore: HeaderStore,
         private wotApi: WotApiService,
-        private auth: AuthenticationService
+        private auth: AuthenticationService,
+        private title: Title
     ) {
         this.patchHeader();
+
+        this.title.setTitle(
+            new SentenceCasePipe().transform(this.wording.getHeader().accueil)
+        );
     }
 
     ngOnInit(): void {

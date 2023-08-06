@@ -3,7 +3,7 @@
         {
             "name": "Object 277",
             "priority": 4,
-            "crew": ["Commandant", "Pilote de char", "Tireur", "Chargeur"],
+            "crew": ["Commandant", "Tireur", "Pilote de char", "Chargeur"],
             "skills": [
                 [
                     "Frères d'armes",
@@ -173,7 +173,7 @@
         {
             "name": "Object 260",
             "priority": 4,
-            "crew": ["Commandant", "Pilote de char", "Tireur", "Chargeur"],
+            "crew": ["Commandant", "Tireur", "Pilote de char", "Chargeur"],
             "skills": [
                 [
                     "Frères d'armes",
@@ -343,7 +343,7 @@
         {
             "name": "Object 907",
             "priority": 4,
-            "crew": ["Commandant", "Pilote de char", "Tireur", "Chargeur"],
+            "crew": ["Commandant", "Tireur", "Pilote de char", "Chargeur"],
             "skills": [
                 [
                     "Frères d'armes",
@@ -518,7 +518,7 @@
         {
             "name": "Object 140",
             "priority": 4,
-            "crew": ["Commandant", "Pilote de char", "Tireur", "Chargeur"],
+            "crew": ["Commandant", "Tireur", "Pilote de char", "Chargeur"],
             "skills": [
                 [
                     "Frères d'armes",
@@ -693,7 +693,7 @@
         {
             "name": "T95/FV4201 Chieftain",
             "priority": 4,
-            "crew": ["Commandant", "Pilote de char", "Tireur", "Chargeur"],
+            "crew": ["Commandant", "Tireur", "Pilote de char", "Chargeur"],
             "skills": [
                 [
                     "Frères d'armes",
@@ -873,7 +873,7 @@
         {
             "name": "Super Conqueror",
             "priority": 4,
-            "crew": ["Commandant", "Pilote de char", "Tireur", "Chargeur"],
+            "crew": ["Commandant", "Tireur", "Pilote de char", "Chargeur"],
             "skills": [
                 [
                     "Frères d'armes",
@@ -1053,7 +1053,7 @@
         {
             "name": "CS-63",
             "priority": 4,
-            "crew": ["Commandant", "Pilote de char", "Tireur", "Chargeur"],
+            "crew": ["Commandant", "Tireur", "Pilote de char", "Chargeur"],
             "skills": [
                 [
                     "Frères d'armes",
@@ -1235,8 +1235,8 @@
             "priority": 4,
             "crew": [
                 "Commandant",
-                "Pilote de char",
                 "Tireur",
+                "Pilote de char",
                 "Chargeur",
                 "Chargeur"
             ],
@@ -1426,8 +1426,8 @@
             "priority": 4,
             "crew": [
                 "Commandant",
-                "Pilote de char",
                 "Tireur",
+                "Pilote de char",
                 "Opérateur radio"
             ],
             "skills": [
@@ -1604,7 +1604,7 @@
         {
             "name": "Object 279",
             "priority": 4,
-            "crew": ["Commandant", "Pilote de char", "Tireur", "Chargeur"],
+            "crew": ["Commandant", "Tireur", "Pilote de char", "Chargeur"],
             "skills": [
                 [
                     "Frères d'armes",
@@ -1781,8 +1781,8 @@
             "priority": 4,
             "crew": [
                 "Commandant",
-                "Pilote de char",
                 "Tireur",
+                "Pilote de char",
                 "Chargeur",
                 "Chargeur"
             ],
@@ -1803,15 +1803,15 @@
                 ],
                 [
                     "Longue-vue",
-                    "Conduite souple",
                     "Coup mortel",
+                    "Conduite souple",
                     "Râtelier sécurisé",
                     "Lutte contre les incendies"
                 ],
                 [
                     "Lutte contre les incendies",
-                    "As du volant",
                     "Précision",
+                    "As du volant",
                     "Lutte contre les incendies",
                     "Intuition"
                 ],
@@ -1970,7 +1970,7 @@
         {
             "name": "Leopard 1",
             "priority": 4,
-            "crew": ["Commandant", "Pilote de char", "Tireur", "Chargeur"],
+            "crew": ["Commandant", "Tireur", "Pilote de char", "Chargeur"],
             "skills": [
                 [
                     "Frères d'armes",
@@ -1986,20 +1986,20 @@
                 ],
                 [
                     "Œil de lynx",
-                    "Conduite souple",
                     "Réparations",
+                    "Conduite souple",
                     "Réparations"
                 ],
                 [
                     "Dissimulation",
-                    "Réparations",
                     "Lutte contre les incendies",
+                    "Réparations",
                     "Lutte contre les incendies"
                 ],
                 [
                     "Réparations",
-                    "Maintenance préventive",
                     "Précision",
+                    "Maintenance préventive",
                     "Râtelier sécurisé"
                 ]
             ],
@@ -2152,26 +2152,10 @@
             "priority": 4,
             "crew": ["Commandant", "Pilote de char", "Opérateur radio"],
             "skills": [
-                [
-                    "Frères d'armes",
-                    "Frères d'armes",
-                    "Frères d'armes"
-                ],
-                [
-                    "Dissimulation",
-                    "Dissimulation",
-                    "Dissimulation"
-                ],
-                [
-                    "Réparations",
-                    "Réparations",
-                    "Réparations"
-                ],
-                [
-                    "Œil de lynx",
-                    "Lutte contre les incendies",
-                    "Longue-vue"
-                ],
+                ["Frères d'armes", "Frères d'armes", "Frères d'armes"],
+                ["Dissimulation", "Dissimulation", "Dissimulation"],
+                ["Réparations", "Réparations", "Réparations"],
+                ["Œil de lynx", "Lutte contre les incendies", "Longue-vue"],
                 [
                     "Lutte contre les incendies",
                     "Maintenance préventive",
@@ -2325,7 +2309,13 @@
         {
             "name": "IS-7",
             "priority": 4,
-            "crew": ["Commandant", "Pilote de char", "Tireur", "Chargeur", "Chargeur"],
+            "crew": [
+                "Commandant",
+                "Tireur",
+                "Pilote de char",
+                "Chargeur",
+                "Chargeur"
+            ],
             "skills": [
                 [
                     "Frères d'armes",
@@ -2343,22 +2333,22 @@
                 ],
                 [
                     "Longue-vue",
-                    "Conduite souple",
                     "Coup mortel",
+                    "Conduite souple",
                     "Râtelier sécurisé",
                     "Intuition"
                 ],
                 [
                     "Détection sonore",
-                    "Bélier",
                     "Précision",
+                    "Bélier",
                     "Lutte contre les incendies",
                     "Lutte contre les incendies"
                 ],
                 [
                     "Œil de lynx",
-                    "As du volant",
                     "Lutte contre les incendies",
+                    "As du volant",
                     "Intuition",
                     "Poussée d'adrénaline"
                 ]
@@ -2504,6 +2494,197 @@
                     "Huile prêt-bail",
                     "Grand kit de réparation",
                     "Rations de combat supplémentaires"
+                ]
+            }
+        },
+        {
+            "name": "Kampfpanzer 07 P(E)",
+            "priority": 4,
+            "crew": [
+                "Commandant",
+                "Tireur",
+                "Pilote de char",
+                "Chargeur",
+                "Chargeur"
+            ],
+            "skills": [
+                [
+                    "Frères d'armes",
+                    "Frères d'armes",
+                    "Frères d'armes",
+                    "Frères d'armes",
+                    "Frères d'armes"
+                ],
+                [
+                    "Réparations",
+                    "Coup mortel",
+                    "Conduite souple",
+                    "Réparations",
+                    "Réparations"
+                ],
+                [
+                    "Œil de lynx",
+                    "Réparations",
+                    "Réparations",
+                    "Râtelier sécurisé",
+                    "Intuition"
+                ],
+                [
+                    "Longue-vue",
+                    "Précision",
+                    "As du volant",
+                    "Intuition",
+                    "Poussée d'adrénaline"
+                ],
+                [
+                    "Lutte contre les incendies",
+                    "Lutte contre les incendies",
+                    "Lutte contre les incendies",
+                    "Lutte contre les incendies",
+                    "Lutte contre les incendies"
+                ]
+            ],
+            "shells": [
+                { "name": "APCR", "amount": 15, "premium": false },
+                { "name": "HEAT", "amount": 25, "premium": true },
+                { "name": "HE", "amount": 5, "premium": false }
+            ],
+            "fields": [
+                {
+                    "level": 2,
+                    "field": {
+                        "left": {
+                            "name": "Suspension tout-terrain",
+                            "image": "additionalGrousers",
+                            "active": true
+                        },
+                        "right": {
+                            "name": "Suspension légère",
+                            "image": "betterFriction",
+                            "active": false
+                        }
+                    }
+                },
+                {
+                    "level": 4,
+                    "field": {
+                        "left": {
+                            "name": "Ajustement parallaxe",
+                            "image": "improvedScope",
+                            "active": false
+                        },
+                        "right": {
+                            "name": "Rodage des mécanismes de visée",
+                            "image": "improvedAimingHandling",
+                            "active": false
+                        }
+                    }
+                },
+                {
+                    "level": 5,
+                    "field": {
+                        "left": {
+                            "name": "Isolation sonore",
+                            "image": "improvedSpallingResistance",
+                            "active": false
+                        },
+                        "right": {
+                            "name": "Motorisation électrique du périscope",
+                            "image": "improvedObservationDevice",
+                            "active": true
+                        }
+                    }
+                },
+                {
+                    "level": 6,
+                    "field": {
+                        "left": {
+                            "name": "Mobilité",
+                            "image": "mobility",
+                            "active": true
+                        },
+                        "right": {
+                            "name": "Puissance de feu",
+                            "image": "firepower",
+                            "active": false
+                        }
+                    }
+                },
+                {
+                    "level": 7,
+                    "field": {
+                        "left": {
+                            "name": "Ajustement de la puissance de sortie (Réglage 1)",
+                            "image": "improvedSpeedIndicatorBackwards",
+                            "active": true
+                        },
+                        "right": {
+                            "name": "Ajustement de la puissance de sortie (Réglage 2)",
+                            "image": "improvedTurretTurningWheels",
+                            "active": false
+                        }
+                    }
+                },
+                {
+                    "level": 8,
+                    "field": {
+                        "left": {
+                            "name": "Caisse renforcée",
+                            "image": "improvedSpallingResistance",
+                            "active": false
+                        },
+                        "right": {
+                            "name": "Caisse légère",
+                            "image": "improvedChassisStability",
+                            "active": false
+                        }
+                    }
+                }
+            ],
+            "directive": {
+                "name": "Râtelier de munitions en ordre",
+                "image": "fouloir_de_canon"
+            },
+            "equipments": {
+                "first": [
+                    {
+                        "name": "Gamme d'amélioration de la survie",
+                        "modernized": true
+                    },
+                    {
+                        "name": "Turbocompresseur",
+                        "modernized": false
+                    },
+                    {
+                        "name": "Fouloir de canon",
+                        "modernized": false
+                    }
+                ],
+                "second": [
+                    {
+                        "name": "Durcissant amélioré",
+                        "modernized": false
+                    },
+                    {
+                        "name": "Turbocompresseur",
+                        "modernized": false
+                    },
+                    {
+                        "name": "Fouloir de canon",
+                        "modernized": false
+                    }
+                ]
+            },
+            "consumables": {
+                "first": [
+                    "Grande trousse de premiers secours",
+                    "Grand kit de réparation",
+                    "Chocolat"
+                ],
+                "second": [
+                    "Grande trousse de premiers secours",
+                    "Grand kit de réparation",
+                    "Chocolat"
                 ]
             }
         }

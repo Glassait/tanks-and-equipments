@@ -8,6 +8,13 @@
             "account_name": "Quicky_Squale"
         },
         {
+            "joined_at": 1690973158,
+            "role_i18n": "Recrue",
+            "role": "recruit",
+            "account_id": 505229317,
+            "account_name": "lemanrussdemolisher"
+        },
+        {
             "joined_at": 1680202754,
             "role_i18n": "Soldat",
             "role": "private",
@@ -85,11 +92,11 @@
             "account_name": "Rekkit_BZH"
         },
         {
-            "joined_at": 1675362424,
+            "joined_at": 1655846611,
             "role_i18n": "Soldat",
             "role": "private",
-            "account_id": 552469056,
-            "account_name": "AMIRALADAMS"
+            "account_id": 522258841,
+            "account_name": "styrax13"
         },
         {
             "joined_at": 1690318092,
@@ -113,6 +120,13 @@
             "account_name": "I_Need_Ricard_For_RNG"
         },
         {
+            "joined_at": 1691051089,
+            "role_i18n": "Recrue",
+            "role": "recruit",
+            "account_id": 513267302,
+            "account_name": "deaddad"
+        },
+        {
             "joined_at": 1606652114,
             "role_i18n": "Commandant en second",
             "role": "executive_officer",
@@ -132,6 +146,13 @@
             "role": "private",
             "account_id": 500424303,
             "account_name": "StenKova"
+        },
+        {
+            "joined_at": 1690905403,
+            "role_i18n": "Recrue",
+            "role": "recruit",
+            "account_id": 522491509,
+            "account_name": "Whisky_4_Life"
         },
         {
             "joined_at": 1675796637,
@@ -197,13 +218,6 @@
             "account_name": "Vidoq791"
         },
         {
-            "joined_at": 1676279264,
-            "role_i18n": "Réserviste",
-            "role": "reservist",
-            "account_id": 501548712,
-            "account_name": "Benito1586"
-        },
-        {
             "joined_at": 1690284075,
             "role_i18n": "Soldat",
             "role": "private",
@@ -230,13 +244,6 @@
             "role": "private",
             "account_id": 519538878,
             "account_name": "yma92"
-        },
-        {
-            "joined_at": 1681538320,
-            "role_i18n": "Réserviste",
-            "role": "reservist",
-            "account_id": 517517509,
-            "account_name": "dos06"
         },
         {
             "joined_at": 1610216519,
@@ -309,6 +316,13 @@
             "account_name": "ginji67400"
         },
         {
+            "joined_at": 1690841330,
+            "role_i18n": "Recrue",
+            "role": "recruit",
+            "account_id": 521939187,
+            "account_name": "BlackIkuko"
+        },
+        {
             "joined_at": 1681330762,
             "role_i18n": "Soldat",
             "role": "private",
@@ -349,13 +363,6 @@
             "role": "private",
             "account_id": 512724750,
             "account_name": "Stfreims"
-        },
-        {
-            "joined_at": 1614288843,
-            "role_i18n": "Réserviste",
-            "role": "reservist",
-            "account_id": 506612496,
-            "account_name": "Bastarthebarbare"
         },
         {
             "joined_at": 1690284073,
@@ -470,6 +477,13 @@
             "account_name": "MadGiX"
         },
         {
+            "joined_at": 1691090266,
+            "role_i18n": "Recrue",
+            "role": "recruit",
+            "account_id": 520937310,
+            "account_name": "Biotank_2"
+        },
+        {
             "joined_at": 1674679949,
             "role_i18n": "Officier de combat",
             "role": "combat_officer",
@@ -519,6 +533,20 @@
             "account_name": "_Jace_80"
         },
         {
+            "joined_at": 1675362424,
+            "role_i18n": "Soldat",
+            "role": "private",
+            "account_id": 552469056,
+            "account_name": "AMIRALADAMS"
+        },
+        {
+            "joined_at": 1691057055,
+            "role_i18n": "Recrue",
+            "role": "recruit",
+            "account_id": 527627414,
+            "account_name": "Arnaud_82000"
+        },
+        {
             "joined_at": 1681409665,
             "role_i18n": "Recrue",
             "role": "recruit",
@@ -526,11 +554,11 @@
             "account_name": "Nelyann49"
         },
         {
-            "joined_at": 1681409661,
+            "joined_at": 1691228585,
             "role_i18n": "Recrue",
             "role": "recruit",
-            "account_id": 510167449,
-            "account_name": "nikita5712"
+            "account_id": 500393879,
+            "account_name": "Weag"
         },
         {
             "joined_at": 1681322180,
@@ -540,11 +568,11 @@
             "account_name": "x0xaaronx0x"
         },
         {
-            "joined_at": 1655846611,
-            "role_i18n": "Soldat",
-            "role": "private",
-            "account_id": 522258841,
-            "account_name": "styrax13"
+            "joined_at": 1681409661,
+            "role_i18n": "Recrue",
+            "role": "recruit",
+            "account_id": 510167449,
+            "account_name": "nikita5712"
         },
         {
             "joined_at": 1690296041,
@@ -554,9 +582,9 @@
             "account_name": "je_vais_les_tuer"
         },
         {
-            "joined_at": 1673292313,
-            "role_i18n": "Soldat",
-            "role": "private",
+            "joined_at": 1691263386,
+            "role_i18n": "Recrue",
+            "role": "recruit",
             "account_id": 511005089,
             "account_name": "valka63"
         },
@@ -611,15 +639,15 @@
         },
         {
             "joined_at": 1690034631,
-            "role_i18n": "Soldat",
-            "role": "private",
+            "role_i18n": "Officier de combat",
+            "role": "combat_officer",
             "account_id": 552400334,
             "account_name": "haze_LILLUSTRE"
         },
         {
             "joined_at": 1661715289,
-            "role_i18n": "Réserviste",
-            "role": "reservist",
+            "role_i18n": "Soldat",
+            "role": "private",
             "account_id": 528209366,
             "account_name": "TEQUILA_Boum_Boum"
         },
@@ -629,6 +657,13 @@
             "role": "private",
             "account_id": 538237920,
             "account_name": "_P4RAD1SE_"
+        },
+        {
+            "joined_at": 1691075241,
+            "role_i18n": "Recrue",
+            "role": "recruit",
+            "account_id": 525339626,
+            "account_name": "loulou54305"
         },
         {
             "joined_at": 1681324724,
