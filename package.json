@@ -18,9 +18,9 @@
   "dependencies": {
     "@angular/animations": "^16.1.7",
     "@angular/common": "^16.1.8",
-    "@angular/compiler": "^16.1.7",
+    "@angular/compiler": "^16.1.8",
     "@angular/core": "^16.1.5",
-    "@angular/forms": "^16.1.7",
+    "@angular/forms": "^16.1.8",
     "@angular/material": "^16.1.6",
     "@angular/platform-browser": "^16.1.8",
     "@angular/platform-browser-dynamic": "^16.1.8",
@@ -35,7 +35,7 @@
     "zone.js": "~0.13.1"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^16.1.6",
+    "@angular-devkit/build-angular": "^16.1.8",
     "@angular/cli": "~16.1.8",
     "@angular/compiler-cli": "^16.1.7",
     "@types/jasmine": "~4.3.5",
