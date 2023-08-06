@@ -11,6 +11,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { BrowserModule, Title } from '@angular/platform-browser';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CookieService } from 'ngx-cookie-service';
 import { environment } from 'src/environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 
@@ -23,9 +24,9 @@ import { HomeComponent } from './components/home/home.component';
 import { IconComponent } from './components/icon/icon.component';
 import { TankEquipmentDescriptionComponent } from './components/tanks-equipment/tank-equipment-description/tank-equipment-description.component';
 import { TanksEquipmentComponent } from './components/tanks-equipment/tanks-equipment.component';
+
 import { ClanDataPipe } from './pipes/clanRatings/clan-data.pipe';
 import { FieldUrlPipe } from './pipes/field/url.pipe';
-
 import { ImagePipe } from './pipes/image/image.pipe';
 import { LinkTextPipe } from './pipes/information/link-text.pipe';
 import { TextPipe } from './pipes/information/text.pipe';
@@ -88,7 +89,7 @@ if (environment.production) {
         NgOptimizedImage,
         MatButtonModule,
     ],
-    providers: [...mockProviders, Title],
+    providers: [...mockProviders, Title, CookieService],
     bootstrap: [AppComponent],
 })
 export class AppModule {}

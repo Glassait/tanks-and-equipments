@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthenticationClientService } from './authentication-client.service';
-import { MemberStore } from '../stores/member.store';
-import { MembersService } from './members.service';
 import { CheckGrade } from '../classes/check-grade.class';
-import { SessionStorageService } from './session-storage.service';
-import { Member } from '../types/member.type';
+import { MemberStore } from '../stores/member.store';
 import { Connection } from '../types/connection.type';
+import { Member } from '../types/member.type';
+import { AuthenticationClientService } from './authentication-client.service';
+import { MembersService } from './members.service';
+import { SessionStorageService } from './session-storage.service';
 
 @Injectable({
     providedIn: 'root',
@@ -23,23 +23,28 @@ export class AuthenticationService {
     ) {}
 
     public login(): void {
-        this.authenticationClient.login().subscribe((token: Connection) => {
-            const user = this.members.isClanMembers(Number(token.account_id));
+        this.authenticationClient
+            .login()
+            .subscribe((token: Connection): void => {
+                const user: Member | undefined = this.members.isClanMembers(
+                    Number(token.account_id)
+                );
 
-            this.updateStore(user, token?.access_token);
-            this.session.store(
-                this.tokenKey,
-                user ? JSON.stringify(token) : ''
-            );
-            this.router.navigate(['/']);
-        });
+                this.updateStore(user, token?.access_token);
+                this.session.store(
+                    this.tokenKey,
+                    user ? JSON.stringify(token) : ''
+                );
+                this.router.navigate(['/']).then((): void => {
+                    // Ignored
+                });
+            });
     }
 
     public isLoggedIn(): boolean {
         localStorage.clear();
-        const token = this.session.getFromKeyToObject<Connection>(
-            this.tokenKey
-        );
+        const token: Connection | null =
+            this.session.getFromKeyToObject<Connection>(this.tokenKey);
         this.updateStore(
             this.members.isClanMembers(Number(token?.account_id)),
             token?.access_token
@@ -49,13 +54,13 @@ export class AuthenticationService {
 
     private updateStore(
         user: Member | undefined,
-        accesToken: string | undefined
+        accessToken: string | undefined
     ): void {
         this.memberStore.patch({
             account_id: user?.account_id,
             isAdmin: CheckGrade.isAdmin(user?.role),
-            isVisitor: user ? false : true,
-            accesToken: accesToken,
+            isVisitor: !user,
+            accessToken: accessToken,
         });
     }
 }

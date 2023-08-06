@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core';
-import {
-    Router,
-} from '@angular/router';
+import { Router } from '@angular/router';
+import { Observable, of } from 'rxjs';
 import { AuthenticationService } from './authentication.service';
 import { InventoryService } from './inventory.service';
-import { Observable, of } from 'rxjs';
 
 @Injectable({
     providedIn: 'root',
@@ -20,9 +18,13 @@ export class AuthGuardService {
         return this.checkLogin();
     }
 
-    checkLogin() {
+    private checkLogin(): Observable<boolean> {
         if (!this.authService.isLoggedIn()) {
-            this.router.navigate([this.inventory.getPath().home]);
+            this.router
+                .navigate([this.inventory.getPath().home])
+                .then((): void => {
+                    // Ignored
+                });
             return of(false);
         }
 
