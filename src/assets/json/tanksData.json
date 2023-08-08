@@ -2601,12 +2601,12 @@
                         "left": {
                             "name": "Mobilité",
                             "image": "mobility",
-                            "active": true
+                            "active": false
                         },
                         "right": {
                             "name": "Puissance de feu",
                             "image": "firepower",
-                            "active": false
+                            "active": true
                         }
                     }
                 },
@@ -2652,11 +2652,11 @@
                         "modernized": true
                     },
                     {
-                        "name": "Turbocompresseur",
+                        "name": "Fouloir de canon",
                         "modernized": false
                     },
                     {
-                        "name": "Fouloir de canon",
+                        "name": "Turbocompresseur",
                         "modernized": false
                     }
                 ],
@@ -2666,11 +2666,11 @@
                         "modernized": false
                     },
                     {
-                        "name": "Turbocompresseur",
+                        "name": "Fouloir de canon",
                         "modernized": false
                     },
                     {
-                        "name": "Fouloir de canon",
+                        "name": "Turbocompresseur",
                         "modernized": false
                     }
                 ]
