@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { HeaderStore } from 'src/app/commons/stores/header.store';
 import { MemberStore } from 'src/app/commons/stores/member.store';
 import { WordingService } from '../../commons/services/wording.service';
+import { FooterStore } from '../../commons/stores/footer.store';
 import { SentenceCasePipe } from '../../pipes/sentenceCase/sentence-case.pipe';
 
 @Component({
@@ -15,22 +16,28 @@ export class ClanWarComponent {
         private wording: WordingService,
         private headerStore: HeaderStore,
         private memberStore: MemberStore,
+        private footerStore: FooterStore,
         private router: Router,
         private title: Title
     ) {
         this.checkUser();
-        this.setHeaderVariable();
+        this.patchHeaderAndFooter();
 
         this.title.setTitle(
             new SentenceCasePipe().transform(this.wording.header.clanWar)
         );
     }
 
-    private setHeaderVariable(): void {
+    private patchHeaderAndFooter(): void {
         this.headerStore.patch({
             showHome: true,
             showTank: true,
             showWar: false,
+        });
+
+        this.footerStore.patch({
+            showChangelog: true,
+            showAgreement: true,
         });
     }
 

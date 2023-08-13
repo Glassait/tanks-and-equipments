@@ -15,6 +15,7 @@ import {
     WotServerRequest,
 } from 'src/app/commons/types/clan-ratings.type';
 import { ModeInterface } from '../../commons/interfaces/mode.interface';
+import { FooterStore } from '../../commons/stores/footer.store';
 import { ModeStore } from '../../commons/stores/mode.store';
 import { SentenceCasePipe } from '../../pipes/sentenceCase/sentence-case.pipe';
 
@@ -44,11 +45,12 @@ export class HomeComponent implements OnInit, OnDestroy {
         private memberStore: MemberStore,
         private headerStore: HeaderStore,
         private modeStore: ModeStore,
+        private footerStore: FooterStore,
         private wotApi: WotApiService,
         private cookie: CookieService,
         private title: Title
     ) {
-        this.patchHeader();
+        this.patchHeaderAndFooter();
 
         this.title.setTitle(
             new SentenceCasePipe().transform(this.wording.header.accueil)
@@ -77,11 +79,16 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.modeSubscribe.unsubscribe();
     }
 
-    private patchHeader(): void {
+    private patchHeaderAndFooter(): void {
         this.headerStore.patch({
             showHome: false,
             showTank: true,
             showWar: true,
+        });
+
+        this.footerStore.patch({
+            showChangelog: true,
+            showAgreement: true,
         });
     }
 

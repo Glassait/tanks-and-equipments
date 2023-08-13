@@ -29,4 +29,5 @@ export type Icons =
     | 'changelog'
     | 'information'
     | 'server'
-    | 'visitor';
+    | 'visitor'
+    | 'agreement';

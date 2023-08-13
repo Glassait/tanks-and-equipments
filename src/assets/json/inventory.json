@@ -15,6 +15,7 @@
         "home": "",
         "charsEtEquipements": "charsEtEquipement",
         "clanWar": "clanWar",
-        "changelog": "changelog"
+        "changelog": "changelog",
+        "agreements": "agreements"
     }
 }

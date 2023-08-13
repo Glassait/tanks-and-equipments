@@ -5,7 +5,8 @@
             "add": [
                 "Un pied de page contenant l'ensemble des pages accessibles",
                 "La page \"Journal des modifications\" contenant l'ensemble des versions du site",
-                "Redirection automatique vers la page d'accueil en cas d'URL incorrecte"
+                "Redirection automatique vers la page d'accueil en cas d'URL incorrecte",
+                "Ajout du règlement du clan dans le footer"
             ]
         },
         {

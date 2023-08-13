@@ -18,11 +18,40 @@
         "visitorHelp": "Si le problème persiste, vérifie que tu utilises le bon compte Wargaming. Si le problème persiste toujours, veuillez contacter un admin sur Discord !"
     },
     "footer": {
-        "changelog": "Journal des modifications"
+        "changelog": "Journal des modifications",
+        "agreements": "Règlement & organisation"
     },
     "changelog": {
         "add": "Ajoutés",
         "modified": "Modifiés",
         "fixed": "Corrigés"
+    },
+    "agreements": {
+        "title": "Règlement et organisation du clan",
+        "part1Title": "Règlement du clan",
+        "part1Text": [
+            "Un minimum de 30 batailles en Bastion est requis au cours des 28 derniers jours, tous tiers confondus (6-8-10). Les officiers et les recrues en sont exemptés.",
+            "Tous les joueurs ne satisfaisant pas cette condition seront rétrogradés au rang de réserviste (ce qui empêche de bénéficier des bonus du clan). Si, après deux mois en tant que réserviste, le joueur demeure inactif vis-à-vis du clan, il pourra être renvoyé.",
+            "Les réservistes ayant rempli les conditions retrouveront leur grade de soldat.",
+            "Les nouveaux joueurs demeurent recrues pendant le premier mois au sein du clan (à moins d'avoir effectué les 30 batailles nécessaires), ceci constituant une période d'essai.",
+            "En cas de batailles en Bastion, le strateur (officier de combat ou officier subalterne pour les apprentis) a toujours le dernier mot; il est à écouter, étant celui qui dirige. Le respect et la politesse lui sont également dus.",
+            "Si le nombre requis de batailles ne peut être atteint pour diverses raisons, merci d'en informer un officier.",
+            "Le serveur Discord constitue le principal moyen de communication, et sa connexion est donc OBLIGATOIRE (soit en vocal, soit en mode muet). Les informations ne sont pas nécessairement transmises via le chat du jeu. Ainsi, il est inutile de vous mettre en mode \"caché\".",
+            "Pour toute question concernant le jeu, le Discord et autres suggestions, veuillez contacter l'un des officiers."
+        ],
+        "part2Title": "Chars à prévoir",
+        "part2Text": "Vous trouverez dans le lien suivant la liste des chars du clan :",
+        "part3Title": "Grades et permissions",
+        "part3Text": "Vous trouverez dans le lien suivant les différents grades et leur permission :",
+        "part4Title": "Pour les officiers",
+        "part4Text": [
+            "Il vous incombe de faire vivre le clan. À cet effet, veuillez ouvrir des Bastions dès que possible, de préférence en soirée.",
+            "Le strateur est la personne en haut de l'équipe.",
+            "Il est possible de mettre en place des bonus de manière judicieuse.",
+            "Dans la mesure du possible, il vous revient également de gérer les Clan Wars.",
+            "Les changements de grades, les exclusions, et autres aspects similaires sont pris en charge par un officier de l'État-Major, et non par un officier de combat.",
+            "Vous avez également la possibilité d'inscrire des équipes à des tournois, en priorisant l'invitation de vos camarades de clan."
+        ],
+        "part5Title": "Organisation du clan"
     }
 }

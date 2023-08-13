@@ -34,10 +34,18 @@
             {{ (wording | getHeader).clanWar | sentenceCase }}
         </a>
         <a
+            *ngIf="showChangelog"
             [routerLink]="(inventory | getPath).changelog"
             class="underline"
         >
             {{ (wording | getFooter).changelog | sentenceCase }}
+        </a>
+        <a
+            *ngIf="showAgreement && !isVisitor"
+            [routerLink]="(inventory | getPath).agreements"
+            class="underline"
+        >
+            {{ (wording | getFooter).agreements | sentenceCase }}
         </a>
     </div>
 </div>

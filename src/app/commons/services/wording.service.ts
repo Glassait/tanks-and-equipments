@@ -26,4 +26,8 @@ export class WordingService {
     get changelog() {
         return this._wording.changelog;
     }
+
+    get agreement() {
+        return this._wording.agreements;
+    }
 }

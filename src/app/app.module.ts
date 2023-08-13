@@ -43,6 +43,8 @@ import { ChangelogPipe } from './pipes/wording/changelog.pipe';
 import { FooterPipe } from './pipes/wording/footer.pipe';
 import { HeaderPipe } from './pipes/wording/header.pipe';
 import { HomePipe } from './pipes/wording/home.pipe';
+import { AgreementsComponent } from './components/agreements/agreements.component';
+import { AgreementPipe } from './pipes/wording/agreement.pipe';
 
 const MOCK_INTERCEPTOR_PROVIDER: Provider = {
     provide: HTTP_INTERCEPTORS,
@@ -84,6 +86,8 @@ if (environment.production) {
         CardChangelogComponent,
         FooterPipe,
         ChangelogPipe,
+        AgreementsComponent,
+        AgreementPipe,
     ],
     imports: [
         BrowserModule,

@@ -4,6 +4,7 @@ import { commandantIcon } from './commons/icon/files/crews/commandant.icon';
 import { operateurRadioIcon } from './commons/icon/files/crews/operateur-radio.icon';
 import { piloteDeCharsIcon } from './commons/icon/files/crews/pilote-de-chars.icon';
 import { tireurIcon } from './commons/icon/files/crews/tireur.icon';
+import { agreementIcon } from './commons/icon/files/other/agreement.icon';
 import { castleIcon } from './commons/icon/files/other/castle.icon';
 import { changelogIcon } from './commons/icon/files/other/changelog.icon';
 import { informationIcon } from './commons/icon/files/other/information.icon';
@@ -98,6 +99,7 @@ export class AppComponent implements OnInit {
             informationIcon,
             serverIcon,
             visitorIcon,
+            agreementIcon,
         ]);
     }
 }
