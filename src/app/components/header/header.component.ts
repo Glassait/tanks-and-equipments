@@ -79,22 +79,22 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
     private createSubscribe(): void {
         this.headerSubscribe = this.headerStore
             .watch()
-            .subscribe((value: HeaderInterface): void => {
-                this.showHome = value.showHome;
-                this.showTank = value.showTank;
-                this.showWar = value.showWar;
+            .subscribe((headerInterface: HeaderInterface): void => {
+                this.showHome = headerInterface.showHome;
+                this.showTank = headerInterface.showTank;
+                this.showWar = headerInterface.showWar;
             });
 
         this.memberSubscribe = this.memberStore
             .watch()
-            .subscribe((value: MemberInterface): void => {
-                this.isVisitor = value.isVisitor;
+            .subscribe((memberInterface: MemberInterface): void => {
+                this.isVisitor = memberInterface.isVisitor;
             });
 
         this.modeSubscribe = this.modeStore
             .watch()
-            .subscribe((value: ModeInterface): void => {
-                this.isDark = value.dark;
+            .subscribe((modeInterface: ModeInterface): void => {
+                this.isDark = modeInterface.dark;
             });
     }
 }

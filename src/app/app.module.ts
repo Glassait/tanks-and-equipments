@@ -16,12 +16,13 @@ import { environment } from 'src/environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
+import { IconComponent } from './commons/icon/icon.component';
 import { HttpMockInterceptor } from './commons/interceptors/http-mock.interceptor';
 import { CardLittleComponent } from './components/card-little/card-little.component';
 import { ClanWarComponent } from './components/clan-war/clan-war.component';
+import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 import { HomeComponent } from './components/home/home.component';
-import { IconComponent } from './components/icon/icon.component';
 import { TankEquipmentDescriptionComponent } from './components/tanks-equipment/tank-equipment-description/tank-equipment-description.component';
 import { TanksEquipmentComponent } from './components/tanks-equipment/tanks-equipment.component';
 
@@ -74,6 +75,7 @@ if (environment.production) {
         FieldUrlPipe,
         ClanDataPipe,
         SentenceCasePipe,
+        FooterComponent,
     ],
     imports: [
         BrowserModule,

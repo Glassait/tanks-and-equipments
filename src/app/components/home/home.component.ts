@@ -105,7 +105,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     private getWotServerStatus(): void {
         const cookie: string = this.cookie.get(this.cookieName.serverStatus);
         if (cookie) {
-            console.log(cookie);
             this.wotServer = JSON.parse(cookie);
             this.showSpinnerServer = false;
             return;
