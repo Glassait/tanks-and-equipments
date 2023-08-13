@@ -5,7 +5,7 @@ import { WordingService } from 'src/app/commons/services/wording.service';
     name: 'getHeader',
 })
 export class HeaderPipe implements PipeTransform {
-    transform(value: WordingService, ...args: string[]) {
-        return value.getHeader();
+    transform(wordingService: WordingService, ..._args: string[]) {
+        return wordingService.header;
     }
 }

@@ -16,12 +16,15 @@ import { environment } from 'src/environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
+import { IconComponent } from './commons/icon/icon.component';
 import { HttpMockInterceptor } from './commons/interceptors/http-mock.interceptor';
-import { CardLittleComponent } from './components/card-little/card-little.component';
+import { CardChangelogComponent } from './components/card/changelog/card-changelog.component';
+import { CardLittleComponent } from './components/card/little/card-little.component';
+import { ChangelogComponent } from './components/changelog/changelog.component';
 import { ClanWarComponent } from './components/clan-war/clan-war.component';
+import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 import { HomeComponent } from './components/home/home.component';
-import { IconComponent } from './components/icon/icon.component';
 import { TankEquipmentDescriptionComponent } from './components/tanks-equipment/tank-equipment-description/tank-equipment-description.component';
 import { TanksEquipmentComponent } from './components/tanks-equipment/tanks-equipment.component';
 
@@ -36,8 +39,12 @@ import { PathPipe } from './pipes/inventory/path.pipe';
 import { ReplacePipe } from './pipes/replace/replace.pipe';
 import { SentenceCasePipe } from './pipes/sentenceCase/sentence-case.pipe';
 import { DataPipe } from './pipes/tank/data.pipe';
+import { ChangelogPipe } from './pipes/wording/changelog.pipe';
+import { FooterPipe } from './pipes/wording/footer.pipe';
 import { HeaderPipe } from './pipes/wording/header.pipe';
 import { HomePipe } from './pipes/wording/home.pipe';
+import { AgreementsComponent } from './components/agreements/agreements.component';
+import { AgreementPipe } from './pipes/wording/agreement.pipe';
 
 const MOCK_INTERCEPTOR_PROVIDER: Provider = {
     provide: HTTP_INTERCEPTORS,
@@ -59,7 +66,6 @@ if (environment.production) {
         TankEquipmentDescriptionComponent,
         ClanWarComponent,
         HeaderComponent,
-        CardLittleComponent,
         IconComponent,
         ImagePipe,
         HeaderPipe,
@@ -74,6 +80,14 @@ if (environment.production) {
         FieldUrlPipe,
         ClanDataPipe,
         SentenceCasePipe,
+        FooterComponent,
+        ChangelogComponent,
+        CardLittleComponent,
+        CardChangelogComponent,
+        FooterPipe,
+        ChangelogPipe,
+        AgreementsComponent,
+        AgreementPipe,
     ],
     imports: [
         BrowserModule,

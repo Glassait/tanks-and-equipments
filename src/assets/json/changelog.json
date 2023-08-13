@@ -1,0 +1,54 @@
+{
+    "changelog": [
+        {
+            "version": "1.1.8.2",
+            "add": [
+                "Un pied de page contenant l'ensemble des pages accessibles",
+                "La page \"Journal des modifications\" contenant l'ensemble des versions du site",
+                "Redirection automatique vers la page d'accueil en cas d'URL incorrecte",
+                "Ajout du règlement du clan dans le footer"
+            ]
+        },
+        {
+            "version": "1.1.8.1",
+            "modified": [
+                "La connexion se fait désormais dans le composant principal",
+                "L'ombrage de l'en-tête et des cartes",
+                "Mise à jour de l'attribut `fill` des icônes afin de ne plus utiliser `filter`"
+            ]
+        },
+        {
+            "version": "1.1.8",
+            "fixed": [
+                "Retrait de l'instruction console.log affichant les jetons de connexion"
+            ]
+        },
+        {
+            "version": "1.1.7",
+            "modified": ["La liste des membres du clan"]
+        },
+        {
+            "version": "1.1.6.1",
+            "modified": ["Les versions des dépendances NPM"]
+        },
+        {
+            "version": "1.1.6",
+            "add": [
+                "Mise en cookie des appels à l'API de Wargaming",
+                "Changement automatique du titre de la page"
+            ]
+        },
+        {
+            "version": "1.1.5.1",
+            "fixed": ["L'affichage au format mobile et tablette"]
+        },
+        {
+            "version": "1.1.5",
+            "add": ["Transformation des `SVG` en `TypeScript`"]
+        },
+        {
+            "version": "1.1.4 et antérieur",
+            "add": ["Création du site"]
+        }
+    ]
+}

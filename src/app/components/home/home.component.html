@@ -6,11 +6,12 @@
         class="flex w-0 flex-auto flex-col items-center justify-around space-y-10"
         id="left-home"
     >
-        <app-card-little
+        <card-little
+            [darkMode]="isDarkMode"
             [hasSpinner]="true"
             [showSpinner]="showSpinnerServer"
             [title]="(wording | getHome).statusServer"
-            iconPath="assets/other/server.svg"
+            icon="server"
             id="server"
         >
             <div *ngIf="!showSpinnerServer" class="space-y-2">
@@ -27,12 +28,13 @@
                     </div>
                 </div>
             </div>
-        </app-card-little>
+        </card-little>
 
-        <app-card-little
+        <card-little
             *ngIf="!isVisitor"
+            [darkMode]="isDarkMode"
             [title]="(wording | getHome).information"
-            iconPath="assets/other/information.svg"
+            icon="information"
             id="information"
         >
             <div class="space-y-4 whitespace-pre-line text-justify">
@@ -53,12 +55,13 @@
                     </a>
                 </div>
             </div>
-        </app-card-little>
+        </card-little>
 
-        <app-card-little
+        <card-little
             *ngIf="isVisitor"
+            [darkMode]="isDarkMode"
             [title]="(wording | getHome).visitorTitle"
-            iconPath="assets/other/visitor.svg"
+            icon="visitor"
             id="visitor"
         >
             <div class="whitespace-pre-line text-justify">
@@ -66,7 +69,7 @@
                 <br /><br />
                 {{ (wording | getHome).visitorHelp }}
             </div>
-        </app-card-little>
+        </card-little>
     </div>
 
     <div
@@ -102,7 +105,7 @@
                         <div class="flex h-full w-full justify-center">
                             <icon
                                 [size]="60"
-                                color="white"
+                                fill="white"
                                 icon="castle"
                             ></icon>
                         </div>
@@ -142,7 +145,7 @@
                         class="grid w-0 flex-auto grid-cols-2 grid-rows-4 gap-3 pr-4"
                     >
                         <div class="flex h-full w-full justify-center">
-                            <icon [size]="60" color="white" icon="map"></icon>
+                            <icon [size]="60" fill="white" icon="map"></icon>
                         </div>
 
                         <span

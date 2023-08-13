@@ -1,4 +1,5 @@
-require('tailwindcss/defaultTheme');
+const defaultTheme = require('tailwindcss/defaultTheme');
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
     darkMode: 'class',
@@ -29,29 +30,16 @@ module.exports = {
         fontFamily: {
             ui: "ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto",
         },
-        sepia: {
-            white: '100%',
-            black: '94%',
-        },
-        brightness: {
-            white: '0',
-            black: '0',
-        },
-        hueRotate: {
-            white: '164deg',
-            black: '57deg',
-        },
-        invert: {
-            white: '100%',
-            black: '0',
-        },
-        saturate: {
-            white: '100%',
-            black: '100%',
-        },
-        contrast: {
-            white: '101%',
-            black: '105%',
+        boxShadow: {
+            ...defaultTheme.boxShadow,
+            card_white:
+                'box-shadow: 0 2px 10px 0 rgba(255, 255, 255, 0.20), 0 -2px 10px 0 rgba(255, 255, 255, 0.20)',
+            card_black:
+                'box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.25), 0 -2px 10px 0 rgba(0, 0, 0, 0.25)',
+            header_white: '0px 4px 4px 0px rgba(255, 255, 255, 0.20);',
+            header_black: '0px 4px 4px 0px rgba(0, 0, 0, 0.25);',
+            footer_white: '0px -4px 4px 0px rgba(255, 255, 255, 0.20)',
+            footer_black: '0px -4px 4px 0px rgba(0, 0, 0, 0.25)',
         },
     },
     plugins: [

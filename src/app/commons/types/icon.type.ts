@@ -22,4 +22,12 @@ export type Icons =
     | 'commandant'
     | 'opérateur_radio'
     | 'pilote_de_char'
-    | 'tireur';
+    | 'tireur'
+    | 'wrench'
+    | 'pencil'
+    | 'plus'
+    | 'changelog'
+    | 'information'
+    | 'server'
+    | 'visitor'
+    | 'agreement';

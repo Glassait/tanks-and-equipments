@@ -1,0 +1,51 @@
+<div
+    class="flex w-full items-center justify-between bg-primary_light p-3 shadow-footer_black dark:bg-primary_dark dark:shadow-footer_white"
+>
+    <picture class="hidden tablette:block">
+        <source srcset="assets/other/logo.avif" type="image/avif" />
+        <img
+            alt="Logo du clan"
+            class="w-16"
+            height="195"
+            ngSrc="assets/other/logo.png"
+            width="195"
+        />
+    </picture>
+    <div class="flex justify-end gap-5 flex-wrap">
+        <a
+            *ngIf="showHome"
+            [routerLink]="(inventory | getPath).home"
+            class="underline"
+        >
+            {{ (wording | getHeader).accueil | sentenceCase }}
+        </a>
+        <a
+            *ngIf="showTank && !isVisitor"
+            [routerLink]="(inventory | getPath).charsEtEquipements"
+            class="underline"
+        >
+            {{ (wording | getHeader).charEtEquipement | sentenceCase }}
+        </a>
+        <a
+            *ngIf="showWar && !isVisitor"
+            [routerLink]="(inventory | getPath).clanWar"
+            class="underline"
+        >
+            {{ (wording | getHeader).clanWar | sentenceCase }}
+        </a>
+        <a
+            *ngIf="showChangelog"
+            [routerLink]="(inventory | getPath).changelog"
+            class="underline"
+        >
+            {{ (wording | getFooter).changelog | sentenceCase }}
+        </a>
+        <a
+            *ngIf="showAgreement && !isVisitor"
+            [routerLink]="(inventory | getPath).agreements"
+            class="underline"
+        >
+            {{ (wording | getFooter).agreements | sentenceCase }}
+        </a>
+    </div>
+</div>

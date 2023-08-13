@@ -7,6 +7,7 @@ import { HeaderStore } from 'src/app/commons/stores/header.store';
 import { MemberStore } from 'src/app/commons/stores/member.store';
 import { ModeInterface } from '../../commons/interfaces/mode.interface';
 import { WordingService } from '../../commons/services/wording.service';
+import { FooterStore } from '../../commons/stores/footer.store';
 import { ModeStore } from '../../commons/stores/mode.store';
 import { SentenceCasePipe } from '../../pipes/sentenceCase/sentence-case.pipe';
 
@@ -26,16 +27,17 @@ export class TanksEquipmentComponent implements OnDestroy {
         private headerStore: HeaderStore,
         private memberStore: MemberStore,
         private modeStore: ModeStore,
+        private footerStore: FooterStore,
         private router: Router,
         private title: Title
     ) {
         this.checkUser();
-        this.patchHeader();
+        this.patchHeaderAndFooter();
         this.createSubscribe();
 
         this.title.setTitle(
             new SentenceCasePipe().transform(
-                this.wording.getHeader().charEtEquipement
+                this.wording.header.charEtEquipement
             )
         );
     }
@@ -54,11 +56,16 @@ export class TanksEquipmentComponent implements OnDestroy {
         });
     }
 
-    private patchHeader(): void {
+    private patchHeaderAndFooter(): void {
         this.headerStore.patch({
             showHome: true,
             showTank: false,
             showWar: true,
+        });
+
+        this.footerStore.patch({
+            showChangelog: true,
+            showAgreement: true,
         });
     }
 
