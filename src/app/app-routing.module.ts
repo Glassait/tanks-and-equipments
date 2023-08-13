@@ -12,6 +12,10 @@ const routes: Routes = [
         component: HomeComponent,
     },
     {
+        path: '**',
+        redirectTo: inventory.path.home,
+    },
+    {
         path: inventory.path.charsEtEquipements,
         component: TanksEquipmentComponent,
         canActivate: [AuthGuardService],
