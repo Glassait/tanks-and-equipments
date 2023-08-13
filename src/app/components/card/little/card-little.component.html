@@ -6,14 +6,12 @@
     head
 >
     <mat-card-header [id]="'cardHeaderFor' + id" class="mb-3 flex items-center">
-        <img
-            [ngSrc]="iconPath"
-            alt=""
-            class="brightness-black contrast-black hue-rotate-black invert-black saturate-black sepia-black dark:brightness-white dark:contrast-white dark:hue-rotate-white dark:invert-white dark:saturate-white dark:sepia-white"
-            height="40"
+        <icon
+            [fill]="darkMode ? 'white' : 'black'"
+            [icon]="icon"
+            [size]="40"
             mat-card-avatar
-            width="40"
-        />
+        ></icon>
         <mat-card-title class="underline [--mat-card-title-text-size:25px]">
             {{ title }}
         </mat-card-title>

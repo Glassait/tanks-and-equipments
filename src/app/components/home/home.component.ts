@@ -5,7 +5,6 @@ import { Subscription } from 'rxjs';
 import { ArrayCustom } from 'src/app/commons/classes/array-custom.class';
 import { WindowsCustom } from 'src/app/commons/classes/windows-custom.class';
 import { MemberInterface } from 'src/app/commons/interfaces/member.interface';
-import { AuthenticationService } from 'src/app/commons/services/authentication.service';
 import { InformationService } from 'src/app/commons/services/information.service';
 import { WordingService } from 'src/app/commons/services/wording.service';
 import { WotApiService } from 'src/app/commons/services/wot-api.service';
@@ -15,6 +14,8 @@ import {
     WotClanRatingsRequest,
     WotServerRequest,
 } from 'src/app/commons/types/clan-ratings.type';
+import { ModeInterface } from '../../commons/interfaces/mode.interface';
+import { ModeStore } from '../../commons/stores/mode.store';
 import { SentenceCasePipe } from '../../pipes/sentenceCase/sentence-case.pipe';
 
 @Component({
@@ -28,8 +29,10 @@ export class HomeComponent implements OnInit, OnDestroy {
     protected wotServer: WotServerRequest;
     protected wotClanRatings: WotClanRatingsRequest;
     protected isVisitor: boolean;
+    protected isDarkMode: boolean;
 
     private memberSubscribe: Subscription;
+    private modeSubscribe: Subscription;
     private cookieName = {
         serverStatus: 'serverStatus',
         clanRatings: 'clanRatings',
@@ -40,23 +43,19 @@ export class HomeComponent implements OnInit, OnDestroy {
         protected information: InformationService,
         private memberStore: MemberStore,
         private headerStore: HeaderStore,
+        private modeStore: ModeStore,
         private wotApi: WotApiService,
-        private auth: AuthenticationService,
         private cookie: CookieService,
         private title: Title
     ) {
         this.patchHeader();
 
         this.title.setTitle(
-            new SentenceCasePipe().transform(this.wording.getHeader().accueil)
+            new SentenceCasePipe().transform(this.wording.header.accueil)
         );
     }
 
     ngOnInit(): void {
-        if (!this.auth.isLoggedIn()) {
-            this.auth.login();
-        }
-
         this.getWotServerStatus();
 
         if (
@@ -75,6 +74,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     ngOnDestroy(): void {
         this.memberSubscribe.unsubscribe();
+        this.modeSubscribe.unsubscribe();
     }
 
     private patchHeader(): void {
@@ -90,6 +90,12 @@ export class HomeComponent implements OnInit, OnDestroy {
             .watch()
             .subscribe((value: MemberInterface): void => {
                 this.isVisitor = value.isVisitor;
+            });
+
+        this.modeSubscribe = this.modeStore
+            .watch()
+            .subscribe((value: ModeInterface): void => {
+                this.isDarkMode = value.dark;
             });
     }
 

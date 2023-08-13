@@ -11,11 +11,19 @@ export class WordingService {
         return this._wording;
     }
 
-    public getHeader() {
+    get header() {
         return this._wording.header;
     }
 
-    public getHome() {
+    get home() {
         return this._wording.home;
+    }
+
+    get footer() {
+        return this._wording.footer;
+    }
+
+    get changelog() {
+        return this._wording.changelog;
     }
 }

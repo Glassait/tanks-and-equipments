@@ -9,7 +9,7 @@
         >
             <icon
                 *ngFor="let crew of tankData?.crew"
-                [filter]="isDark ? 'white' : 'black'"
+                [fill]="isDark ? 'white' : 'black'"
                 [size]="isMobile ? 54 : 69"
                 class="rounded border-[1px] border-secondary_light dark:border-secondary_dark"
                 icon="{{ crew | image }}"

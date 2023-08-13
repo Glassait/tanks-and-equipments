@@ -22,7 +22,7 @@ export class ClanWarComponent {
         this.setHeaderVariable();
 
         this.title.setTitle(
-            new SentenceCasePipe().transform(this.wording.getHeader().clanWar)
+            new SentenceCasePipe().transform(this.wording.header.clanWar)
         );
     }
 

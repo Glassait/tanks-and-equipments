@@ -1,0 +1,9 @@
+<div class="flex justify-center w-full">
+    <div class="grid grid-cols-1 desktop:grid-cols-3 gap-8">
+        <card-changelog
+            *ngFor="let changelog of changelogs"
+            [changelog]="changelog"
+        >
+        </card-changelog>
+    </div>
+</div>

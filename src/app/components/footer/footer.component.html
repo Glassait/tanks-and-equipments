@@ -5,7 +5,7 @@
         <source srcset="assets/other/logo.avif" type="image/avif" />
         <img
             alt="Logo du clan"
-            class="w-20"
+            class="w-16"
             height="195"
             ngSrc="assets/other/logo.png"
             width="195"
@@ -32,6 +32,12 @@
             class="underline"
         >
             {{ (wording | getHeader).clanWar | sentenceCase }}
+        </a>
+        <a
+            [routerLink]="(inventory | getPath).changelog"
+            class="underline"
+        >
+            {{ (wording | getFooter).changelog | sentenceCase }}
         </a>
     </div>
 </div>

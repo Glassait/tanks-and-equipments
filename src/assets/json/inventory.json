@@ -14,6 +14,7 @@
     "path": {
         "home": "",
         "charsEtEquipements": "charsEtEquipement",
-        "clanWar": "clanWar"
+        "clanWar": "clanWar",
+        "changelog": "changelog"
     }
 }

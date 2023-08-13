@@ -35,7 +35,7 @@ export class TanksEquipmentComponent implements OnDestroy {
 
         this.title.setTitle(
             new SentenceCasePipe().transform(
-                this.wording.getHeader().charEtEquipement
+                this.wording.header.charEtEquipement
             )
         );
     }
