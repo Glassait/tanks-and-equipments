@@ -1,4 +1,3 @@
-require('tailwindcss/defaultTheme');
 /** @type {import('tailwindcss').Config} */
 module.exports = {
     darkMode: 'class',
@@ -52,6 +51,16 @@ module.exports = {
         contrast: {
             white: '101%',
             black: '105%',
+        },
+        boxShadow: {
+            card_white:
+                'box-shadow: 0 2px 10px 0 rgba(255, 255, 255, 0.20), 0 -2px 10px 0 rgba(255, 255, 255, 0.20)',
+            card_black:
+                'box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.25), 0 -2px 10px 0 rgba(0, 0, 0, 0.25)',
+            header_white: '0px 4px 4px 0px rgba(255, 255, 255, 0.20);',
+            header_black: '0px 4px 4px 0px rgba(0, 0, 0, 0.25);',
+            footer_white: '0px -4px 4px 0px rgba(255, 255, 255, 0.20)',
+            footer_black: '0px -4px 4px 0px rgba(0, 0, 0, 0.25)',
         },
     },
     plugins: [
