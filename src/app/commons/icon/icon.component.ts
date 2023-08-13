@@ -14,22 +14,19 @@ import { Icons } from 'src/app/commons/types/icon.type';
 
 @Component({
     selector: 'icon',
-    template: '<div class="{{ filterString }}"></div>',
+    template: '<div class="{{ fillString }}"></div>',
 })
 export class IconComponent implements OnInit, OnChanges {
     @Input() icon: Icons | string;
     @Input() size: number = 70;
     @Input() width: number;
     @Input() height: number;
-    @Input() color: 'white' | 'black';
-    @Input() filter: 'white' | 'black';
+    @Input() fill: 'white' | 'black';
 
-    protected filterString: string;
+    protected fillString: string;
 
-    private blackFilter: string =
-        'brightness-black contrast-black hue-rotate-black invert-black saturate-black sepia-black';
-    private whiteFilter: string =
-        'brightness-white contrast-white hue-rotate-white invert-white saturate-white sepia-white';
+    private blackFill: string = 'fill-secondary_light';
+    private whiteFill: string = 'fill-secondary_dark';
 
     constructor(
         private iconRegistry: IconRegistryService,
@@ -38,7 +35,7 @@ export class IconComponent implements OnInit, OnChanges {
     ) {}
 
     ngOnInit(): void {
-        this.setFilterStr();
+        this.setFillStr();
 
         this.element.nativeElement
             .querySelector('div')
@@ -48,18 +45,15 @@ export class IconComponent implements OnInit, OnChanges {
     }
 
     ngOnChanges(changes: SimpleChanges): void {
-        if (changes['filter'] && changes['filter']['currentValue']) {
-            this.setFilterStr();
+        if (changes['fill'] && changes['fill']['currentValue']) {
+            this.setFillStr();
         }
     }
 
-    private setFilterStr(): void {
-        if (this.color) {
-            this.filterString =
-                this.color === 'white' ? this.whiteFilter : this.blackFilter;
-        } else if (this.filter) {
-            this.filterString =
-                this.filter === 'white' ? this.whiteFilter : this.blackFilter;
+    private setFillStr(): void {
+        if (this.fill) {
+            this.fillString =
+                this.fill === 'white' ? this.whiteFill : this.blackFill;
         }
     }
 

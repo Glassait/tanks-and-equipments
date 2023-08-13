@@ -1,12 +1,19 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { chargeurIcon } from './commons/icon/files/crews/chargeur.icon';
 import { commandantIcon } from './commons/icon/files/crews/commandant.icon';
 import { operateurRadioIcon } from './commons/icon/files/crews/operateur-radio.icon';
 import { piloteDeCharsIcon } from './commons/icon/files/crews/pilote-de-chars.icon';
 import { tireurIcon } from './commons/icon/files/crews/tireur.icon';
 import { castleIcon } from './commons/icon/files/other/castle.icon';
+import { changelogIcon } from './commons/icon/files/other/changelog.icon';
+import { informationIcon } from './commons/icon/files/other/information.icon';
 import { mapIcon } from './commons/icon/files/other/map.icon';
 import { okIcon } from './commons/icon/files/other/ok.icon';
+import { pencilIcon } from './commons/icon/files/other/pencil.icon';
+import { plusIcon } from './commons/icon/files/other/plus.icon';
+import { serverIcon } from './commons/icon/files/other/server.icon';
+import { visitorIcon } from './commons/icon/files/other/visitor.icon';
+import { wrenchIcon } from './commons/icon/files/other/wrench.icon';
 import { amxM4Mle54Icon } from './commons/icon/files/tanks/amx_m4_mle54.icon';
 import { cs63Icon } from './commons/icon/files/tanks/cs-63.icon';
 import { ebr105Icon } from './commons/icon/files/tanks/ebr_105.icon';
@@ -23,6 +30,7 @@ import { strv103bIcon } from './commons/icon/files/tanks/strv_103b.icon';
 import { superConquerorIcon } from './commons/icon/files/tanks/super_conqueror.icon';
 import { t110e3Icon } from './commons/icon/files/tanks/t110e3.icon';
 import { t95Fv4201ChieftainIcon } from './commons/icon/files/tanks/t95_fv4201_chieftain.icon';
+import { AuthenticationService } from './commons/services/authentication.service';
 import { IconRegistryService } from './commons/services/icon-registry.service';
 import { ModeStore } from './commons/stores/mode.store';
 
@@ -30,15 +38,22 @@ import { ModeStore } from './commons/stores/mode.store';
     selector: 'app-root',
     templateUrl: './app.component.html',
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
     protected title: string = 'app';
 
     constructor(
         private iconRegistry: IconRegistryService,
+        private auth: AuthenticationService,
         private modeStore: ModeStore
     ) {
         this.registerIcons();
         this.onResize({});
+    }
+
+    ngOnInit(): void {
+        if (!this.auth.isLoggedIn()) {
+            this.auth.login();
+        }
     }
 
     @HostListener('window:resize', ['$event'])
@@ -76,6 +91,13 @@ export class AppComponent {
             operateurRadioIcon,
             piloteDeCharsIcon,
             tireurIcon,
+            wrenchIcon,
+            pencilIcon,
+            plusIcon,
+            changelogIcon,
+            informationIcon,
+            serverIcon,
+            visitorIcon,
         ]);
     }
 }
