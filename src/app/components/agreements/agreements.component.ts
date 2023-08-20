@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { FillEnum } from '../../commons/enums/fill.enum';
 import { ModeInterface } from '../../commons/interfaces/mode.interface';
 import { WordingService } from '../../commons/services/wording.service';
 import { FooterStore } from '../../commons/stores/footer.store';
@@ -16,6 +17,8 @@ import { SentenceCasePipe } from '../../pipes/sentenceCase/sentence-case.pipe';
 })
 export class AgreementsComponent implements OnInit, OnDestroy {
     protected isDarkMode: boolean;
+
+    protected readonly FillEnum = FillEnum;
 
     private modeSubscribe: Subscription;
 

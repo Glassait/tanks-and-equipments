@@ -2,32 +2,32 @@
     "changelog": [
         {
             "version": "1.1.9",
+            "add": [
+                "Ajout des liens pour `Tanks.gg` et `Wot Inspector` pour chaque char",
+                "Ajout de l'icône de redirection"
+            ],
             "modified": [
                 "Suppression du remplissage verticale sur la page clan war",
                 "Augmentation du remplissage horizontale sur la page clan war",
                 "Désactivation de la page clan war sur mobile",
-                "La gestion du style de la page `Journal des modifications`"
+                "L'affichage de la page `Journal des modifications`",
+                "Renommage du `Object 279` en `Object 279 early`",
+                "Renommage du `EBR 105` en `Panhard EBR 105`"
             ]
         },
         {
-            "version": "1.1.8.2",
+            "version": "1.1.8",
             "add": [
                 "Un pied de page contenant l'ensemble des pages accessibles",
                 "La page \"Journal des modifications\" contenant l'ensemble des versions du site",
                 "Redirection automatique vers la page d'accueil en cas d'URL incorrecte",
                 "Ajout du règlement du clan dans le footer"
-            ]
-        },
-        {
-            "version": "1.1.8.1",
+            ],
             "modified": [
                 "La connexion se fait désormais dans le composant principal",
                 "L'ombrage de l'en-tête et des cartes",
                 "Mise à jour de l'attribut `fill` des icônes afin de ne plus utiliser `filter`"
-            ]
-        },
-        {
-            "version": "1.1.8",
+            ],
             "fixed": [
                 "Retrait de l'instruction `console.log` affichant les jetons de connexion"
             ]
@@ -37,11 +37,8 @@
             "modified": ["La liste des membres du clan"]
         },
         {
-            "version": "1.1.6.1",
-            "modified": ["Les versions des dépendances NPM"]
-        },
-        {
             "version": "1.1.6",
+            "modified": ["Les versions des dépendances NPM"],
             "add": [
                 "Mise en cookie des appels à l'API de Wargaming",
                 "Changement automatique du titre de la page"

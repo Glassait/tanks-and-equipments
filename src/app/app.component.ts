@@ -12,12 +12,12 @@ import { mapIcon } from './commons/icon/files/other/map.icon';
 import { okIcon } from './commons/icon/files/other/ok.icon';
 import { pencilIcon } from './commons/icon/files/other/pencil.icon';
 import { plusIcon } from './commons/icon/files/other/plus.icon';
+import { redirectIcon } from './commons/icon/files/other/redirect.icon';
 import { serverIcon } from './commons/icon/files/other/server.icon';
 import { visitorIcon } from './commons/icon/files/other/visitor.icon';
 import { wrenchIcon } from './commons/icon/files/other/wrench.icon';
 import { amxM4Mle54Icon } from './commons/icon/files/tanks/amx_m4_mle54.icon';
 import { cs63Icon } from './commons/icon/files/tanks/cs-63.icon';
-import { ebr105Icon } from './commons/icon/files/tanks/ebr_105.icon';
 import { is7Icon } from './commons/icon/files/tanks/is-7.icon';
 import { kpz07pEIcon } from './commons/icon/files/tanks/kampfpanzer_07_p(e)';
 import { leopard1Icon } from './commons/icon/files/tanks/leopard_1.icon';
@@ -25,8 +25,9 @@ import { object140Icon } from './commons/icon/files/tanks/object_140.icon';
 import { object260Icon } from './commons/icon/files/tanks/object_260.icon';
 import { object268version4Icon } from './commons/icon/files/tanks/object_268_version_4.icon';
 import { object277Icon } from './commons/icon/files/tanks/object_277.icon';
-import { object279Icon } from './commons/icon/files/tanks/object_279.icon';
+import { object279EarlyIcon } from './commons/icon/files/tanks/object_279_early.icon';
 import { object907Icon } from './commons/icon/files/tanks/object_907.icon';
+import { panhardEbr105Icon } from './commons/icon/files/tanks/panhard_ebr_105.icon';
 import { strv103bIcon } from './commons/icon/files/tanks/strv_103b.icon';
 import { superConquerorIcon } from './commons/icon/files/tanks/super_conqueror.icon';
 import { t110e3Icon } from './commons/icon/files/tanks/t110e3.icon';
@@ -73,14 +74,14 @@ export class AppComponent implements OnInit {
             okIcon,
             amxM4Mle54Icon,
             cs63Icon,
-            ebr105Icon,
+            panhardEbr105Icon,
             is7Icon,
             leopard1Icon,
             object140Icon,
             object260Icon,
             object268version4Icon,
             object277Icon,
-            object279Icon,
+            object279EarlyIcon,
             object907Icon,
             strv103bIcon,
             superConquerorIcon,
@@ -100,6 +101,7 @@ export class AppComponent implements OnInit {
             serverIcon,
             visitorIcon,
             agreementIcon,
+            redirectIcon,
         ]);
     }
 }

@@ -4,7 +4,7 @@
     >
         <mat-card-header>
             <icon
-                [fill]="isDarkMode ? 'white' : 'black'"
+                [fill]="isDarkMode ? FillEnum.WHITE : FillEnum.BLACK"
                 [size]="40"
                 icon="agreement"
                 mat-card-avatar
@@ -39,7 +39,7 @@
                     <div class="ml-8 break-all text-justify">
                         {{ (wording | getAgreement).part2Text }}
                         <a
-                            class="inline-block text-linkLight underline dark:text-linkDark"
+                            class="inline-block text-link_light underline dark:text-link_dark"
                             href="https://docs.google.com/spreadsheets/d/1VQhiiMaQqsH-zwiUaX-eH9NTBeBciRtqVCDck8WyTSU/edit?usp=sharing"
                             rel="noreferrer"
                             target="_blank"
@@ -56,7 +56,7 @@
                     <div class="ml-8 break-all text-justify">
                         {{ (wording | getAgreement).part3Text }}
                         <a
-                            class="inline-block text-linkLight underline dark:text-linkDark"
+                            class="inline-block text-link_light underline dark:text-link_dark"
                             href="https://docs.google.com/spreadsheets/d/1f29HKQZ351By2dozf-m5daCGZN5y2gcO-ViVMKBeWl8/edit?usp=sharing"
                             rel="noreferrer"
                             target="_blank"

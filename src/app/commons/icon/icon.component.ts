@@ -4,29 +4,23 @@ import {
     ElementRef,
     Inject,
     Input,
-    OnChanges,
     OnInit,
     Optional,
-    SimpleChanges,
 } from '@angular/core';
 import { IconRegistryService } from 'src/app/commons/services/icon-registry.service';
 import { Icons } from 'src/app/commons/types/icon.type';
+import { FillEnum } from '../enums/fill.enum';
 
 @Component({
     selector: 'icon',
-    template: '<div class="{{ fillString }}"></div>',
+    template: '<div class="{{ fill }}"></div>',
 })
-export class IconComponent implements OnInit, OnChanges {
+export class IconComponent implements OnInit {
     @Input() icon: Icons | string;
     @Input() size: number = 70;
     @Input() width: number;
     @Input() height: number;
-    @Input() fill: 'white' | 'black';
-
-    protected fillString: string;
-
-    private blackFill: string = 'fill-secondary_light';
-    private whiteFill: string = 'fill-secondary_dark';
+    @Input() fill: FillEnum;
 
     constructor(
         private iconRegistry: IconRegistryService,
@@ -35,26 +29,11 @@ export class IconComponent implements OnInit, OnChanges {
     ) {}
 
     ngOnInit(): void {
-        this.setFillStr();
-
         this.element.nativeElement
             .querySelector('div')
             .appendChild(
                 this._svgElementFromString(this.iconRegistry.get(this.icon))
             );
-    }
-
-    ngOnChanges(changes: SimpleChanges): void {
-        if (changes['fill'] && changes['fill']['currentValue']) {
-            this.setFillStr();
-        }
-    }
-
-    private setFillStr(): void {
-        if (this.fill) {
-            this.fillString =
-                this.fill === 'white' ? this.whiteFill : this.blackFill;
-        }
     }
 
     private _svgElementFromString(svgContent: string | undefined): SVGElement {
