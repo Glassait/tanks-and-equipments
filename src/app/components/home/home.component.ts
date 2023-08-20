@@ -14,6 +14,7 @@ import {
     WotClanRatingsRequest,
     WotServerRequest,
 } from 'src/app/commons/types/clan-ratings.type';
+import { FillEnum } from '../../commons/enums/fill.enum';
 import { ModeInterface } from '../../commons/interfaces/mode.interface';
 import { FooterStore } from '../../commons/stores/footer.store';
 import { ModeStore } from '../../commons/stores/mode.store';
@@ -31,6 +32,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     protected wotClanRatings: WotClanRatingsRequest;
     protected isVisitor: boolean;
     protected isDarkMode: boolean;
+
+    protected readonly FillEnum = FillEnum;
 
     private memberSubscribe: Subscription;
     private modeSubscribe: Subscription;

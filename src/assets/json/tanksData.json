@@ -168,7 +168,17 @@
                     "Grand kit de réparation",
                     "Rations de combat supplémentaires"
                 ]
-            }
+            },
+            "links": [
+                {
+                    "name": "Tanks.gg",
+                    "url": "https://tanks.gg/tank/obj-277"
+                },
+                {
+                    "name": "WoT Inspector",
+                    "url": "https://armor.wotinspector.com/en/pc/22017-object-277/?mode=xray.modules"
+                }
+            ]
         },
         {
             "name": "Object 260",
@@ -338,7 +348,17 @@
                     "Grand kit de réparation",
                     "Rations de combat supplémentaires"
                 ]
-            }
+            },
+            "links": [
+                {
+                    "name": "Tanks.gg",
+                    "url": "https://tanks.gg/tank/obj-260"
+                },
+                {
+                    "name": "WoT Inspector",
+                    "url": "https://armor.wotinspector.com/en/pc/58369-object-260/?mode=xray.modules"
+                }
+            ]
         },
         {
             "name": "Object 907",
@@ -513,7 +533,17 @@
                     "Grand kit de réparation",
                     "Rations de combat supplémentaires"
                 ]
-            }
+            },
+            "links": [
+                {
+                    "name": "Tanks.gg",
+                    "url": "https://tanks.gg/tank/obj-907"
+                },
+                {
+                    "name": "WoT Inspector",
+                    "url": "https://tanks.gg/tank/obj-907"
+                }
+            ]
         },
         {
             "name": "Object 140",
@@ -688,7 +718,17 @@
                     "Grand kit de réparation",
                     "Rations de combat supplémentaires"
                 ]
-            }
+            },
+            "links": [
+                {
+                    "name": "Tanks.gg",
+                    "url": "https://tanks.gg/tank/obj-140"
+                },
+                {
+                    "name": "WoT Inspector",
+                    "url": "https://armor.wotinspector.com/en/pc/16897-object-140/?mode=xray.modules"
+                }
+            ]
         },
         {
             "name": "T95/FV4201 Chieftain",
@@ -868,7 +908,17 @@
                     "Grand kit de réparation",
                     "Pudding et thé"
                 ]
-            }
+            },
+            "links": [
+                {
+                    "name": "Tanks.gg",
+                    "url": "https://tanks.gg/tank/t95fv4201"
+                },
+                {
+                    "name": "WoT Inspector",
+                    "url": "https://armor.wotinspector.com/en/pc/57937-t95fv4201-chieftain/?mode=xray.modules"
+                }
+            ]
         },
         {
             "name": "Super Conqueror",
@@ -1048,7 +1098,17 @@
                     "Grand kit de réparation",
                     "Pudding et thé"
                 ]
-            }
+            },
+            "links": [
+                {
+                    "name": "Tanks.gg",
+                    "url": "https://tanks.gg/tank/s-conqueror"
+                },
+                {
+                    "name": "WoT Inspector",
+                    "url": "https://armor.wotinspector.com/en/pc/15697-super-conqueror/?mode=xray.modules"
+                }
+            ]
         },
         {
             "name": "CS-63",
@@ -1228,7 +1288,17 @@
                     "Grand kit de réparation",
                     "Tartines de smalec"
                 ]
-            }
+            },
+            "links": [
+                {
+                    "name": "Tanks.gg",
+                    "url": "https://tanks.gg/tank/cs-63"
+                },
+                {
+                    "name": "WoT Inspector",
+                    "url": "https://armor.wotinspector.com/en/pc/5265-cs63/?mode=xray.modules"
+                }
+            ]
         },
         {
             "name": "T110E3",
@@ -1419,10 +1489,20 @@
                     "Grand kit de réparation",
                     "Caisse de cola"
                 ]
-            }
+            },
+            "links": [
+                {
+                    "name": "Tanks.gg",
+                    "url": "https://tanks.gg/tank/t110e3"
+                },
+                {
+                    "name": "WoT Inspector",
+                    "url": "https://armor.wotinspector.com/en/pc/13857-t110e3/?mode=xray.modules"
+                }
+            ]
         },
         {
-            "name": "EBR 105",
+            "name": "Panhard EBR 105",
             "priority": 4,
             "crew": [
                 "Commandant",
@@ -1599,10 +1679,20 @@
                     "Grand kit de réparation",
                     "Café fort"
                 ]
-            }
+            },
+            "links": [
+                {
+                    "name": "Tanks.gg",
+                    "url": "https://tanks.gg/tank/ebr-105"
+                },
+                {
+                    "name": "WoT Inspector",
+                    "url": "https://armor.wotinspector.com/en/pc/19009-panhard-ebr-105/?mode=xray.modules"
+                }
+            ]
         },
         {
-            "name": "Object 279",
+            "name": "Object 279 early",
             "priority": 4,
             "crew": ["Commandant", "Tireur", "Pilote de char", "Chargeur"],
             "skills": [
@@ -1774,7 +1864,17 @@
                     "Grand kit de réparation",
                     "Rations de combat supplémentaires"
                 ]
-            }
+            },
+            "links": [
+                {
+                    "name": "Tanks.gg",
+                    "url": "https://tanks.gg/tank/obj-279-e"
+                },
+                {
+                    "name": "WoT Inspector",
+                    "url": "https://armor.wotinspector.com/en/pc/46849-object-279-early/?mode=xray.modules"
+                }
+            ]
         },
         {
             "name": "Object 268 version 4",
@@ -1965,7 +2065,17 @@
                     "Grand kit de réparation",
                     "Rations de combat supplémentaires"
                 ]
-            }
+            },
+            "links": [
+                {
+                    "name": "Tanks.gg",
+                    "url": "https://tanks.gg/tank/obj-2684"
+                },
+                {
+                    "name": "WoT Inspector",
+                    "url": "https://armor.wotinspector.com/en/pc/20225-object-268-version-4/?mode=xray.modules"
+                }
+            ]
         },
         {
             "name": "Leopard 1",
@@ -2145,7 +2255,17 @@
                     "Grand kit de réparation",
                     "Chocolat"
                 ]
-            }
+            },
+            "links": [
+                {
+                    "name": "Tanks.gg",
+                    "url": "https://tanks.gg/tank/leopard-1"
+                },
+                {
+                    "name": "WoT Inspector",
+                    "url": "https://armor.wotinspector.com/en/pc/14609-leopard-1/?mode=xray.modules"
+                }
+            ]
         },
         {
             "name": "STRV 103B",
@@ -2304,7 +2424,17 @@
                     "Grand kit de réparation",
                     "Café avec brioches à la cannelle"
                 ]
-            }
+            },
+            "links": [
+                {
+                    "name": "Tanks.gg",
+                    "url": "https://tanks.gg/tank/strv-103b"
+                },
+                {
+                    "name": "WoT Inspector",
+                    "url": "https://armor.wotinspector.com/en/pc/4737-strv-103b/?mode=xray.modules"
+                }
+            ]
         },
         {
             "name": "IS-7",
@@ -2495,7 +2625,17 @@
                     "Grand kit de réparation",
                     "Rations de combat supplémentaires"
                 ]
-            }
+            },
+            "links": [
+                {
+                    "name": "Tanks.gg",
+                    "url": "https://tanks.gg/tank/is-7"
+                },
+                {
+                    "name": "WoT Inspector",
+                    "url": "https://armor.wotinspector.com/en/pc/7169-is7/?mode=xray.modules"
+                }
+            ]
         },
         {
             "name": "Kampfpanzer 07 P(E)",
@@ -2686,7 +2826,17 @@
                     "Grand kit de réparation",
                     "Chocolat"
                 ]
-            }
+            },
+            "links": [
+                {
+                    "name": "Tanks.gg",
+                    "url": "https://tanks.gg/tank/kpz-07-pe"
+                },
+                {
+                    "name": "WoT Inspector",
+                    "url": "https://armor.wotinspector.com/en/pc/22801-kampfpanzer-07-pe/?mode=xray.modules"
+                }
+            ]
         }
     ]
 }

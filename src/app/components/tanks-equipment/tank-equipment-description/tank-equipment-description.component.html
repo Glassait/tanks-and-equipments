@@ -1,6 +1,25 @@
 <div
-    class="flex flex-wrap justify-center gap-6 pb-4 pt-5 desktop:justify-around"
+    class="relative flex flex-wrap justify-center gap-6 pb-4 pt-5 desktop:justify-around"
 >
+    <div
+        class="absolute -top-2 right-2 flex gap-5 fill-link_light text-normal text-link_light dark:text-link_dark"
+    >
+        <a
+            *ngFor="let link of tankData.links"
+            class="flex items-center gap-2 underline"
+            href="{{ link.url }}"
+            rel="noreferrer"
+            target="_blank"
+        >
+            {{ link.name }}
+            <icon
+                [fill]="isDark ? FillEnum.LINK_DARK : FillEnum.LINK_LIGHT"
+                [size]="16"
+                icon="redirect"
+            ></icon>
+        </a>
+    </div>
+
     <div
         class="flex flex-grow-[0.2] flex-col items-center justify-center gap-4 tablette:flex-row tablette:gap-4 desktop:flex-grow-0 desktop:flex-col"
     >
@@ -9,7 +28,7 @@
         >
             <icon
                 *ngFor="let crew of tankData?.crew"
-                [fill]="isDark ? 'white' : 'black'"
+                [fill]="isDark ? FillEnum.WHITE : FillEnum.BLACK"
                 [size]="isMobile ? 54 : 69"
                 class="rounded border-[1px] border-secondary_light dark:border-secondary_dark"
                 icon="{{ crew | image }}"

@@ -15,8 +15,8 @@ module.exports = {
             hover_background_dark: '#161616',
             ok: '#51E839',
             ko: '#EE1E1E',
-            linkLight: '#0500FF',
-            linkDark: '#908DFF',
+            link_light: '#0500FF',
+            link_dark: '#908DFF',
         },
         screens: {
             tablette: '768px',

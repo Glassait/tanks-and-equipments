@@ -40,6 +40,11 @@ export type Directive = {
     image: string;
 };
 
+export type Link = {
+    name: string;
+    url: string;
+};
+
 export type TankData = {
     name: string;
     priority: number;
@@ -50,6 +55,7 @@ export type TankData = {
     equipments: Equipments;
     consumables: Consumables;
     directive: Directive;
+    links: Link[];
 };
 
 export type Tanks = {
