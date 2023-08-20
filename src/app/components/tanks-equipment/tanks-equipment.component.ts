@@ -60,7 +60,7 @@ export class TanksEquipmentComponent implements OnDestroy {
         this.headerStore.patch({
             showHome: true,
             showTank: false,
-            showWar: true,
+            showWar: !this.modeStore.get('mobile'),
         });
 
         this.footerStore.patch({
