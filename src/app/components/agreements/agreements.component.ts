@@ -52,7 +52,7 @@ export class AgreementsComponent implements OnInit, OnDestroy {
         this.headerStore.patch({
             showHome: true,
             showTank: true,
-            showWar: true,
+            showWar: !this.modeStore.get('mobile'),
         });
 
         this.footerStore.patch({

@@ -5,6 +5,7 @@ import { HeaderStore } from 'src/app/commons/stores/header.store';
 import { MemberStore } from 'src/app/commons/stores/member.store';
 import { WordingService } from '../../commons/services/wording.service';
 import { FooterStore } from '../../commons/stores/footer.store';
+import { ModeStore } from '../../commons/stores/mode.store';
 import { SentenceCasePipe } from '../../pipes/sentenceCase/sentence-case.pipe';
 
 @Component({
@@ -17,6 +18,7 @@ export class ClanWarComponent {
         private headerStore: HeaderStore,
         private memberStore: MemberStore,
         private footerStore: FooterStore,
+        private modeStore: ModeStore,
         private router: Router,
         private title: Title
     ) {
@@ -42,7 +44,7 @@ export class ClanWarComponent {
     }
 
     private checkUser(): void {
-        if (this.memberStore.isVisitor()) {
+        if (this.memberStore.isVisitor() || this.modeStore.get('mobile')) {
             this.router.navigate(['/']).then((): void => {
                 // Ignored
             });

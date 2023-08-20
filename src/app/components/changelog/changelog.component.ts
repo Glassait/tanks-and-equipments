@@ -4,6 +4,7 @@ import { ChangelogService } from '../../commons/services/changelog.service';
 import { WordingService } from '../../commons/services/wording.service';
 import { FooterStore } from '../../commons/stores/footer.store';
 import { HeaderStore } from '../../commons/stores/header.store';
+import { ModeStore } from '../../commons/stores/mode.store';
 import { VersionType } from '../../commons/types/version.type';
 import { SentenceCasePipe } from '../../pipes/sentenceCase/sentence-case.pipe';
 
@@ -19,6 +20,7 @@ export class ChangelogComponent {
         private wording: WordingService,
         private headerStore: HeaderStore,
         private footerStore: FooterStore,
+        private modeStore: ModeStore,
         private title: Title
     ) {
         this.patchHeaderAndFooter();
@@ -34,7 +36,7 @@ export class ChangelogComponent {
         this.headerStore.patch({
             showHome: true,
             showTank: true,
-            showWar: true,
+            showWar: !this.modeStore.get('mobile'),
         });
 
         this.footerStore.patch({

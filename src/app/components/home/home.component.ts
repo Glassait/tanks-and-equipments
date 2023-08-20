@@ -83,7 +83,7 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.headerStore.patch({
             showHome: false,
             showTank: true,
-            showWar: true,
+            showWar: !this.modeStore.get('mobile'),
         });
 
         this.footerStore.patch({

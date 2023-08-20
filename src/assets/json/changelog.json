@@ -1,6 +1,15 @@
 {
     "changelog": [
         {
+            "version": "1.1.9",
+            "modified": [
+                "Suppression du remplissage verticale sur la page clan war",
+                "Augmentation du remplissage horizontale sur la page clan war",
+                "Désactivation de la page clan war sur mobile",
+                "La gestion du style de la page `Journal des modifications`"
+            ]
+        },
+        {
             "version": "1.1.8.2",
             "add": [
                 "Un pied de page contenant l'ensemble des pages accessibles",
@@ -20,7 +29,7 @@
         {
             "version": "1.1.8",
             "fixed": [
-                "Retrait de l'instruction console.log affichant les jetons de connexion"
+                "Retrait de l'instruction `console.log` affichant les jetons de connexion"
             ]
         },
         {
