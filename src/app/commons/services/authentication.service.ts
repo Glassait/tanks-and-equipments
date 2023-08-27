@@ -12,7 +12,7 @@ import { SessionStorageService } from './session-storage.service';
     providedIn: 'root',
 })
 export class AuthenticationService {
-    private tokenKey = 'token';
+    private tokenKey: string = 'token';
 
     constructor(
         private authenticationClient: AuthenticationClientService,

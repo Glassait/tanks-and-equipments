@@ -35,7 +35,6 @@ import { ImagePipe } from './pipes/image/image.pipe';
 import { PathPipe } from './pipes/inventory/path.pipe';
 import { ReplacePipe } from './pipes/replace/replace.pipe';
 import { SentenceCasePipe } from './pipes/sentenceCase/sentence-case.pipe';
-import { DataPipe } from './pipes/tank/data.pipe';
 import { AgreementPipe } from './pipes/wording/agreement.pipe';
 import { ChangelogPipe } from './pipes/wording/changelog.pipe';
 import { FooterPipe } from './pipes/wording/footer.pipe';
@@ -68,7 +67,6 @@ if (environment.production) {
         ReplacePipe,
         PathPipe,
         HomePipe,
-        DataPipe,
         FieldUrlPipe,
         ClanDataPipe,
         SentenceCasePipe,

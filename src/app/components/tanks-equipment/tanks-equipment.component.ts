@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -9,25 +9,31 @@ import { ModeInterface } from '../../commons/interfaces/mode.interface';
 import { WordingService } from '../../commons/services/wording.service';
 import { FooterStore } from '../../commons/stores/footer.store';
 import { ModeStore } from '../../commons/stores/mode.store';
+import { TanksDataStore } from '../../commons/stores/tanks-data.store';
+import { TankData } from '../../commons/types/tanks-data.type';
 import { SentenceCasePipe } from '../../pipes/sentenceCase/sentence-case.pipe';
 
 @Component({
     selector: 'app-tanks-equipment',
     templateUrl: './tanks-equipment.component.html',
 })
-export class TanksEquipmentComponent implements OnDestroy {
+export class TanksEquipmentComponent implements OnInit, OnDestroy {
+    protected showSpinner: boolean = true;
     protected isDark: boolean;
     protected isMobile: boolean;
+
+    protected tanksData: TankData[];
 
     private modeSubscribe: Subscription;
 
     constructor(
-        protected tanksData: TanksDataService,
         private wording: WordingService,
+        private tankDataService: TanksDataService,
         private headerStore: HeaderStore,
         private memberStore: MemberStore,
         private modeStore: ModeStore,
         private footerStore: FooterStore,
+        private tanksDataStore: TanksDataStore,
         private router: Router,
         private title: Title
     ) {
@@ -40,6 +46,10 @@ export class TanksEquipmentComponent implements OnDestroy {
                 this.wording.header.charEtEquipement
             )
         );
+    }
+
+    ngOnInit(): void {
+        this.getTanksData();
     }
 
     ngOnDestroy(): void {
@@ -76,5 +86,25 @@ export class TanksEquipmentComponent implements OnDestroy {
                 this.isDark = modeInterface.dark;
                 this.isMobile = modeInterface.mobile;
             });
+    }
+
+    private getTanksData(): void {
+        if (this.tanksDataStore.get('data').length > 0) {
+            this.tanksData = this.tanksDataStore.get('data');
+            this.showSpinner = false;
+        } else {
+            this.tankDataService.queryTanksData().subscribe({
+                next: (tankData: TankData[]): void => {
+                    this.tanksData = tankData;
+                    this.tanksDataStore.set('data', tankData);
+                },
+                error: err => {
+                    console.log(err);
+                },
+                complete: (): void => {
+                    this.showSpinner = false;
+                },
+            });
+        }
     }
 }

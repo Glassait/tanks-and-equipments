@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { HeaderStore } from 'src/app/commons/stores/header.store';
 import { MemberStore } from 'src/app/commons/stores/member.store';
 import { WordingService } from '../../commons/services/wording.service';
+import { FeatureStore } from '../../commons/stores/feature.store';
 import { FooterStore } from '../../commons/stores/footer.store';
 import { ModeStore } from '../../commons/stores/mode.store';
 import { SentenceCasePipe } from '../../pipes/sentenceCase/sentence-case.pipe';
@@ -19,6 +20,7 @@ export class ClanWarComponent {
         private memberStore: MemberStore,
         private footerStore: FooterStore,
         private modeStore: ModeStore,
+        private featureStore: FeatureStore,
         private router: Router,
         private title: Title
     ) {
@@ -44,7 +46,11 @@ export class ClanWarComponent {
     }
 
     private checkUser(): void {
-        if (this.memberStore.isVisitor() || this.modeStore.get('mobile')) {
+        if (
+            this.memberStore.isVisitor() ||
+            this.modeStore.get('mobile') ||
+            !this.featureStore.get('clanWar')
+        ) {
             this.router.navigate(['/']).then((): void => {
                 // Ignored
             });

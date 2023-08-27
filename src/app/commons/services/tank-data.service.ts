@@ -1,14 +1,25 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import tanksData from 'src/assets/json/tanksData.json';
-import { TankData, Tanks } from '../types/tanks-data.type';
+import { Observable } from 'rxjs';
+import { MemberStore } from '../stores/member.store';
+import { InventoryService } from './inventory.service';
 
 @Injectable({
     providedIn: 'root',
 })
 export class TanksDataService {
-    private _tanksData: Tanks = tanksData as Tanks;
+    constructor(
+        private httpClient: HttpClient,
+        private inventoryClass: InventoryService,
+        private memberStore: MemberStore
+    ) {}
 
-    public getTankDataArray(): TankData[] {
-        return this._tanksData.data;
+    public queryTanksData(): Observable<any> {
+        return this.httpClient.get(
+            this.inventoryClass.getLchpApi().liveUrl +
+                this.inventoryClass.getLchpApi().tanks +
+                '/' +
+                this.memberStore.get('accessToken')
+        );
     }
 }
