@@ -1,10 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { InventoryService } from './inventory.service';
 import { environment } from 'src/environments/environment';
 import { ArrayCustom } from '../classes/array-custom.class';
 import { WindowsCustom } from '../classes/windows-custom.class';
+import { InventoryService } from './inventory.service';
 
 @Injectable({
     providedIn: 'root',
@@ -19,7 +19,7 @@ export class AuthenticationClientService {
         if (environment.production) {
             if (WindowsCustom.getSearch() === '') {
                 WindowsCustom.setCurrentUrl(
-                    this.inventoryClass.getWargammingApi().login +
+                    this.inventoryClass.getWargamingApi().login +
                         `&redirect_uri=${WindowsCustom.getHref()}`
                 );
             }
@@ -30,6 +30,6 @@ export class AuthenticationClientService {
             );
         }
 
-        return this.http.get(this.inventoryClass.getWargammingApi().loginMock);
+        return this.http.get(this.inventoryClass.getWargamingApi().loginMock);
     }
 }

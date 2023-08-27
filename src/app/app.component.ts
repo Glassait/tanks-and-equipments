@@ -1,4 +1,7 @@
 import { Component, HostListener, OnInit } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
+import { DateCustomClass } from './commons/classes/date-custom.class';
+import { CookieNameEnum } from './commons/enums/cookie-name.enum';
 import { chargeurIcon } from './commons/icon/files/crews/chargeur.icon';
 import { commandantIcon } from './commons/icon/files/crews/commandant.icon';
 import { operateurRadioIcon } from './commons/icon/files/crews/operateur-radio.icon';
@@ -32,8 +35,11 @@ import { strv103bIcon } from './commons/icon/files/tanks/strv_103b.icon';
 import { superConquerorIcon } from './commons/icon/files/tanks/super_conqueror.icon';
 import { t110e3Icon } from './commons/icon/files/tanks/t110e3.icon';
 import { t95Fv4201ChieftainIcon } from './commons/icon/files/tanks/t95_fv4201_chieftain.icon';
+import { FeatureInterface } from './commons/interfaces/feature.interface';
 import { AuthenticationService } from './commons/services/authentication.service';
+import { FeatureFlippingService } from './commons/services/feature-flipping.service';
 import { IconRegistryService } from './commons/services/icon-registry.service';
+import { FeatureStore } from './commons/stores/feature.store';
 import { ModeStore } from './commons/stores/mode.store';
 
 @Component({
@@ -43,10 +49,15 @@ import { ModeStore } from './commons/stores/mode.store';
 export class AppComponent implements OnInit {
     protected title: string = 'app';
 
+    private featureFlipping: FeatureInterface;
+
     constructor(
         private iconRegistry: IconRegistryService,
         private auth: AuthenticationService,
-        private modeStore: ModeStore
+        private featureService: FeatureFlippingService,
+        private cookie: CookieService,
+        private modeStore: ModeStore,
+        private featureStore: FeatureStore
     ) {
         this.registerIcons();
         this.onResize({});
@@ -56,6 +67,7 @@ export class AppComponent implements OnInit {
         if (!this.auth.isLoggedIn()) {
             this.auth.login();
         }
+        this.getFeature();
     }
 
     @HostListener('window:resize', ['$event'])
@@ -103,5 +115,31 @@ export class AppComponent implements OnInit {
             agreementIcon,
             redirectIcon,
         ]);
+    }
+
+    private getFeature(): void {
+        const cookie: string = this.cookie.get(CookieNameEnum.FEATURE);
+        if (cookie) {
+            this.featureStore.patch(JSON.parse(cookie));
+            return;
+        }
+
+        this.featureService.queryFeature().subscribe({
+            next: (value: FeatureInterface): void => {
+                console.log(value);
+                this.featureStore.patch(value);
+                this.featureFlipping = value;
+            },
+            error: err => {
+                console.log(err);
+            },
+            complete: (): void => {
+                this.cookie.set(
+                    CookieNameEnum.FEATURE,
+                    JSON.stringify(this.featureFlipping),
+                    DateCustomClass.getMidnightDate()
+                );
+            },
+        });
     }
 }
