@@ -14,19 +14,19 @@ export class WotApiService {
 
     getServeurStatus(): Observable<any> {
         return this.httpClient.get(
-            this.inventoryClass.getWargammingApi().gameServers
+            this.inventoryClass.getWargamingApi().gameServers
         );
     }
 
     getClanRatings(): Observable<any> {
         return this.httpClient.get(
-            this.inventoryClass.getWargammingApi().clanRatings
+            this.inventoryClass.getWargamingApi().clanRatings
         );
     }
 
     getMembers(): Observable<any> {
         return this.httpClient.get(
-            this.inventoryClass.getWargammingApi().clanMembers
+            this.inventoryClass.getWargamingApi().clanMembers
         );
     }
 }

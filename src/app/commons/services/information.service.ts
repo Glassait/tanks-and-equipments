@@ -1,21 +1,21 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import information from 'src/assets/json/information.json';
+import { Observable } from 'rxjs';
+import { InventoryService } from './inventory.service';
 
 @Injectable({
     providedIn: 'root',
 })
 export class InformationService {
-    private _information = information;
+    constructor(
+        private httpClient: HttpClient,
+        private inventoryClass: InventoryService
+    ) {}
 
-    public getText(): string {
-        return this._information.text;
-    }
-
-    public getURL(): string {
-        return this._information.lien.url;
-    }
-
-    public getLinkText(): string {
-        return this._information.lien.text;
+    public queryInformation(): Observable<any> {
+        return this.httpClient.get(
+            this.inventoryClass.getLchpApi().liveUrl +
+                this.inventoryClass.getLchpApi().information
+        );
     }
 }
