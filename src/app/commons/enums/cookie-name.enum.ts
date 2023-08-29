@@ -3,4 +3,6 @@ export enum CookieNameEnum {
     CLAN_RATINGS = 'clanRatings',
     INFORMATION = 'information',
     FEATURE = 'feature',
+    TANKS_DATE = 'tanks_date',
+    TANKS = 'tanks',
 }

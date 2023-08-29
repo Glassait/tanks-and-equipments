@@ -126,7 +126,6 @@ export class AppComponent implements OnInit {
 
         this.featureService.queryFeature().subscribe({
             next: (value: FeatureInterface): void => {
-                console.log(value);
                 this.featureStore.patch(value);
                 this.featureFlipping = value;
             },
