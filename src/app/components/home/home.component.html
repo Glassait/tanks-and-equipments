@@ -41,7 +41,7 @@
         >
             <div *ngIf='!showSpinnerInformationCard' class="space-y-4 whitespace-pre-line text-justify">
                 <div>{{ information.text}}</div>
-                <div *ngIf='information.lien' class="flex justify-end">
+                <div *ngIf='information.lien.url' class="flex justify-end">
                     <a
                         [routerLink]="information.lien.url"
                         class="flex space-x-4 text-link_light underline dark:text-link_dark"

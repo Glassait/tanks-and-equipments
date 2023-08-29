@@ -5,6 +5,9 @@
             "add": [
                 "Mise en place d'une API pour accroître la flexibilité du site",
                 "Mise en place d'une base de données pour faciliter les modifications des valeurs de manière plus intuitive"
+            ],
+            "fixed": [
+                "Suppression de l'instruction `localStorage.clear`"
             ]
         },
         {
@@ -17,9 +20,9 @@
                 "Élimination de l'espacement vertical sur la page Clan War",
                 "Accroissement de la marge horizontale sur la page Clan War",
                 "Désactivation de la page Clan War sur les appareils mobiles",
-                "Affichage de la page 'Journal des modifications'",
-                "Changement de nom de 'Object 279' en 'Object 279 early'",
-                "Changement de nom de 'EBR 105' en 'Panhard EBR 105'"
+                "Affichage de la page `Journal des modifications`",
+                "Changement de nom de `Object 279` en `Object 279 early`",
+                "Changement de nom de `EBR 105` en `Panhard EBR 105`"
             ]
         },
         {
@@ -36,7 +39,7 @@
                 "Actualisation de l'attribut fill des icônes pour éliminer l'utilisation du filter"
             ],
             "fixed": [
-                "Suppression de l'instruction console.log affichant les jetons de connexion"
+                "Suppression de l'instruction `console.log` affichant les jetons de connexion"
             ]
         },
         {

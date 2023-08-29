@@ -23,10 +23,4 @@ export class WotApiService {
             this.inventoryClass.getWargamingApi().clanRatings
         );
     }
-
-    getMembers(): Observable<any> {
-        return this.httpClient.get(
-            this.inventoryClass.getWargamingApi().clanMembers
-        );
-    }
 }

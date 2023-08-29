@@ -13,6 +13,7 @@ import { SessionStorageService } from './session-storage.service';
 })
 export class AuthenticationService {
     private tokenKey: string = 'token';
+    private userKey: string = 'user';
 
     constructor(
         private authenticationClient: AuthenticationClientService,
@@ -35,6 +36,10 @@ export class AuthenticationService {
                     this.tokenKey,
                     user ? JSON.stringify(token) : ''
                 );
+                this.session.store(
+                    this.userKey,
+                    user ? JSON.stringify(user) : ''
+                );
                 this.router.navigate(['/']).then((): void => {
                     // Ignored
                 });
@@ -42,13 +47,12 @@ export class AuthenticationService {
     }
 
     public isLoggedIn(): boolean {
-        localStorage.clear();
         const token: Connection | null =
             this.session.getFromKeyToObject<Connection>(this.tokenKey);
-        this.updateStore(
-            this.members.isClanMembers(Number(token?.account_id)),
-            token?.access_token
+        const user: Member | null = this.session.getFromKeyToObject<Member>(
+            this.userKey
         );
+        this.updateStore(user ?? undefined, token?.access_token);
         return token != null && token?.status === 'ok';
     }
 
