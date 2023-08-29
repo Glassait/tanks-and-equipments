@@ -7,18 +7,26 @@ import {
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { MockEnum } from '../enums/mock.enum';
 import { WotApiEnum } from '../enums/wot-api.enum';
+import { InventoryService } from '../services/inventory.service';
 
 @Injectable({
     providedIn: 'root',
 })
 export class HttpMockInterceptor implements HttpInterceptor {
+    constructor(private inventory: InventoryService) {}
+
     intercept(
         req: HttpRequest<any>,
         next: HttpHandler
     ): Observable<HttpEvent<any>> {
-        if (!environment.production) {
-            const endPoint: string[] = req.url.split('api.worldoftanks.eu');
+        if (
+            [MockEnum.EXTERNAL_MOCK, MockEnum.FULL_MOCK].includes(
+                environment.mock
+            )
+        ) {
+            let endPoint: string[] = req.url.split('api.worldoftanks.eu');
 
             if (endPoint.length === 2) {
                 let jsonFile: string = '';
@@ -28,11 +36,34 @@ export class HttpMockInterceptor implements HttpInterceptor {
                     jsonFile = WotApiEnum.CLANRATINGS;
                 }
 
-                const mockReq = req.clone({
+                const mockReq: HttpRequest<any> = req.clone({
                     url: `/assets/mocks/${jsonFile}.json`,
                     method: 'GET',
                 });
                 return next.handle(mockReq);
+            }
+
+            endPoint = req.url.split('herokuapp.com/api/');
+
+            if (endPoint.length === 2) {
+                if (environment.mock === MockEnum.EXTERNAL_MOCK) {
+                    const mockReq: HttpRequest<any> = req.clone({
+                        url: `${this.inventory.getLchpApi().localhost}${
+                            endPoint[1]
+                        }`,
+                        method: 'GET',
+                    });
+                    return next.handle(mockReq);
+                } else {
+                    const mockReq: HttpRequest<any> = req.clone({
+                        url: `/assets/mocks/${endPoint[1].replace(
+                            '/',
+                            '.'
+                        )}.json`,
+                        method: 'GET',
+                    });
+                    return next.handle(mockReq);
+                }
             }
         }
         return next.handle(req);

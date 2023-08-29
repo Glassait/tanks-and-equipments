@@ -33,19 +33,21 @@
         <card-little
             *ngIf="!isVisitor"
             [darkMode]="isDarkMode"
+            [hasSpinner]="true"
+            [showSpinner]="showSpinnerInformationCard"
             [title]="(wording | getHome).information"
             icon="information"
             id="information"
         >
-            <div class="space-y-4 whitespace-pre-line text-justify">
-                <div>{{ information | getText }}</div>
-                <div class="flex justify-end">
+            <div *ngIf='!showSpinnerInformationCard' class="space-y-4 whitespace-pre-line text-justify">
+                <div>{{ information.text}}</div>
+                <div *ngIf='information.lien.url' class="flex justify-end">
                     <a
-                        [routerLink]="information | getUrl"
+                        [routerLink]="information.lien.url"
                         class="flex space-x-4 text-link_light underline dark:text-link_dark"
                     >
                         <div class="w-full">
-                            {{ information | getLinkText }}
+                            {{ information.lien.text }}
                         </div>
                         <icon
                             [height]="30"

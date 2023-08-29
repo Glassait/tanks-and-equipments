@@ -17,7 +17,7 @@ export type Field = {
     field: {
         left: FieldComposant;
         right: FieldComposant;
-    } & Record<string, FieldComposant>;
+    };
 };
 
 export type Equipment = {
@@ -52,12 +52,8 @@ export type TankData = {
     skills: string[][];
     shells: Shell[];
     fields: Field[];
+    directive: Directive;
     equipments: Equipments;
     consumables: Consumables;
-    directive: Directive;
     links: Link[];
-};
-
-export type Tanks = {
-    data: TankData[];
 };

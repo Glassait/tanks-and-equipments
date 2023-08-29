@@ -17,6 +17,8 @@ import { WordingService } from 'src/app/commons/services/wording.service';
 import { HeaderStore } from 'src/app/commons/stores/header.store';
 import { MemberStore } from 'src/app/commons/stores/member.store';
 import { ModeStore } from 'src/app/commons/stores/mode.store';
+import { FeatureInterface } from '../../commons/interfaces/feature.interface';
+import { FeatureStore } from '../../commons/stores/feature.store';
 
 @Component({
     selector: 'app-header',
@@ -33,16 +35,20 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
     protected isVisitor: boolean;
     protected isDark: boolean;
 
-    private headerSubscribe: Subscription;
-    private memberSubscribe: Subscription;
-    private modeSubscribe: Subscription;
+    protected featureFlipping: FeatureInterface;
+
+    private memberSubscription: Subscription;
+    private headerSubscription: Subscription;
+    private modeSubscription: Subscription;
+    private featureSubscription: Subscription;
 
     constructor(
         protected modeStore: ModeStore,
         protected memberStore: MemberStore,
         protected wording: WordingService,
         protected inventory: InventoryService,
-        private headerStore: HeaderStore
+        private headerStore: HeaderStore,
+        private featureStore: FeatureStore
     ) {}
 
     ngOnInit(): void {
@@ -61,9 +67,10 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     ngOnDestroy(): void {
-        this.memberSubscribe.unsubscribe();
-        this.headerSubscribe.unsubscribe();
-        this.modeSubscribe.unsubscribe();
+        this.memberSubscription.unsubscribe();
+        this.headerSubscription.unsubscribe();
+        this.modeSubscription.unsubscribe();
+        this.featureSubscription.unsubscribe();
     }
 
     protected changeMode($event: MatSlideToggleChange): void {
@@ -77,7 +84,7 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     private createSubscribe(): void {
-        this.headerSubscribe = this.headerStore
+        this.headerSubscription = this.headerStore
             .watch()
             .subscribe((headerInterface: HeaderInterface): void => {
                 this.showHome = headerInterface.showHome;
@@ -85,16 +92,22 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
                 this.showWar = headerInterface.showWar;
             });
 
-        this.memberSubscribe = this.memberStore
+        this.memberSubscription = this.memberStore
             .watch()
             .subscribe((memberInterface: MemberInterface): void => {
                 this.isVisitor = memberInterface.isVisitor;
             });
 
-        this.modeSubscribe = this.modeStore
+        this.modeSubscription = this.modeStore
             .watch()
             .subscribe((modeInterface: ModeInterface): void => {
                 this.isDark = modeInterface.dark;
+            });
+
+        this.featureSubscription = this.featureStore
+            .watch()
+            .subscribe((featureInterface: FeatureInterface): void => {
+                this.featureFlipping = featureInterface;
             });
     }
 }

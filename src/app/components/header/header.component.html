@@ -67,7 +67,7 @@
             <button
                 *ngIf="
                     showWar &&
-                    (inventory | getFeatureFlipping).clanWar &&
+                    featureFlipping.clanWar &&
                     !isVisitor
                 "
                 mat-menu-item

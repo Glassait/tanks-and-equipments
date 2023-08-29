@@ -14,10 +14,13 @@ import {
     WotClanRatingsRequest,
     WotServerRequest,
 } from 'src/app/commons/types/clan-ratings.type';
+import { DateCustomClass } from '../../commons/classes/date-custom.class';
+import { CookieNameEnum } from '../../commons/enums/cookie-name.enum';
 import { FillEnum } from '../../commons/enums/fill.enum';
 import { ModeInterface } from '../../commons/interfaces/mode.interface';
 import { FooterStore } from '../../commons/stores/footer.store';
 import { ModeStore } from '../../commons/stores/mode.store';
+import { InformationType } from '../../commons/types/information.type';
 import { SentenceCasePipe } from '../../pipes/sentenceCase/sentence-case.pipe';
 
 @Component({
@@ -27,9 +30,13 @@ import { SentenceCasePipe } from '../../pipes/sentenceCase/sentence-case.pipe';
 export class HomeComponent implements OnInit, OnDestroy {
     protected showSpinnerServer: boolean = true;
     protected showSpinnerClanRatings: boolean = true;
+    protected showSpinnerInformationCard: boolean = true;
     protected showClanRatingsCard: boolean = true;
+
     protected wotServer: WotServerRequest;
     protected wotClanRatings: WotClanRatingsRequest;
+    protected information: InformationType;
+
     protected isVisitor: boolean;
     protected isDarkMode: boolean;
 
@@ -37,14 +44,10 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     private memberSubscribe: Subscription;
     private modeSubscribe: Subscription;
-    private cookieName = {
-        serverStatus: 'serverStatus',
-        clanRatings: 'clanRatings',
-    };
 
     constructor(
         protected wording: WordingService,
-        protected information: InformationService,
+        protected informationService: InformationService,
         private memberStore: MemberStore,
         private headerStore: HeaderStore,
         private modeStore: ModeStore,
@@ -62,6 +65,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void {
         this.getWotServerStatus();
+        this.getInformation();
 
         if (
             this.isClanRatingsCardDisplayed(
@@ -119,7 +123,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
 
     private getWotServerStatus(): void {
-        const cookie: string = this.cookie.get(this.cookieName.serverStatus);
+        const cookie: string = this.cookie.get(CookieNameEnum.SERVER_STATUS);
         if (cookie) {
             this.wotServer = JSON.parse(cookie);
             this.showSpinnerServer = false;
@@ -140,9 +144,9 @@ export class HomeComponent implements OnInit, OnDestroy {
             },
             complete: (): void => {
                 this.cookie.set(
-                    this.cookieName.serverStatus,
+                    CookieNameEnum.SERVER_STATUS,
                     JSON.stringify(this.wotServer),
-                    this.getTodayDatePlusTenMinute()
+                    DateCustomClass.getTodayDatePlusTenMinute()
                 );
                 this.showSpinnerServer = false;
             },
@@ -150,7 +154,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
 
     private getClanRatings(): void {
-        const cookie: string = this.cookie.get(this.cookieName.clanRatings);
+        const cookie: string = this.cookie.get(CookieNameEnum.CLAN_RATINGS);
         if (cookie) {
             this.wotClanRatings = JSON.parse(cookie);
             this.showSpinnerClanRatings = false;
@@ -166,18 +170,38 @@ export class HomeComponent implements OnInit, OnDestroy {
             },
             complete: (): void => {
                 this.cookie.set(
-                    this.cookieName.clanRatings,
+                    CookieNameEnum.CLAN_RATINGS,
                     JSON.stringify(this.wotClanRatings),
-                    this.getTodayDatePlusTenMinute()
+                    DateCustomClass.getTodayDatePlusTenMinute()
                 );
                 this.showSpinnerClanRatings = false;
             },
         });
     }
 
-    private getTodayDatePlusTenMinute(): Date {
-        const today: Date = new Date();
-        today.setMinutes(today.getMinutes() + 10);
-        return today;
+    private getInformation(): void {
+        const cookie: string = this.cookie.get(CookieNameEnum.INFORMATION);
+        if (cookie) {
+            this.information = JSON.parse(cookie);
+            this.showSpinnerInformationCard = false;
+            return;
+        }
+
+        this.informationService.queryInformation().subscribe({
+            next: (value: InformationType): void => {
+                this.information = value;
+            },
+            error: err => {
+                console.log(err);
+            },
+            complete: (): void => {
+                this.cookie.set(
+                    CookieNameEnum.INFORMATION,
+                    JSON.stringify(this.information),
+                    DateCustomClass.getMidnightDate()
+                );
+                this.showSpinnerInformationCard = false;
+            },
+        });
     }
 }

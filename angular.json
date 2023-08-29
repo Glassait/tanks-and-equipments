@@ -44,7 +44,7 @@
                             ],
                             "outputHashing": "all"
                         },
-                        "development": {
+                        "external-mock": {
                             "buildOptimizer": false,
                             "optimization": false,
                             "vendorChunk": true,
@@ -54,7 +54,21 @@
                             "fileReplacements": [
                                 {
                                     "replace": "src/environments/environment.ts",
-                                    "with": "src/environments/environment.development.ts"
+                                    "with": "src/environments/environment.external_mock.ts"
+                                }
+                            ]
+                        },
+                        "full-mock": {
+                            "buildOptimizer": false,
+                            "optimization": false,
+                            "vendorChunk": true,
+                            "extractLicenses": false,
+                            "sourceMap": true,
+                            "namedChunks": true,
+                            "fileReplacements": [
+                                {
+                                    "replace": "src/environments/environment.ts",
+                                    "with": "src/environments/environment.full_mock.ts"
                                 }
                             ]
                         }
@@ -67,8 +81,11 @@
                         "production": {
                             "browserTarget": "app:build:production"
                         },
-                        "development": {
-                            "browserTarget": "app:build:development"
+                        "external-mock": {
+                            "browserTarget": "app:build:external-mock"
+                        },
+                        "full-mock": {
+                            "browserTarget": "app:build:full-mock"
                         }
                     },
                     "defaultConfiguration": "development"

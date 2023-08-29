@@ -6,21 +6,16 @@ import { InventoryService } from './inventory.service';
 @Injectable({
     providedIn: 'root',
 })
-export class WotApiService {
+export class FeatureFlippingService {
     constructor(
         private httpClient: HttpClient,
         private inventoryClass: InventoryService
     ) {}
 
-    getServeurStatus(): Observable<any> {
+    public queryFeature(): Observable<any> {
         return this.httpClient.get(
-            this.inventoryClass.getWargamingApi().gameServers
-        );
-    }
-
-    getClanRatings(): Observable<any> {
-        return this.httpClient.get(
-            this.inventoryClass.getWargamingApi().clanRatings
+            this.inventoryClass.getLchpApi().liveUrl +
+                this.inventoryClass.getLchpApi().feature
         );
     }
 }

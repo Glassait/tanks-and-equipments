@@ -7,7 +7,7 @@ import inventory from 'src/assets/json/inventory.json';
 export class InventoryService {
     private _inventory = inventory;
 
-    public getWargammingApi() {
+    public getWargamingApi() {
         return this._inventory.wargamingApi;
     }
 
@@ -15,7 +15,7 @@ export class InventoryService {
         return this._inventory.path;
     }
 
-    public getFeatureFlipping() {
-        return this._inventory.featureFlipping;
+    public getLchpApi() {
+        return this._inventory.lchpApi;
     }
 }
