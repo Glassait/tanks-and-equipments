@@ -21,7 +21,7 @@
         "@angular/common": "^16.2.3",
         "@angular/compiler": "^16.2.1",
         "@angular/core": "^16.1.8",
-        "@angular/forms": "^16.2.1",
+        "@angular/forms": "^16.2.3",
         "@angular/material": "^16.2.2",
         "@angular/platform-browser": "^16.2.3",
         "@angular/platform-browser-dynamic": "^16.2.3",
