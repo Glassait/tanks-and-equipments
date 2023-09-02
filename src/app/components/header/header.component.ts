@@ -8,7 +8,6 @@ import {
 } from '@angular/core';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { Subscription } from 'rxjs';
-import { SvgCustom } from 'src/app/commons/classes/svg-custom.class';
 import { HeaderInterface } from 'src/app/commons/interfaces/header.interface';
 import { MemberInterface } from 'src/app/commons/interfaces/member.interface';
 import { ModeInterface } from 'src/app/commons/interfaces/mode.interface';
@@ -17,6 +16,7 @@ import { WordingService } from 'src/app/commons/services/wording.service';
 import { HeaderStore } from 'src/app/commons/stores/header.store';
 import { MemberStore } from 'src/app/commons/stores/member.store';
 import { ModeStore } from 'src/app/commons/stores/mode.store';
+import { SvgCustom } from 'src/app/commons/utils/svg-custom.util';
 import { FeatureInterface } from '../../commons/interfaces/feature.interface';
 import { FeatureStore } from '../../commons/stores/feature.store';
 

@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { CheckGrade } from '../classes/check-grade.class';
 import { MemberStore } from '../stores/member.store';
 import { Connection } from '../types/connection.type';
 import { Member } from '../types/member.type';
+import { CheckGrade } from '../utils/check-grade.util';
 import { AuthenticationClientService } from './authentication-client.service';
 import { MembersService } from './members.service';
 import { SessionStorageService } from './session-storage.service';

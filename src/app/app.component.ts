@@ -1,6 +1,5 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
-import { DateCustomClass } from './commons/classes/date-custom.class';
 import { CookieNameEnum } from './commons/enums/cookie-name.enum';
 import { chargeurIcon } from './commons/icon/files/crews/chargeur.icon';
 import { commandantIcon } from './commons/icon/files/crews/commandant.icon';
@@ -41,6 +40,7 @@ import { FeatureFlippingService } from './commons/services/feature-flipping.serv
 import { IconRegistryService } from './commons/services/icon-registry.service';
 import { FeatureStore } from './commons/stores/feature.store';
 import { ModeStore } from './commons/stores/mode.store';
+import { DateCustom } from './commons/utils/date.custom';
 
 @Component({
     selector: 'app-root',
@@ -136,7 +136,7 @@ export class AppComponent implements OnInit {
                 this.cookie.set(
                     CookieNameEnum.FEATURE,
                     JSON.stringify(this.featureFlipping),
-                    DateCustomClass.getMidnightDate()
+                    DateCustom.getMidnightDate()
                 );
             },
         });

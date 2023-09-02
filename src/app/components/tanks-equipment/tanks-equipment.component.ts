@@ -5,7 +5,6 @@ import { Subscription } from 'rxjs';
 import { TanksDataService } from 'src/app/commons/services/tank-data.service';
 import { HeaderStore } from 'src/app/commons/stores/header.store';
 import { MemberStore } from 'src/app/commons/stores/member.store';
-import { DateCustomClass } from '../../commons/classes/date-custom.class';
 import { CookieNameEnum } from '../../commons/enums/cookie-name.enum';
 import { ModeInterface } from '../../commons/interfaces/mode.interface';
 import { SessionStorageService } from '../../commons/services/session-storage.service';
@@ -13,6 +12,7 @@ import { WordingService } from '../../commons/services/wording.service';
 import { FooterStore } from '../../commons/stores/footer.store';
 import { ModeStore } from '../../commons/stores/mode.store';
 import { TankData } from '../../commons/types/tanks-data.type';
+import { DateCustom } from '../../commons/utils/date.custom';
 import { SentenceCasePipe } from '../../pipes/sentenceCase/sentence-case.pipe';
 
 @Component({
@@ -112,7 +112,7 @@ export class TanksEquipmentComponent implements OnInit, OnDestroy {
                     );
                     this.sessionService.store(
                         CookieNameEnum.TANKS_DATE,
-                        DateCustomClass.getMidnightDate().toDateString()
+                        DateCustom.getMidnightDate().toDateString()
                     );
                 },
                 error: err => {

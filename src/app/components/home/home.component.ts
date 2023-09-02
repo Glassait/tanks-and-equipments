@@ -2,8 +2,6 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { CookieService } from 'ngx-cookie-service';
 import { Subscription } from 'rxjs';
-import { ArrayCustom } from 'src/app/commons/classes/array-custom.class';
-import { WindowsCustom } from 'src/app/commons/classes/windows-custom.class';
 import { MemberInterface } from 'src/app/commons/interfaces/member.interface';
 import { InformationService } from 'src/app/commons/services/information.service';
 import { WordingService } from 'src/app/commons/services/wording.service';
@@ -14,13 +12,15 @@ import {
     WotClanRatingsRequest,
     WotServerRequest,
 } from 'src/app/commons/types/clan-ratings.type';
-import { DateCustomClass } from '../../commons/classes/date-custom.class';
+import { ArrayCustom } from 'src/app/commons/utils/array-custom.util';
+import { WindowsCustom } from 'src/app/commons/utils/windows-custom.util';
 import { CookieNameEnum } from '../../commons/enums/cookie-name.enum';
 import { FillEnum } from '../../commons/enums/fill.enum';
 import { ModeInterface } from '../../commons/interfaces/mode.interface';
 import { FooterStore } from '../../commons/stores/footer.store';
 import { ModeStore } from '../../commons/stores/mode.store';
 import { InformationType } from '../../commons/types/information.type';
+import { DateCustom } from '../../commons/utils/date.custom';
 import { SentenceCasePipe } from '../../pipes/sentenceCase/sentence-case.pipe';
 
 @Component({
@@ -146,7 +146,7 @@ export class HomeComponent implements OnInit, OnDestroy {
                 this.cookie.set(
                     CookieNameEnum.SERVER_STATUS,
                     JSON.stringify(this.wotServer),
-                    DateCustomClass.getTodayDatePlusTenMinute()
+                    DateCustom.getTodayDatePlusTenMinute()
                 );
                 this.showSpinnerServer = false;
             },
@@ -172,7 +172,7 @@ export class HomeComponent implements OnInit, OnDestroy {
                 this.cookie.set(
                     CookieNameEnum.CLAN_RATINGS,
                     JSON.stringify(this.wotClanRatings),
-                    DateCustomClass.getTodayDatePlusTenMinute()
+                    DateCustom.getTodayDatePlusTenMinute()
                 );
                 this.showSpinnerClanRatings = false;
             },
@@ -198,7 +198,7 @@ export class HomeComponent implements OnInit, OnDestroy {
                 this.cookie.set(
                     CookieNameEnum.INFORMATION,
                     JSON.stringify(this.information),
-                    DateCustomClass.getMidnightDate()
+                    DateCustom.getMidnightDate()
                 );
                 this.showSpinnerInformationCard = false;
             },

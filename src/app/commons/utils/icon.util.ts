@@ -1,6 +1,6 @@
 export class Icon {
-    private _name: string;
-    private _data: string;
+    private readonly _name: string;
+    private readonly _data: string;
 
     constructor(name: string, data: string) {
         this._name = name;
