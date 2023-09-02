@@ -1,4 +1,4 @@
-import { Icon } from 'src/app/commons/classes/icon.class';
+import { Icon } from 'src/app/commons/utils/icon.util';
 
 export const t95Fv4201ChieftainIcon: Icon = new Icon(
     't95_fv4201_chieftain',

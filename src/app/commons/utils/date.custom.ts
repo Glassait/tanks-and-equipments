@@ -1,4 +1,4 @@
-export class DateCustomClass {
+export class DateCustom {
     public static getTodayDatePlusTenMinute(): Date {
         const today: Date = new Date();
         today.setMinutes(today.getMinutes() + 10);

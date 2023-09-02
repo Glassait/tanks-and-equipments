@@ -1,7 +1,6 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
 import { FillEnum } from '../../commons/enums/fill.enum';
 import { ModeInterface } from '../../commons/interfaces/mode.interface';
 import { WordingService } from '../../commons/services/wording.service';
@@ -10,17 +9,19 @@ import { HeaderStore } from '../../commons/stores/header.store';
 import { MemberStore } from '../../commons/stores/member.store';
 import { ModeStore } from '../../commons/stores/mode.store';
 import { SentenceCasePipe } from '../../pipes/sentenceCase/sentence-case.pipe';
+import { UnsubscribeComponent } from '../commons/unsubscribe.component';
 
 @Component({
     selector: 'app-agreements',
     templateUrl: './agreements.component.html',
 })
-export class AgreementsComponent implements OnInit, OnDestroy {
+export class AgreementsComponent
+    extends UnsubscribeComponent
+    implements OnInit
+{
     protected isDarkMode: boolean;
 
     protected readonly FillEnum = FillEnum;
-
-    private modeSubscribe: Subscription;
 
     constructor(
         protected wording: WordingService,
@@ -31,6 +32,7 @@ export class AgreementsComponent implements OnInit, OnDestroy {
         private router: Router,
         private title: Title
     ) {
+        super();
         this.checkUser();
         this.patchHeaderAndFooter();
 
@@ -39,16 +41,14 @@ export class AgreementsComponent implements OnInit, OnDestroy {
         );
     }
 
-    ngOnDestroy(): void {
-        this.modeSubscribe.unsubscribe();
-    }
-
     ngOnInit(): void {
-        this.modeSubscribe = this.modeStore
-            .watch()
-            .subscribe((modeInterface: ModeInterface): void => {
-                this.isDarkMode = modeInterface.dark;
-            });
+        this.addSubscription(
+            this.modeStore
+                .watch()
+                .subscribe((modeInterface: ModeInterface): void => {
+                    this.isDarkMode = modeInterface.dark;
+                })
+        );
     }
 
     private patchHeaderAndFooter(): void {

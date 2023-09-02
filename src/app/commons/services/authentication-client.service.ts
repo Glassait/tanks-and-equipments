@@ -2,8 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { ArrayCustom } from '../classes/array-custom.class';
-import { WindowsCustom } from '../classes/windows-custom.class';
+import { ArrayCustom } from '../utils/array-custom.util';
+import { WindowsCustom } from '../utils/windows-custom.util';
 import { InventoryService } from './inventory.service';
 
 @Injectable({

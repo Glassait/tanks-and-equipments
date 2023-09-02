@@ -1,11 +1,9 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
 import { TanksDataService } from 'src/app/commons/services/tank-data.service';
 import { HeaderStore } from 'src/app/commons/stores/header.store';
 import { MemberStore } from 'src/app/commons/stores/member.store';
-import { DateCustomClass } from '../../commons/classes/date-custom.class';
 import { CookieNameEnum } from '../../commons/enums/cookie-name.enum';
 import { ModeInterface } from '../../commons/interfaces/mode.interface';
 import { SessionStorageService } from '../../commons/services/session-storage.service';
@@ -13,20 +11,23 @@ import { WordingService } from '../../commons/services/wording.service';
 import { FooterStore } from '../../commons/stores/footer.store';
 import { ModeStore } from '../../commons/stores/mode.store';
 import { TankData } from '../../commons/types/tanks-data.type';
+import { DateCustom } from '../../commons/utils/date.custom';
 import { SentenceCasePipe } from '../../pipes/sentenceCase/sentence-case.pipe';
+import { UnsubscribeComponent } from '../commons/unsubscribe.component';
 
 @Component({
     selector: 'app-tanks-equipment',
     templateUrl: './tanks-equipment.component.html',
 })
-export class TanksEquipmentComponent implements OnInit, OnDestroy {
+export class TanksEquipmentComponent
+    extends UnsubscribeComponent
+    implements OnInit
+{
     protected showSpinner: boolean = true;
     protected isDark: boolean;
     protected isMobile: boolean;
 
     protected tanksData: TankData[];
-
-    private modeSubscribe: Subscription;
 
     constructor(
         private wording: WordingService,
@@ -39,6 +40,7 @@ export class TanksEquipmentComponent implements OnInit, OnDestroy {
         private router: Router,
         private title: Title
     ) {
+        super();
         this.checkUser();
         this.patchHeaderAndFooter();
         this.createSubscribe();
@@ -52,10 +54,6 @@ export class TanksEquipmentComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void {
         this.getTanksData();
-    }
-
-    ngOnDestroy(): void {
-        this.modeSubscribe.unsubscribe();
     }
 
     private checkUser(): void {
@@ -82,12 +80,14 @@ export class TanksEquipmentComponent implements OnInit, OnDestroy {
     }
 
     private createSubscribe(): void {
-        this.modeSubscribe = this.modeStore
-            .watch()
-            .subscribe((modeInterface: ModeInterface): void => {
-                this.isDark = modeInterface.dark;
-                this.isMobile = modeInterface.mobile;
-            });
+        this.addSubscription(
+            this.modeStore
+                .watch()
+                .subscribe((modeInterface: ModeInterface): void => {
+                    this.isDark = modeInterface.dark;
+                    this.isMobile = modeInterface.mobile;
+                })
+        );
     }
 
     private getTanksData(): void {
@@ -112,7 +112,7 @@ export class TanksEquipmentComponent implements OnInit, OnDestroy {
                     );
                     this.sessionService.store(
                         CookieNameEnum.TANKS_DATE,
-                        DateCustomClass.getMidnightDate().toDateString()
+                        DateCustom.getMidnightDate().toDateString()
                     );
                 },
                 error: err => {

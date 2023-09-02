@@ -1,4 +1,4 @@
-import { Icon } from 'src/app/commons/classes/icon.class';
+import { Icon } from 'src/app/commons/utils/icon.util';
 
 export const castleIcon: Icon = new Icon(
     'castle',
