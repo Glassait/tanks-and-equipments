@@ -1,5 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Component } from '@angular/core';
 import { FeatureInterface } from '../../commons/interfaces/feature.interface';
 import { FooterInterface } from '../../commons/interfaces/footer.interface';
 import { HeaderInterface } from '../../commons/interfaces/header.interface';
@@ -10,12 +9,13 @@ import { FeatureStore } from '../../commons/stores/feature.store';
 import { FooterStore } from '../../commons/stores/footer.store';
 import { HeaderStore } from '../../commons/stores/header.store';
 import { MemberStore } from '../../commons/stores/member.store';
+import { UnsubscribeComponent } from '../commons/unsubscribe.component';
 
 @Component({
     selector: 'app-footer',
     templateUrl: './footer.component.html',
 })
-export class FooterComponent implements OnDestroy {
+export class FooterComponent extends UnsubscribeComponent {
     protected showHome: boolean;
     protected showTank: boolean;
     protected showWar: boolean;
@@ -25,11 +25,6 @@ export class FooterComponent implements OnDestroy {
 
     protected featureFlipping: FeatureInterface;
 
-    private headerSubscription: Subscription;
-    private memberSubscribe: Subscription;
-    private footerSubscribe: Subscription;
-    private featureSubscription: Subscription;
-
     constructor(
         protected inventory: InventoryService,
         protected wording: WordingService,
@@ -38,42 +33,44 @@ export class FooterComponent implements OnDestroy {
         private footerStore: FooterStore,
         private featureStore: FeatureStore
     ) {
+        super();
         this.createSubscription();
     }
 
-    ngOnDestroy(): void {
-        this.headerSubscription.unsubscribe();
-        this.memberSubscribe.unsubscribe();
-        this.footerSubscribe.unsubscribe();
-        this.featureSubscription.unsubscribe();
-    }
-
     private createSubscription(): void {
-        this.headerSubscription = this.headerStore
-            .watch()
-            .subscribe((headerInterface: HeaderInterface): void => {
-                this.showHome = headerInterface.showHome;
-                this.showTank = headerInterface.showTank;
-                this.showWar = headerInterface.showWar;
-            });
+        this.addSubscription(
+            this.headerStore
+                .watch()
+                .subscribe((headerInterface: HeaderInterface): void => {
+                    this.showHome = headerInterface.showHome;
+                    this.showTank = headerInterface.showTank;
+                    this.showWar = headerInterface.showWar;
+                })
+        );
 
-        this.memberSubscribe = this.memberStore
-            .watch()
-            .subscribe((memberInterface: MemberInterface): void => {
-                this.isVisitor = memberInterface.isVisitor;
-            });
+        this.addSubscription(
+            this.memberStore
+                .watch()
+                .subscribe((memberInterface: MemberInterface): void => {
+                    this.isVisitor = memberInterface.isVisitor;
+                })
+        );
 
-        this.footerSubscribe = this.footerStore
-            .watch()
-            .subscribe((footerInterface: FooterInterface): void => {
-                this.showAgreement = footerInterface.showAgreement;
-                this.showChangelog = footerInterface.showChangelog;
-            });
+        this.addSubscription(
+            this.footerStore
+                .watch()
+                .subscribe((footerInterface: FooterInterface): void => {
+                    this.showAgreement = footerInterface.showAgreement;
+                    this.showChangelog = footerInterface.showChangelog;
+                })
+        );
 
-        this.featureSubscription = this.featureStore
-            .watch()
-            .subscribe((featureInterface: FeatureInterface): void => {
-                this.featureFlipping = featureInterface;
-            });
+        this.addSubscription(
+            this.featureStore
+                .watch()
+                .subscribe((featureInterface: FeatureInterface): void => {
+                    this.featureFlipping = featureInterface;
+                })
+        );
     }
 }

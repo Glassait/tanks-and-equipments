@@ -1,7 +1,6 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { CookieService } from 'ngx-cookie-service';
-import { Subscription } from 'rxjs';
 import { MemberInterface } from 'src/app/commons/interfaces/member.interface';
 import { InformationService } from 'src/app/commons/services/information.service';
 import { WordingService } from 'src/app/commons/services/wording.service';
@@ -22,12 +21,13 @@ import { ModeStore } from '../../commons/stores/mode.store';
 import { InformationType } from '../../commons/types/information.type';
 import { DateCustom } from '../../commons/utils/date.custom';
 import { SentenceCasePipe } from '../../pipes/sentenceCase/sentence-case.pipe';
+import { UnsubscribeComponent } from '../commons/unsubscribe.component';
 
 @Component({
     selector: 'app-home',
     templateUrl: './home.component.html',
 })
-export class HomeComponent implements OnInit, OnDestroy {
+export class HomeComponent extends UnsubscribeComponent implements OnInit {
     protected showSpinnerServer: boolean = true;
     protected showSpinnerClanRatings: boolean = true;
     protected showSpinnerInformationCard: boolean = true;
@@ -42,9 +42,6 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     protected readonly FillEnum = FillEnum;
 
-    private memberSubscribe: Subscription;
-    private modeSubscribe: Subscription;
-
     constructor(
         protected wording: WordingService,
         protected informationService: InformationService,
@@ -56,6 +53,7 @@ export class HomeComponent implements OnInit, OnDestroy {
         private cookie: CookieService,
         private title: Title
     ) {
+        super();
         this.patchHeaderAndFooter();
 
         this.title.setTitle(
@@ -81,11 +79,6 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.createSubscribe();
     }
 
-    ngOnDestroy(): void {
-        this.memberSubscribe.unsubscribe();
-        this.modeSubscribe.unsubscribe();
-    }
-
     private patchHeaderAndFooter(): void {
         this.headerStore.patch({
             showHome: false,
@@ -100,17 +93,19 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
 
     private createSubscribe(): void {
-        this.memberSubscribe = this.memberStore
-            .watch()
-            .subscribe((value: MemberInterface): void => {
-                this.isVisitor = value.isVisitor;
-            });
+        this.addSubscription(
+            this.memberStore
+                .watch()
+                .subscribe((value: MemberInterface): void => {
+                    this.isVisitor = value.isVisitor;
+                })
+        );
 
-        this.modeSubscribe = this.modeStore
-            .watch()
-            .subscribe((value: ModeInterface): void => {
+        this.addSubscription(
+            this.modeStore.watch().subscribe((value: ModeInterface): void => {
                 this.isDarkMode = value.dark;
-            });
+            })
+        );
     }
 
     private isClanRatingsCardDisplayed(

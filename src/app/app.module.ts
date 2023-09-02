@@ -23,6 +23,7 @@ import { CardChangelogComponent } from './components/card/changelog/card-changel
 import { CardLittleComponent } from './components/card/little/card-little.component';
 import { ChangelogComponent } from './components/changelog/changelog.component';
 import { ClanWarComponent } from './components/clan-war/clan-war.component';
+import { UnsubscribeComponent } from './components/commons/unsubscribe.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 import { HomeComponent } from './components/home/home.component';
@@ -62,6 +63,12 @@ if (environment.production) {
         ClanWarComponent,
         HeaderComponent,
         IconComponent,
+        UnsubscribeComponent,
+        FooterComponent,
+        ChangelogComponent,
+        CardLittleComponent,
+        CardChangelogComponent,
+        AgreementsComponent,
         ImagePipe,
         HeaderPipe,
         ReplacePipe,
@@ -70,13 +77,8 @@ if (environment.production) {
         FieldUrlPipe,
         ClanDataPipe,
         SentenceCasePipe,
-        FooterComponent,
-        ChangelogComponent,
-        CardLittleComponent,
-        CardChangelogComponent,
         FooterPipe,
         ChangelogPipe,
-        AgreementsComponent,
         AgreementPipe,
     ],
     imports: [
