@@ -24,7 +24,7 @@
         "@angular/forms": "^16.2.6",
         "@angular/material": "^16.2.5",
         "@angular/platform-browser": "^16.2.5",
-        "@angular/platform-browser-dynamic": "^16.2.3",
+        "@angular/platform-browser-dynamic": "^16.2.6",
         "@angular/router": "^16.2.5",
         "@elie29/store": "^2.0.0",
         "@tailwindcss/container-queries": "^0.1.1",
