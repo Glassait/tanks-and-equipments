@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { FillEnum } from '../../../commons/enums/fill.enum';
+import { IconColorEnum } from '../../../commons/enums/icon-enum';
 import { Icons } from '../../../commons/types/icon.type';
 
 @Component({
@@ -14,5 +14,5 @@ export class CardLittleComponent {
     @Input() id: string;
     @Input() darkMode: boolean = false;
 
-    protected readonly FillEnum = FillEnum;
+    protected readonly IconColorEnum = IconColorEnum;
 }

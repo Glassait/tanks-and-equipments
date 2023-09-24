@@ -14,7 +14,7 @@ import {
 import { ArrayCustom } from 'src/app/commons/utils/array-custom.util';
 import { WindowsCustom } from 'src/app/commons/utils/windows-custom.util';
 import { CookieNameEnum } from '../../commons/enums/cookie-name.enum';
-import { FillEnum } from '../../commons/enums/fill.enum';
+import { IconColorEnum } from '../../commons/enums/icon-enum';
 import { ModeInterface } from '../../commons/interfaces/mode.interface';
 import { FooterStore } from '../../commons/stores/footer.store';
 import { ModeStore } from '../../commons/stores/mode.store';
@@ -40,7 +40,7 @@ export class HomeComponent extends UnsubscribeComponent implements OnInit {
     protected isVisitor: boolean;
     protected isDarkMode: boolean;
 
-    protected readonly FillEnum = FillEnum;
+    protected readonly IconColorEnum = IconColorEnum;
 
     constructor(
         protected wording: WordingService,

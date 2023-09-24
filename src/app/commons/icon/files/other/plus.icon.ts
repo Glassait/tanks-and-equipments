@@ -2,5 +2,6 @@ import { Icon } from 'src/app/commons/utils/icon.util';
 
 export const plusIcon: Icon = new Icon(
     'plus',
-    '<svg viewBox="0 0 53 54" fill="inherit"><path d="M30.4286 4.3125C30.4286 2.03086 28.6731 0.1875 26.5001 0.1875C24.3271 0.1875 22.5715 2.03086 22.5715 4.3125V22.875H4.89293C2.71994 22.875 0.964355 24.7184 0.964355 27C0.964355 29.2816 2.71994 31.125 4.89293 31.125H22.5715V49.6875C22.5715 51.9691 24.3271 53.8125 26.5001 53.8125C28.6731 53.8125 30.4286 51.9691 30.4286 49.6875V31.125H48.1072C50.2802 31.125 52.0358 29.2816 52.0358 27C52.0358 24.7184 50.2802 22.875 48.1072 22.875H30.4286V4.3125Z"/></svg>'
+    true,
+    '<svg viewBox="0 0 55 55" fill="none"><path d="M27.5 1V54M1 27.5H54" stroke="inherit" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>'
 );

@@ -13,7 +13,7 @@
         >
             {{ link.name }}
             <icon
-                [fill]="isDark ? FillEnum.LINK_DARK : FillEnum.LINK_LIGHT"
+                [color]="isDark ? IconColorEnum.DARK_BLUE : IconColorEnum.LIGHT_BLUE"
                 [size]="16"
                 icon="redirect"
             ></icon>
@@ -28,7 +28,7 @@
         >
             <icon
                 *ngFor="let crew of tankData?.crew"
-                [fill]="isDark ? FillEnum.WHITE : FillEnum.BLACK"
+                [color]="isDark ? IconColorEnum.WHITE : IconColorEnum.BLACK"
                 [size]="isMobile ? 54 : 69"
                 class="rounded border-[1px] border-secondary_light dark:border-secondary_dark"
                 icon="{{ crew | image }}"

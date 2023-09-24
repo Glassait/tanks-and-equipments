@@ -2,6 +2,7 @@ export type Icons =
     | 'castle'
     | 'map'
     | 'ok'
+    | 'ko'
     | 'super_conqueror'
     | 'amx_m4_mle54'
     | 'cs-63'
@@ -31,4 +32,8 @@ export type Icons =
     | 'server'
     | 'visitor'
     | 'agreement'
-    | 'redirect';
+    | 'redirect'
+    | 'reserve'
+    | 'userGroupIcon'
+    | 'waiting'
+    | 'send';
