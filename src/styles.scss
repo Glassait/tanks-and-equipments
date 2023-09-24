@@ -4,6 +4,7 @@
 /*                                   IMPORT                                   */
 /* -------------------------------------------------------------------------- */
 
+@use 'assets/scss/tailwind/config';
 @use '@angular/material' as mat;
 
 /* -------------------------------------------------------------------------- */
@@ -31,38 +32,6 @@ $my-theme: mat.define-light-theme(
 
 @include mat.core-theme($my-theme);
 @include mat.all-component-themes($my-theme);
-
-/* -------------------------------------------------------------------------- */
-/*                                  TAILWINDS                                 */
-/* -------------------------------------------------------------------------- */
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-@layer base {
-    html {
-        @apply h-full w-full font-ui text-normal light;
-    }
-    body {
-        @apply w-full;
-    }
-    app-root {
-        @apply block;
-    }
-    app-main {
-        @apply block ;
-    }
-}
-
-@layer components {
-    .dark {
-        @apply bg-background_dark text-secondary_dark;
-    }
-    .light {
-        @apply bg-background_light text-secondary_light;
-    }
-}
 
 /* -------------------------------------------------------------------------- */
 /*                                STANDARD CSS                                */
