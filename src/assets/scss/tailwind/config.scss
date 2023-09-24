@@ -1,0 +1,31 @@
+/* -------------------------------------------------------------------------- */
+/*                                  TAILWINDS                                 */
+/* -------------------------------------------------------------------------- */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    html {
+        @apply h-full w-full light;
+    }
+    body {
+        @apply w-full;
+    }
+    app-root {
+        @apply block;
+    }
+    app-main {
+        @apply block ;
+    }
+}
+
+@layer components {
+    .dark {
+        @apply bg-secondary-500 text-primary-700;
+    }
+    .light {
+        @apply bg-primary-500 text-secondary-700;
+    }
+}

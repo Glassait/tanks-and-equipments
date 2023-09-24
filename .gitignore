@@ -133,3 +133,4 @@ dist
 # Editor folder / files
 /.idea/
 .vscode
+*.iml
