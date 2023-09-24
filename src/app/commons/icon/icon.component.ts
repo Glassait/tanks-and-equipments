@@ -9,18 +9,25 @@ import {
 } from '@angular/core';
 import { IconRegistryService } from 'src/app/commons/services/icon-registry.service';
 import { Icons } from 'src/app/commons/types/icon.type';
-import { FillEnum } from '../enums/fill.enum';
+import { FillEnum, IconColorEnum, StrokeEnum } from '../enums/icon-enum';
+import { Icon } from '../utils/icon.util';
 
 @Component({
     selector: 'icon',
-    template: '<div class="{{ fill }}"></div>',
+    template:
+        '<div class="{{ svg?.isStroke ? strokeEnum[color] : fillEnum[color] }}"></div>',
 })
 export class IconComponent implements OnInit {
     @Input() icon: Icons | string;
     @Input() size: number = 70;
     @Input() width: number;
     @Input() height: number;
-    @Input() fill: FillEnum;
+    @Input() color: IconColorEnum;
+
+    protected svg: Icon | undefined;
+
+    protected readonly fillEnum = FillEnum;
+    protected readonly strokeEnum = StrokeEnum;
 
     constructor(
         private iconRegistry: IconRegistryService,
@@ -29,11 +36,10 @@ export class IconComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
+        this.svg = this.iconRegistry.get(this.icon);
         this.element.nativeElement
             .querySelector('div')
-            .appendChild(
-                this._svgElementFromString(this.iconRegistry.get(this.icon))
-            );
+            .appendChild(this._svgElementFromString(this.svg?.data));
     }
 
     private _svgElementFromString(svgContent: string | undefined): SVGElement {
