@@ -5,9 +5,6 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class ImagePipe implements PipeTransform {
     transform(value: string): string {
-        return value
-            .toLowerCase()
-            .replace(new RegExp(' ', 'g'), '_')
-            .replace(new RegExp('/', 'g'), '_');
+        return value.toLowerCase().replace(/ /g, '_').replace(/\//g, '_');
     }
 }

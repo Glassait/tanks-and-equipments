@@ -56,12 +56,31 @@ export class HeaderComponent
 
     ngAfterViewInit(): void {
         if (this.element) {
-            this.element.nativeElement
-                .querySelector('.mdc-switch__icon--on')
-                .firstChild.setAttribute('d', SvgCustom.sun);
-            this.element.nativeElement
-                .querySelector('.mdc-switch__icon--off')
-                .firstChild.setAttribute('d', SvgCustom.moon);
+            const svgOn = this.element.nativeElement.querySelector(
+                '.mdc-switch__icon--on'
+            );
+            svgOn.setAttribute('viewBox', '-2 -2 60 60');
+
+            const svgSun = svgOn.firstChild;
+            svgSun.setAttribute('d', SvgCustom.sun);
+            svgSun.setAttribute('stroke', '#050505');
+            svgSun.setAttribute('stroke-width', 2);
+            svgSun.setAttribute('stroke-linecap', 'round');
+            svgSun.setAttribute('stroke-linejoin', 'round');
+            svgSun.setAttribute('fill', 'none');
+
+            const svgOff = this.element.nativeElement.querySelector(
+                '.mdc-switch__icon--off'
+            );
+            svgOff.setAttribute('viewBox', '-2 -2 60 60');
+
+            const svgMoon = svgOff.firstChild;
+            svgMoon.setAttribute('d', SvgCustom.moon);
+            svgMoon.setAttribute('stroke', '#FBFBFB');
+            svgMoon.setAttribute('stroke-width', 2);
+            svgMoon.setAttribute('stroke-linecap', 'round');
+            svgMoon.setAttribute('stroke-linejoin', 'round');
+            svgMoon.setAttribute('fill', 'none');
         }
     }
 

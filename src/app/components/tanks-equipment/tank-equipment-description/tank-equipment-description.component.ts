@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { TankData } from 'src/app/commons/types/tanks-data.type';
-import { FillEnum } from '../../../commons/enums/fill.enum';
+import { IconColorEnum } from '../../../commons/enums/icon-enum';
 
 @Component({
     selector: 'app-tank-equipment-description',
@@ -11,5 +11,5 @@ export class TankEquipmentDescriptionComponent {
     @Input() isDark: boolean;
     @Input() isMobile: boolean;
 
-    protected readonly FillEnum = FillEnum;
+    protected readonly IconColorEnum = IconColorEnum;
 }

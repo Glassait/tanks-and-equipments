@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
-import { FillEnum } from '../../commons/enums/fill.enum';
+import { IconColorEnum } from '../../commons/enums/icon-enum';
 import { ModeInterface } from '../../commons/interfaces/mode.interface';
 import { WordingService } from '../../commons/services/wording.service';
 import { FooterStore } from '../../commons/stores/footer.store';
@@ -20,8 +20,7 @@ export class AgreementsComponent
     implements OnInit
 {
     protected isDarkMode: boolean;
-
-    protected readonly FillEnum = FillEnum;
+    protected readonly IconColorEnum = IconColorEnum;
 
     constructor(
         protected wording: WordingService,
