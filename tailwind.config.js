@@ -63,6 +63,10 @@ module.exports = {
                 400: '#97D4B4',
             },
         },
+        opacity: {
+            50: '0.50',
+            10: '0.10',
+        },
         screens: {
             tablette: '768px',
             desktop: '1440px',

@@ -12,6 +12,7 @@ import { BrowserModule, Title } from '@angular/platform-browser';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CookieService } from 'ngx-cookie-service';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { environment } from 'src/environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 
@@ -27,8 +28,10 @@ import { UnsubscribeComponent } from './components/commons/unsubscribe.component
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 import { HomeComponent } from './components/home/home.component';
+import { SkeletonLoadingComponent } from './components/skeleton-loading/skeleton-loading.component';
 import { TankEquipmentDescriptionComponent } from './components/tanks-equipment/tank-equipment-description/tank-equipment-description.component';
 import { TanksEquipmentComponent } from './components/tanks-equipment/tanks-equipment.component';
+import { SandboxComponent } from './pages/sandbox/sandbox.component';
 
 import { ClanDataPipe } from './pipes/clanRatings/clan-data.pipe';
 import { FieldUrlPipe } from './pipes/field/url.pipe';
@@ -69,6 +72,7 @@ if (environment.production) {
         CardLittleComponent,
         CardChangelogComponent,
         AgreementsComponent,
+        SkeletonLoadingComponent,
         ImagePipe,
         HeaderPipe,
         ReplacePipe,
@@ -80,6 +84,7 @@ if (environment.production) {
         FooterPipe,
         ChangelogPipe,
         AgreementPipe,
+        SandboxComponent,
     ],
     imports: [
         BrowserModule,
@@ -94,6 +99,7 @@ if (environment.production) {
         MatSlideToggleModule,
         NgOptimizedImage,
         MatButtonModule,
+        NgxSkeletonLoaderModule,
     ],
     providers: [...mockProviders, Title, CookieService],
     bootstrap: [AppComponent],

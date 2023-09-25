@@ -7,6 +7,7 @@ import { ChangelogComponent } from './components/changelog/changelog.component';
 import { ClanWarComponent } from './components/clan-war/clan-war.component';
 import { HomeComponent } from './components/home/home.component';
 import { TanksEquipmentComponent } from './components/tanks-equipment/tanks-equipment.component';
+import { SandboxComponent } from './pages/sandbox/sandbox.component';
 
 const routes: Routes = [
     {
@@ -30,6 +31,14 @@ const routes: Routes = [
     {
         path: inventory.path.agreements,
         component: AgreementsComponent,
+    },
+    {
+        path: inventory.path.agreements,
+        component: AgreementsComponent,
+    },
+    {
+        path: 'sandbox',
+        component: SandboxComponent,
     },
     {
         path: '**',
