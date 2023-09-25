@@ -13,11 +13,17 @@
     body {
         @apply w-full;
     }
-    app-root {
+    app-root, app-main {
         @apply block;
     }
-    app-main {
-        @apply block ;
+    h3 {
+        @apply text-h3
+    }
+    h2 {
+        @apply text-h2
+    }
+    h1 {
+        @apply text-h1
     }
 }
 
