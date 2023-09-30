@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
+import { ColorEnum } from '../../commons/enums/color.enum';
 import { IconColorEnum } from '../../commons/enums/icon-enum';
 import { ModeInterface } from '../../commons/interfaces/mode.interface';
 import { WordingService } from '../../commons/services/wording.service';
@@ -15,10 +16,7 @@ import { UnsubscribeComponent } from '../commons/unsubscribe.component';
     selector: 'app-agreements',
     templateUrl: './agreements.component.html',
 })
-export class AgreementsComponent
-    extends UnsubscribeComponent
-    implements OnInit
-{
+export class AgreementsComponent extends UnsubscribeComponent implements OnInit {
     protected isDarkMode: boolean;
     protected readonly IconColorEnum = IconColorEnum;
 
@@ -35,18 +33,14 @@ export class AgreementsComponent
         this.checkUser();
         this.patchHeaderAndFooter();
 
-        this.title.setTitle(
-            new SentenceCasePipe().transform(this.wording.footer.agreements)
-        );
+        this.title.setTitle(new SentenceCasePipe().transform(this.wording.footer.agreements));
     }
 
     ngOnInit(): void {
         this.addSubscription(
-            this.modeStore
-                .watch()
-                .subscribe((modeInterface: ModeInterface): void => {
-                    this.isDarkMode = modeInterface.dark;
-                })
+            this.modeStore.watch().subscribe((modeInterface: ModeInterface): void => {
+                this.isDarkMode = modeInterface.color === ColorEnum.DARK;
+            })
         );
     }
 

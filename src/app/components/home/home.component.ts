@@ -7,12 +7,10 @@ import { WordingService } from 'src/app/commons/services/wording.service';
 import { WotApiService } from 'src/app/commons/services/wot-api.service';
 import { HeaderStore } from 'src/app/commons/stores/header.store';
 import { MemberStore } from 'src/app/commons/stores/member.store';
-import {
-    WotClanRatingsRequest,
-    WotServerRequest,
-} from 'src/app/commons/types/clan-ratings.type';
+import { WotClanRatingsRequest, WotServerRequest } from 'src/app/commons/types/clan-ratings.type';
 import { ArrayCustom } from 'src/app/commons/utils/array-custom.util';
 import { WindowsCustom } from 'src/app/commons/utils/windows-custom.util';
+import { ColorEnum } from '../../commons/enums/color.enum';
 import { CookieNameEnum } from '../../commons/enums/cookie-name.enum';
 import { IconColorEnum } from '../../commons/enums/icon-enum';
 import { ModeInterface } from '../../commons/interfaces/mode.interface';
@@ -56,20 +54,14 @@ export class HomeComponent extends UnsubscribeComponent implements OnInit {
         super();
         this.patchHeaderAndFooter();
 
-        this.title.setTitle(
-            new SentenceCasePipe().transform(this.wording.header.accueil)
-        );
+        this.title.setTitle(new SentenceCasePipe().transform(this.wording.header.accueil));
     }
 
     ngOnInit(): void {
         this.getWotServerStatus();
         this.getInformation();
 
-        if (
-            this.isClanRatingsCardDisplayed(
-                document.querySelector('#right-home')
-            )
-        ) {
+        if (this.isClanRatingsCardDisplayed(document.querySelector('#right-home'))) {
             this.getClanRatings();
         } else {
             this.showSpinnerClanRatings = false;
@@ -94,27 +86,20 @@ export class HomeComponent extends UnsubscribeComponent implements OnInit {
 
     private createSubscribe(): void {
         this.addSubscription(
-            this.memberStore
-                .watch()
-                .subscribe((value: MemberInterface): void => {
-                    this.isVisitor = value.isVisitor;
-                })
+            this.memberStore.watch().subscribe((value: MemberInterface): void => {
+                this.isVisitor = value.isVisitor;
+            })
         );
 
         this.addSubscription(
             this.modeStore.watch().subscribe((value: ModeInterface): void => {
-                this.isDarkMode = value.dark;
+                this.isDarkMode = value.color === ColorEnum.DARK;
             })
         );
     }
 
-    private isClanRatingsCardDisplayed(
-        clanRatingsCard: Element | null
-    ): boolean {
-        return (
-            clanRatingsCard !== null &&
-            WindowsCustom.getDisplay(clanRatingsCard) !== 'none'
-        );
+    private isClanRatingsCardDisplayed(clanRatingsCard: Element | null): boolean {
+        return clanRatingsCard !== null && WindowsCustom.getDisplay(clanRatingsCard) !== 'none';
     }
 
     private getWotServerStatus(): void {
@@ -128,11 +113,10 @@ export class HomeComponent extends UnsubscribeComponent implements OnInit {
         this.wotApi.getServeurStatus().subscribe({
             next: (serverRequest: WotServerRequest): void => {
                 this.wotServer = serverRequest;
-                this.wotServer.data.wot =
-                    ArrayCustom.sortArrayOfObjectFromNumberDecroissant(
-                        serverRequest.data.wot,
-                        'players_online'
-                    );
+                this.wotServer.data.wot = ArrayCustom.sortArrayOfObjectFromNumberDecroissant(
+                    serverRequest.data.wot,
+                    'players_online'
+                );
             },
             error(err): void {
                 console.log(err);

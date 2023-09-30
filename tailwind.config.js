@@ -5,12 +5,6 @@ module.exports = {
     darkMode: 'class',
     content: ['./src/**/*.{html,ts}'],
     theme: {
-        spacing: {
-            outside_desktop: '2rem',
-            outside_tablet: '1rem',
-            normal: '1rem',
-            demi: '0.5rem',
-        },
         colors: {
             primary: {
                 700: '#FBFBFB',
@@ -72,11 +66,11 @@ module.exports = {
             desktop: '1440px',
         },
         fontSize: {
-            body: ['14px', { lineHeight: '22px', letterSpacing: '0' }],
-            title: ['18px', { lineHeight: '26px', letterSpacing: '0' }],
-            h3: ['20px', { lineHeight: '28px', letterSpacing: '0' }],
-            h2: ['24px', { lineHeight: '32px', letterSpacing: '0' }],
-            h1: ['30px', { lineHeight: '38px', letterSpacing: '0' }],
+            body: ['14px', { lineHeight: '22px' }],
+            title: ['18px', { lineHeight: '26px' }],
+            h3: ['20px', { lineHeight: '28px' }],
+            h2: ['24px', { lineHeight: '32px' }],
+            h1: ['30px', { lineHeight: '38px' }],
         },
         fontFamily: {
             ui: 'Roboto Condensed, sans-serif',
@@ -89,7 +83,7 @@ module.exports = {
         boxShadow: {
             card_white:
                 'box-shadow: 0 -2px 5px 0 rgba(255, 255, 255, 0.25), 0 2px 5px 0 rgba(255, 255, 255, 0.25)',
-            carb_black:
+            card_black:
                 'box-shadow: 0 -2px 5px 0 rgba(0, 0, 0, 0.25), 0 2px 5px 0 rgba(0, 0, 0, 0.25)',
             slide_white:
                 'box-shadow: 0 1px 5px 0 rgba(255, 255, 255, 0.12), 0 2px 2px 0 rgba(255, 255, 255, 0.14), 0 1px 1px 0 rgba(255, 255, 255, 0.20)',
@@ -104,6 +98,14 @@ module.exports = {
             normal: '0.75rem',
             semi: '0.375rem',
             full: '9999px',
+        },
+        extend: {
+            spacing: {
+                outside_desktop: '2rem',
+                outside_tablet: '1rem',
+                normal: '1rem',
+                demi: '0.5rem',
+            },
         },
     },
     plugins: [

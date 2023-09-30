@@ -1,5 +1,6 @@
-import { booleanAttribute, Component, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { NgxSkeletonLoaderConfigTheme } from 'ngx-skeleton-loader/lib/ngx-skeleton-loader-config.types';
+import { ColorEnum } from '../../commons/enums/color.enum';
 import { AnimationEnum } from './enums/animation.enum';
 import { AppearanceEnum } from './enums/appearance.enum';
 import { ThemeModel } from './models/theme.model';
@@ -23,17 +24,18 @@ export class SkeletonLoadingComponent {
      */
     @Input() animation: AnimationEnum = AnimationEnum.PROGRESS;
     /**
-     * If the skeleton loading need to be in dark mode. (false by default)
+     * The color of the skeleton loading.
+     * Mostly get from the {@link ModeStore}
      */
-    @Input({ transform: booleanAttribute }) isDarkMode: boolean = false;
+    @Input({ required: true }) color: ColorEnum;
     /**
-     * The width of the skeleton loading. (40px by default)
+     * The width of the skeleton loading. (40px/2.5rem by default)
      */
-    @Input() width: number | string = '40px';
+    @Input() width: number | string = '2.5rem';
     /**
-     * The height of the skeleton loading. (40px by default)
+     * The height of the skeleton loading. (40px/2.5rem by default)
      */
-    @Input() height: number | string = '40px';
+    @Input() height: number | string = '2.5rem';
 
     /**
      * The traduction of the lchp different appearance in ngx appearance
@@ -94,7 +96,7 @@ export class SkeletonLoadingComponent {
 
         this.ngxTheme = this.themeModel.constructTheme(
             this._appearance,
-            this.isDarkMode,
+            this.color,
             this.width,
             this.height
         );

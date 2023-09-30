@@ -64,14 +64,14 @@ export class AppComponent implements OnInit {
         private modeStore: ModeStore,
         private featureStore: FeatureStore
     ) {
+        if (!this.auth.isLoggedIn()) {
+            this.auth.login();
+        }
         this.registerIcons();
         this.onResize({});
     }
 
     ngOnInit(): void {
-        if (!this.auth.isLoggedIn()) {
-            this.auth.login();
-        }
         this.getFeature();
     }
 

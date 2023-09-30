@@ -5,44 +5,12 @@
 /* -------------------------------------------------------------------------- */
 
 @use 'assets/scss/tailwind/config';
-@use '@angular/material' as mat;
+@use "assets/scss/angular/theme";
+@use "assets/scss/angular/expansion-panel";
+@use "assets/scss/angular/expansion-panel-header";
+@use "assets/scss/standard";
 
-/* -------------------------------------------------------------------------- */
-/*                                   ANGULAR                                  */
-/* -------------------------------------------------------------------------- */
-
-@include mat.core();
-
-$my-primary: mat.define-palette(mat.$grey-palette);
-$my-accent: mat.define-palette(mat.$pink-palette);
-$my-warn: mat.define-palette(mat.$red-palette);
-$font-family: "ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'";
-
-$my-theme: mat.define-light-theme(
-    (
-        color: (
-            primary: $my-primary,
-            accent: $my-accent,
-            warn: $my-warn,
-        ),
-        typography: mat.define-typography-config($font-family),
-        density: 0,
-    )
-);
-
-@include mat.core-theme($my-theme);
-@include mat.all-component-themes($my-theme);
-
-/* -------------------------------------------------------------------------- */
-/*                                STANDARD CSS                                */
-/* -------------------------------------------------------------------------- */
-
-body,
-app-root {
-    height: inherit;
-}
-
-.mat-expansion-panel-header-description {
+/*.mat-expansion-panel-header-description {
     flex-grow: 1.2 !important;
 }
 
@@ -86,4 +54,4 @@ app-root {
     .mat-expansion-panel-body {
         padding: 0 24px 16px !important;
     }
-}
+}*/

@@ -29,9 +29,9 @@
 
 @layer components {
     .dark {
-        @apply bg-secondary-500 text-primary-700;
+        @apply bg-secondary-400 text-primary-700;
     }
     .light {
-        @apply bg-primary-500 text-secondary-700;
+        @apply bg-primary-400 text-secondary-700;
     }
 }

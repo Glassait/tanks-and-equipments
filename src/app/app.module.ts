@@ -25,6 +25,7 @@ import { CardLittleComponent } from './components/card/little/card-little.compon
 import { ChangelogComponent } from './components/changelog/changelog.component';
 import { ClanWarComponent } from './components/clan-war/clan-war.component';
 import { UnsubscribeComponent } from './components/commons/unsubscribe.component';
+import { ExpansionPanelComponent } from './components/expansion-panel/expansion-panel.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 import { HomeComponent } from './components/home/home.component';
@@ -85,6 +86,7 @@ if (environment.production) {
         ChangelogPipe,
         AgreementPipe,
         SandboxComponent,
+        ExpansionPanelComponent,
     ],
     imports: [
         BrowserModule,
