@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { TanksDataService } from 'src/app/commons/services/tank-data.service';
 import { HeaderStore } from 'src/app/commons/stores/header.store';
 import { MemberStore } from 'src/app/commons/stores/member.store';
+import { ColorEnum } from '../../commons/enums/color.enum';
 import { CookieNameEnum } from '../../commons/enums/cookie-name.enum';
 import { ModeInterface } from '../../commons/interfaces/mode.interface';
 import { SessionStorageService } from '../../commons/services/session-storage.service';
@@ -19,10 +20,7 @@ import { UnsubscribeComponent } from '../commons/unsubscribe.component';
     selector: 'app-tanks-equipment',
     templateUrl: './tanks-equipment.component.html',
 })
-export class TanksEquipmentComponent
-    extends UnsubscribeComponent
-    implements OnInit
-{
+export class TanksEquipmentComponent extends UnsubscribeComponent implements OnInit {
     protected showSpinner: boolean = true;
     protected isDark: boolean;
     protected isMobile: boolean;
@@ -45,11 +43,7 @@ export class TanksEquipmentComponent
         this.patchHeaderAndFooter();
         this.createSubscribe();
 
-        this.title.setTitle(
-            new SentenceCasePipe().transform(
-                this.wording.header.charEtEquipement
-            )
-        );
+        this.title.setTitle(new SentenceCasePipe().transform(this.wording.header.charEtEquipement));
     }
 
     ngOnInit(): void {
@@ -81,21 +75,17 @@ export class TanksEquipmentComponent
 
     private createSubscribe(): void {
         this.addSubscription(
-            this.modeStore
-                .watch()
-                .subscribe((modeInterface: ModeInterface): void => {
-                    this.isDark = modeInterface.dark;
-                    this.isMobile = modeInterface.mobile;
-                })
+            this.modeStore.watch().subscribe((modeInterface: ModeInterface): void => {
+                this.isDark = modeInterface.color === ColorEnum.DARK;
+                this.isMobile = modeInterface.mobile;
+            })
         );
     }
 
     private getTanksData(): void {
         const token = {
             date: this.sessionService.getFromKey(CookieNameEnum.TANKS_DATE),
-            data: this.sessionService.getFromKeyToObject<TankData[]>(
-                CookieNameEnum.TANKS
-            ),
+            data: this.sessionService.getFromKeyToObject<TankData[]>(CookieNameEnum.TANKS),
         };
         const dateToken: Date | null = token.date ? new Date(token.date) : null;
 
@@ -106,10 +96,7 @@ export class TanksEquipmentComponent
             this.tankDataService.queryTanksData().subscribe({
                 next: (tankData: TankData[]): void => {
                     this.tanksData = tankData;
-                    this.sessionService.store(
-                        CookieNameEnum.TANKS,
-                        JSON.stringify(tankData)
-                    );
+                    this.sessionService.store(CookieNameEnum.TANKS, JSON.stringify(tankData));
                     this.sessionService.store(
                         CookieNameEnum.TANKS_DATE,
                         DateCustom.getMidnightDate().toDateString()

@@ -9,5 +9,6 @@
     "bracketSameLine": false,
     "arrowParens": "avoid",
     "htmlWhitespaceSensitivity": "strict",
-    "embeddedLanguageFormatting": "auto"
+    "embeddedLanguageFormatting": "auto",
+    "printWidth": 100
 }

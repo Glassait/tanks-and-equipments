@@ -8,8 +8,8 @@ import {
     Optional,
 } from '@angular/core';
 import { IconRegistryService } from 'src/app/commons/services/icon-registry.service';
-import { Icons } from 'src/app/commons/types/icon.type';
 import { FillEnum, IconColorEnum, StrokeEnum } from '../enums/icon-enum';
+import { IconsType } from '../types/icons/icon.type';
 import { Icon } from '../utils/icon.util';
 
 @Component({
@@ -18,7 +18,7 @@ import { Icon } from '../utils/icon.util';
         '<div class="{{ svg?.isStroke ? strokeEnum[color] : fillEnum[color] }}"></div>',
 })
 export class IconComponent implements OnInit {
-    @Input() icon: Icons | string;
+    @Input() icon: IconsType | string;
     @Input() size: number = 70;
     @Input() width: number;
     @Input() height: number;

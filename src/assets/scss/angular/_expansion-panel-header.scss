@@ -1,0 +1,99 @@
+/*
+ * || IMPORT / USE
+ * Tips search `||` to move to section
+ */
+
+@use '../commons/colors';
+@use '../commons/typography';
+@use '../commons/gutter';
+@use '../commons/function';
+@use '../commons/borders';
+@use '../commons/box-shadow';
+
+/*
+ * || HEADER MODIFICATION
+ */
+
+.mat-expansion-panel-header {
+    justify-content: space-between;
+
+    padding: gutter.$demi gutter.$outside-tablet !important;
+
+    height: auto !important;
+
+    .mat-content {
+        justify-content: inherit;
+
+        flex: 1 0 0 !important;
+
+        mat-panel-title {
+            position: absolute;
+            top: 0;
+
+            height: 100%;
+
+        }
+
+        .mat-expansion-panel-header-title, .mat-expansion-panel-header-description {
+            margin-right: 0 !important;
+
+        }
+
+        mat-panel-description {
+            display: flex;
+            justify-content: center;
+        }
+    }
+
+    .mat-expansion-indicator {
+        position: absolute;
+        right: 1rem;
+
+        &::after {
+            display: flex !important;
+        }
+    }
+
+    &.mat-expanded:hover {
+        background: colors.$primary-400 !important;
+    }
+}
+
+:is(.dark) .mat-expansion-panel-header.mat-expanded:hover {
+    background: colors.$secondary-400 !important;
+}
+
+/*
+ * || MATERIAL HEADER VARIABLE
+ */
+
+html {
+    // Expansion panel header
+    --mat-expansion-header-text-size: #{typography.$title-font-size};
+    --mat-expansion-header-text-weight: #{typography.$font-weight-regular};
+    --mat-expansion-header-text-line-height: #{typography.$title-line-height};
+}
+
+.light {
+    // Expansion panel
+    --mat-expansion-container-background-color: #{colors.$primary-700};
+
+    // Expansion panel header
+    --mat-expansion-header-text-color: #{colors.$secondary-700};
+    --mat-expansion-header-description-color: #{colors.$secondary-700};
+    --mat-expansion-header-indicator-color: #{colors.$secondary-700};
+    --mat-expansion-header-hover-state-layer-color: #{colors.$primary-400};
+    --mat-expansion-header-focus-state-layer-color: #{colors.$primary-400};
+}
+
+.dark {
+    // Expansion panel
+    --mat-expansion-container-background-color: #{colors.$secondary-700};
+
+    // Expansion panel header
+    --mat-expansion-header-text-color: #{colors.$primary-700};
+    --mat-expansion-header-description-color: #{colors.$primary-700};
+    --mat-expansion-header-indicator-color: #{colors.$primary-700};
+    --mat-expansion-header-hover-state-layer-color: #{colors.$secondary-400};
+    --mat-expansion-header-focus-state-layer-color: #{colors.$secondary-400};
+}
