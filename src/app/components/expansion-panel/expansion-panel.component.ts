@@ -4,6 +4,15 @@ import { TankIconType } from '../../commons/types/icons/tank-icon.type';
 import { AnimationEnum } from '../skeleton-loading/enums/animation.enum';
 import { AppearanceEnum } from '../skeleton-loading/enums/appearance.enum';
 
+/**
+ * This component manage the angular material expansion-panel.<p>
+ * * The header is manage by the input
+ * * The content is pass by <ng-content>
+ * @example
+ * <glassait-expansion-panel [color]='color' description='test' title='TITLE'>
+ *      Ceci est un text simple
+ * </glassait-expansion-panel>
+ */
 @Component({
     selector: 'glassait-expansion-panel',
     templateUrl: './expansion-panel.component.html',

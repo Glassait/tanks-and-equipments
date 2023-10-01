@@ -5,7 +5,7 @@
 
 @use '../commons/colors';
 @use '../commons/typography';
-@use '../commons/gutter';
+@use '../commons/spacing';
 @use '../commons/function';
 @use '../commons/borders';
 @use '../commons/box-shadow';
@@ -15,9 +15,9 @@
  */
 
 .mat-expansion-panel-header {
-    justify-content: space-between;
+    @apply justify-between;
 
-    padding: gutter.$demi gutter.$outside-tablet !important;
+    padding: spacing.$demi spacing.$outside-tablet !important;
 
     height: auto !important;
 
@@ -27,27 +27,20 @@
         flex: 1 0 0 !important;
 
         mat-panel-title {
-            position: absolute;
-            top: 0;
-
-            height: 100%;
-
+            @apply absolute top-0 h-full;
         }
 
         .mat-expansion-panel-header-title, .mat-expansion-panel-header-description {
             margin-right: 0 !important;
-
         }
 
         mat-panel-description {
-            display: flex;
-            justify-content: center;
+            @apply flex justify-center;
         }
     }
 
     .mat-expansion-indicator {
-        position: absolute;
-        right: 1rem;
+        @apply absolute right-4;
 
         &::after {
             display: flex !important;

@@ -1,0 +1,14 @@
+/*
+ * || IMPORT / USE
+ * Tips search `||` to move to section
+ */
+
+@use "../commons/spacing";
+
+/*
+ * || BODY MODIFICATION
+ */
+
+.mat-expansion-panel-body {
+    padding: spacing.$normal !important;
+}
