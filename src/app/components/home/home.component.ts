@@ -12,7 +12,6 @@ import { ArrayCustom } from 'src/app/commons/utils/array-custom.util';
 import { WindowsCustom } from 'src/app/commons/utils/windows-custom.util';
 import { ColorEnum } from '../../commons/enums/color.enum';
 import { CookieNameEnum } from '../../commons/enums/cookie-name.enum';
-import { IconColorEnum } from '../../commons/enums/icon-enum';
 import { ModeInterface } from '../../commons/interfaces/mode.interface';
 import { FooterStore } from '../../commons/stores/footer.store';
 import { ModeStore } from '../../commons/stores/mode.store';
@@ -20,6 +19,7 @@ import { InformationType } from '../../commons/types/information.type';
 import { DateCustom } from '../../commons/utils/date.custom';
 import { SentenceCasePipe } from '../../pipes/sentenceCase/sentence-case.pipe';
 import { UnsubscribeComponent } from '../commons/unsubscribe.component';
+import { IconColorEnum } from '../icon/enums/icon-enum';
 
 @Component({
     selector: 'app-home',

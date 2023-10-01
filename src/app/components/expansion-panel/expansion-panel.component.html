@@ -5,7 +5,14 @@
         <mat-expansion-panel-header>
             <mat-panel-title *ngIf='title || icon'>
                 <div *ngIf='title'>{{ title }}</div>
-                <icon *ngIf='icon' [height]='24' [icon]='icon' [width]='70'></icon>
+
+                <glassait-icon
+                    *ngIf='icon'
+                    [color]='IconColorEnum.TANK'
+                    [height]='24'
+                    [icon]='icon'
+                    [width]='70'
+                ></glassait-icon>
             </mat-panel-title>
 
             <mat-panel-description *ngIf='description'>
@@ -18,7 +25,7 @@
 </ng-template>
 
 <ng-template #loading>
-    <mat-expansion-panel class='w-full pointer-events-none'>
+    <mat-expansion-panel class='pointer-events-none w-full'>
         <mat-expansion-panel-header>
             <mat-panel-title>
                 <glassait-skeleton-loading

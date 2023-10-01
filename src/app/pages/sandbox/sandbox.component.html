@@ -1,3 +1,69 @@
 <h1>sandbox works!</h1>
 
 <div>KEEP THIS CLEAN</div>
+
+<div class='flex flex-col gap-normal'>
+    <div class='flex flex-col gap-normal'>
+        <h1>Type</h1>
+        <div class='flex gap-normal items-start'>
+            <glassait-button text='bouton'></glassait-button>
+            <glassait-button [type]='ButtonTypeEnum.RAISED' text='bouton'></glassait-button>
+        </div>
+    </div>
+
+    <div class='flex flex-col gap-normal'>
+        <h1> Size </h1>
+        <div class='flex gap-normal items-start'>
+            <glassait-button
+                [size]='SizeEnum.XSMALL'
+                [type]='ButtonTypeEnum.RAISED'
+                text='bouton'
+            ></glassait-button>
+            <glassait-button
+                [size]='SizeEnum.SMALL'
+                [type]='ButtonTypeEnum.RAISED'
+                text='bouton'
+            ></glassait-button>
+            <glassait-button
+                [size]='SizeEnum.NORMAL'
+                [type]='ButtonTypeEnum.RAISED'
+                text='bouton'
+            ></glassait-button>
+            <glassait-button
+                [size]='SizeEnum.LARGE'
+                [type]='ButtonTypeEnum.RAISED'
+                text='bouton'
+            ></glassait-button>
+            <glassait-button
+                [size]='SizeEnum.XLARGE'
+                [type]='ButtonTypeEnum.RAISED'
+                text='bouton'
+            ></glassait-button>
+        </div>
+    </div>
+
+    <div class='flex flex-col gap-normal'>
+        <h1> Icon </h1>
+        <div class='flex gap-normal items-start'>
+            <glassait-button
+                [iconColor]='IconColorEnum[color]'
+                [type]='ButtonTypeEnum.RAISED'
+                leftIcon='changelog'
+                text='bouton'
+            ></glassait-button>
+            <glassait-button
+                [iconColor]='IconColorEnum[color]'
+                [type]='ButtonTypeEnum.RAISED'
+                rightIcon='pencil'
+                text='bouton'
+            ></glassait-button>
+            <glassait-button
+                [iconColor]='IconColorEnum[color]'
+                [type]='ButtonTypeEnum.RAISED'
+                leftIcon='changelog'
+                rightIcon='pencil'
+                text='bouton'
+            ></glassait-button>
+        </div>
+    </div>
+</div>

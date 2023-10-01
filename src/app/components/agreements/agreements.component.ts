@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { ColorEnum } from '../../commons/enums/color.enum';
-import { IconColorEnum } from '../../commons/enums/icon-enum';
 import { ModeInterface } from '../../commons/interfaces/mode.interface';
 import { WordingService } from '../../commons/services/wording.service';
 import { FooterStore } from '../../commons/stores/footer.store';
@@ -11,6 +10,7 @@ import { MemberStore } from '../../commons/stores/member.store';
 import { ModeStore } from '../../commons/stores/mode.store';
 import { SentenceCasePipe } from '../../pipes/sentenceCase/sentence-case.pipe';
 import { UnsubscribeComponent } from '../commons/unsubscribe.component';
+import { IconColorEnum } from '../icon/enums/icon-enum';
 
 @Component({
     selector: 'app-agreements',

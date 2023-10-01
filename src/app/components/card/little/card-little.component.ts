@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { IconColorEnum } from '../../../commons/enums/icon-enum';
-import { IconsType } from '../../../commons/types/icons/icon.type';
+import { IconsType } from '../../icon/types/icon.type';
+import { IconColorEnum } from '../../icon/enums/icon-enum';
 
 @Component({
     selector: 'card-little',

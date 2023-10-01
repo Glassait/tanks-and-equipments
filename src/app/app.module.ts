@@ -17,9 +17,9 @@ import { environment } from 'src/environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
-import { IconComponent } from './commons/icon/icon.component';
 import { HttpMockInterceptor } from './commons/interceptors/http-mock.interceptor';
 import { AgreementsComponent } from './components/agreements/agreements.component';
+import { ButtonComponent } from './components/button/button.component';
 import { CardChangelogComponent } from './components/card/changelog/card-changelog.component';
 import { CardLittleComponent } from './components/card/little/card-little.component';
 import { ChangelogComponent } from './components/changelog/changelog.component';
@@ -29,6 +29,7 @@ import { ExpansionPanelComponent } from './components/expansion-panel/expansion-
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 import { HomeComponent } from './components/home/home.component';
+import { IconComponent } from './components/icon/icon.component';
 import { SkeletonLoadingComponent } from './components/skeleton-loading/skeleton-loading.component';
 import { TankEquipmentDescriptionComponent } from './components/tanks-equipment/tank-equipment-description/tank-equipment-description.component';
 import { TanksEquipmentComponent } from './components/tanks-equipment/tanks-equipment.component';
@@ -59,13 +60,16 @@ if (environment.production) {
 }
 
 @NgModule({
+    bootstrap: [AppComponent],
     declarations: [
+        // PAGE
         AppComponent,
         HomeComponent,
         TanksEquipmentComponent,
         TankEquipmentDescriptionComponent,
         ClanWarComponent,
-        HeaderComponent,
+        SandboxComponent,
+        // COMPONENTS
         IconComponent,
         UnsubscribeComponent,
         FooterComponent,
@@ -74,6 +78,11 @@ if (environment.production) {
         CardChangelogComponent,
         AgreementsComponent,
         SkeletonLoadingComponent,
+        HeaderComponent,
+        // ANGULAR MATERIAL
+        ButtonComponent,
+        ExpansionPanelComponent,
+        // PIPE
         ImagePipe,
         HeaderPipe,
         ReplacePipe,
@@ -85,8 +94,6 @@ if (environment.production) {
         FooterPipe,
         ChangelogPipe,
         AgreementPipe,
-        SandboxComponent,
-        ExpansionPanelComponent,
     ],
     imports: [
         BrowserModule,
@@ -104,6 +111,5 @@ if (environment.production) {
         NgxSkeletonLoaderModule,
     ],
     providers: [...mockProviders, Title, CookieService],
-    bootstrap: [AppComponent],
 })
 export class AppModule {}
