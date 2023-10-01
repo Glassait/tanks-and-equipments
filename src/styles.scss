@@ -8,16 +8,10 @@
 @use "assets/scss/angular/theme";
 @use "assets/scss/angular/expansion-panel";
 @use "assets/scss/angular/expansion-panel-header";
+@use "assets/scss/angular/expansion-panel-body";
 @use "assets/scss/standard";
 
-/*.mat-expansion-panel-header-description {
-    flex-grow: 1.2 !important;
-}
-
-.mat-expansion-panel-body {
-    padding: 0 !important;
-}
-
+/*
 .mat-mdc-card {
     box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.25), 0 -2px 10px 0 rgba(0, 0, 0, 0.25) !important;
 }
@@ -28,11 +22,6 @@
 
 .mat-mdc-card-avatar {
     margin: 0 !important;
-}
-
-.mat-expansion-panel-header-title {
-    flex-grow: unset !important;
-    flex-basis: unset !important;
 }
 
 .mat-mdc-menu-item {
