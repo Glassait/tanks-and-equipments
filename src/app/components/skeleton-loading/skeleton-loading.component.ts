@@ -1,12 +1,13 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, numberAttribute } from '@angular/core';
 import { NgxSkeletonLoaderConfigTheme } from 'ngx-skeleton-loader/lib/ngx-skeleton-loader-config.types';
-import { ColorEnum } from '../../commons/enums/color.enum';
+import { ModeEnum } from '../../commons/enums/modeEnum';
 import { AnimationEnum } from './enums/animation.enum';
 import { AppearanceEnum } from './enums/appearance.enum';
 import { ThemeModel } from './models/theme.model';
 
 /**
  * This component use the npm library for create skeleton loading.
+ * @example <glassait-skeleton-loading [animation]="AnimationEnum.PULSE" [color]="ColorEnum.DARK"></glassait-skeleton-loading>
  * @see https://www.npmjs.com/package/ngx-skeleton-loader#setup
  */
 @Component({
@@ -15,30 +16,42 @@ import { ThemeModel } from './models/theme.model';
 })
 export class SkeletonLoadingComponent {
     /**
-     * The number of element wanted. (1 by default)
+     * The number of element wanted.
+     * @example <glassait-skeleton-loading count="2"></glassait-skeleton-loading>
+     * @default 1
+     * @implements numberAttribute
      */
-    @Input() count: number = 1;
+    @Input({ transform: numberAttribute }) count: number = 1;
     /**
      * The type of animation wanted. (progress by default)
+     * @example <glassait-skeleton-loading [animation]="AnimationEnum.PULSE"></glassait-skeleton-loading>
+     * @default AnimationEnum.PROGRESS
+     * @enum AnimationEnum
      * @see AnimationEnum
      */
     @Input() animation: AnimationEnum = AnimationEnum.PROGRESS;
     /**
      * The color of the skeleton loading.
-     * Mostly get from the {@link ModeStore}
+     * @example <glassait-skeleton-loading [color]="ColorEnum.DARK"></glassait-skeleton-loading>
+     * @enum ModeEnum
+     * @see ModeEnum
      */
-    @Input({ required: true }) color: ColorEnum;
+    @Input({ required: true }) color: ModeEnum;
     /**
-     * The width of the skeleton loading. (40px/2.5rem by default)
+     * The width of the skeleton loading.
+     * @example <glassait-skeleton-loading width="2rem"></glassait-skeleton-loading>
+     * @default 2.5rem
      */
-    @Input() width: number | string = '2.5rem';
+    @Input() width: string = '2.5rem';
     /**
-     * The height of the skeleton loading. (40px/2.5rem by default)
+     * The height of the skeleton loading.
+     * @example <glassait-skeleton-loading height="2rem"></glassait-skeleton-loading>
+     * @default 2.5rem
      */
-    @Input() height: number | string = '2.5rem';
+    @Input() height: string = '2.5rem';
 
     /**
-     * The traduction of the lchp different appearance in ngx appearance
+     * The traduction of the different appearance in ngx appearance
      * @protected
      */
     protected ngxAppearance: 'circle' | 'line';
@@ -52,7 +65,7 @@ export class SkeletonLoadingComponent {
     constructor(private themeModel: ThemeModel) {}
 
     /**
-     * The appearance of skeleton loading wanted. (line by default)
+     * The appearance of skeleton loading wanted.
      * @see AppearanceEnum
      */
     private _appearance: AppearanceEnum;
@@ -67,7 +80,7 @@ export class SkeletonLoadingComponent {
 
     set appearance(appearance: AppearanceEnum) {
         this._appearance = appearance;
-        this.ngxSetter();
+        this.setNgx();
     }
 
     /**
@@ -75,7 +88,7 @@ export class SkeletonLoadingComponent {
      * @see ThemeModel
      * @private
      */
-    private ngxSetter(): void {
+    private setNgx(): void {
         switch (this._appearance) {
             case AppearanceEnum.CIRCLE:
                 this.ngxAppearance = 'circle';
@@ -87,10 +100,10 @@ export class SkeletonLoadingComponent {
                 this.ngxAppearance = 'line';
                 break;
             case AppearanceEnum.RECTANGLE_SEMI:
-                this.ngxAppearance = 'circle';
+                this.ngxAppearance = 'line';
                 break;
             case AppearanceEnum.RECTANGLE_NORMAL:
-                this.ngxAppearance = 'circle';
+                this.ngxAppearance = 'line';
                 break;
         }
 

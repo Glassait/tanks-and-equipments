@@ -1,0 +1,169 @@
+/*
+ * || IMPORT / USE
+ * Tips search `||` to move to section
+ */
+@use '../commons/colors';
+@use '../commons/spacing';
+@use '../commons/borders';
+@use '../commons/typography';
+@use '../commons/box-shadow';
+
+/*
+* || BUTTON SIZE
+* XSMALL -> 20px/1.25rem
+* SMALL -> 28px/1.75rem
+* NORMAL -> 36px/2.25rem
+* LARGE -> 44px/2.75rem
+* XLARGE -> 52px/3.25rem
+*/
+.XSMALL {
+    height: 1.25rem !important;
+}
+
+.SMALL {
+    height: 1.75rem !important;
+}
+
+.NORMAL {
+    height: 2.25rem !important;
+}
+
+.LARGE {
+    height: 2.75rem !important;
+}
+
+.XLARGE {
+    height: 3.25rem !important;
+}
+
+/*
+ * || BUTTON THEME
+ */
+
+.DARK {
+    --mat-mdc-button-persistent-ripple-color: #{colors.$secondary-200} !important;
+    --mat-mdc-button-ripple-color: #{colors.$secondary-700} !important;
+    --mdc-protected-button-label-text-color: #{colors.$primary-700} !important;
+    --mdc-text-button-label-text-color: #{colors.$primary-700} !important;
+
+    &:hover {
+        @extend %opacity;
+    }
+
+    &.RAISED {
+        @extend %border-radius;
+        @extend %box-white;
+
+        --mdc-protected-button-container-color: #{colors.$secondary-700} !important;
+    }
+}
+
+.DARK_BLUE {
+    --mat-mdc-button-persistent-ripple-color: #{colors.$secondary-200} !important;
+    --mat-mdc-button-ripple-color: #{colors.$secondary-700} !important;
+    --mdc-protected-button-label-text-color: #{colors.$info-400} !important;
+    --mdc-text-button-label-text-color: #{colors.$info-400} !important;
+
+    &:hover {
+        @extend %opacity;
+    }
+
+    &.RAISED {
+        @extend %border-radius;
+        @extend %box-white;
+
+        --mdc-protected-button-container-color: #{colors.$secondary-700} !important;
+    }
+}
+
+.DARK_DISABLED {
+    --mdc-protected-button-disabled-label-text-color: #{colors.$primary-50} !important;
+    --mdc-text-button-disabled-label-text-color: #{colors.$primary-50} !important;
+
+    &.RAISED {
+        @extend %border-radius;
+
+        --mdc-protected-button-disabled-container-color: #{colors.$secondary-50} !important;
+    }
+}
+
+.LIGHT {
+    --mat-mdc-button-persistent-ripple-color: #{colors.$primary-200} !important;
+    --mat-mdc-button-ripple-color: #{colors.$primary-700} !important;
+    --mdc-protected-button-label-text-color: #{colors.$secondary-700} !important;
+    --mdc-text-button-label-text-color: #{colors.$secondary-700} !important;
+
+    &:hover {
+        @extend %opacity;
+    }
+
+    &.RAISED {
+        @extend %border-radius;
+        @extend %box-black;
+
+        --mdc-protected-button-container-color: #{colors.$primary-700} !important;
+    }
+}
+
+.LIGHT_BLUE {
+    --mat-mdc-button-persistent-ripple-color: #{colors.$primary-200} !important;
+    --mat-mdc-button-ripple-color: #{colors.$primary-700} !important;
+    --mdc-protected-button-label-text-color: #{colors.$info-900} !important;
+    --mdc-text-button-label-text-color: #{colors.$info-900} !important;
+
+    &:hover {
+        @extend %opacity;
+    }
+
+    &.RAISED {
+        @extend %border-radius;
+        @extend %box-black;
+
+        --mdc-protected-button-container-color: #{colors.$primary-700} !important;
+    }
+}
+
+.LIGHT_DISABLED {
+    --mdc-protected-button-disabled-label-text-color: #{colors.$secondary-50} !important;
+    --mdc-text-button-disabled-label-text-color: #{colors.$secondary-50} !important;
+
+    &.RAISED {
+        @extend %border-radius;
+
+        --mdc-protected-button-container-elevation: #{box-shadow.$box-shadow-card-black} !important;
+    }
+}
+
+%border-radius {
+    --mdc-protected-button-container-shape: #{borders.$radius-normal};
+}
+
+%opacity {
+    .mat-mdc-button-persistent-ripple::before {
+        opacity: 1 !important;
+    }
+}
+
+%box-white {
+    --mdc-protected-button-container-elevation: #{box-shadow.$box-shadow-card-white} !important;
+    --mdc-protected-button-hover-container-elevation: #{box-shadow.$box-shadow-card-white} !important;
+}
+
+%box-black {
+    --mdc-protected-button-container-elevation: #{box-shadow.$box-shadow-card-black} !important;
+    --mdc-protected-button-hover-container-elevation: #{box-shadow.$box-shadow-card-black} !important;
+}
+
+/*
+ * || MATERIAL OVERRIDE BUTTON
+ */
+.mdc-button {
+    @apply text-body font-medium;
+
+    line-height: typography.$body-line-height !important;
+    padding: 0 spacing.$normal !important;
+}
+
+html {
+    --mdc-text-button-container-shape: #{borders.$radius-normal};
+}

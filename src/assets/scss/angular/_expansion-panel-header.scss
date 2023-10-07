@@ -6,9 +6,6 @@
 @use '../commons/colors';
 @use '../commons/typography';
 @use '../commons/spacing';
-@use '../commons/function';
-@use '../commons/borders';
-@use '../commons/box-shadow';
 
 /*
  * || HEADER MODIFICATION
@@ -17,20 +14,21 @@
 .mat-expansion-panel-header {
     @apply justify-between;
 
-    padding: spacing.$demi spacing.$outside-tablet !important;
-
     height: auto !important;
 
-    .mat-content {
-        justify-content: inherit;
+    padding: spacing.$demi spacing.$outside-tablet !important;
 
+    .mat-content {
         flex: 1 0 0 !important;
+
+        justify-content: inherit;
 
         mat-panel-title {
             @apply absolute top-0 h-full;
         }
 
-        .mat-expansion-panel-header-title, .mat-expansion-panel-header-description {
+        .mat-expansion-panel-header-title,
+        .mat-expansion-panel-header-description {
             margin-right: 0 !important;
         }
 
@@ -62,9 +60,9 @@
 
 html {
     // Expansion panel header
+    --mat-expansion-header-text-line-height: #{typography.$title-line-height};
     --mat-expansion-header-text-size: #{typography.$title-font-size};
     --mat-expansion-header-text-weight: #{typography.$font-weight-regular};
-    --mat-expansion-header-text-line-height: #{typography.$title-line-height};
 }
 
 .light {
@@ -72,11 +70,11 @@ html {
     --mat-expansion-container-background-color: #{colors.$primary-700};
 
     // Expansion panel header
-    --mat-expansion-header-text-color: #{colors.$secondary-700};
     --mat-expansion-header-description-color: #{colors.$secondary-700};
-    --mat-expansion-header-indicator-color: #{colors.$secondary-700};
-    --mat-expansion-header-hover-state-layer-color: #{colors.$primary-400};
     --mat-expansion-header-focus-state-layer-color: #{colors.$primary-400};
+    --mat-expansion-header-hover-state-layer-color: #{colors.$primary-400};
+    --mat-expansion-header-indicator-color: #{colors.$secondary-700};
+    --mat-expansion-header-text-color: #{colors.$secondary-700};
 }
 
 .dark {
@@ -84,9 +82,9 @@ html {
     --mat-expansion-container-background-color: #{colors.$secondary-700};
 
     // Expansion panel header
-    --mat-expansion-header-text-color: #{colors.$primary-700};
     --mat-expansion-header-description-color: #{colors.$primary-700};
-    --mat-expansion-header-indicator-color: #{colors.$primary-700};
-    --mat-expansion-header-hover-state-layer-color: #{colors.$secondary-400};
     --mat-expansion-header-focus-state-layer-color: #{colors.$secondary-400};
+    --mat-expansion-header-hover-state-layer-color: #{colors.$secondary-400};
+    --mat-expansion-header-indicator-color: #{colors.$primary-700};
+    --mat-expansion-header-text-color: #{colors.$primary-700};
 }

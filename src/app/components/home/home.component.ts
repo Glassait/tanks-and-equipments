@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { CookieService } from 'ngx-cookie-service';
+import { takeUntil } from 'rxjs';
 import { MemberInterface } from 'src/app/commons/interfaces/member.interface';
 import { InformationService } from 'src/app/commons/services/information.service';
 import { WordingService } from 'src/app/commons/services/wording.service';
@@ -10,15 +11,15 @@ import { MemberStore } from 'src/app/commons/stores/member.store';
 import { WotClanRatingsRequest, WotServerRequest } from 'src/app/commons/types/clan-ratings.type';
 import { ArrayCustom } from 'src/app/commons/utils/array-custom.util';
 import { WindowsCustom } from 'src/app/commons/utils/windows-custom.util';
-import { ColorEnum } from '../../commons/enums/color.enum';
+import { UnsubscribeComponent } from '../../commons/directives/unsubscribe.component';
 import { CookieNameEnum } from '../../commons/enums/cookie-name.enum';
+import { ModeEnum } from '../../commons/enums/modeEnum';
 import { ModeInterface } from '../../commons/interfaces/mode.interface';
 import { FooterStore } from '../../commons/stores/footer.store';
 import { ModeStore } from '../../commons/stores/mode.store';
 import { InformationType } from '../../commons/types/information.type';
 import { DateCustom } from '../../commons/utils/date.custom';
 import { SentenceCasePipe } from '../../pipes/sentenceCase/sentence-case.pipe';
-import { UnsubscribeComponent } from '../commons/unsubscribe.component';
 import { IconColorEnum } from '../icon/enums/icon-enum';
 
 @Component({
@@ -85,17 +86,19 @@ export class HomeComponent extends UnsubscribeComponent implements OnInit {
     }
 
     private createSubscribe(): void {
-        this.addSubscription(
-            this.memberStore.watch().subscribe((value: MemberInterface): void => {
+        this.memberStore
+            .watch()
+            .pipe(takeUntil(this.destroy$))
+            .subscribe((value: MemberInterface): void => {
                 this.isVisitor = value.isVisitor;
-            })
-        );
+            });
 
-        this.addSubscription(
-            this.modeStore.watch().subscribe((value: ModeInterface): void => {
-                this.isDarkMode = value.color === ColorEnum.DARK;
-            })
-        );
+        this.modeStore
+            .watch()
+            .pipe(takeUntil(this.destroy$))
+            .subscribe((value: ModeInterface): void => {
+                this.isDarkMode = value.color === ModeEnum.DARK;
+            });
     }
 
     private isClanRatingsCardDisplayed(clanRatingsCard: Element | null): boolean {

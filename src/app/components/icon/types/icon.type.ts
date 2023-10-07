@@ -23,4 +23,5 @@ export type IconsType =
     | 'userGroupIcon'
     | 'waiting'
     | 'send'
-    | TankIconType;
+    | TankIconType
+    | (string & {});

@@ -24,7 +24,6 @@ import { CardChangelogComponent } from './components/card/changelog/card-changel
 import { CardLittleComponent } from './components/card/little/card-little.component';
 import { ChangelogComponent } from './components/changelog/changelog.component';
 import { ClanWarComponent } from './components/clan-war/clan-war.component';
-import { UnsubscribeComponent } from './components/commons/unsubscribe.component';
 import { ExpansionPanelComponent } from './components/expansion-panel/expansion-panel.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -71,7 +70,6 @@ if (environment.production) {
         SandboxComponent,
         // COMPONENTS
         IconComponent,
-        UnsubscribeComponent,
         FooterComponent,
         ChangelogComponent,
         CardLittleComponent,

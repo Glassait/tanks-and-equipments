@@ -1,5 +1,5 @@
 import { booleanAttribute, Component, Input, OnInit } from '@angular/core';
-import { ColorEnum } from '../../commons/enums/color.enum';
+import { ModeEnum } from '../../commons/enums/modeEnum';
 import { IconColorEnum } from '../icon/enums/icon-enum';
 import { TankIconType } from '../icon/types/tank-icon.type';
 import { AnimationEnum } from '../skeleton-loading/enums/animation.enum';
@@ -13,6 +13,7 @@ import { AppearanceEnum } from '../skeleton-loading/enums/appearance.enum';
  * <glassait-expansion-panel [color]='ColorEnum.DARK' description='test' title='TITLE'>
  *      Ceci est un text simple
  * </glassait-expansion-panel>
+ * @see https://material.angular.io/components/expansion/overview
  */
 @Component({
     selector: 'glassait-expansion-panel',
@@ -50,13 +51,13 @@ export class ExpansionPanelComponent implements OnInit {
      * @enum ColorEnum
      * @see ColorEnum
      */
-    @Input({ required: true }) color: ColorEnum;
+    @Input({ required: true }) color: ModeEnum;
 
     /**
      * ENUM
      */
     protected readonly AppearanceEnum = AppearanceEnum;
-    protected readonly ColorEnum = ColorEnum;
+    protected readonly ColorEnum = ModeEnum;
     protected readonly AnimationEnum = AnimationEnum;
     protected readonly IconColorEnum = IconColorEnum;
 

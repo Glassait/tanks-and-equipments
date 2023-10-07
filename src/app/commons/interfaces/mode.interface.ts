@@ -1,6 +1,6 @@
-import { ColorEnum } from '../enums/color.enum';
+import { ModeEnum } from '../enums/modeEnum';
 
 export interface ModeInterface {
-    color: ColorEnum;
+    color: ModeEnum;
     mobile: boolean;
 }

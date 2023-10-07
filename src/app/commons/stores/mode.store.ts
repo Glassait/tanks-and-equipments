@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@elie29/store';
-import { ColorEnum } from '../enums/color.enum';
+import { ModeEnum } from '../enums/modeEnum';
 import { ModeInterface } from '../interfaces/mode.interface';
 
 @Injectable({
@@ -10,8 +10,8 @@ export class ModeStore extends Store<ModeInterface> {
     constructor() {
         super({
             color: document.documentElement.classList.contains('dark')
-                ? ColorEnum.DARK
-                : ColorEnum.LIGHT,
+                ? ModeEnum.DARK
+                : ModeEnum.LIGHT,
             mobile: false,
         });
     }
