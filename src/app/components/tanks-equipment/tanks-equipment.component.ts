@@ -5,7 +5,7 @@ import { takeUntil } from 'rxjs';
 import { TanksDataService } from 'src/app/commons/services/tank-data.service';
 import { HeaderStore } from 'src/app/commons/stores/header.store';
 import { MemberStore } from 'src/app/commons/stores/member.store';
-import { UnsubscribeComponent } from '../../commons/directives/unsubscribe.component';
+import { UnsubscribeDirective } from '../../commons/directives/unsubscribe.directive';
 import { CookieNameEnum } from '../../commons/enums/cookie-name.enum';
 import { ModeEnum } from '../../commons/enums/modeEnum';
 import { ModeInterface } from '../../commons/interfaces/mode.interface';
@@ -21,7 +21,7 @@ import { SentenceCasePipe } from '../../pipes/sentenceCase/sentence-case.pipe';
     selector: 'app-tanks-equipment',
     templateUrl: './tanks-equipment.component.html',
 })
-export class TanksEquipmentComponent extends UnsubscribeComponent implements OnInit {
+export class TanksEquipmentComponent extends UnsubscribeDirective implements OnInit {
     protected showSpinner: boolean = true;
     protected isDark: boolean;
     protected isMobile: boolean;

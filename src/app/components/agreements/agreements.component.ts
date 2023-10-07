@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { takeUntil } from 'rxjs';
-import { UnsubscribeComponent } from '../../commons/directives/unsubscribe.component';
+import { UnsubscribeDirective } from '../../commons/directives/unsubscribe.directive';
 import { ModeEnum } from '../../commons/enums/modeEnum';
 import { ModeInterface } from '../../commons/interfaces/mode.interface';
 import { WordingService } from '../../commons/services/wording.service';
@@ -17,7 +17,7 @@ import { IconColorEnum } from '../icon/enums/icon-enum';
     selector: 'app-agreements',
     templateUrl: './agreements.component.html',
 })
-export class AgreementsComponent extends UnsubscribeComponent implements OnInit {
+export class AgreementsComponent extends UnsubscribeDirective implements OnInit {
     protected isDarkMode: boolean;
     protected readonly IconColorEnum = IconColorEnum;
 
