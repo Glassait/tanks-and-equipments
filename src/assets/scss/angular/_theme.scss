@@ -8,15 +8,15 @@
 
 $white-palette: (
     50: #999999,
-    100: #A8A8A8,
-    200: #C2C2C2,
-    300: #D2D2D2,
-    400: #E3E3E3,
-    500: #EFEFEF,
-    600: #F6F6F6,
-    700: #FBFBFB,
-    800: #FBFBFB,
-    900: #FBFBFB,
+    100: #a8a8a8,
+    200: #c2c2c2,
+    300: #d2d2d2,
+    400: #e3e3e3,
+    500: #efefef,
+    600: #f6f6f6,
+    700: #fbfbfb,
+    800: #fbfbfb,
+    900: #fbfbfb,
     contrast: (
         50: white,
         100: white,
@@ -28,17 +28,17 @@ $white-palette: (
         700: white,
         800: white,
         900: white,
-    )
+    ),
 );
 
 $black-palette: (
     50: #555555,
     100: #494949,
-    200: #3F3F3F,
-    300: #2F2F2F,
-    400: #1E1E1E,
+    200: #3f3f3f,
+    300: #2f2f2f,
+    400: #1e1e1e,
     500: #111111,
-    600: #0A0A0A,
+    600: #0a0a0a,
     700: #050505,
     800: #050505,
     900: #050505,
@@ -53,7 +53,7 @@ $black-palette: (
         700: black,
         800: black,
         900: black,
-    )
+    ),
 );
 
 $primary: mat.define-palette($white-palette);
@@ -75,14 +75,14 @@ $light-theme: mat.define-light-theme(
 );
 
 $dark-theme: mat.define-dark-theme(
-        (
-            color: (
-                primary: $secondary,
-                accent: $accent,
-                warn: $warn,
-            ),
-            density: -1,
-        )
+    (
+        color: (
+            primary: $secondary,
+            accent: $accent,
+            warn: $warn,
+        ),
+        density: -1,
+    )
 );
 
 @include mat.core-theme($light-theme);

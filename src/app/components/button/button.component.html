@@ -1,0 +1,46 @@
+<button
+    *ngIf='type === ButtonTypeEnum.BASIC && !loading'
+    [disabled]='disabled'
+    class='{{ size }} {{ theme }}  {{ type }}'
+    color='primary'
+    mat-button
+>
+    <ng-container *ngTemplateOutlet='content'></ng-container>
+</button>
+
+<button
+    *ngIf='type === ButtonTypeEnum.RAISED && !loading'
+    [disabled]='disabled'
+    class='{{ size }} {{ theme }} {{ type }}'
+    color='primary'
+    mat-raised-button
+>
+    <ng-container *ngTemplateOutlet='content'></ng-container>
+</button>
+
+<glassait-skeleton-loading
+    *ngIf='loading'
+    [animation]='AnimationEnum.PULSE'
+    [appearance]='AppearanceEnum.RECTANGLE_NORMAL'
+    [color]='loadingColor'
+    height='{{ SizeInRemEnum[size] }}'
+    width='4.5625rem'
+></glassait-skeleton-loading>
+
+<ng-template #content>
+    <div class='flex items-center gap-demi'>
+        <glassait-icon
+            *ngIf='leftIcon'
+            [color]='iconColor'
+            [icon]='leftIcon'
+            size='18'
+        ></glassait-icon>
+        <div>{{ text }}</div>
+        <glassait-icon
+            *ngIf='rightIcon'
+            [color]='iconColor'
+            [icon]='rightIcon'
+            size='18'
+        ></glassait-icon>
+    </div>
+</ng-template>

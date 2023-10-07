@@ -1,26 +1,26 @@
 <div
-    class="flex flex-col flex-wrap items-center justify-center space-y-10 p-4 pt-8 desktop:flex-row desktop:space-y-0"
-    id="conteneur-home"
+    class='flex flex-col flex-wrap items-center justify-center space-y-10 p-4 pt-8 desktop:flex-row desktop:space-y-0'
+    id='conteneur-home'
 >
     <div
-        class="flex w-0 flex-auto flex-col items-center justify-around space-y-10"
-        id="left-home"
+        class='flex w-0 flex-auto flex-col items-center justify-around space-y-10'
+        id='left-home'
     >
         <card-little
-            [darkMode]="isDarkMode"
-            [hasSpinner]="true"
-            [showSpinner]="showSpinnerServer"
-            [title]="(wording | getHome).statusServer"
-            icon="server"
-            id="server"
+            [darkMode]='isDarkMode'
+            [hasSpinner]='true'
+            [showSpinner]='showSpinnerServer'
+            [title]='(wording | getHome).statusServer'
+            icon='server'
+            id='server'
         >
-            <div *ngIf="!showSpinnerServer" class="space-y-2">
+            <div *ngIf='!showSpinnerServer' class='space-y-2'>
                 <div
-                    *ngFor="let server of wotServer.data.wot"
-                    class="flex items-center space-x-8 tablette:space-x-10"
+                    *ngFor='let server of wotServer.data.wot'
+                    class='flex items-center space-x-8 tablette:space-x-10'
                 >
                     <strong>{{ server.server | replace: '20' : 'EU' }}</strong>
-                    <icon [size]="25" icon="ok"></icon>
+                    <!--                    <icon [size]='25' icon='ok'></icon>-->
                     <div>
                         {{ server.players_online }}
                         {{ (wording | getHome).joueur
@@ -31,42 +31,42 @@
         </card-little>
 
         <card-little
-            *ngIf="!isVisitor"
-            [darkMode]="isDarkMode"
-            [hasSpinner]="true"
-            [showSpinner]="showSpinnerInformationCard"
-            [title]="(wording | getHome).information"
-            icon="information"
-            id="information"
+            *ngIf='!isVisitor'
+            [darkMode]='isDarkMode'
+            [hasSpinner]='true'
+            [showSpinner]='showSpinnerInformationCard'
+            [title]='(wording | getHome).information'
+            icon='information'
+            id='information'
         >
-            <div *ngIf='!showSpinnerInformationCard' class="space-y-4 whitespace-pre-line text-justify">
+            <div *ngIf='!showSpinnerInformationCard' class='space-y-4 whitespace-pre-line text-justify'>
                 <div>{{ information.text}}</div>
-                <div *ngIf='information.lien.url' class="flex justify-end">
+                <div *ngIf='information.lien.url' class='flex justify-end'>
                     <a
-                        [routerLink]="information.lien.url"
-                        class="flex space-x-4 text-link_light underline dark:text-link_dark"
+                        [routerLink]='information.lien.url'
+                        class='flex space-x-4 text-link_light underline dark:text-link_dark'
                     >
-                        <div class="w-full">
+                        <div class='w-full'>
                             {{ information.lien.text }}
                         </div>
-                        <icon
-                            [height]="30"
-                            [width]="80"
-                            icon="super_conqueror"
-                        ></icon>
+                        <!--                        <icon-->
+                        <!--                            [height]='30'-->
+                        <!--                            [width]='80'-->
+                        <!--                            icon='super_conqueror'-->
+                        <!--                        ></icon>-->
                     </a>
                 </div>
             </div>
         </card-little>
 
         <card-little
-            *ngIf="isVisitor"
-            [darkMode]="isDarkMode"
-            [title]="(wording | getHome).visitorTitle"
-            icon="visitor"
-            id="visitor"
+            *ngIf='isVisitor'
+            [darkMode]='isDarkMode'
+            [title]='(wording | getHome).visitorTitle'
+            icon='visitor'
+            id='visitor'
         >
-            <div class="whitespace-pre-line text-justify">
+            <div class='whitespace-pre-line text-justify'>
                 {{ (wording | getHome).visitorText }}
                 <br /><br />
                 {{ (wording | getHome).visitorHelp }}
@@ -75,24 +75,24 @@
     </div>
 
     <div
-        class="hidden tablette:flex desktop:w-0 desktop:flex-auto desktop:justify-center"
-        id="right-home"
+        class='hidden tablette:flex desktop:w-0 desktop:flex-auto desktop:justify-center'
+        id='right-home'
     >
-        <mat-spinner *ngIf="showSpinnerClanRatings"></mat-spinner>
+        <mat-spinner *ngIf='showSpinnerClanRatings'></mat-spinner>
 
         <mat-card
-            *ngIf="!showSpinnerClanRatings && showClanRatingsCard"
-            class="h-fit tablette:w-[730px] desktop:w-[600px] dark:[--mdc-elevated-card-container-color:#000000]"
+            *ngIf='!showSpinnerClanRatings && showClanRatingsCard'
+            class='h-fit tablette:w-[730px] desktop:w-[600px] dark:[--mdc-elevated-card-container-color:#000000]'
         >
-            <mat-card-header class="mb-2 flex items-center justify-center">
+            <mat-card-header class='mb-2 flex items-center justify-center'>
                 <picture>
-                    <source srcset="assets/other/logo.avif" type="image/avif">
+                    <source srcset='assets/other/logo.avif' type='image/avif'>
                     <img
-                        alt="Logo du clan LCHP"
-                        class="m-1"
-                        height="195"
-                        ngSrc="assets/other/logo.png"
-                        width="195"
+                        alt='Logo du clan LCHP'
+                        class='m-1'
+                        height='195'
+                        ngSrc='assets/other/logo.png'
+                        width='195'
                     />
                 </picture>
             </mat-card-header>
@@ -100,82 +100,82 @@
             <mat-card-content
                 class="h-full bg-[url('/assets/other/clan_ratings_little.jpg')] bg-no-repeat bg-center bg-cover"
             >
-                <div class="mt-4 flex space-x-12 text-secondary_dark">
+                <div class='mt-4 flex space-x-12 text-secondary_dark'>
                     <div
-                        class="grid w-0 flex-auto grid-cols-2 grid-rows-4 gap-3 pl-4"
+                        class='grid w-0 flex-auto grid-cols-2 grid-rows-4 gap-3 pl-4'
                     >
-                        <div class="flex h-full w-full justify-center">
-                            <icon
-                                [color]="IconColorEnum.WHITE"
-                                [size]="60"
-                                icon="castle"
-                            ></icon>
+                        <div class='flex h-full w-full justify-center'>
+                            <!--<icon
+                                [color]='IconColorEnum.LIGHT'
+                                [size]='60'
+                                icon='castle'
+                            ></icon>-->
                         </div>
 
                         <span
-                            class="self-center text-center text-title underline"
+                            class='self-center text-center text-title underline'
                         >
                             {{ (wording | getHome).bastion | titlecase }}
                         </span>
 
-                        <div class="self-center text-center">X</div>
-                        <div class="self-center text-center">
+                        <div class='self-center text-center'>X</div>
+                        <div class='self-center text-center'>
                             {{
-                                (wotClanRatings | getClanData).fb_elo_rating_10
-                                    .value
+                            (wotClanRatings | getClanData).fb_elo_rating_10
+                                .value
                             }}
                         </div>
 
-                        <div class="self-center text-center">VIII</div>
-                        <div class="self-center text-center">
+                        <div class='self-center text-center'>VIII</div>
+                        <div class='self-center text-center'>
                             {{
-                                (wotClanRatings | getClanData).fb_elo_rating_8
-                                    .value
+                            (wotClanRatings | getClanData).fb_elo_rating_8
+                                .value
                             }}
                         </div>
 
-                        <div class="self-center text-center">VI</div>
-                        <div class="self-center text-center">
+                        <div class='self-center text-center'>VI</div>
+                        <div class='self-center text-center'>
                             {{
-                                (wotClanRatings | getClanData).fb_elo_rating_6
-                                    .value
+                            (wotClanRatings | getClanData).fb_elo_rating_6
+                                .value
                             }}
                         </div>
                     </div>
 
                     <div
-                        class="grid w-0 flex-auto grid-cols-2 grid-rows-4 gap-3 pr-4"
+                        class='grid w-0 flex-auto grid-cols-2 grid-rows-4 gap-3 pr-4'
                     >
-                        <div class="flex h-full w-full justify-center">
-                            <icon [color]="IconColorEnum.WHITE" [size]="60" icon="map"></icon>
+                        <div class='flex h-full w-full justify-center'>
+                            <!--                            <icon [color]='IconColorEnum.LIGHT' [size]='60' icon='map'></icon>-->
                         </div>
 
                         <span
-                            class="self-center text-center text-title underline"
-                            >{{ (wording | getHome).clanWar | titlecase }}</span
+                            class='self-center text-center text-title underline'
+                        >{{ (wording | getHome).clanWar | titlecase }}</span
                         >
 
-                        <div class="self-center text-center">X</div>
-                        <div class="self-center text-center">
+                        <div class='self-center text-center'>X</div>
+                        <div class='self-center text-center'>
                             {{
-                                (wotClanRatings | getClanData).gm_elo_rating_10
-                                    .value
+                            (wotClanRatings | getClanData).gm_elo_rating_10
+                                .value
                             }}
                         </div>
 
-                        <div class="self-center text-center">VIII</div>
-                        <div class="self-center text-center">
+                        <div class='self-center text-center'>VIII</div>
+                        <div class='self-center text-center'>
                             {{
-                                (wotClanRatings | getClanData).gm_elo_rating_8
-                                    .value
+                            (wotClanRatings | getClanData).gm_elo_rating_8
+                                .value
                             }}
                         </div>
 
-                        <div class="self-center text-center">VI</div>
-                        <div class="self-center text-center">
+                        <div class='self-center text-center'>VI</div>
+                        <div class='self-center text-center'>
                             {{
-                                (wotClanRatings | getClanData).gm_elo_rating_6
-                                    .value
+                            (wotClanRatings | getClanData).gm_elo_rating_6
+                                .value
                             }}
                         </div>
                     </div>

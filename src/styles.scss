@@ -5,10 +5,19 @@
 /* -------------------------------------------------------------------------- */
 
 @use 'assets/scss/tailwind/config';
+
+// ANGULAR
 @use "assets/scss/angular/theme";
+
+// EXPANSION PANEL
 @use "assets/scss/angular/expansion-panel";
 @use "assets/scss/angular/expansion-panel-header";
 @use "assets/scss/angular/expansion-panel-body";
+
+// BUTTON
+@use "assets/scss/angular/button";
+
+// AUTRE
 @use "assets/scss/standard";
 
 /*

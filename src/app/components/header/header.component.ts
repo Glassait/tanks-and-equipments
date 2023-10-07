@@ -1,5 +1,7 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
+import { takeUntil } from 'rxjs';
+import { UnsubscribeComponent } from 'src/app/commons/directives/unsubscribe.component';
 import { HeaderInterface } from 'src/app/commons/interfaces/header.interface';
 import { MemberInterface } from 'src/app/commons/interfaces/member.interface';
 import { ModeInterface } from 'src/app/commons/interfaces/mode.interface';
@@ -9,10 +11,9 @@ import { HeaderStore } from 'src/app/commons/stores/header.store';
 import { MemberStore } from 'src/app/commons/stores/member.store';
 import { ModeStore } from 'src/app/commons/stores/mode.store';
 import { SvgCustom } from 'src/app/commons/utils/svg-custom.util';
-import { ColorEnum } from '../../commons/enums/color.enum';
+import { ModeEnum } from '../../commons/enums/modeEnum';
 import { FeatureInterface } from '../../commons/interfaces/feature.interface';
 import { FeatureStore } from '../../commons/stores/feature.store';
-import { UnsubscribeComponent } from '../commons/unsubscribe.component';
 
 @Component({
     selector: 'app-header',
@@ -74,39 +75,43 @@ export class HeaderComponent extends UnsubscribeComponent implements OnInit, Aft
         if ($event.checked) {
             document.documentElement.classList.add('dark');
             document.documentElement.classList.remove('light');
-            this.modeStore.set('color', ColorEnum.DARK);
+            this.modeStore.set('color', ModeEnum.DARK);
         } else {
             document.documentElement.classList.add('light');
             document.documentElement.classList.remove('dark');
-            this.modeStore.set('color', ColorEnum.LIGHT);
+            this.modeStore.set('color', ModeEnum.LIGHT);
         }
     }
 
     private createSubscribe(): void {
-        this.addSubscription(
-            this.headerStore.watch().subscribe((headerInterface: HeaderInterface): void => {
+        this.headerStore
+            .watch()
+            .pipe(takeUntil(this.destroy$))
+            .subscribe((headerInterface: HeaderInterface): void => {
                 this.showHome = headerInterface.showHome;
                 this.showTank = headerInterface.showTank;
                 this.showWar = headerInterface.showWar;
-            })
-        );
+            });
 
-        this.addSubscription(
-            this.memberStore.watch().subscribe((memberInterface: MemberInterface): void => {
+        this.memberStore
+            .watch()
+            .pipe(takeUntil(this.destroy$))
+            .subscribe((memberInterface: MemberInterface): void => {
                 this.isVisitor = memberInterface.isVisitor;
-            })
-        );
+            });
 
-        this.addSubscription(
-            this.modeStore.watch().subscribe((modeInterface: ModeInterface): void => {
-                this.isDark = modeInterface.color === ColorEnum.DARK;
-            })
-        );
+        this.modeStore
+            .watch()
+            .pipe(takeUntil(this.destroy$))
+            .subscribe((modeInterface: ModeInterface): void => {
+                this.isDark = modeInterface.color === ModeEnum.DARK;
+            });
 
-        this.addSubscription(
-            this.featureStore.watch().subscribe((featureInterface: FeatureInterface): void => {
+        this.featureStore
+            .watch()
+            .pipe(takeUntil(this.destroy$))
+            .subscribe((featureInterface: FeatureInterface): void => {
                 this.featureFlipping = featureInterface;
-            })
-        );
+            });
     }
 }

@@ -1,86 +1,86 @@
 <mat-card
-    class="h-min w-full dark:[--mdc-elevated-card-container-color:#000000]"
+    class='h-min w-full dark:[--mdc-elevated-card-container-color:#000000]'
 >
     <mat-card-header
-        class="mb-3 flex items-center"
+        class='mb-3 flex items-center'
         id="{{ 'cardHeaderFor' + changelog.version }}"
     >
-        <icon
+        <!--<icon
             [size]="40"
             class="dark:invert-[100%]"
             icon="changelog"
             mat-card-avatar
         >
-        </icon>
-        <mat-card-title class="underline [--mat-card-title-text-size:25px]">
+        </icon>-->
+        <mat-card-title class='underline [--mat-card-title-text-size:25px]'>
             {{ changelog.version }}
         </mat-card-title>
     </mat-card-header>
 
     <mat-card-content id="{{ 'cardContentFor' + changelog.version }}">
-        <div class="flex flex-col gap-8">
+        <div class='flex flex-col gap-8'>
             <div
-                *ngIf="changelog.add"
-                class="flex flex-col gap-3"
+                *ngIf='changelog.add'
+                class='flex flex-col gap-3'
                 id="{{ 'AddFor' + changelog.version }}"
             >
-                <div class="text-title font-bold">
+                <div class='text-title font-bold'>
                     {{ (wording | getChangelog).add }}
                 </div>
 
                 <div
-                    *ngFor="let add of changelog.add"
-                    class="flex items-center gap-3 pl-3 pr-3"
+                    *ngFor='let add of changelog.add'
+                    class='flex items-center gap-3 pl-3 pr-3'
                 >
-                    <icon
-                        [size]="12"
-                        class="fill-hover_background_dark dark:fill-secondary_dark"
-                        icon="plus"
-                    ></icon>
+                    <!-- <icon
+                         [size]='12'
+                         class='fill-hover_background_dark dark:fill-secondary_dark'
+                         icon='plus'
+                     ></icon>-->
                     {{ add + ';' }}
                 </div>
             </div>
 
             <div
-                *ngIf="changelog.modified"
-                class="flex flex-col gap-3"
+                *ngIf='changelog.modified'
+                class='flex flex-col gap-3'
                 id="{{ 'modifiedFor' + changelog.version }}"
             >
-                <div class="text-title font-bold">
+                <div class='text-title font-bold'>
                     {{ (wording | getChangelog).modified }}
                 </div>
 
                 <div
-                    *ngFor="let modified of changelog.modified"
-                    class="flex items-center gap-3 pl-3 pr-3"
+                    *ngFor='let modified of changelog.modified'
+                    class='flex items-center gap-3 pl-3 pr-3'
                 >
-                    <icon
-                        [size]="12"
-                        class="fill-hover_background_dark dark:fill-secondary_dark"
-                        icon="pencil"
-                    ></icon>
+                    <!-- <icon
+                         [size]='12'
+                         class='fill-hover_background_dark dark:fill-secondary_dark'
+                         icon='pencil'
+                     ></icon>-->
                     {{ modified + ';' }}
                 </div>
             </div>
 
             <div
-                *ngIf="changelog.fixed"
-                class="flex flex-col gap-3"
+                *ngIf='changelog.fixed'
+                class='flex flex-col gap-3'
                 id="{{ 'fixedFor' + changelog.version }}"
             >
-                <div class="text-title font-bold">
+                <div class='text-title font-bold'>
                     {{ (wording | getChangelog).fixed }}
                 </div>
 
                 <div
-                    *ngFor="let fixed of changelog.fixed"
-                    class="flex items-center gap-3 pl-3 pr-3"
+                    *ngFor='let fixed of changelog.fixed'
+                    class='flex items-center gap-3 pl-3 pr-3'
                 >
-                    <icon
-                        [size]="12"
-                        class="fill-hover_background_dark dark:fill-secondary_dark"
-                        icon="wrench"
-                    ></icon>
+                    <!--<icon
+                        [size]='12'
+                        class='fill-hover_background_dark dark:fill-secondary_dark'
+                        icon='wrench'
+                    ></icon>-->
                     {{ fixed + ';' }}
                 </div>
             </div>

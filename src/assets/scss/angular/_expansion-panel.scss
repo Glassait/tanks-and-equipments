@@ -10,10 +10,9 @@
  * || PANEL MODIFICATION
  */
 
-
 .mat-expansion-panel {
-    --mat-expansion-container-shape: #{borders.$borderRadius-normal} !important;
     box-shadow: box-shadow.$box-shadow-card-black !important;
+    --mat-expansion-container-shape: #{borders.$radius-normal} !important;
 
     min-width: 18rem;
 }

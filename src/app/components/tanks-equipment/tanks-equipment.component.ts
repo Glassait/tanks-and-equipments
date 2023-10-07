@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
+import { takeUntil } from 'rxjs';
 import { TanksDataService } from 'src/app/commons/services/tank-data.service';
 import { HeaderStore } from 'src/app/commons/stores/header.store';
 import { MemberStore } from 'src/app/commons/stores/member.store';
-import { ColorEnum } from '../../commons/enums/color.enum';
+import { UnsubscribeComponent } from '../../commons/directives/unsubscribe.component';
 import { CookieNameEnum } from '../../commons/enums/cookie-name.enum';
+import { ModeEnum } from '../../commons/enums/modeEnum';
 import { ModeInterface } from '../../commons/interfaces/mode.interface';
 import { SessionStorageService } from '../../commons/services/session-storage.service';
 import { WordingService } from '../../commons/services/wording.service';
@@ -14,7 +16,6 @@ import { ModeStore } from '../../commons/stores/mode.store';
 import { TankData } from '../../commons/types/tanks-data.type';
 import { DateCustom } from '../../commons/utils/date.custom';
 import { SentenceCasePipe } from '../../pipes/sentenceCase/sentence-case.pipe';
-import { UnsubscribeComponent } from '../commons/unsubscribe.component';
 
 @Component({
     selector: 'app-tanks-equipment',
@@ -74,12 +75,13 @@ export class TanksEquipmentComponent extends UnsubscribeComponent implements OnI
     }
 
     private createSubscribe(): void {
-        this.addSubscription(
-            this.modeStore.watch().subscribe((modeInterface: ModeInterface): void => {
-                this.isDark = modeInterface.color === ColorEnum.DARK;
+        this.modeStore
+            .watch()
+            .pipe(takeUntil(this.destroy$))
+            .subscribe((modeInterface: ModeInterface): void => {
+                this.isDark = modeInterface.color === ModeEnum.DARK;
                 this.isMobile = modeInterface.mobile;
-            })
-        );
+            });
     }
 
     private getTanksData(): void {

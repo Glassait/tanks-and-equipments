@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { NgxSkeletonLoaderConfigTheme } from 'ngx-skeleton-loader/lib/ngx-skeleton-loader-config.types';
-import { ColorEnum } from '../../../commons/enums/color.enum';
+import { ModeEnum } from '../../../commons/enums/modeEnum';
 import { BORDER_RADIUS } from '../../../commons/scss/border-radius.scss';
 import { COLORS } from '../../../commons/scss/colors.scss';
 import { OPACITY } from '../../../commons/scss/opacity.scss';
@@ -54,7 +54,6 @@ export class ThemeModel {
     private dark: NgxSkeletonLoaderConfigTheme = {
         'background-color': COLORS.secondary['50'],
         opacity: OPACITY['50'],
-        'margin-bottom': '0',
     };
     /**
      * The base theme when light
@@ -63,7 +62,14 @@ export class ThemeModel {
     private light: NgxSkeletonLoaderConfigTheme = {
         'background-color': COLORS.primary['50'],
         opacity: OPACITY['50'],
+    };
+    /**
+     * The base theme for margin
+     * @private
+     */
+    private margin: NgxSkeletonLoaderConfigTheme = {
         'margin-bottom': '0',
+        margin: '0',
     };
 
     /**
@@ -75,38 +81,34 @@ export class ThemeModel {
      */
     public constructTheme(
         appearance: AppearanceEnum,
-        color: ColorEnum,
-        width: number | string,
-        height: number | string
+        color: ModeEnum,
+        width: string,
+        height: string
     ): NgxSkeletonLoaderConfigTheme {
-        const mode: NgxSkeletonLoaderConfigTheme =
-            color === ColorEnum.DARK ? this.dark : this.light;
+        const mode: NgxSkeletonLoaderConfigTheme = color === ModeEnum.DARK ? this.dark : this.light;
 
         switch (appearance) {
             case AppearanceEnum.CIRCLE:
-                return {
-                    ...this.circle,
-                    width: width.toString(),
-                    height: width.toString(),
-                    ...mode,
-                };
+                return { ...this.circle, width: width, height: width, ...mode, ...this.margin };
             case AppearanceEnum.LINE:
-                return { ...this.line, width: width.toString(), ...mode };
+                return { ...this.line, width: width, ...mode, ...this.margin };
             case AppearanceEnum.FAT_LINE:
-                return { ...this.fatLine, width: width.toString(), ...mode };
+                return { ...this.fatLine, width: width, ...mode, ...this.margin };
             case AppearanceEnum.RECTANGLE_SEMI:
                 return {
                     ...this.rectangle_semi,
-                    width: width.toString(),
-                    height: height.toString(),
+                    width: width,
+                    height: height,
                     ...mode,
+                    ...this.margin,
                 };
             case AppearanceEnum.RECTANGLE_NORMAL:
                 return {
                     ...this.rectangle_normal,
-                    width: width.toString(),
-                    height: height.toString(),
+                    width: width,
+                    height: height,
                     ...mode,
+                    ...this.margin,
                 };
         }
     }

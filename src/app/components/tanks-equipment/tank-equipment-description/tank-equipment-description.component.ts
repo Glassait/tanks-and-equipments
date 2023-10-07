@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { TankData } from 'src/app/commons/types/tanks-data.type';
-import { IconColorEnum } from '../../../commons/enums/icon-enum';
+import { IconColorEnum } from '../../icon/enums/icon-enum';
 
 @Component({
     selector: 'app-tank-equipment-description',

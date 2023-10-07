@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
-import { ColorEnum } from '../../commons/enums/color.enum';
-import { IconColorEnum } from '../../commons/enums/icon-enum';
+import { takeUntil } from 'rxjs';
+import { UnsubscribeComponent } from '../../commons/directives/unsubscribe.component';
+import { ModeEnum } from '../../commons/enums/modeEnum';
 import { ModeInterface } from '../../commons/interfaces/mode.interface';
 import { WordingService } from '../../commons/services/wording.service';
 import { FooterStore } from '../../commons/stores/footer.store';
@@ -10,7 +11,7 @@ import { HeaderStore } from '../../commons/stores/header.store';
 import { MemberStore } from '../../commons/stores/member.store';
 import { ModeStore } from '../../commons/stores/mode.store';
 import { SentenceCasePipe } from '../../pipes/sentenceCase/sentence-case.pipe';
-import { UnsubscribeComponent } from '../commons/unsubscribe.component';
+import { IconColorEnum } from '../icon/enums/icon-enum';
 
 @Component({
     selector: 'app-agreements',
@@ -37,11 +38,12 @@ export class AgreementsComponent extends UnsubscribeComponent implements OnInit 
     }
 
     ngOnInit(): void {
-        this.addSubscription(
-            this.modeStore.watch().subscribe((modeInterface: ModeInterface): void => {
-                this.isDarkMode = modeInterface.color === ColorEnum.DARK;
-            })
-        );
+        this.modeStore
+            .watch()
+            .pipe(takeUntil(this.destroy$))
+            .subscribe((modeInterface: ModeInterface): void => {
+                this.isDarkMode = modeInterface.color === ModeEnum.DARK;
+            });
     }
 
     private patchHeaderAndFooter(): void {
