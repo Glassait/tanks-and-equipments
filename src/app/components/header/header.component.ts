@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { takeUntil } from 'rxjs';
-import { UnsubscribeComponent } from 'src/app/commons/directives/unsubscribe.component';
+import { UnsubscribeDirective } from 'src/app/commons/directives/unsubscribe.directive';
 import { HeaderInterface } from 'src/app/commons/interfaces/header.interface';
 import { MemberInterface } from 'src/app/commons/interfaces/member.interface';
 import { ModeInterface } from 'src/app/commons/interfaces/mode.interface';
@@ -19,7 +19,7 @@ import { FeatureStore } from '../../commons/stores/feature.store';
     selector: 'app-header',
     templateUrl: './header.component.html',
 })
-export class HeaderComponent extends UnsubscribeComponent implements OnInit, AfterViewInit {
+export class HeaderComponent extends UnsubscribeDirective implements OnInit, AfterViewInit {
     @ViewChild('darkModeSwitch', { read: ElementRef }) element: ElementRef | undefined;
 
     protected showHome: boolean;

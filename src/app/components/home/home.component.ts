@@ -11,7 +11,7 @@ import { MemberStore } from 'src/app/commons/stores/member.store';
 import { WotClanRatingsRequest, WotServerRequest } from 'src/app/commons/types/clan-ratings.type';
 import { ArrayCustom } from 'src/app/commons/utils/array-custom.util';
 import { WindowsCustom } from 'src/app/commons/utils/windows-custom.util';
-import { UnsubscribeComponent } from '../../commons/directives/unsubscribe.component';
+import { UnsubscribeDirective } from '../../commons/directives/unsubscribe.directive';
 import { CookieNameEnum } from '../../commons/enums/cookie-name.enum';
 import { ModeEnum } from '../../commons/enums/modeEnum';
 import { ModeInterface } from '../../commons/interfaces/mode.interface';
@@ -26,7 +26,7 @@ import { IconColorEnum } from '../icon/enums/icon-enum';
     selector: 'app-home',
     templateUrl: './home.component.html',
 })
-export class HomeComponent extends UnsubscribeComponent implements OnInit {
+export class HomeComponent extends UnsubscribeDirective implements OnInit {
     protected showSpinnerServer: boolean = true;
     protected showSpinnerClanRatings: boolean = true;
     protected showSpinnerInformationCard: boolean = true;

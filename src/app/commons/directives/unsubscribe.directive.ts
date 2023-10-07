@@ -6,7 +6,7 @@ import { Subject } from 'rxjs';
  * @example How to use : add `.pipe(takeUntil(this.destroy$))` before the `.subscribe()`
  */
 @Directive()
-export class UnsubscribeComponent implements OnDestroy {
+export class UnsubscribeDirective implements OnDestroy {
     /**
      * The object that follow the subscription, etc
      * @protected

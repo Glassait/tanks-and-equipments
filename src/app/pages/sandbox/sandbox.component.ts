@@ -1,7 +1,7 @@
 import { Component, isDevMode } from '@angular/core';
 import { Router } from '@angular/router';
 import { takeUntil } from 'rxjs';
-import { UnsubscribeComponent } from '../../commons/directives/unsubscribe.component';
+import { UnsubscribeDirective } from '../../commons/directives/unsubscribe.directive';
 import { ModeEnum } from '../../commons/enums/modeEnum';
 import { ModeInterface } from '../../commons/interfaces/mode.interface';
 import { HeaderStore } from '../../commons/stores/header.store';
@@ -15,7 +15,7 @@ import { IconColorEnum } from '../../components/icon/enums/icon-enum';
     selector: 'app-sandbox',
     templateUrl: './sandbox.component.html',
 })
-export class SandboxComponent extends UnsubscribeComponent {
+export class SandboxComponent extends UnsubscribeDirective {
     protected color: ModeEnum;
 
     /**

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { takeUntil } from 'rxjs';
-import { UnsubscribeComponent } from '../../commons/directives/unsubscribe.component';
+import { UnsubscribeDirective } from '../../commons/directives/unsubscribe.directive';
 import { FeatureInterface } from '../../commons/interfaces/feature.interface';
 import { FooterInterface } from '../../commons/interfaces/footer.interface';
 import { HeaderInterface } from '../../commons/interfaces/header.interface';
@@ -16,7 +16,7 @@ import { MemberStore } from '../../commons/stores/member.store';
     selector: 'app-footer',
     templateUrl: './footer.component.html',
 })
-export class FooterComponent extends UnsubscribeComponent {
+export class FooterComponent extends UnsubscribeDirective {
     protected showHome: boolean;
     protected showTank: boolean;
     protected showWar: boolean;
