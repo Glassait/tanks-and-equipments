@@ -18,7 +18,7 @@ import { ButtonTypeEnum } from './enums/button-type.enum';
 export class ButtonComponent implements OnInit {
     /**
      * Le texte du bouton
-     * @example text="button"
+     * @example <glassait-button text="this is a text"></glassait-button>
      */
     @Input({ required: true }) text: string;
     /**

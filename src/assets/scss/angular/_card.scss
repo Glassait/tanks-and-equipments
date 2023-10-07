@@ -1,0 +1,65 @@
+/*
+ * || IMPORT / USE
+ * Tips search `||` to move to section
+ */
+@use '../commons/colors';
+@use '../commons/borders';
+@use '../commons/box-shadow';
+@use '../commons/spacing';
+@use '../commons/typography';
+
+/*
+* ||
+*/
+.mat-mdc-card {
+    // Subtitle
+    --mat-card-subtitle-text-color: #{colors.$secondary-50};
+    --mat-card-subtitle-text-line-height: #{typography.$body-line-height};
+    --mat-card-subtitle-text-size: #{typography.$body-font-size};
+    --mat-card-subtitle-text-tracking: 0;
+
+    // Radius
+    --mat-card-subtitle-text-weight: #{typography.$font-weight-regular};
+
+    // Tile
+    --mat-card-title-text-line-height: #{typography.$title-line-height};
+    --mat-card-title-text-size: #{typography.$title-font-size};
+    --mat-card-title-text-tracking: 0;
+    --mat-card-title-text-weight: #{typography.$font-weight-bold};
+
+    // Container
+    --mdc-elevated-card-container-color: #{colors.$primary-700};
+    --mdc-elevated-card-container-elevation: #{box-shadow.$box-shadow-card-black};
+}
+
+:is(.dark) .mat-mdc-card {
+    // Subtitle
+    --mat-card-subtitle-text-color: #{colors.$primary-50};
+
+    // Container
+    --mdc-elevated-card-container-color: #{colors.$secondary-700};
+    --mdc-elevated-card-container-elevation: #{box-shadow.$box-shadow-card-white};
+}
+
+.mat-mdc-card-header {
+    @apply gap-normal;
+
+    padding: spacing.$normal !important;
+}
+
+.mat-mdc-card-header-text {
+    @apply flex flex-col gap-demi;
+}
+
+.mat-mdc-card-title,
+.mat-mdc-card-subtitle {
+    padding: 0 !important;
+}
+
+.mat-mdc-card-title {
+    @apply text-secondary-700;
+}
+
+:is(.dark) .mat-mdc-card-title {
+    @apply text-primary-700;
+}

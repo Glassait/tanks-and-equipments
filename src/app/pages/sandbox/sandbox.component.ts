@@ -6,9 +6,7 @@ import { ModeEnum } from '../../commons/enums/modeEnum';
 import { ModeInterface } from '../../commons/interfaces/mode.interface';
 import { HeaderStore } from '../../commons/stores/header.store';
 import { ModeStore } from '../../commons/stores/mode.store';
-import { ButtonSizeEnum } from '../../components/button/enums/button-size.enum';
 import { ButtonThemeEnum } from '../../components/button/enums/button-theme.enum';
-import { ButtonTypeEnum } from '../../components/button/enums/button-type.enum';
 import { IconColorEnum } from '../../components/icon/enums/icon-enum';
 
 @Component({
@@ -17,13 +15,9 @@ import { IconColorEnum } from '../../components/icon/enums/icon-enum';
 })
 export class SandboxComponent extends UnsubscribeDirective {
     protected color: ModeEnum;
-
     /**
      * ENUM
      */
-    protected readonly ColorEnum = ModeEnum;
-    protected readonly ButtonTypeEnum = ButtonTypeEnum;
-    protected readonly SizeEnum = ButtonSizeEnum;
     protected readonly IconColorEnum = IconColorEnum;
     protected readonly ButtonThemeEnum = ButtonThemeEnum;
 
@@ -53,4 +47,8 @@ export class SandboxComponent extends UnsubscribeDirective {
                 this.color = modeInterface.color;
             });
     }
+
+    protected actionCallBack = (): void => {
+        console.log('CALLBACK CLICKED');
+    };
 }
