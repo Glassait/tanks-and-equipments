@@ -6,7 +6,6 @@ import { ModeEnum } from '../../commons/enums/modeEnum';
 import { ModeInterface } from '../../commons/interfaces/mode.interface';
 import { HeaderStore } from '../../commons/stores/header.store';
 import { ModeStore } from '../../commons/stores/mode.store';
-import { ButtonThemeEnum } from '../../components/button/enums/button-theme.enum';
 import { IconColorEnum } from '../../components/icon/enums/icon-enum';
 
 @Component({
@@ -19,7 +18,7 @@ export class SandboxComponent extends UnsubscribeDirective {
      * ENUM
      */
     protected readonly IconColorEnum = IconColorEnum;
-    protected readonly ButtonThemeEnum = ButtonThemeEnum;
+    protected readonly ModeEnum = ModeEnum;
 
     constructor(
         private router: Router,
@@ -47,8 +46,4 @@ export class SandboxComponent extends UnsubscribeDirective {
                 this.color = modeInterface.color;
             });
     }
-
-    protected actionCallBack = (): void => {
-        console.log('CALLBACK CLICKED');
-    };
 }
