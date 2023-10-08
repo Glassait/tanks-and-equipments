@@ -1,6 +1,7 @@
 import { NgOptimizedImage } from '@angular/common';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { forwardRef, NgModule, Provider } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatExpansionModule } from '@angular/material/expansion';
@@ -20,6 +21,7 @@ import { AppComponent } from './app.component';
 import { HttpMockInterceptor } from './commons/interceptors/http-mock.interceptor';
 import { AgreementsComponent } from './components/agreements/agreements.component';
 import { ButtonComponent } from './components/button/button.component';
+import { CardComponent } from './components/card/card.component';
 import { CardChangelogComponent } from './components/card/changelog/card-changelog.component';
 import { CardLittleComponent } from './components/card/little/card-little.component';
 import { ChangelogComponent } from './components/changelog/changelog.component';
@@ -29,6 +31,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 import { HomeComponent } from './components/home/home.component';
 import { IconComponent } from './components/icon/icon.component';
+import { MenuComponent } from './components/menu/menu.component';
 import { SkeletonLoadingComponent } from './components/skeleton-loading/skeleton-loading.component';
 import { TankEquipmentDescriptionComponent } from './components/tanks-equipment/tank-equipment-description/tank-equipment-description.component';
 import { TanksEquipmentComponent } from './components/tanks-equipment/tanks-equipment.component';
@@ -45,8 +48,6 @@ import { ChangelogPipe } from './pipes/wording/changelog.pipe';
 import { FooterPipe } from './pipes/wording/footer.pipe';
 import { HeaderPipe } from './pipes/wording/header.pipe';
 import { HomePipe } from './pipes/wording/home.pipe';
-import { CardComponent } from './components/card/card.component';
-import { MenuComponent } from './components/menu/menu.component';
 
 const MOCK_INTERCEPTOR_PROVIDER: Provider = {
     provide: HTTP_INTERCEPTORS,
@@ -111,6 +112,8 @@ if (environment.production) {
         NgOptimizedImage,
         MatButtonModule,
         NgxSkeletonLoaderModule,
+        FormsModule,
+        ReactiveFormsModule,
     ],
     providers: [...mockProviders, Title, CookieService],
 })
