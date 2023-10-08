@@ -46,6 +46,7 @@ import { FooterPipe } from './pipes/wording/footer.pipe';
 import { HeaderPipe } from './pipes/wording/header.pipe';
 import { HomePipe } from './pipes/wording/home.pipe';
 import { CardComponent } from './components/card/card.component';
+import { MenuComponent } from './components/menu/menu.component';
 
 const MOCK_INTERCEPTOR_PROVIDER: Provider = {
     provide: HTTP_INTERCEPTORS,
@@ -94,6 +95,7 @@ if (environment.production) {
         ChangelogPipe,
         AgreementPipe,
         CardComponent,
+        MenuComponent,
     ],
     imports: [
         BrowserModule,

@@ -46,7 +46,7 @@
     --mdc-protected-button-label-text-color: #{colors.$primary-700} !important;
     --mdc-text-button-label-text-color: #{colors.$primary-700} !important;
 
-    &:hover {
+    &:hover, &:focus, &:focus-within {
         @extend %opacity;
     }
 
@@ -64,7 +64,7 @@
     --mdc-protected-button-label-text-color: #{colors.$info-400} !important;
     --mdc-text-button-label-text-color: #{colors.$info-400} !important;
 
-    &:hover {
+    &:hover, &:focus, &:focus-within {
         @extend %opacity;
     }
 
@@ -84,6 +84,7 @@
         @extend %border-radius;
 
         --mdc-protected-button-disabled-container-color: #{colors.$secondary-50} !important;
+        --mdc-protected-button-focus-container-elevation: #{colors.$secondary-50} !important;
     }
 }
 
@@ -93,7 +94,7 @@
     --mdc-protected-button-label-text-color: #{colors.$secondary-700} !important;
     --mdc-text-button-label-text-color: #{colors.$secondary-700} !important;
 
-    &:hover {
+    &:hover, &:focus, &:focus-within {
         @extend %opacity;
     }
 
@@ -111,7 +112,7 @@
     --mdc-protected-button-label-text-color: #{colors.$info-900} !important;
     --mdc-text-button-label-text-color: #{colors.$info-900} !important;
 
-    &:hover {
+    &:hover, &:focus, &:focus-within {
         @extend %opacity;
     }
 
@@ -131,6 +132,7 @@
         @extend %border-radius;
 
         --mdc-protected-button-container-elevation: #{box-shadow.$box-shadow-card-black} !important;
+        --mdc-protected-button-focus-container-elevation: #{box-shadow.$box-shadow-card-black} !important;
     }
 }
 
@@ -139,18 +141,20 @@
 }
 
 %opacity {
-    .mat-mdc-button-persistent-ripple::before {
+    .mat-mdc-button-persistent-ripple::before, .mat-mdc-raised-button.cdk-keyboard-focused .mat-mdc-button-persistent-ripple::before {
         opacity: 1 !important;
     }
 }
 
 %box-white {
     --mdc-protected-button-container-elevation: #{box-shadow.$box-shadow-card-white} !important;
+    --mdc-protected-button-focus-container-elevation: #{box-shadow.$box-shadow-card-white} !important;
     --mdc-protected-button-hover-container-elevation: #{box-shadow.$box-shadow-card-white} !important;
 }
 
 %box-black {
     --mdc-protected-button-container-elevation: #{box-shadow.$box-shadow-card-black} !important;
+    --mdc-protected-button-focus-container-elevation: #{box-shadow.$box-shadow-card-black} !important;
     --mdc-protected-button-hover-container-elevation: #{box-shadow.$box-shadow-card-black} !important;
 }
 
