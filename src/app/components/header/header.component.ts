@@ -81,12 +81,14 @@ export class HeaderComponent extends UnsubscribeDirective implements OnInit, Aft
     protected changeMode($event: MatSlideToggleChange): void {
         if ($event.checked) {
             console.log('here');
-            document.documentElement.classList.add('dark', `bg-dark_${this.dayNumber}`);
-            document.documentElement.classList.remove('light', `bg-light_${this.dayNumber}`);
+            document.documentElement.classList.add('dark');
+            document.documentElement.style.background = `url('/assets/backgrounds/bg-dark-${this.dayNumber}.png') center center no-repeat fixed`;
+            document.documentElement.classList.remove('light');
             this.modeStore.set('color', ModeEnum.DARK);
         } else {
-            document.documentElement.classList.add('light', `bg-light_${this.dayNumber}`);
-            document.documentElement.classList.remove('dark', `bg-dark_${this.dayNumber}`);
+            document.documentElement.classList.add('light');
+            document.documentElement.style.background = `url('/assets/backgrounds/bg-light-${this.dayNumber}.png') center center no-repeat fixed`;
+            document.documentElement.classList.remove('dark');
             this.modeStore.set('color', ModeEnum.LIGHT);
         }
     }
