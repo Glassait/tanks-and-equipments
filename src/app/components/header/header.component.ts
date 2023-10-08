@@ -30,6 +30,12 @@ export class HeaderComponent extends UnsubscribeDirective implements OnInit, Aft
 
     protected featureFlipping: FeatureInterface;
 
+    /**
+     * The day of the week
+     * @private
+     */
+    private readonly dayNumber: number;
+
     constructor(
         protected modeStore: ModeStore,
         protected memberStore: MemberStore,
@@ -39,6 +45,7 @@ export class HeaderComponent extends UnsubscribeDirective implements OnInit, Aft
         private featureStore: FeatureStore
     ) {
         super();
+        this.dayNumber = new Date().getDay();
     }
 
     ngOnInit(): void {
@@ -73,11 +80,14 @@ export class HeaderComponent extends UnsubscribeDirective implements OnInit, Aft
 
     protected changeMode($event: MatSlideToggleChange): void {
         if ($event.checked) {
+            console.log('here');
             document.documentElement.classList.add('dark');
+            document.documentElement.style.background = `url('/assets/backgrounds/bg-dark-${this.dayNumber}.png') center center no-repeat fixed`;
             document.documentElement.classList.remove('light');
             this.modeStore.set('color', ModeEnum.DARK);
         } else {
             document.documentElement.classList.add('light');
+            document.documentElement.style.background = `url('/assets/backgrounds/bg-light-${this.dayNumber}.png') center center no-repeat fixed`;
             document.documentElement.classList.remove('dark');
             this.modeStore.set('color', ModeEnum.LIGHT);
         }
