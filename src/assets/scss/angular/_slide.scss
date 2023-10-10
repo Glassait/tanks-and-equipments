@@ -1,0 +1,43 @@
+/*
+ * || IMPORT / USE
+ * Tips search `||` to move to section
+ */
+@use '../commons/colors';
+@use '../commons/box-shadow';
+
+/*
+* || CSS OF THE SLIDE TOOGLE TO SWITCH MODE
+*/
+
+.mode-slide {
+    // LIGHT
+    --mdc-switch-handle-elevation-shadow: #{box-shadow.$box-shadow-slide-black} !important;
+    --mdc-switch-selected-focus-handle-color: #{colors.$primary-700} !important;
+    --mdc-switch-selected-focus-state-layer-color: #{colors.$primary-50} !important;
+    --mdc-switch-selected-focus-track-color: #{colors.$primary-50} !important;
+    --mdc-switch-selected-handle-color: #{colors.$primary-700} !important;
+    --mdc-switch-selected-hover-handle-color: #{colors.$primary-700} !important;
+    --mdc-switch-selected-hover-state-layer-color: #{colors.$primary-50} !important;
+    --mdc-switch-selected-hover-track-color: #{colors.$primary-50} !important;
+    --mdc-switch-selected-icon-color: #{colors.$primary-700} !important;
+    --mdc-switch-selected-pressed-handle-color: #{colors.$primary-700} !important;
+    --mdc-switch-selected-pressed-track-color: #{colors.$primary-50} !important;
+    --mdc-switch-selected-track-color: #{colors.$primary-50} !important;
+
+    // DARK
+    --mdc-switch-unselected-focus-handle-color: #{colors.$secondary-700} !important;
+    --mdc-switch-unselected-focus-state-layer-color: #{colors.$secondary-50} !important;
+    --mdc-switch-unselected-focus-track-color: #{colors.$secondary-50} !important;
+    --mdc-switch-unselected-handle-color: #{colors.$secondary-700} !important;
+    --mdc-switch-unselected-hover-handle-color: #{colors.$secondary-700} !important;
+    --mdc-switch-unselected-hover-state-layer-color: #{colors.$secondary-50} !important;
+    --mdc-switch-unselected-hover-track-color: #{colors.$secondary-50} !important;
+    --mdc-switch-unselected-icon-color: #{colors.$secondary-700} !important;
+    --mdc-switch-unselected-pressed-handle-color: #{colors.$secondary-700} !important;
+    --mdc-switch-unselected-pressed-track-color: #{colors.$secondary-50} !important;
+    --mdc-switch-unselected-track-color: #{colors.$secondary-50} !important;
+}
+
+:is(.dark) .mode-slide {
+    --mdc-switch-handle-elevation-shadow: #{box-shadow.$box-shadow-slide-white} !important;
+}
