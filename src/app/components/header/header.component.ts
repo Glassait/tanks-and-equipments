@@ -77,7 +77,7 @@ export class HeaderComponent extends UnsubscribeDirective implements OnInit, Aft
 
         this.allMenuItems = [
             {
-                text: wording.getWordingFromString('header.accueil'),
+                text: wording.getWordingFromString('header.home'),
                 callback: (): void => {
                     this.router
                         .navigate([inventory.getInventoryFromString('path.home')])
@@ -85,7 +85,7 @@ export class HeaderComponent extends UnsubscribeDirective implements OnInit, Aft
                 },
             },
             {
-                text: wording.getWordingFromString('header.charEtEquipement'),
+                text: wording.getWordingFromString('header.charsEtEquipements'),
                 callback: (): void => {
                     this.router
                         .navigate([inventory.getInventoryFromString('path.charsEtEquipements')])

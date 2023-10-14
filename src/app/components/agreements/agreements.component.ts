@@ -6,7 +6,6 @@ import { UnsubscribeDirective } from '../../commons/directives/unsubscribe.direc
 import { ModeEnum } from '../../commons/enums/modeEnum';
 import { ModeInterface } from '../../commons/interfaces/mode.interface';
 import { WordingService } from '../../commons/services/wording.service';
-import { FooterStore } from '../../commons/stores/footer.store';
 import { HeaderStore } from '../../commons/stores/header.store';
 import { MemberStore } from '../../commons/stores/member.store';
 import { ModeStore } from '../../commons/stores/mode.store';
@@ -26,7 +25,6 @@ export class AgreementsComponent extends UnsubscribeDirective implements OnInit 
         private memberStore: MemberStore,
         private headerStore: HeaderStore,
         private modeStore: ModeStore,
-        private footerStore: FooterStore,
         private router: Router,
         private title: Title
     ) {
@@ -51,11 +49,6 @@ export class AgreementsComponent extends UnsubscribeDirective implements OnInit 
             showHome: true,
             showTank: true,
             showWar: !this.modeStore.get('mobile'),
-        });
-
-        this.footerStore.patch({
-            showChangelog: true,
-            showAgreement: false,
         });
     }
 

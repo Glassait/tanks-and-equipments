@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ChangelogService } from '../../commons/services/changelog.service';
 import { WordingService } from '../../commons/services/wording.service';
-import { FooterStore } from '../../commons/stores/footer.store';
 import { HeaderStore } from '../../commons/stores/header.store';
 import { ModeStore } from '../../commons/stores/mode.store';
 import { VersionType } from '../../commons/types/version.type';
@@ -19,7 +18,6 @@ export class ChangelogComponent {
         protected changelogService: ChangelogService,
         private wording: WordingService,
         private headerStore: HeaderStore,
-        private footerStore: FooterStore,
         private modeStore: ModeStore,
         private title: Title
     ) {
@@ -27,9 +25,7 @@ export class ChangelogComponent {
 
         this.changelogs = changelogService.changelogs;
 
-        this.title.setTitle(
-            new SentenceCasePipe().transform(this.wording.footer.changelog)
-        );
+        this.title.setTitle(new SentenceCasePipe().transform(this.wording.footer.changelog));
     }
 
     private patchHeaderAndFooter(): void {
@@ -37,11 +33,6 @@ export class ChangelogComponent {
             showHome: true,
             showTank: true,
             showWar: !this.modeStore.get('mobile'),
-        });
-
-        this.footerStore.patch({
-            showChangelog: false,
-            showAgreement: true,
         });
     }
 }

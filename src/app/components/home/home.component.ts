@@ -15,7 +15,6 @@ import { UnsubscribeDirective } from '../../commons/directives/unsubscribe.direc
 import { CookieNameEnum } from '../../commons/enums/cookie-name.enum';
 import { ModeEnum } from '../../commons/enums/modeEnum';
 import { ModeInterface } from '../../commons/interfaces/mode.interface';
-import { FooterStore } from '../../commons/stores/footer.store';
 import { ModeStore } from '../../commons/stores/mode.store';
 import { InformationType } from '../../commons/types/information.type';
 import { DateCustom } from '../../commons/utils/date.custom';
@@ -47,7 +46,6 @@ export class HomeComponent extends UnsubscribeDirective implements OnInit {
         private memberStore: MemberStore,
         private headerStore: HeaderStore,
         private modeStore: ModeStore,
-        private footerStore: FooterStore,
         private wotApi: WotApiService,
         private cookie: CookieService,
         private title: Title
@@ -55,7 +53,7 @@ export class HomeComponent extends UnsubscribeDirective implements OnInit {
         super();
         this.patchHeaderAndFooter();
 
-        this.title.setTitle(new SentenceCasePipe().transform(this.wording.header.accueil));
+        this.title.setTitle(new SentenceCasePipe().transform(this.wording.header.home));
     }
 
     ngOnInit(): void {
@@ -77,11 +75,6 @@ export class HomeComponent extends UnsubscribeDirective implements OnInit {
             showHome: false,
             showTank: true,
             showWar: !this.modeStore.get('mobile'),
-        });
-
-        this.footerStore.patch({
-            showChangelog: true,
-            showAgreement: true,
         });
     }
 
