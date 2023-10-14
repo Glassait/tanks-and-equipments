@@ -11,7 +11,6 @@ import { ModeEnum } from '../../commons/enums/modeEnum';
 import { ModeInterface } from '../../commons/interfaces/mode.interface';
 import { SessionStorageService } from '../../commons/services/session-storage.service';
 import { WordingService } from '../../commons/services/wording.service';
-import { FooterStore } from '../../commons/stores/footer.store';
 import { ModeStore } from '../../commons/stores/mode.store';
 import { TankData } from '../../commons/types/tanks-data.type';
 import { DateCustom } from '../../commons/utils/date.custom';
@@ -35,7 +34,6 @@ export class TanksEquipmentComponent extends UnsubscribeDirective implements OnI
         private headerStore: HeaderStore,
         private memberStore: MemberStore,
         private modeStore: ModeStore,
-        private footerStore: FooterStore,
         private router: Router,
         private title: Title
     ) {
@@ -66,11 +64,6 @@ export class TanksEquipmentComponent extends UnsubscribeDirective implements OnI
             showHome: true,
             showTank: false,
             showWar: !this.modeStore.get('mobile'),
-        });
-
-        this.footerStore.patch({
-            showChangelog: true,
-            showAgreement: true,
         });
     }
 
