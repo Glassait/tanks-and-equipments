@@ -7,10 +7,6 @@ import wording from 'src/assets/json/wording.json';
 export class WordingService {
     private _wording = wording;
 
-    get wording() {
-        return this._wording;
-    }
-
     get header() {
         return this._wording.header;
     }
@@ -29,5 +25,14 @@ export class WordingService {
 
     get agreement() {
         return this._wording.agreements;
+    }
+
+    public getWordingFromString(path: string): string {
+        return this.wording(this._wording, path.split('.'));
+    }
+
+    private wording(wording: any, args: string[]): string {
+        const result = wording[args.shift() as string];
+        return args.length ? this.wording(result, args) : result;
     }
 }

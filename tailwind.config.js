@@ -80,17 +80,16 @@ module.exports = {
         },
         boxShadow: {
             card_white:
-                'box-shadow: 0 -2px 5px 0 rgba(255, 255, 255, 0.25), 0 2px 5px 0 rgba(255, 255, 255, 0.25)',
-            card_black:
-                'box-shadow: 0 -2px 5px 0 rgba(0, 0, 0, 0.25), 0 2px 5px 0 rgba(0, 0, 0, 0.25)',
+                '0 -2px 5px 0 rgba(255, 255, 255, 0.25), 0 2px 5px 0 rgba(255, 255, 255, 0.25)',
+            card_black: '0 -2px 5px 0 rgba(0, 0, 0, 0.25), 0 2px 5px 0 rgba(0, 0, 0, 0.25)',
             slide_white:
-                'box-shadow: 0 1px 5px 0 rgba(255, 255, 255, 0.12), 0 2px 2px 0 rgba(255, 255, 255, 0.14), 0 1px 1px 0 rgba(255, 255, 255, 0.20)',
+                '0 1px 5px 0 rgba(255, 255, 255, 0.12), 0 2px 2px 0 rgba(255, 255, 255, 0.14), 0 1px 1px 0 rgba(255, 255, 255, 0.20)',
             slide_black:
-                'box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 1px 0 rgba(0, 0, 0, 0.20)',
-            footer_white: 'box-shadow: 0 -2px 5px 0 rgba(255, 255, 255, 0.25)',
-            footer_black: 'box-shadow: 0 -2px 5px 0 rgba(0, 0, 0, 0.25)',
-            header_white: 'box-shadow: 0 2px 5px 0 rgba(255, 255, 255, 0.25)',
-            header_black: 'box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.25)',
+                '0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 1px 0 rgba(0, 0, 0, 0.20)',
+            footer_white: '0 -2px 5px 0 rgba(255, 255, 255, 0.25)',
+            footer_black: '0 -2px 5px 0 rgba(0, 0, 0, 0.25)',
+            header_white: '0 2px 5px 0 rgba(255, 255, 255, 0.25)',
+            header_black: '0 2px 5px 0 rgba(0, 0, 0, 0.25)',
         },
         borderRadius: {
             normal: '0.75rem',
@@ -103,6 +102,9 @@ module.exports = {
                 outside_tablet: '1rem',
                 normal: '1rem',
                 demi: '0.5rem',
+            },
+            borderWidth: {
+                1: '1px',
             },
         },
     },

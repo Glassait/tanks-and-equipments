@@ -4,6 +4,4 @@
 export type MenuItemType = {
     text: string;
     callback?: () => void;
-    externalLink?: string;
-    routerLink?: string;
 };

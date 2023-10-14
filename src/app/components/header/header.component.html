@@ -1,82 +1,45 @@
 <div
-    class="flex h-[70px] w-full items-center shadow-header_black dark:shadow-header_white bg-primary_light pl-3 pr-3 dark:border-b-secondary_dark dark:bg-primary_dark"
+    class='flex h-[70px] w-full items-center rounded-b-normal bg-primary-700 pl-3 pr-3 shadow-header_black dark:bg-secondary-700 dark:shadow-header_white'
 >
-    <div class="w-0 flex-auto" id="left-header">
+    <div class='w-0 flex-auto'>
         <mat-slide-toggle
             #darkModeSwitch
-            (change)="changeMode($event)"
-            [checked]="isDark"
-            [disableRipple]="true"
-            aria-label="Couleur switch"
-            class="mb-1 ml-2 scale-[1.3] [--mdc-switch-unselected-focus-state-layer-color:#E9E9E9] [--mdc-switch-unselected-handle-color:#000000] [--mdc-switch-unselected-hover-state-layer-color:#E9E9E9] [--mdc-switch-unselected-pressed-state-layer-color:#E9E9E9] [--mdc-switch-unselected-track-color:#E9E9E9] dark:[--mdc-switch-selected-focus-handle-color:#FFFFFF] dark:[--mdc-switch-selected-focus-state-layer-color:#202020] dark:[--mdc-switch-selected-handle-color:#FFFFFF] dark:[--mdc-switch-selected-hover-handle-color:#E9E9E9] dark:[--mdc-switch-selected-hover-state-layer-color:#202020] dark:[--mdc-switch-selected-icon-color:#000000] dark:[--mdc-switch-selected-pressed-handle-color:#E9E9E9] dark:[--mdc-switch-selected-pressed-state-layer-color:#202020]"
-            color="primary"
+            (change)='changeMode($event)'
+            [disableRipple]='true'
+            aria-label='Couleur switch'
+            checked='{{mode === ModeEnum.DARK}}'
+            class='mode-slide mb-1 ml-2 scale-[1.3]'
+            color='primary'
         ></mat-slide-toggle>
     </div>
 
-    <div class="flex w-0 flex-auto justify-center" id="center-header">
+    <div class='flex w-0 flex-auto justify-center'>
         <a
-            class="flex w-max items-center rounded-full border-[1px] border-secondary_light hover:bg-background_light dark:border-secondary_dark dark:hover:bg-background_dark"
-            href="https://eu.wargaming.net/clans/wot/500179430/"
-            rel="noreferrer"
-            target="_blank"
+            class='flex w-max items-center rounded-full border-1 border-secondary-700 hover:bg-primary-50 dark:border-primary-700 dark:hover:bg-secondary-50'
+            href='{{ "url.clan" | inventory }}'
+            rel='noreferrer'
+            target='_blank'
         >
             <picture>
-                <source srcset="assets/other/logo.avif" type="image/avif" />
+                <source srcset='assets/other/logo.avif' type='image/avif' />
                 <img
-                    alt="Logo du clan LCHP"
-                    class="m-1 w-11"
-                    height="195"
-                    ngSrc="assets/other/logo.png"
-                    width="195"
+                    [ngSrc]="'assets/other/logo.png'"
+                    alt='Logo du clan LCHP'
+                    class='m-1 w-12'
+                    height='195'
+                    width='195'
                 />
             </picture>
         </a>
     </div>
 
-    <div class="flex w-0 flex-auto justify-end" id="right-header">
-        <button
-            *ngIf="!isVisitor"
-            [matMenuTriggerFor]="menu"
-            class="rounded p-1 text-title [--mdc-text-button-label-text-color:text-primary_dark] hover:bg-background_light dark:[--mdc-text-button-label-text-color:text-primary_light] dark:hover:bg-background_dark"
-            mat-button
-            role="button"
-        >
-            {{ (wording | getHeader).menu | titlecase }}
-        </button>
-
-        <mat-menu
-            #menu="matMenu"
-            class="space-y-1 [--mat-menu-item-focus-state-layer-color:#E9E9E9] [--mat-menu-item-hover-state-layer-color:#E9E9E9] [--mat-menu-item-label-text-size:22px] [--mat-menu-item-label-text-tracking:0] dark:[--mat-menu-container-color:#202020] dark:[--mat-menu-item-focus-state-layer-color:#161616] dark:[--mat-menu-item-hover-state-layer-color:#161616] dark:[--mat-menu-item-label-text-color:#FFFFFF]"
-            role="menu"
-            xPosition="before"
-        >
-            <button *ngIf="showHome" mat-menu-item role="menuitem">
-                <a [routerLink]="(inventory | getPath).home">
-                    {{ (wording | getHeader).accueil | uppercase }}
-                </a>
-            </button>
-            <button
-                *ngIf="showTank && !isVisitor"
-                mat-menu-item
-                role="menuitem"
-            >
-                <a [routerLink]="(inventory | getPath).charsEtEquipements">
-                    {{ (wording | getHeader).charEtEquipement | uppercase }}
-                </a>
-            </button>
-            <button
-                *ngIf="
-                    showWar &&
-                    featureFlipping.clanWar &&
-                    !isVisitor
-                "
-                mat-menu-item
-                role="menuitem"
-            >
-                <a [routerLink]="(inventory | getPath).clanWar">
-                    {{ (wording | getHeader).clanWar | uppercase }}
-                </a>
-            </button>
-        </mat-menu>
+    <div class='flex w-0 flex-auto justify-end'>
+        <glassait-menu
+            *ngIf='!isVisitor'
+            [menuItems]='menuItems'
+            [theme]='mode'
+            textMenu="{{ 'header.menu' | wording | titlecase }}"
+            xPosition='before'
+        ></glassait-menu>
     </div>
 </div>

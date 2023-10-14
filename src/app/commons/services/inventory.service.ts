@@ -18,4 +18,13 @@ export class InventoryService {
     public getLchpApi() {
         return this._inventory.lchpApi;
     }
+
+    public getInventoryFromString(path: string): string {
+        return this.inventory(this._inventory, path.split('.'));
+    }
+
+    private inventory(inventory: any, args: string[]): string {
+        const result = inventory[args.shift() as string];
+        return args.length ? this.inventory(result, args) : result;
+    }
 }
