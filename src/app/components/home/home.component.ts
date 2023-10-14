@@ -53,7 +53,7 @@ export class HomeComponent extends UnsubscribeDirective implements OnInit {
         super();
         this.patchHeaderAndFooter();
 
-        this.title.setTitle(new SentenceCasePipe().transform(this.wording.header.accueil));
+        this.title.setTitle(new SentenceCasePipe().transform(this.wording.header.home));
     }
 
     ngOnInit(): void {

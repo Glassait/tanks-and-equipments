@@ -1,8 +1,8 @@
 {
     "header": {
         "menu": "menu",
-        "accueil": "page d'accueil",
-        "charEtEquipement": "chars & équipements",
+        "home": "page d'accueil",
+        "charsEtEquipements": "chars & équipements",
         "clanWar": "clan War"
     },
     "home": {

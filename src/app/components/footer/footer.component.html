@@ -1,51 +1,28 @@
 <div
-    class='flex w-full items-center justify-between bg-primary_light p-3 shadow-footer_black dark:bg-primary_dark dark:shadow-footer_white'
+    class='flex w-full items-center justify-between rounded-t-normal bg-primary-700 p-normal shadow-footer_black dark:bg-secondary-700 dark:shadow-footer_white gap-demi'
 >
-    <picture class='hidden tablette:block'>
+    <picture>
         <source srcset='assets/other/logo.avif' type='image/avif' />
         <img
-            alt='Logo du clan'
-            class='w-16'
+            [ngSrc]="'assets/other/logo.png'"
+            alt='Logo du clan LCHP'
+            class='m-1 w-12 min-w-[3rem]'
             height='195'
-            ngSrc='assets/other/logo.png'
             width='195'
         />
     </picture>
-    <!--    <div class='flex justify-end gap-5 flex-wrap'>-->
-    <!--        <a-->
-    <!--            *ngIf='showHome'-->
-    <!--            [routerLink]='(inventory | Inventory).home'-->
-    <!--            class='underline'-->
-    <!--        >-->
-    <!--            &lt;!&ndash;            {{ (wording | getHeader).accueil | sentenceCase }}&ndash;&gt;-->
-    <!--        </a>-->
-    <!--        <a-->
-    <!--            *ngIf='showTank && !isVisitor'-->
-    <!--            [routerLink]='(inventory | Inventory).charsEtEquipements'-->
-    <!--            class='underline'-->
-    <!--        >-->
-    <!--            &lt;!&ndash;            {{ (wording | getHeader).charEtEquipement | sentenceCase }}&ndash;&gt;-->
-    <!--        </a>-->
-    <!--        <a-->
-    <!--            *ngIf='showWar && !isVisitor'-->
-    <!--            [routerLink]='(inventory | Inventory).clanWar'-->
-    <!--            class='underline'-->
-    <!--        >-->
-    <!--            &lt;!&ndash;            {{ (wording | getHeader).clanWar | sentenceCase }}&ndash;&gt;-->
-    <!--        </a>-->
-    <!--        <a-->
-    <!--            *ngIf='showChangelog'-->
-    <!--            [routerLink]='(inventory | Inventory).changelog'-->
-    <!--            class='underline'-->
-    <!--        >-->
-    <!--            {{ (wording | getFooter).changelog | sentenceCase }}-->
-    <!--        </a>-->
-    <!--        <a-->
-    <!--            *ngIf='showAgreement && !isVisitor'-->
-    <!--            [routerLink]='(inventory | Inventory).agreements'-->
-    <!--            class='underline'-->
-    <!--        >-->
-    <!--            {{ (wording | getFooter).agreements | sentenceCase }}-->
-    <!--        </a>-->
-    <!--    </div>-->
+
+    <div class='flex flex-wrap justify-end gap-normal'>
+        <ng-container *ngFor='let link of links'>
+            <glassait-button
+                (click)='navigate(link.path)'
+                *ngIf='link.allowVisitor ? link.enabled : !isVisitor && link.enabled '
+                [size]='ButtonSizeEnum.XSMALL'
+                [theme]='
+                    mode === ModeEnum.DARK ? ButtonThemeEnum.DARK_BLUE : ButtonThemeEnum.LIGHT_BLUE
+                '
+                text='{{ link.wording | wording | sentenceCase }}'
+            ></glassait-button>
+        </ng-container>
+    </div>
 </div>

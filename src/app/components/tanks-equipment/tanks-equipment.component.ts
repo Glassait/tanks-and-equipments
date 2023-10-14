@@ -42,7 +42,9 @@ export class TanksEquipmentComponent extends UnsubscribeDirective implements OnI
         this.patchHeaderAndFooter();
         this.createSubscribe();
 
-        this.title.setTitle(new SentenceCasePipe().transform(this.wording.header.charEtEquipement));
+        this.title.setTitle(
+            new SentenceCasePipe().transform(this.wording.header.charsEtEquipements)
+        );
     }
 
     ngOnInit(): void {

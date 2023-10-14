@@ -5,7 +5,6 @@
         <mat-slide-toggle
             #darkModeSwitch
             (change)='changeMode($event)'
-            [disableRipple]='true'
             aria-label='Couleur switch'
             checked='{{mode === ModeEnum.DARK}}'
             class='mode-slide mb-1 ml-2 scale-[1.3]'
