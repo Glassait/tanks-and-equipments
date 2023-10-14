@@ -40,13 +40,13 @@ import { SandboxComponent } from './pages/sandbox/sandbox.component';
 import { ClanDataPipe } from './pipes/clanRatings/clan-data.pipe';
 import { FieldUrlPipe } from './pipes/field/url.pipe';
 import { ImagePipe } from './pipes/image/image.pipe';
-import { PathPipe } from './pipes/inventory/path.pipe';
+import { InventoryPipe } from './pipes/inventory.pipe';
 import { ReplacePipe } from './pipes/replace/replace.pipe';
 import { SentenceCasePipe } from './pipes/sentenceCase/sentence-case.pipe';
+import { WordingPipe } from './pipes/wording.pipe';
 import { AgreementPipe } from './pipes/wording/agreement.pipe';
 import { ChangelogPipe } from './pipes/wording/changelog.pipe';
 import { FooterPipe } from './pipes/wording/footer.pipe';
-import { HeaderPipe } from './pipes/wording/header.pipe';
 import { HomePipe } from './pipes/wording/home.pipe';
 
 const MOCK_INTERCEPTOR_PROVIDER: Provider = {
@@ -85,9 +85,9 @@ if (environment.production) {
         ExpansionPanelComponent,
         // PIPE
         ImagePipe,
-        HeaderPipe,
+        WordingPipe,
         ReplacePipe,
-        PathPipe,
+        InventoryPipe,
         HomePipe,
         FieldUrlPipe,
         ClanDataPipe,

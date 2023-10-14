@@ -5,6 +5,7 @@
     [theme]='buttonTheme'
     [type]='ButtonTypeEnum.RAISED'
 ></glassait-button>
+
 <mat-menu
     #menu='matMenu'
     [xPosition]='xPosition'
@@ -18,26 +19,6 @@
         mat-menu-item
         role='menuitem'
     >
-        <ng-container
-            [ngTemplateOutletContext]='{
-                link: menuItem.externalLink ? menuItem.externalLink : menuItem.routerLink,
-                text: menuItem.text
-            }'
-            [ngTemplateOutlet]='
-                menuItem.externalLink ? externalLink : menuItem.routerLink ? routerLink : text
-            '
-        ></ng-container>
+        {{ menuItem.text | uppercase }}
     </button>
 </mat-menu>
-
-<ng-template #externalLink let-link='link' let-text='text'>
-    <a href='{{ link }}' rel='noreferrer' target='_blank'>{{ text | uppercase }}</a>
-</ng-template>
-
-<ng-template #routerLink let-link='link' let-text='text'>
-    <a routerLink='{{ link }}'>{{ text | uppercase }}</a>
-</ng-template>
-
-<ng-template #text let-text='text'>
-    {{ text | uppercase }}
-</ng-template>

@@ -15,8 +15,11 @@
         "tanks": "tanks",
         "member": "member"
     },
+    "url": {
+        "clan": "https://eu.wargaming.net/clans/wot/500179430/"
+    },
     "path": {
-        "home": "",
+        "home": "accueil",
         "charsEtEquipements": "charsEtEquipement",
         "clanWar": "clanWar",
         "changelog": "changelog",
