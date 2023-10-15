@@ -119,6 +119,6 @@ if (environment.production) {
         FormsModule,
         ReactiveFormsModule,
     ],
-    providers: [...mockProviders, Title, CookieService],
+    providers: [...mockProviders, Title, CookieService, SentenceCasePipe],
 })
 export class AppModule {}

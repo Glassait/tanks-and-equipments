@@ -1,4 +1,4 @@
-import { booleanAttribute, Component, Input, OnInit } from '@angular/core';
+import { booleanAttribute, Component, Input, numberAttribute, OnInit } from '@angular/core';
 import { ModeEnum } from '../../commons/enums/modeEnum';
 import { ButtonSizeEnum } from '../button/enums/button-size.enum';
 import { ButtonThemeEnum } from '../button/enums/button-theme.enum';
@@ -82,7 +82,16 @@ export class CardComponent implements OnInit {
      * ! Needed for the action button
      * ? Useless without {@link hasAction}
      */
-    @Input() actionCallback: () => void;
+    @Input() actionCallback: { func: any; parameter: any };
+    /**
+     * The icon of the action button
+     * ? Useless without {@link hasAction}
+     * @example <glassait-card actionIcon='pencil' size='50'></glassait-card>
+     * @example <glassait-card actionIcon='pencil' [size]='50'></glassait-card>
+     * @default 18
+     * @implements numberAttribute
+     */
+    @Input({ transform: numberAttribute }) actionIconSize: number = 18;
     /**
      * Define if the card if display the loading part or not
      * ! Need {@link loadingColor} for the loading display
@@ -105,33 +114,39 @@ export class CardComponent implements OnInit {
     protected readonly ButtonTypeEnum = ButtonTypeEnum;
     protected readonly AnimationEnum = AnimationEnum;
     protected readonly AppearanceEnum = AppearanceEnum;
+    /**
+     * The instance of the javascript window
+     * @protected
+     */
+    protected readonly window = window;
 
     /**
      * Implementation of {@link OnInit} interface
      * @throws Error when {@link avatar} is given but not {@link avatarColor}
      */
     ngOnInit(): void {
-        if (this.avatar && !this.avatarColor) {
-            throw new Error(
-                '<glassait-card> Avatar given but no color given. Please provide the color of the avatar'
-            );
-        }
-        if (this.hasAction && !this.actionText) {
-            throw new Error(
-                '<glassait-card> The card has an action but no text given. Please provide the text for the action'
-            );
-        }
-        if (this.hasAction && !this.actionTheme) {
-            throw new Error(
-                '<glassait-card> The card has an action but no theme given. Please provide the theme for the action'
-            );
-        }
-        if (this.hasAction && !this.actionCallback) {
-            throw new Error(
-                '<glassait-card> The card has an action but no callback given. Please provide the callback for the action'
-            );
-        }
-        if (this.isLoading && !this.loadingColor) {
+        if (!this.isLoading) {
+            if (this.avatar && !this.avatarColor) {
+                throw new Error(
+                    '<glassait-card> Avatar given but no color given. Please provide the color of the avatar'
+                );
+            }
+            if (this.hasAction && !this.actionText) {
+                throw new Error(
+                    '<glassait-card> The card has an action but no text given. Please provide the text for the action'
+                );
+            }
+            if (this.hasAction && !this.actionTheme) {
+                throw new Error(
+                    '<glassait-card> The card has an action but no theme given. Please provide the theme for the action'
+                );
+            }
+            if (this.hasAction && !this.actionCallback) {
+                throw new Error(
+                    '<glassait-card> The card has an action but no callback given. Please provide the callback for the action'
+                );
+            }
+        } else if (!this.loadingColor) {
             throw new Error(
                 '<glassait-card> The card is in loading display but no loadingColor given. Please provide the loadingColor for the loading display'
             );

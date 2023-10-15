@@ -60,7 +60,7 @@ module.exports = {
             10: '0.10',
         },
         screens: {
-            tablette: '768px',
+            tablet: '768px',
             desktop: '1440px',
         },
         fontSize: {
