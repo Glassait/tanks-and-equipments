@@ -1,15 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { takeUntil, takeWhile } from 'rxjs';
-import { UnsubscribeDirective } from '../../commons/directives/unsubscribe.directive';
+import { takeWhile } from 'rxjs';
+import { MemberService } from '../../commons/abstract/member.service';
+import { ModeService } from '../../commons/abstract/mode.service';
 import { ModeEnum } from '../../commons/enums/modeEnum';
 import { FeatureInterface } from '../../commons/interfaces/feature.interface';
-import { MemberInterface } from '../../commons/interfaces/member.interface';
-import { ModeInterface } from '../../commons/interfaces/mode.interface';
 import { InventoryService } from '../../commons/services/inventory.service';
 import { FeatureStore } from '../../commons/stores/feature.store';
-import { MemberStore } from '../../commons/stores/member.store';
-import { ModeStore } from '../../commons/stores/mode.store';
 import { ButtonSizeEnum } from '../button/enums/button-size.enum';
 import { ButtonThemeEnum } from '../button/enums/button-theme.enum';
 
@@ -17,17 +14,7 @@ import { ButtonThemeEnum } from '../button/enums/button-theme.enum';
     selector: 'app-footer',
     templateUrl: './footer.component.html',
 })
-export class FooterComponent extends UnsubscribeDirective implements OnInit {
-    /**
-     * Define the mode of the site (light or dark)
-     * @protected
-     */
-    protected mode: ModeEnum;
-    /**
-     * Define if the user is a visitor or not
-     * @protected
-     */
-    protected isVisitor: boolean;
+export class FooterComponent implements OnInit {
     /**
      * Define all the button in the footer
      * @protected
@@ -79,14 +66,15 @@ export class FooterComponent extends UnsubscribeDirective implements OnInit {
     protected readonly ButtonSizeEnum = ButtonSizeEnum;
 
     constructor(
+        // SERVICE
         private inventory: InventoryService,
+        protected memberService: MemberService,
+        protected modeService: ModeService,
+        // ANGULAR
         private router: Router,
-        private memberStore: MemberStore,
-        private featureStore: FeatureStore,
-        private modeStore: ModeStore
-    ) {
-        super();
-    }
+        // STORE
+        private featureStore: FeatureStore
+    ) {}
 
     /**
      * Implementation of the {@link OnInit} interface
@@ -115,23 +103,14 @@ export class FooterComponent extends UnsubscribeDirective implements OnInit {
      * @private
      */
     private createSubscription(): void {
-        this.modeStore
-            .watch()
-            .pipe(takeUntil(this.destroy$))
-            .subscribe((value: ModeInterface): void => {
-                this.mode = value.color;
-            });
-
-        this.memberStore
-            .watch()
-            .pipe(takeWhile((value: MemberInterface) => value !== null && value !== undefined))
-            .subscribe((value: MemberInterface): void => {
-                this.isVisitor = value.isVisitor;
-            });
+        this.modeService.watchModeStore();
+        this.memberService.watchMemberStore();
 
         this.featureStore
             .watch()
-            .pipe(takeWhile((value: FeatureInterface) => value !== null && value !== undefined))
+            .pipe(
+                takeWhile((value: FeatureInterface) => value !== null && value !== undefined, true)
+            )
             .subscribe((value: FeatureInterface): void => {
                 this.links[2].enabled = value.clanWar;
             });

@@ -1,5 +1,5 @@
 <div
-    class='flex w-full items-center justify-between rounded-t-normal bg-primary-700 p-normal shadow-footer_black dark:bg-secondary-700 dark:shadow-footer_white gap-demi'
+    class='flex w-full items-center justify-between gap-demi rounded-t-normal bg-primary-700 p-normal shadow-footer_black dark:bg-secondary-700 dark:shadow-footer_white'
 >
     <picture>
         <source srcset='assets/other/logo.avif' type='image/avif' />
@@ -16,10 +16,12 @@
         <ng-container *ngFor='let link of links'>
             <glassait-button
                 (click)='navigate(link.path)'
-                *ngIf='link.allowVisitor ? link.enabled : !isVisitor && link.enabled '
+                *ngIf='link.allowVisitor ? link.enabled : !memberService.isVisitor && link.enabled'
                 [size]='ButtonSizeEnum.XSMALL'
                 [theme]='
-                    mode === ModeEnum.DARK ? ButtonThemeEnum.DARK_BLUE : ButtonThemeEnum.LIGHT_BLUE
+                    modeService.mode === ModeEnum.DARK
+                        ? ButtonThemeEnum.DARK_BLUE
+                        : ButtonThemeEnum.LIGHT_BLUE
                 '
                 text='{{ link.wording | wording | sentenceCase }}'
             ></glassait-button>

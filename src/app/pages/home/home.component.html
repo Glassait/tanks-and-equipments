@@ -2,8 +2,8 @@
     class='flex flex-col items-center desktop:items-end gap-normal p-outside_tablet desktop:pl-outside_desktop desktop:pr-outside_desktop'
 >
     <glassait-card
-        *ngIf='isVisitor'
-        [avatarColor]='mode === ModeEnum.DARK ? IconColorEnum.DARK : IconColorEnum.LIGHT'
+        *ngIf='memberService.isVisitor'
+        [avatarColor]='modeService.mode === ModeEnum.DARK ? IconColorEnum.DARK : IconColorEnum.LIGHT'
         avatar='visitor'
         class='w-[288px] tablet:w-[500px]'
         title="{{ 'home.title.visitor' | wording | sentenceCase }}"
@@ -18,12 +18,12 @@
     </glassait-card>
 
     <glassait-card
-        *ngIf='!isVisitor'
+        *ngIf='!memberService.isVisitor'
         [actionCallback]='{ func: navigate, parameter: information.information?.lien?.url }'
-        [actionTheme]='mode === ModeEnum.DARK ? ButtonThemeEnum.DARK : ButtonThemeEnum.LIGHT'
-        [avatarColor]='mode === ModeEnum.DARK ? IconColorEnum.DARK : IconColorEnum.LIGHT'
+        [actionTheme]='modeService.mode === ModeEnum.DARK ? ButtonThemeEnum.DARK : ButtonThemeEnum.LIGHT'
+        [avatarColor]='modeService.mode === ModeEnum.DARK ? IconColorEnum.DARK : IconColorEnum.LIGHT'
         [isLoading]='information.isLoading'
-        [loadingColor]='mode'
+        [loadingColor]='modeService.mode'
         actionAlign='end'
         actionIcon='super_conqueror'
         actionIconSize='36'
@@ -39,9 +39,9 @@
     </glassait-card>
 
     <glassait-card
-        [avatarColor]='mode === ModeEnum.DARK ? IconColorEnum.DARK : IconColorEnum.LIGHT'
+        [avatarColor]='modeService.mode === ModeEnum.DARK ? IconColorEnum.DARK : IconColorEnum.LIGHT'
         [isLoading]='wotServer.isLoading'
-        [loadingColor]='mode'
+        [loadingColor]='modeService.mode'
         avatar='server'
         class='w-[288px] tablet:w-[500px]'
         subtitle="{{ 'home.subtitle.server-status' | wording | sentenceCase }}"
@@ -59,7 +59,7 @@
             >
                 <glassait-icon
                     *ngIf='server.players_online !== wotServer.max'
-                    [color]='mode === ModeEnum.DARK ? IconColorEnum.DARK : IconColorEnum.LIGHT'
+                    [color]='modeService.mode === ModeEnum.DARK ? IconColorEnum.DARK : IconColorEnum.LIGHT'
                     icon='ok'
                     size='30'
                 ></glassait-icon>
