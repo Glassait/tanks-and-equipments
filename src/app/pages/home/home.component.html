@@ -1,0 +1,21 @@
+<div
+    class='flex flex-col items-end gap-normal p-outside_tablet desktop:pl-outside_desktop desktop:pr-outside_desktop'
+>
+    <glassait-card
+        [actionTheme]='mode === ModeEnum.DARK ? ButtonThemeEnum.DARK : ButtonThemeEnum.LIGHT'
+        [avatarColor]='mode === ModeEnum.DARK ? IconColorEnum.DARK : IconColorEnum.LIGHT'
+        [isLoading]='information.isLoading'
+        [loadingColor]='mode'
+        actionAlign='end'
+        actionIcon='super_conqueror'
+        actionText='{{ information.information?.lien?.text }}'
+        avatar='information'
+        class='w-[288px] tablette:w-[500px]'
+        hasAction='{{ information.information?.lien }}'
+        title="{{ 'home.information' | wording | sentenceCase }}"
+    >
+        <p>
+            {{ information.information?.text }}
+        </p>
+    </glassait-card>
+</div>
