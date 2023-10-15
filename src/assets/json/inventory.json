@@ -1,13 +1,13 @@
 {
-    "wargamingApi": {
-        "applicationID": "d5cfa347c97b1997c50c1797e2f1cfdc",
-        "clanID": "500179430",
-        "gameServers": "https://api.worldoftanks.eu/wgn/servers/info/?application_id=d5cfa347c97b1997c50c1797e2f1cfdc&game=wot&language=fr",
+    "wargaming-api": {
+        "application-id": "d5cfa347c97b1997c50c1797e2f1cfdc",
+        "clan-id": "500179430",
+        "game-servers": "https://api.worldoftanks.eu/wgn/servers/info/?application_id=d5cfa347c97b1997c50c1797e2f1cfdc&game=wot&language=fr",
         "login": "https://api.worldoftanks.eu/wot/auth/login/?application_id=d5cfa347c97b1997c50c1797e2f1cfdc&display=popup",
-        "loginMock": "assets/mocks/connection.json"
+        "login-mock": "assets/mocks/connection.json"
     },
-    "lchpApi": {
-        "liveUrl": "https://lchp-backend-73ae62fe95e5.herokuapp.com/api/",
+    "lchp-api": {
+        "live-url": "https://lchp-backend-73ae62fe95e5.herokuapp.com/api/",
         "localhost": "http://localhost:8080/api/"
     },
     "url": {
@@ -15,8 +15,8 @@
     },
     "path": {
         "home": "accueil",
-        "charsEtEquipements": "charsEtEquipement",
-        "clanWar": "clanWar",
+        "tanks-and-equipments": "chars-et-equipements",
+        "clan-war": "clan-war",
         "changelog": "changelog",
         "agreements": "agreements"
     }

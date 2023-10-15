@@ -15,6 +15,6 @@ export class InformationApi {
     ) {}
 
     public queryInformation(): Observable<any> {
-        return this.httpClient.get(this.inventoryService.getLchpApi().liveUrl + this.url);
+        return this.httpClient.get(this.inventoryService.getLchpApi()['live-url'] + this.url);
     }
 }

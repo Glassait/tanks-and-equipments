@@ -18,22 +18,18 @@ const routes: Routes = [
         component: HomeComponent,
     },
     {
-        path: inventory.path.charsEtEquipements,
+        path: inventory.path['tanks-and-equipments'],
         component: TanksEquipmentComponent,
         canActivate: [AuthGuardService],
     },
     {
-        path: inventory.path.clanWar,
+        path: inventory.path['clan-war'],
         component: ClanWarComponent,
         canActivate: [AuthGuardService],
     },
     {
         path: inventory.path.changelog,
         component: ChangelogComponent,
-    },
-    {
-        path: inventory.path.agreements,
-        component: AgreementsComponent,
     },
     {
         path: inventory.path.agreements,

@@ -8,7 +8,7 @@ export class InventoryService {
     private _inventory = inventory;
 
     public getWargamingApi() {
-        return this._inventory.wargamingApi;
+        return this._inventory['wargaming-api'];
     }
 
     public getPath() {
@@ -16,7 +16,7 @@ export class InventoryService {
     }
 
     public getLchpApi() {
-        return this._inventory.lchpApi;
+        return this._inventory['lchp-api'];
     }
 
     public getInventoryFromString(path: string): string {

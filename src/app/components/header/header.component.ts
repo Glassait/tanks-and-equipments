@@ -78,20 +78,20 @@ export class HeaderComponent extends UnsubscribeDirective implements OnInit, Aft
                 },
             },
             {
-                text: this.wording.getWordingFromString('header.charsEtEquipements'),
+                text: this.wording.getWordingFromString('header.tanks-and-equipments'),
                 callback: (): void => {
                     this.router
                         .navigate([
-                            this.inventory.getInventoryFromString('path.charsEtEquipements'),
+                            this.inventory.getInventoryFromString('path.tanks-and-equipments'),
                         ])
                         .then(_r => {});
                 },
             },
             {
-                text: this.wording.getWordingFromString('header.clanWar'),
+                text: this.wording.getWordingFromString('header.clan-war'),
                 callback: (): void => {
                     this.router
-                        .navigate([this.inventory.getInventoryFromString('path.clanWar')])
+                        .navigate([this.inventory.getInventoryFromString('path.clan-war')])
                         .then(_r => {});
                 },
             },

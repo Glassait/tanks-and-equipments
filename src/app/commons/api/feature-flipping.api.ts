@@ -15,6 +15,6 @@ export class FeatureFlippingApi {
     ) {}
 
     public queryFeature(): Observable<any> {
-        return this.httpClient.get(this.inventoryClass.getLchpApi().liveUrl + this.url);
+        return this.httpClient.get(this.inventoryClass.getLchpApi()['live-url'] + this.url);
     }
 }

@@ -40,7 +40,7 @@ export class TanksEquipmentComponent extends UnsubscribeDirective implements OnI
         this.createSubscribe();
 
         this.title.setTitle(
-            new SentenceCasePipe().transform(this.wording.header.charsEtEquipements)
+            new SentenceCasePipe().transform(this.wording.header['tanks-and-equipments'])
         );
     }
 

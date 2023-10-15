@@ -24,7 +24,7 @@ export class MembersApi {
         }
         if ([MockEnum.NO_MOCK, MockEnum.EXTERNAL_MOCK].includes(environment.mock)) {
             this.httpClient
-                .get(this.inventoryService.getLchpApi().liveUrl + this.url + '/' + id)
+                .get(this.inventoryService.getLchpApi()['live-url'] + this.url + '/' + id)
                 .subscribe({
                     next: value => {
                         return value;

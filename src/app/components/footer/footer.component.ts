@@ -32,14 +32,14 @@ export class FooterComponent implements OnInit {
             enabled: true,
         },
         {
-            wording: 'header.charsEtEquipements',
-            path: 'path.charsEtEquipements',
+            wording: 'header.tanks-and-equipments',
+            path: 'path.tanks-and-equipments',
             allowVisitor: false,
             enabled: true,
         },
         {
-            wording: 'header.clanWar',
-            path: 'path.clanWar',
+            wording: 'header.clan-war',
+            path: 'path.clan-war',
             allowVisitor: false,
             enabled: false,
         },

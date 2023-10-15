@@ -25,7 +25,7 @@ export class ClanWarComponent {
         this.checkUser();
         this.patchHeaderAndFooter();
 
-        this.title.setTitle(new SentenceCasePipe().transform(this.wording.header.clanWar));
+        this.title.setTitle(new SentenceCasePipe().transform(this.wording.header['clan-war']));
     }
 
     private patchHeaderAndFooter(): void {
