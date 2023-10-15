@@ -1,4 +1,4 @@
-import { booleanAttribute, Component, Input, OnInit } from '@angular/core';
+import { booleanAttribute, Component, Input, numberAttribute, OnInit } from '@angular/core';
 import { ModeEnum } from '../../commons/enums/modeEnum';
 import { IconColorEnum } from '../icon/enums/icon-enum';
 import { IconsType } from '../icon/types/icon.type';
@@ -54,6 +54,15 @@ export class ButtonComponent implements OnInit {
      * @implements booleanAttribute
      */
     @Input({ transform: booleanAttribute }) loading: boolean;
+    /**
+     * The right icon of the button<p>
+     * @example <glassait-button rightIcon="plus" [iconColor]="IconColorEnum.DARK" size="50"></glassait-button>
+     * @example <glassait-button rightIcon="plus" [iconColor]="IconColorEnum.DARK" [size]="50"></glassait-button>
+     * @default 18
+     * @implements numberAttribute
+     */
+    @Input({ transform: numberAttribute }) iconSize: number = 18;
+
     /**
      * The color of the icon
      * @protected
