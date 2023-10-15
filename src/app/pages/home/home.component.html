@@ -2,20 +2,84 @@
     class='flex flex-col items-end gap-normal p-outside_tablet desktop:pl-outside_desktop desktop:pr-outside_desktop'
 >
     <glassait-card
+        *ngIf='isVisitor'
+        [avatarColor]='mode === ModeEnum.DARK ? IconColorEnum.DARK : IconColorEnum.LIGHT'
+        avatar='visitor'
+        class='w-[288px] tablet:w-[500px]'
+        title="{{ 'home.title.visitor' | wording | sentenceCase }}"
+    >
+        <p>
+            {{ "home.text.visitor" | wording }}
+        </p>
+        <br>
+        <p>
+            {{ "home.text.visitor-help" | wording }}
+        </p>
+    </glassait-card>
+
+    <glassait-card
+        *ngIf='!isVisitor'
+        [actionCallback]='{ func: navigate, parameter: information.information?.lien?.url }'
         [actionTheme]='mode === ModeEnum.DARK ? ButtonThemeEnum.DARK : ButtonThemeEnum.LIGHT'
         [avatarColor]='mode === ModeEnum.DARK ? IconColorEnum.DARK : IconColorEnum.LIGHT'
         [isLoading]='information.isLoading'
         [loadingColor]='mode'
         actionAlign='end'
         actionIcon='super_conqueror'
+        actionIconSize='36'
         actionText='{{ information.information?.lien?.text }}'
         avatar='information'
-        class='w-[288px] tablette:w-[500px]'
-        hasAction='{{ information.information?.lien }}'
-        title="{{ 'home.information' | wording | sentenceCase }}"
+        class='w-[288px] tablet:w-[500px]'
+        hasAction='{{ information.information?.lien?.url !== null }}'
+        title="{{ 'home.title.information' | wording | sentenceCase }}"
     >
         <p>
             {{ information.information?.text }}
         </p>
+    </glassait-card>
+
+    <glassait-card
+        [avatarColor]='mode === ModeEnum.DARK ? IconColorEnum.DARK : IconColorEnum.LIGHT'
+        [isLoading]='wotServer.isLoading'
+        [loadingColor]='mode'
+        avatar='server'
+        class='w-[288px] tablet:w-[500px]'
+        subtitle="{{ 'home.subtitle.server-status' | wording | sentenceCase }}"
+        title="{{ 'home.title.server-status' | wording | sentenceCase }}"
+    >
+        <div class='flex flex-col gap-demi'>
+            <div
+                *ngFor='let server of wotServer.servers?.data?.wot'
+                [class]="
+                    server.players_online === wotServer.max
+                        ? 'bg-warning-300 pt-[2px] pb-[2px]'
+                        : ''
+                "
+                class='flex items-center gap-normal rounded-normal pl-outside_tablet pr-outside_tablet'
+            >
+                <glassait-icon
+                    *ngIf='server.players_online !== wotServer.max'
+                    [color]='mode === ModeEnum.DARK ? IconColorEnum.DARK : IconColorEnum.LIGHT'
+                    icon='ok'
+                    size='30'
+                ></glassait-icon>
+                <glassait-icon
+                    *ngIf='server.players_online === wotServer.max'
+                    [color]='IconColorEnum.LIGHT'
+                    icon='waiting'
+                    size='30'
+                ></glassait-icon>
+                <div
+                    [class]="server.players_online === wotServer.max ? 'text-secondary-700' : ''"
+                    class='text-title'
+                >
+                    {{ server.server }}
+                </div>
+                <div [class]="server.players_online === wotServer.max ? 'text-secondary-700' : ''">
+                    {{ server.players_online }} {{ 'home.text.server-status' | wording
+                    }}{{ server.players_online > 1 ? 's' : '' }}
+                </div>
+            </div>
+        </div>
     </glassait-card>
 </div>

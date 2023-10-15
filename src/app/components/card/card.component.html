@@ -17,7 +17,8 @@
     </mat-card-content>
     <mat-card-actions *ngIf='hasAction' [align]='actionAlign'>
         <glassait-button
-            (click)='actionCallback()'
+            (click)='actionCallback.func(actionCallback.parameter)'
+            [iconSize]='actionIconSize'
             [rightIcon]='actionIcon'
             [size]='ButtonSizeEnum.NORMAL'
             [text]='actionText'
@@ -61,13 +62,13 @@
                 [animation]='AnimationEnum.PULSE'
                 [appearance]='AppearanceEnum.LINE'
                 [color]='loadingColor'
-                width='468px'
+                width='{{ window.screen.width <= 320 ? "256px" : "468px"}}'
             ></glassait-skeleton-loading>
             <glassait-skeleton-loading
                 [animation]='AnimationEnum.PULSE'
                 [appearance]='AppearanceEnum.LINE'
                 [color]='loadingColor'
-                width='468px'
+                width='{{ window.screen.width <= 320 ? "256px" : "468px"}}'
             ></glassait-skeleton-loading>
         </div>
     </mat-card-content>
