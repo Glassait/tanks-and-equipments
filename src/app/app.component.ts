@@ -67,6 +67,7 @@ export class AppComponent implements OnInit {
         if (!this.auth.isLoggedIn()) {
             this.auth.login();
         }
+
         this.registerIcons();
         this.onResize({});
     }

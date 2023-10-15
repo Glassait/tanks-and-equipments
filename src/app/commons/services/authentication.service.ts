@@ -24,42 +24,24 @@ export class AuthenticationService {
     ) {}
 
     public login(): void {
-        this.authenticationClient
-            .login()
-            .subscribe((token: Connection): void => {
-                const user: Member | undefined = this.members.isClanMembers(
-                    Number(token.account_id)
-                );
+        this.authenticationClient.login().subscribe((token: Connection): void => {
+            const user: Member | undefined = this.members.isClanMembers(Number(token.account_id));
 
-                this.updateStore(user, token?.access_token);
-                this.session.store(
-                    this.tokenKey,
-                    user ? JSON.stringify(token) : ''
-                );
-                this.session.store(
-                    this.userKey,
-                    user ? JSON.stringify(user) : ''
-                );
-                this.router.navigate(['/']).then((): void => {
-                    // Ignored
-                });
-            });
+            this.updateStore(user, token?.access_token);
+            this.session.store(this.tokenKey, user ? JSON.stringify(token) : '');
+            this.session.store(this.userKey, user ? JSON.stringify(user) : '');
+            this.router.navigate(['/']).then((): void => {});
+        });
     }
 
     public isLoggedIn(): boolean {
-        const token: Connection | null =
-            this.session.getFromKeyToObject<Connection>(this.tokenKey);
-        const user: Member | null = this.session.getFromKeyToObject<Member>(
-            this.userKey
-        );
+        const token: Connection | null = this.session.getFromKeyToObject<Connection>(this.tokenKey);
+        const user: Member | null = this.session.getFromKeyToObject<Member>(this.userKey);
         this.updateStore(user ?? undefined, token?.access_token);
         return token != null && token?.status === 'ok';
     }
 
-    private updateStore(
-        user: Member | undefined,
-        accessToken: string | undefined
-    ): void {
+    private updateStore(user: Member | undefined, accessToken: string | undefined): void {
         this.memberStore.patch({
             account_id: user?.account_id,
             isAdmin: CheckGrade.isAdmin(user?.role),

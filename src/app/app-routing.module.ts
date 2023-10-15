@@ -2,11 +2,14 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import inventory from 'src/assets/json/inventory.json';
 import { AuthGuardService } from './commons/services/auth-guard.service';
+
 import { AgreementsComponent } from './components/agreements/agreements.component';
 import { ChangelogComponent } from './components/changelog/changelog.component';
 import { ClanWarComponent } from './components/clan-war/clan-war.component';
-import { HomeComponent } from './components/home/home.component';
 import { TanksEquipmentComponent } from './components/tanks-equipment/tanks-equipment.component';
+import { HomeComponent } from './pages/home/home.component';
+
+// Pages
 import { SandboxComponent } from './pages/sandbox/sandbox.component';
 
 const routes: Routes = [

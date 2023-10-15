@@ -12,24 +12,20 @@
 * ||
 */
 .mat-mdc-card {
-    // Subtitle
     --mat-card-subtitle-text-color: #{colors.$secondary-50};
     --mat-card-subtitle-text-line-height: #{typography.$body-line-height};
     --mat-card-subtitle-text-size: #{typography.$body-font-size};
     --mat-card-subtitle-text-tracking: 0;
-
-    // Radius
     --mat-card-subtitle-text-weight: #{typography.$font-weight-regular};
 
-    // Tile
     --mat-card-title-text-line-height: #{typography.$title-line-height};
     --mat-card-title-text-size: #{typography.$title-font-size};
     --mat-card-title-text-tracking: 0;
     --mat-card-title-text-weight: #{typography.$font-weight-bold};
 
-    // Container
     --mdc-elevated-card-container-color: #{colors.$primary-700};
     --mdc-elevated-card-container-elevation: #{box-shadow.$box-shadow-card-black};
+    --mdc-elevated-card-container-shape: #{borders.$radius-normal};
 }
 
 :is(.dark) .mat-mdc-card {
@@ -39,6 +35,7 @@
     // Container
     --mdc-elevated-card-container-color: #{colors.$secondary-700};
     --mdc-elevated-card-container-elevation: #{box-shadow.$box-shadow-card-white};
+    --mdc-elevated-card-container-shape: #{borders.$radius-normal};
 }
 
 .mat-mdc-card-header {

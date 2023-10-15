@@ -1,8 +1,8 @@
 export enum CookieNameEnum {
-    SERVER_STATUS = 'serverStatus',
-    CLAN_RATINGS = 'clanRatings',
+    SERVER_STATUS = 'server-status',
+    SERVER_STATUS_MAX = 'server-status-max',
     INFORMATION = 'information',
     FEATURE = 'feature',
-    TANKS_DATE = 'tanks_date',
+    TANKS_DATE = 'tanks-date',
     TANKS = 'tanks',
 }

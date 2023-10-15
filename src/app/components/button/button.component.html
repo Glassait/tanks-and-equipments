@@ -1,7 +1,7 @@
 <button
     *ngIf='type === ButtonTypeEnum.BASIC && !loading'
     [disabled]='disabled'
-    class='{{ size }} {{ theme }}  {{ type }}'
+    class='{{ size }} {{ theme }}  {{ type }} BUTTON'
     color='primary'
     mat-button
 >
@@ -11,7 +11,7 @@
 <button
     *ngIf='type === ButtonTypeEnum.RAISED && !loading'
     [disabled]='disabled'
-    class='{{ size }} {{ theme }} {{ type }}'
+    class='{{ size }} {{ theme }} {{ type }} BUTTON'
     color='primary'
     mat-raised-button
 >
@@ -33,14 +33,14 @@
             *ngIf='leftIcon'
             [color]='iconColor'
             [icon]='leftIcon'
-            size='18'
+            [size]='iconSize'
         ></glassait-icon>
         <div>{{ text }}</div>
         <glassait-icon
             *ngIf='rightIcon'
             [color]='iconColor'
             [icon]='rightIcon'
-            size='18'
+            [size]='iconSize'
         ></glassait-icon>
     </div>
 </ng-template>

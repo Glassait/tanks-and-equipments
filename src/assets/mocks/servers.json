@@ -1,10 +1,22 @@
 {
     "data": {
         "wot": [
-            { "players_online": 35474, "server": "EU2" },
-            { "players_online": 32740, "server": "EU1" },
-            { "players_online": 36565, "server": "203" },
-            { "players_online": 3686, "server": "204" }
+            {
+                "players_online": 32499,
+                "server": "EU2"
+            },
+            {
+                "players_online": 27392,
+                "server": "EU1"
+            },
+            {
+                "players_online": 31531,
+                "server": "203"
+            },
+            {
+                "players_online": 2597,
+                "server": "204"
+            }
         ]
     },
     "status": "ok"
