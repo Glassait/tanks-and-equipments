@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { ChangelogService } from '../../commons/services/changelog.service';
+// import { ChangelogService } from '../../commons/services/changelog.service';
 import { WordingService } from '../../commons/services/wording.service';
 import { HeaderStore } from '../../commons/stores/header.store';
 import { ModeStore } from '../../commons/stores/mode.store';
@@ -15,7 +15,7 @@ export class ChangelogComponent {
     protected changelogs: VersionType[];
 
     constructor(
-        protected changelogService: ChangelogService,
+        // protected changelogService: ChangelogService,
         private wording: WordingService,
         private headerStore: HeaderStore,
         private modeStore: ModeStore,
@@ -23,7 +23,7 @@ export class ChangelogComponent {
     ) {
         this.patchHeaderAndFooter();
 
-        this.changelogs = changelogService.changelogs;
+        // this.changelogs = changelogService.changelogs;
 
         this.title.setTitle(new SentenceCasePipe().transform(this.wording.footer.changelog));
     }

@@ -8,11 +8,7 @@
     },
     "lchpApi": {
         "liveUrl": "https://lchp-backend-73ae62fe95e5.herokuapp.com/api/",
-        "localhost": "http://localhost:8080/api/",
-        "information": "information",
-        "feature": "feature",
-        "tanks": "tanks",
-        "member": "member"
+        "localhost": "http://localhost:8080/api/"
     },
     "url": {
         "clan": "https://eu.wargaming.net/clans/wot/500179430/"

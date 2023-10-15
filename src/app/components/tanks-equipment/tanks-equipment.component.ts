@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { takeUntil } from 'rxjs';
-import { TanksDataService } from 'src/app/commons/services/tank-data.service';
 import { HeaderStore } from 'src/app/commons/stores/header.store';
 import { MemberStore } from 'src/app/commons/stores/member.store';
 import { UnsubscribeDirective } from '../../commons/directives/unsubscribe.directive';
@@ -13,7 +12,6 @@ import { SessionStorageService } from '../../commons/services/session-storage.se
 import { WordingService } from '../../commons/services/wording.service';
 import { ModeStore } from '../../commons/stores/mode.store';
 import { TankData } from '../../commons/types/tanks-data.type';
-import { DateCustom } from '../../commons/utils/date.custom';
 import { SentenceCasePipe } from '../../pipes/sentenceCase/sentence-case.pipe';
 
 @Component({
@@ -29,7 +27,6 @@ export class TanksEquipmentComponent extends UnsubscribeDirective implements OnI
 
     constructor(
         private wording: WordingService,
-        private tankDataService: TanksDataService,
         private sessionService: SessionStorageService,
         private headerStore: HeaderStore,
         private memberStore: MemberStore,
@@ -90,22 +87,22 @@ export class TanksEquipmentComponent extends UnsubscribeDirective implements OnI
             this.tanksData = token.data;
             this.showSpinner = false;
         } else {
-            this.tankDataService.queryTanksData().subscribe({
-                next: (tankData: TankData[]): void => {
-                    this.tanksData = tankData;
-                    this.sessionService.store(CookieNameEnum.TANKS, JSON.stringify(tankData));
-                    this.sessionService.store(
-                        CookieNameEnum.TANKS_DATE,
-                        DateCustom.getMidnightDate().toDateString()
-                    );
-                },
-                error: err => {
-                    console.log(err);
-                },
-                complete: (): void => {
-                    this.showSpinner = false;
-                },
-            });
+            /*this.tankDataService.queryTanksData().subscribe({
+             next: (tankData: TankData[]): void => {
+             this.tanksData = tankData;
+             this.sessionService.store(CookieNameEnum.TANKS, JSON.stringify(tankData));
+             this.sessionService.store(
+             CookieNameEnum.TANKS_DATE,
+             DateCustom.getMidnightDate().toDateString()
+             );
+             },
+             error: err => {
+             console.log(err);
+             },
+             complete: (): void => {
+             this.showSpinner = false;
+             },
+             });*/
         }
     }
 }

@@ -5,7 +5,7 @@ import { VersionType } from '../types/version.type';
 @Injectable({
     providedIn: 'root',
 })
-export class ChangelogService {
+export class ChangelogApi {
     private _changelogs = changelog;
 
     get changelogs(): VersionType[] {

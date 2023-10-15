@@ -1,9 +1,9 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
+import { FeatureFlippingApi } from './commons/api/feature-flipping.api';
 import { CookieNameEnum } from './commons/enums/cookie-name.enum';
 import { FeatureInterface } from './commons/interfaces/feature.interface';
 import { AuthenticationService } from './commons/services/authentication.service';
-import { FeatureFlippingService } from './commons/services/feature-flipping.service';
 import { IconRegistryService } from './commons/services/icon-registry.service';
 import { FeatureStore } from './commons/stores/feature.store';
 import { ModeStore } from './commons/stores/mode.store';
@@ -57,12 +57,15 @@ export class AppComponent implements OnInit {
     private featureFlipping: FeatureInterface;
 
     constructor(
+        // SERVICE
         private iconRegistry: IconRegistryService,
         private auth: AuthenticationService,
-        private featureService: FeatureFlippingService,
         private cookie: CookieService,
+        // STORE
         private modeStore: ModeStore,
-        private featureStore: FeatureStore
+        private featureStore: FeatureStore,
+        // API
+        private featureFlippingApi: FeatureFlippingApi
     ) {
         if (!this.auth.isLoggedIn()) {
             this.auth.login();
@@ -135,7 +138,7 @@ export class AppComponent implements OnInit {
             return;
         }
 
-        this.featureService.queryFeature().subscribe({
+        this.featureFlippingApi.queryFeature().subscribe({
             next: (value: FeatureInterface): void => {
                 this.featureStore.patch(value);
                 this.featureFlipping = value;

@@ -3,12 +3,12 @@ import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { takeUntil, takeWhile } from 'rxjs';
+import { InformationApi } from '../../commons/api/information.api';
 import { UnsubscribeDirective } from '../../commons/directives/unsubscribe.directive';
 import { CookieNameEnum } from '../../commons/enums/cookie-name.enum';
 import { ModeEnum } from '../../commons/enums/modeEnum';
 import { MemberInterface } from '../../commons/interfaces/member.interface';
 import { ModeInterface } from '../../commons/interfaces/mode.interface';
-import { InformationService } from '../../commons/services/information.service';
 import { InventoryService } from '../../commons/services/inventory.service';
 import { WordingService } from '../../commons/services/wording.service';
 import { WotService } from '../../commons/services/wot.service';
@@ -73,9 +73,10 @@ export class HomeComponent extends UnsubscribeDirective implements OnInit {
         private headerStore: HeaderStore,
         private modeStore: ModeStore,
         private memberStore: MemberStore,
+        // API
+        private informationApi: InformationApi,
         // SERVICE
         private cookie: CookieService,
-        private informationService: InformationService,
         private wotService: WotService,
         private inventoryService: InventoryService,
         private wording: WordingService,
@@ -136,7 +137,7 @@ export class HomeComponent extends UnsubscribeDirective implements OnInit {
             return;
         }
 
-        this.informationService.queryInformation().subscribe({
+        this.informationApi.queryInformation().subscribe({
             next: (value: InformationType): void => {
                 this.information.information = value;
             },
