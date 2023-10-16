@@ -9,21 +9,17 @@ import { ModeStore } from '../stores/mode.store';
     providedIn: 'root',
 })
 export class ModeService extends UnsubscribeDirective {
-    constructor(private modeStore: ModeStore) {
-        super();
-    }
-
     /**
      * The settings of the user (light or dark mode)
-     * @private
      */
-    private _mode: ModeEnum;
-
+    public mode: ModeEnum;
     /**
-     * @see _mode
+     * Define if the screen size if a size of a mobile
      */
-    get mode(): ModeEnum {
-        return this._mode;
+    public isMobile: boolean;
+
+    constructor(private modeStore: ModeStore) {
+        super();
     }
 
     public watchModeStore(): void {
@@ -31,7 +27,8 @@ export class ModeService extends UnsubscribeDirective {
             .watch()
             .pipe(takeUntil(this.destroy$))
             .subscribe((value: ModeInterface): void => {
-                this._mode = value.color;
+                this.mode = value.color;
+                this.isMobile = value.mobile;
             });
     }
 }

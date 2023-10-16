@@ -6,11 +6,11 @@ import { AuthGuardService } from './commons/services/auth-guard.service';
 import { AgreementsComponent } from './components/agreements/agreements.component';
 import { ChangelogComponent } from './components/changelog/changelog.component';
 import { ClanWarComponent } from './components/clan-war/clan-war.component';
-import { TanksEquipmentComponent } from './components/tanks-equipment/tanks-equipment.component';
 import { HomeComponent } from './pages/home/home.component';
 
 // Pages
 import { SandboxComponent } from './pages/sandbox/sandbox.component';
+import { TanksEquipmentComponent } from './pages/tanks-equipments/tanks-equipment.component';
 
 const routes: Routes = [
     {

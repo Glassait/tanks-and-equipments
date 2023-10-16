@@ -16,7 +16,7 @@ export class TanksDataApi {
 
     public queryTanksData(accessToken: string): Observable<any> {
         return this.httpClient.get(
-            this.inventoryService.getLchpApi().liveUrl + this.url + '/' + accessToken
+            this.inventoryService.getLchpApi()['live-url'] + this.url + '/' + accessToken
         );
     }
 }

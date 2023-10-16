@@ -16,7 +16,7 @@
             </mat-panel-title>
 
             <mat-panel-description *ngIf='description'>
-                {{ description }}
+                {{ isMobile ? description.length > 10 ? description.slice(0, 9) + "..." : description : description }}
             </mat-panel-description>
         </mat-expansion-panel-header>
 

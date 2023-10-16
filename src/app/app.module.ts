@@ -33,12 +33,12 @@ import { HeaderComponent } from './components/header/header.component';
 import { IconComponent } from './components/icon/icon.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { SkeletonLoadingComponent } from './components/skeleton-loading/skeleton-loading.component';
-import { TankEquipmentDescriptionComponent } from './components/tanks-equipment/tank-equipment-description/tank-equipment-description.component';
-import { TanksEquipmentComponent } from './components/tanks-equipment/tanks-equipment.component';
 
 // Page
 import { HomeComponent } from './pages/home/home.component';
 import { SandboxComponent } from './pages/sandbox/sandbox.component';
+import { TankEquipmentDescriptionComponent } from './pages/tanks-equipments/tank-equipment-description/tank-equipment-description.component';
+import { TanksEquipmentComponent } from './pages/tanks-equipments/tanks-equipment.component';
 
 // Pipe
 import { ClanDataPipe } from './pipes/clanRatings/clan-data.pipe';
