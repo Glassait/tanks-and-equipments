@@ -6,7 +6,7 @@
             #darkModeSwitch
             (change)='changeMode($event)'
             aria-label='Couleur switch'
-            checked='{{mode === ModeEnum.DARK}}'
+            checked='{{ modeService.mode === ModeEnum.DARK }}'
             class='mode-slide mb-1 ml-2 scale-[1.3]'
             color='primary'
         ></mat-slide-toggle>
@@ -34,9 +34,9 @@
 
     <div class='flex w-0 flex-auto justify-end'>
         <glassait-menu
-            *ngIf='!isVisitor'
+            *ngIf='!memberService.isVisitor'
             [menuItems]='menuItems'
-            [theme]='mode'
+            [theme]='modeService.mode'
             textMenu="{{ 'header.menu' | wording | titlecase }}"
             xPosition='before'
         ></glassait-menu>

@@ -2,19 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
-import { takeUntil, takeWhile } from 'rxjs';
-import { UnsubscribeDirective } from '../../commons/directives/unsubscribe.directive';
+import { MemberService } from '../../commons/abstract/member.service';
+import { ModeService } from '../../commons/abstract/mode.service';
+import { InformationApi } from '../../commons/api/information.api';
 import { CookieNameEnum } from '../../commons/enums/cookie-name.enum';
 import { ModeEnum } from '../../commons/enums/modeEnum';
-import { MemberInterface } from '../../commons/interfaces/member.interface';
-import { ModeInterface } from '../../commons/interfaces/mode.interface';
-import { InformationService } from '../../commons/services/information.service';
 import { InventoryService } from '../../commons/services/inventory.service';
 import { WordingService } from '../../commons/services/wording.service';
 import { WotService } from '../../commons/services/wot.service';
 import { HeaderStore } from '../../commons/stores/header.store';
-import { MemberStore } from '../../commons/stores/member.store';
-import { ModeStore } from '../../commons/stores/mode.store';
 import { WotServerRequest } from '../../commons/types/clan-ratings.type';
 import { InformationType } from '../../commons/types/information.type';
 import { DateCustom } from '../../commons/utils/date.custom';
@@ -26,12 +22,7 @@ import { SentenceCasePipe } from '../../pipes/sentenceCase/sentence-case.pipe';
     selector: 'app-home',
     templateUrl: './home.component.html',
 })
-export class HomeComponent extends UnsubscribeDirective implements OnInit {
-    /**
-     * Define the mode of the site (light or dark)
-     * @protected
-     */
-    protected mode: ModeEnum;
+export class HomeComponent implements OnInit {
     /**
      * Store the result of the api call to get the information of the clan
      * @protected
@@ -54,11 +45,6 @@ export class HomeComponent extends UnsubscribeDirective implements OnInit {
         isLoading: true,
         isError: false,
     };
-    /**
-     * Define if the user is a visitor or not
-     * @protected
-     */
-    protected isVisitor: boolean;
 
     /**
      * ENUM
@@ -71,22 +57,21 @@ export class HomeComponent extends UnsubscribeDirective implements OnInit {
     constructor(
         // STORE
         private headerStore: HeaderStore,
-        private modeStore: ModeStore,
-        private memberStore: MemberStore,
+        // API
+        private informationApi: InformationApi,
         // SERVICE
         private cookie: CookieService,
-        private informationService: InformationService,
         private wotService: WotService,
         private inventoryService: InventoryService,
         private wording: WordingService,
+        protected memberService: MemberService,
+        protected modeService: ModeService,
         // ANGULAR
         private router: Router,
         private title: Title,
         // PIPE
         private sentenceCasePipe: SentenceCasePipe
-    ) {
-        super();
-    }
+    ) {}
 
     /**
      * Implementation of the {@link OnInit} interface
@@ -100,7 +85,8 @@ export class HomeComponent extends UnsubscribeDirective implements OnInit {
             showTank: true,
         });
 
-        this.createSubscription();
+        this.modeService.watchModeStore();
+        this.memberService.watchMemberStore();
 
         this.getInformation();
         this.getWotServerStatus();
@@ -136,7 +122,7 @@ export class HomeComponent extends UnsubscribeDirective implements OnInit {
             return;
         }
 
-        this.informationService.queryInformation().subscribe({
+        this.informationApi.queryInformation().subscribe({
             next: (value: InformationType): void => {
                 this.information.information = value;
             },
@@ -200,25 +186,5 @@ export class HomeComponent extends UnsubscribeDirective implements OnInit {
                 this.wotServer.isLoading = false;
             },
         });
-    }
-
-    /**
-     * Create all subscription to get the metadata of the sire
-     * @private
-     */
-    private createSubscription(): void {
-        this.modeStore
-            .watch()
-            .pipe(takeUntil(this.destroy$))
-            .subscribe((value: ModeInterface): void => {
-                this.mode = value.color;
-            });
-
-        this.memberStore
-            .watch()
-            .pipe(takeWhile((value: MemberInterface) => value !== null && value !== undefined))
-            .subscribe((value: MemberInterface): void => {
-                this.isVisitor = value.isVisitor;
-            });
     }
 }

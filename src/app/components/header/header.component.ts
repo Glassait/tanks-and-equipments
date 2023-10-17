@@ -4,14 +4,13 @@ import { Router } from '@angular/router';
 import { takeUntil, takeWhile } from 'rxjs';
 import { UnsubscribeDirective } from 'src/app/commons/directives/unsubscribe.directive';
 import { HeaderInterface } from 'src/app/commons/interfaces/header.interface';
-import { MemberInterface } from 'src/app/commons/interfaces/member.interface';
-import { ModeInterface } from 'src/app/commons/interfaces/mode.interface';
 import { InventoryService } from 'src/app/commons/services/inventory.service';
 import { WordingService } from 'src/app/commons/services/wording.service';
 import { HeaderStore } from 'src/app/commons/stores/header.store';
-import { MemberStore } from 'src/app/commons/stores/member.store';
 import { ModeStore } from 'src/app/commons/stores/mode.store';
 import { SvgCustom } from 'src/app/commons/utils/svg-custom.util';
+import { MemberService } from '../../commons/abstract/member.service';
+import { ModeService } from '../../commons/abstract/mode.service';
 import { ModeEnum } from '../../commons/enums/modeEnum';
 import { FeatureInterface } from '../../commons/interfaces/feature.interface';
 import { FeatureStore } from '../../commons/stores/feature.store';
@@ -22,18 +21,8 @@ import { MenuItemType } from '../menu/types/menu-item.type';
     templateUrl: './header.component.html',
 })
 export class HeaderComponent extends UnsubscribeDirective implements OnInit, AfterViewInit {
-    @ViewChild('darkModeSwitch', { read: ElementRef }) element: ElementRef | undefined;
+    @ViewChild('darkModeSwitch', { read: ElementRef }) slideToogle: ElementRef | undefined;
 
-    /**
-     * Define is the user is a visitor or not
-     * @protected
-     */
-    protected isVisitor: boolean;
-    /**
-     * Define the mode of the site (light or dark)
-     * @protected
-     */
-    protected mode: ModeEnum;
     /**
      * The menu item to pass to {@link MenuComponent}
      * @protected
@@ -64,12 +53,16 @@ export class HeaderComponent extends UnsubscribeDirective implements OnInit, Aft
     private readonly allMenuItems: MenuItemType[];
 
     constructor(
-        protected modeStore: ModeStore,
-        protected memberStore: MemberStore,
-        protected wording: WordingService,
-        protected inventory: InventoryService,
+        // STORE
+        private modeStore: ModeStore,
         private headerStore: HeaderStore,
         private featureStore: FeatureStore,
+        // SERVICE
+        private wording: WordingService,
+        private inventory: InventoryService,
+        protected memberService: MemberService,
+        protected modeService: ModeService,
+        // ANGULAR
         private router: Router
     ) {
         super();
@@ -77,26 +70,28 @@ export class HeaderComponent extends UnsubscribeDirective implements OnInit, Aft
 
         this.allMenuItems = [
             {
-                text: wording.getWordingFromString('header.home'),
+                text: this.wording.getWordingFromString('header.home'),
                 callback: (): void => {
                     this.router
-                        .navigate([inventory.getInventoryFromString('path.home')])
+                        .navigate([this.inventory.getInventoryFromString('path.home')])
                         .then(_r => {});
                 },
             },
             {
-                text: wording.getWordingFromString('header.charsEtEquipements'),
+                text: this.wording.getWordingFromString('header.tanks-and-equipments'),
                 callback: (): void => {
                     this.router
-                        .navigate([inventory.getInventoryFromString('path.charsEtEquipements')])
+                        .navigate([
+                            this.inventory.getInventoryFromString('path.tanks-and-equipments'),
+                        ])
                         .then(_r => {});
                 },
             },
             {
-                text: wording.getWordingFromString('header.clanWar'),
+                text: this.wording.getWordingFromString('header.clan-war'),
                 callback: (): void => {
                     this.router
-                        .navigate([inventory.getInventoryFromString('path.clanWar')])
+                        .navigate([this.inventory.getInventoryFromString('path.clan-war')])
                         .then(_r => {});
                 },
             },
@@ -114,8 +109,8 @@ export class HeaderComponent extends UnsubscribeDirective implements OnInit, Aft
      * Implementation of the {@link AfterViewInit} interface
      */
     ngAfterViewInit(): void {
-        if (this.element) {
-            const svgOn = this.element.nativeElement.querySelector('.mdc-switch__icon--on');
+        if (this.slideToogle) {
+            const svgOn = this.slideToogle.nativeElement.querySelector('.mdc-switch__icon--on');
             svgOn.setAttribute('viewBox', '-2 -2 60 60');
 
             const svgSun = svgOn.firstChild;
@@ -126,7 +121,7 @@ export class HeaderComponent extends UnsubscribeDirective implements OnInit, Aft
             svgSun.setAttribute('stroke-linejoin', 'round');
             svgSun.setAttribute('fill', 'none');
 
-            const svgOff = this.element.nativeElement.querySelector('.mdc-switch__icon--off');
+            const svgOff = this.slideToogle.nativeElement.querySelector('.mdc-switch__icon--off');
             svgOff.setAttribute('viewBox', '-2 -2 60 60');
 
             const svgMoon = svgOff.firstChild;
@@ -163,6 +158,9 @@ export class HeaderComponent extends UnsubscribeDirective implements OnInit, Aft
      * @private
      */
     private createSubscribe(): void {
+        this.modeService.watchModeStore();
+        this.memberService.watchMemberStore();
+
         this.headerStore
             .watch()
             .pipe(takeUntil(this.destroy$))
@@ -170,23 +168,9 @@ export class HeaderComponent extends UnsubscribeDirective implements OnInit, Aft
                 this.createMenuItemList(headerInterface);
             });
 
-        this.modeStore
-            .watch()
-            .pipe(takeUntil(this.destroy$))
-            .subscribe((modeInterface: ModeInterface): void => {
-                this.mode = modeInterface.color;
-            });
-
-        this.memberStore
-            .watch()
-            .pipe(takeWhile((value: MemberInterface) => value !== null && value !== undefined))
-            .subscribe((memberInterface: MemberInterface): void => {
-                this.isVisitor = memberInterface.isVisitor;
-            });
-
         this.featureStore
             .watch()
-            .pipe(takeWhile((value: FeatureInterface) => value !== null && value !== undefined))
+            .pipe(takeWhile((value: any) => value !== null && value !== undefined, true))
             .subscribe((featureInterface: FeatureInterface): void => {
                 this.feature = featureInterface;
             });

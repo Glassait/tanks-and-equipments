@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { MembersApi } from '../api/members.api';
 import { MemberStore } from '../stores/member.store';
 import { Connection } from '../types/connection.type';
 import { Member } from '../types/member.type';
 import { CheckGrade } from '../utils/check-grade.util';
 import { AuthenticationClientService } from './authentication-client.service';
-import { MembersService } from './members.service';
 import { SessionStorageService } from './session-storage.service';
 
 @Injectable({
@@ -16,16 +16,22 @@ export class AuthenticationService {
     private userKey: string = 'user';
 
     constructor(
-        private authenticationClient: AuthenticationClientService,
+        // ANGULAR
         private router: Router,
+        // SERVICE
+        private authenticationClient: AuthenticationClientService,
+        private session: SessionStorageService,
+        // STORE
         private memberStore: MemberStore,
-        private members: MembersService,
-        private session: SessionStorageService
+        // API
+        private membersApi: MembersApi
     ) {}
 
     public login(): void {
         this.authenticationClient.login().subscribe((token: Connection): void => {
-            const user: Member | undefined = this.members.isClanMembers(Number(token.account_id));
+            const user: Member | undefined = this.membersApi.isClanMembers(
+                Number(token.account_id)
+            );
 
             this.updateStore(user, token?.access_token);
             this.session.store(this.tokenKey, user ? JSON.stringify(token) : '');

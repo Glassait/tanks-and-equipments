@@ -1,4 +1,4 @@
-import { booleanAttribute, Component, Input, OnInit } from '@angular/core';
+import { booleanAttribute, Component, HostListener, Input, OnInit } from '@angular/core';
 import { ModeEnum } from '../../commons/enums/modeEnum';
 import { IconColorEnum } from '../icon/enums/icon-enum';
 import { TankIconType } from '../icon/types/tank-icon.type';
@@ -62,6 +62,12 @@ export class ExpansionPanelComponent implements OnInit {
     protected readonly IconColorEnum = IconColorEnum;
 
     /**
+     * Define if the screen width is the width of a mobile
+     * @protected
+     */
+    protected isMobile: boolean;
+
+    /**
      * Implementation of {@link OnInit} interface
      * @throws Error When title and icon given
      */
@@ -69,5 +75,19 @@ export class ExpansionPanelComponent implements OnInit {
         if (this.title && this.icon) {
             throw new Error('<glassait-expansion-panel>TEXT + ICON given, remove one !');
         }
+        this.setIsMobile();
+    }
+
+    @HostListener('window:resize', ['$event'])
+    protected onResize(_event: any): void {
+        this.setIsMobile();
+    }
+
+    /**
+     * Set the field {@link isMobile} from de width of the window
+     * @private
+     */
+    private setIsMobile(): void {
+        this.isMobile = window.innerWidth <= 320;
     }
 }

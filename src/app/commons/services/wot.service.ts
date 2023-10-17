@@ -13,6 +13,6 @@ export class WotService {
     ) {}
 
     getServeurStatus(): Observable<any> {
-        return this.httpClient.get(this.inventoryClass.getWargamingApi().gameServers);
+        return this.httpClient.get(this.inventoryClass.getWargamingApi()['game-servers']);
     }
 }
