@@ -51,7 +51,7 @@ export class AgreementsComponent extends UnsubscribeDirective implements OnInit 
         this.headerStore.patch({
             showHome: true,
             showTank: true,
-            showWar: !this.modeService.isMobile,
+            showWar: true,
         });
 
         this.title.setTitle(new SentenceCasePipe().transform(this.wording.footer.agreements));
@@ -59,6 +59,11 @@ export class AgreementsComponent extends UnsubscribeDirective implements OnInit 
         this.modeService.watchModeStore();
     }
 
+    /**
+     * Callback for the button, open in new tab the link
+     * @param link The link to open
+     * @protected
+     */
     protected redirectTo(link: string): void {
         window.open(link);
     }

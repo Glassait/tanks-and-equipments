@@ -5,12 +5,12 @@ import { AuthGuardService } from './commons/services/auth-guard.service';
 
 import { ChangelogComponent } from './components/changelog/changelog.component';
 import { ClanWarComponent } from './components/clan-war/clan-war.component';
-import { AgreementsComponent } from './pages/agreements/agreements.component';
 
 // Pages
 import { HomeComponent } from './pages/home/home.component';
 import { SandboxComponent } from './pages/sandbox/sandbox.component';
 import { TanksEquipmentComponent } from './pages/tanks-equipments/tanks-equipment.component';
+import { AgreementsComponent } from './pages/agreements/agreements.component';
 
 const routes: Routes = [
     {
