@@ -1,62 +1,65 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
-import { takeUntil } from 'rxjs';
+import { ModeService } from '../../commons/abstract/mode.service';
 import { UnsubscribeDirective } from '../../commons/directives/unsubscribe.directive';
 import { ModeEnum } from '../../commons/enums/modeEnum';
-import { ModeInterface } from '../../commons/interfaces/mode.interface';
 import { WordingService } from '../../commons/services/wording.service';
 import { HeaderStore } from '../../commons/stores/header.store';
 import { MemberStore } from '../../commons/stores/member.store';
-import { ModeStore } from '../../commons/stores/mode.store';
+import { ButtonSizeEnum } from '../../components/button/enums/button-size.enum';
+import { ButtonThemeEnum } from '../../components/button/enums/button-theme.enum';
+import { IconColorEnum } from '../../components/icon/enums/icon-enum';
 import { SentenceCasePipe } from '../../pipes/sentenceCase/sentence-case.pipe';
-import { IconColorEnum } from '../icon/enums/icon-enum';
 
 @Component({
     selector: 'app-agreements',
     templateUrl: './agreements.component.html',
 })
 export class AgreementsComponent extends UnsubscribeDirective implements OnInit {
-    protected isDarkMode: boolean;
+    /**
+     * ENUM
+     * @protected
+     */
     protected readonly IconColorEnum = IconColorEnum;
+    protected readonly ModeEnum = ModeEnum;
+    protected readonly ButtonThemeEnum = ButtonThemeEnum;
+    protected readonly ButtonSizeEnum = ButtonSizeEnum;
 
     constructor(
-        protected wording: WordingService,
+        // SERVICE
+        protected modeService: ModeService,
+        private wording: WordingService,
+        // STORE
         private memberStore: MemberStore,
         private headerStore: HeaderStore,
-        private modeStore: ModeStore,
+        // ANGULAR
         private router: Router,
         private title: Title
     ) {
         super();
-        this.checkUser();
-        this.patchHeaderAndFooter();
-
-        this.title.setTitle(new SentenceCasePipe().transform(this.wording.footer.agreements));
     }
 
+    /**
+     * Implementation of the {@link OnInit} interface
+     */
     ngOnInit(): void {
-        this.modeStore
-            .watch()
-            .pipe(takeUntil(this.destroy$))
-            .subscribe((modeInterface: ModeInterface): void => {
-                this.isDarkMode = modeInterface.color === ModeEnum.DARK;
-            });
-    }
+        if (this.memberStore.isVisitor()) {
+            this.router.navigate(['/']).then((): void => {});
+        }
 
-    private patchHeaderAndFooter(): void {
         this.headerStore.patch({
             showHome: true,
             showTank: true,
-            showWar: !this.modeStore.get('mobile'),
+            showWar: !this.modeService.isMobile,
         });
+
+        this.title.setTitle(new SentenceCasePipe().transform(this.wording.footer.agreements));
+
+        this.modeService.watchModeStore();
     }
 
-    private checkUser(): void {
-        if (this.memberStore.isVisitor()) {
-            this.router.navigate(['/']).then((): void => {
-                // Ignored
-            });
-        }
+    protected redirectTo(link: string): void {
+        window.open(link);
     }
 }

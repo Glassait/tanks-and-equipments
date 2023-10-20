@@ -20,7 +20,6 @@ import { AppRoutingModule } from './app-routing.module';
 // Component
 import { AppComponent } from './app.component';
 import { HttpMockInterceptor } from './commons/interceptors/http-mock.interceptor';
-import { AgreementsComponent } from './components/agreements/agreements.component';
 import { ButtonComponent } from './components/button/button.component';
 import { CardComponent } from './components/card/card.component';
 import { CardChangelogComponent } from './components/card/changelog/card-changelog.component';
@@ -33,6 +32,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { IconComponent } from './components/icon/icon.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { SkeletonLoadingComponent } from './components/skeleton-loading/skeleton-loading.component';
+import { AgreementsComponent } from './pages/agreements/agreements.component';
 
 // Page
 import { HomeComponent } from './pages/home/home.component';
