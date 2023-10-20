@@ -28,14 +28,16 @@ export class AgreementsComponent extends UnsubscribeDirective implements OnInit 
 
     constructor(
         // SERVICE
-        protected modeService: ModeService,
-        private wording: WordingService,
+        protected readonly modeService: ModeService,
+        private readonly wording: WordingService,
         // STORE
-        private memberStore: MemberStore,
-        private headerStore: HeaderStore,
+        private readonly memberStore: MemberStore,
+        private readonly headerStore: HeaderStore,
         // ANGULAR
-        private router: Router,
-        private title: Title
+        private readonly router: Router,
+        private readonly title: Title,
+        // PIPE
+        private readonly sentenceCasePipe: SentenceCasePipe
     ) {
         super();
     }
@@ -54,7 +56,7 @@ export class AgreementsComponent extends UnsubscribeDirective implements OnInit 
             showWar: true,
         });
 
-        this.title.setTitle(new SentenceCasePipe().transform(this.wording.footer.agreements));
+        this.title.setTitle(this.sentenceCasePipe.transform(this.wording.footer.agreements));
 
         this.modeService.watchModeStore();
     }
