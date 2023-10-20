@@ -20,7 +20,6 @@ import { AppRoutingModule } from './app-routing.module';
 // Component
 import { AppComponent } from './app.component';
 import { HttpMockInterceptor } from './commons/interceptors/http-mock.interceptor';
-import { AgreementsComponent } from './components/agreements/agreements.component';
 import { ButtonComponent } from './components/button/button.component';
 import { CardComponent } from './components/card/card.component';
 import { CardChangelogComponent } from './components/card/changelog/card-changelog.component';
@@ -39,6 +38,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { SandboxComponent } from './pages/sandbox/sandbox.component';
 import { TankEquipmentDescriptionComponent } from './pages/tanks-equipments/tank-equipment-description/tank-equipment-description.component';
 import { TanksEquipmentComponent } from './pages/tanks-equipments/tanks-equipment.component';
+import { AgreementsComponent } from './pages/agreements/agreements.component';
 
 // Pipe
 import { ClanDataPipe } from './pipes/clanRatings/clan-data.pipe';
