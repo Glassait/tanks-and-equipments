@@ -4,5 +4,7 @@ export enum CookieNameEnum {
     INFORMATION = 'information',
     FEATURE = 'feature',
     TANKS_DATE = 'tanks-date',
-    TANKS = 'tanks',
+    TANKS_DATA = 'tanks_data',
+    TOKEN_WARGAMING = 'token_wargaming',
+    TOKEN_USER = 'token_user',
 }

@@ -28,17 +28,17 @@ export class TanksEquipmentComponent implements OnInit {
 
     constructor(
         // API
-        private tanksDataApi: TanksDataApi,
+        private readonly tanksDataApi: TanksDataApi,
         // SERVICE
-        private wordingService: WordingService,
-        private sessionService: SessionStorageService,
-        protected modeService: ModeService,
+        private readonly wordingService: WordingService,
+        private readonly sessionService: SessionStorageService,
+        protected readonly modeService: ModeService,
         // STORE
-        private headerStore: HeaderStore,
-        private memberStore: MemberStore,
+        private readonly headerStore: HeaderStore,
+        private readonly memberStore: MemberStore,
         // ANGULAR
-        private router: Router,
-        private title: Title
+        private readonly router: Router,
+        private readonly title: Title
     ) {
         if (!this.memberStore.isVisitor()) {
             return;
@@ -71,9 +71,9 @@ export class TanksEquipmentComponent implements OnInit {
      * @private
      */
     private getTanksData(): void {
-        const token = {
+        const token: { date: string | null; data: TankData[] | null } = {
             date: this.sessionService.getFromKey(CookieNameEnum.TANKS_DATE),
-            data: this.sessionService.getFromKeyToObject<TankData[]>(CookieNameEnum.TANKS),
+            data: this.sessionService.getFromKeyToObject<TankData[]>(CookieNameEnum.TANKS_DATA),
         };
         const dateToken: Date | null = token.date ? new Date(token.date) : null;
 
@@ -86,7 +86,7 @@ export class TanksEquipmentComponent implements OnInit {
         this.tanksDataApi.queryTanksData(this.memberStore.get('accessToken')).subscribe({
             next: (tankData: TankData[]): void => {
                 this.tanksData.data = tankData;
-                this.sessionService.store(CookieNameEnum.TANKS, JSON.stringify(tankData));
+                this.sessionService.store(CookieNameEnum.TANKS_DATA, JSON.stringify(tankData));
                 this.sessionService.store(
                     CookieNameEnum.TANKS_DATE,
                     DateCustom.getMidnightDate().toDateString()
