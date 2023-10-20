@@ -1,0 +1,90 @@
+/*
+ * || IMPORT / USE
+ * Tips search `||` to move to section
+ */
+
+@use '../commons/colors';
+@use '../commons/typography';
+@use '../commons/spacing';
+
+/*
+ * || HEADER MODIFICATION
+ */
+
+.mat-expansion-panel-header {
+    @apply justify-between;
+
+    height: auto !important;
+
+    padding: spacing.$demi spacing.$outside-tablet !important;
+
+    .mat-content {
+        flex: 1 0 0 !important;
+
+        justify-content: inherit;
+
+        mat-panel-title {
+            @apply absolute top-0 h-full;
+        }
+
+        .mat-expansion-panel-header-title,
+        .mat-expansion-panel-header-description {
+            margin-right: 0 !important;
+        }
+
+        mat-panel-description {
+            @apply flex justify-center;
+        }
+    }
+
+    .mat-expansion-indicator {
+        @apply absolute right-4;
+
+        &::after {
+            display: flex !important;
+        }
+    }
+
+    &.mat-expanded:hover {
+        background: colors.$primary-400 !important;
+    }
+}
+
+:is(.dark) .mat-expansion-panel-header.mat-expanded:hover {
+    background: colors.$secondary-400 !important;
+}
+
+/*
+ * || MATERIAL HEADER VARIABLE
+ */
+
+html {
+    // Expansion panel header
+    --mat-expansion-header-text-line-height: #{typography.$title-line-height};
+    --mat-expansion-header-text-size: #{typography.$title-font-size};
+    --mat-expansion-header-text-weight: #{typography.$font-weight-regular};
+}
+
+.light {
+    // Expansion panel
+    --mat-expansion-container-background-color: #{colors.$primary-700};
+
+    // Expansion panel header
+    --mat-expansion-header-description-color: #{colors.$secondary-700};
+    --mat-expansion-header-focus-state-layer-color: #{colors.$primary-400};
+    --mat-expansion-header-hover-state-layer-color: #{colors.$primary-400};
+    --mat-expansion-header-indicator-color: #{colors.$secondary-700};
+    --mat-expansion-header-text-color: #{colors.$secondary-700};
+}
+
+.dark {
+    // Expansion panel
+    --mat-expansion-container-background-color: #{colors.$secondary-700};
+
+    // Expansion panel header
+    --mat-expansion-header-description-color: #{colors.$primary-700};
+    --mat-expansion-header-focus-state-layer-color: #{colors.$secondary-400};
+    --mat-expansion-header-hover-state-layer-color: #{colors.$secondary-400};
+    --mat-expansion-header-indicator-color: #{colors.$primary-700};
+    --mat-expansion-header-text-color: #{colors.$primary-700};
+}

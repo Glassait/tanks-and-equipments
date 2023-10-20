@@ -4,117 +4,40 @@
 /*                                   IMPORT                                   */
 /* -------------------------------------------------------------------------- */
 
-@use '@angular/material' as mat;
+@use 'assets/scss/tailwind/config';
 
-/* -------------------------------------------------------------------------- */
-/*                                   ANGULAR                                  */
-/* -------------------------------------------------------------------------- */
+// ANGULAR
+@use "assets/scss/angular/theme";
 
-@include mat.core();
+// EXPANSION PANEL
+@use "assets/scss/angular/expansion-panel";
+@use "assets/scss/angular/expansion-panel-header";
+@use "assets/scss/angular/expansion-panel-body";
 
-$my-primary: mat.define-palette(mat.$grey-palette);
-$my-accent: mat.define-palette(mat.$pink-palette);
-$my-warn: mat.define-palette(mat.$red-palette);
-$font-family: "ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'";
+// BUTTON
+@use "assets/scss/angular/button";
 
-$my-theme: mat.define-light-theme(
-    (
-        color: (
-            primary: $my-primary,
-            accent: $my-accent,
-            warn: $my-warn,
-        ),
-        typography: mat.define-typography-config($font-family),
-        density: 0,
-    )
-);
+// CARD
+@use "assets/scss/angular/card";
 
-@include mat.core-theme($my-theme);
-@include mat.all-component-themes($my-theme);
+// Menu
+@use "assets/scss/angular/menu";
 
-/* -------------------------------------------------------------------------- */
-/*                                  TAILWINDS                                 */
-/* -------------------------------------------------------------------------- */
+// Slide
+@use "assets/scss/angular/slide";
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-@layer base {
-    html {
-        @apply h-full w-full font-ui text-normal light;
-    }
-    body {
-        @apply w-full;
-    }
-    app-root {
-        @apply block;
-    }
-    app-main {
-        @apply block ;
-    }
-}
-
-@layer components {
-    .dark {
-        @apply bg-background_dark text-secondary_dark;
-    }
-    .light {
-        @apply bg-background_light text-secondary_light;
-    }
-}
-
-/* -------------------------------------------------------------------------- */
-/*                                STANDARD CSS                                */
-/* -------------------------------------------------------------------------- */
-
-body,
-app-root {
-    height: inherit;
-}
-
-.mat-expansion-panel-header-description {
-    flex-grow: 1.2 !important;
-}
-
-.mat-expansion-panel-body {
-    padding: 0 !important;
-}
-
-.mat-mdc-card {
-    box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.25), 0 -2px 10px 0 rgba(0, 0, 0, 0.25) !important;
-}
-
-:is(.dark .mat-mdc-card) {
-    box-shadow: 0 2px 10px 0 rgba(255, 255, 255, 0.20), 0 -2px 10px 0 rgba(255, 255, 255, 0.20) !important;
-}
-
-.mat-mdc-card-avatar {
-    margin: 0 !important;
-}
-
-.mat-expansion-panel-header-title {
-    flex-grow: unset !important;
-    flex-basis: unset !important;
-}
-
-.mat-mdc-menu-item {
-    justify-content: flex-end !important;
-    text-align: end !important;
-}
-
-.mat-mdc-menu-content > :not([hidden]) ~ :not([hidden]) {
-    --tw-space-y-reverse: 0;
-    margin-top: calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));
-    margin-bottom: calc(0.5rem * var(--tw-space-y-reverse));
-}
+// AUTRE
+@use "assets/scss/standard";
 
 .mat-mdc-slide-toggle .mdc-switch__ripple::after {
     opacity: 0.3 !important;
 }
 
-@media (min-width: 768px) {
-    .mat-expansion-panel-body {
-        padding: 0 24px 16px !important;
-    }
+html {
+    -moz-background-size: cover !important;
+    -o-background-size: cover !important;
+    -webkit-background-size: cover !important;
+    background-size: cover !important;
+
+    scroll-behavior: smooth;
 }

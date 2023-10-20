@@ -5,15 +5,15 @@ import { Icon } from '../utils/icon.util';
     providedIn: 'root',
 })
 export class IconRegistryService {
-    private _registry = new Map<string, string>();
+    private _registry: Map<string, Icon> = new Map<string, Icon>();
 
-    public register(icons: Icon[]) {
-        icons.forEach((icon: Icon) => {
-            this._registry.set(icon.name, icon.data);
+    public register(icons: Icon[]): void {
+        icons.forEach((icon: Icon): void => {
+            this._registry.set(icon.name, icon);
         });
     }
 
-    public get(icon: string): string | undefined {
+    public get(icon: string): Icon | undefined {
         return this._registry.get(icon);
     }
 }

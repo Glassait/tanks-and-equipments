@@ -1,0 +1,24 @@
+<glassait-button
+    [disabled]='disabled'
+    [matMenuTriggerFor]='menu'
+    [text]='textMenu'
+    [theme]='buttonTheme'
+    [type]='ButtonTypeEnum.RAISED'
+></glassait-button>
+
+<mat-menu
+    #menu='matMenu'
+    [xPosition]='xPosition'
+    [yPosition]='yPosition'
+    class='{{ theme }} MENU'
+>
+    <button
+        (click)='menuItem.callback ? menuItem.callback() : null'
+        *ngFor='let menuItem of menuItems'
+        class='{{ alignItem }}'
+        mat-menu-item
+        role='menuitem'
+    >
+        {{ menuItem.text | uppercase }}
+    </button>
+</mat-menu>

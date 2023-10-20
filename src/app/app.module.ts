@@ -1,6 +1,7 @@
 import { NgOptimizedImage } from '@angular/common';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { forwardRef, NgModule, Provider } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatExpansionModule } from '@angular/material/expansion';
@@ -12,34 +13,42 @@ import { BrowserModule, Title } from '@angular/platform-browser';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CookieService } from 'ngx-cookie-service';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { environment } from 'src/environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 
+// Component
 import { AppComponent } from './app.component';
-import { IconComponent } from './commons/icon/icon.component';
 import { HttpMockInterceptor } from './commons/interceptors/http-mock.interceptor';
-import { AgreementsComponent } from './components/agreements/agreements.component';
-import { CardChangelogComponent } from './components/card/changelog/card-changelog.component';
-import { CardLittleComponent } from './components/card/little/card-little.component';
-import { ChangelogComponent } from './components/changelog/changelog.component';
+import { ButtonComponent } from './components/button/button.component';
+import { CardComponent } from './components/card/card.component';
 import { ClanWarComponent } from './components/clan-war/clan-war.component';
-import { UnsubscribeComponent } from './components/commons/unsubscribe.component';
+import { ExpansionPanelComponent } from './components/expansion-panel/expansion-panel.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
-import { HomeComponent } from './components/home/home.component';
-import { TankEquipmentDescriptionComponent } from './components/tanks-equipment/tank-equipment-description/tank-equipment-description.component';
-import { TanksEquipmentComponent } from './components/tanks-equipment/tanks-equipment.component';
+import { IconComponent } from './components/icon/icon.component';
+import { MenuComponent } from './components/menu/menu.component';
+import { SkeletonLoadingComponent } from './components/skeleton-loading/skeleton-loading.component';
 
+// Page
+import { AgreementsComponent } from './pages/agreements/agreements.component';
+import { ChangelogComponent } from './pages/changelog/changelog.component';
+import { HomeComponent } from './pages/home/home.component';
+import { SandboxComponent } from './pages/sandbox/sandbox.component';
+import { TankEquipmentDescriptionComponent } from './pages/tanks-equipments/tank-equipment-description/tank-equipment-description.component';
+import { TanksEquipmentComponent } from './pages/tanks-equipments/tanks-equipment.component';
+
+// Pipe
 import { ClanDataPipe } from './pipes/clanRatings/clan-data.pipe';
 import { FieldUrlPipe } from './pipes/field/url.pipe';
 import { ImagePipe } from './pipes/image/image.pipe';
-import { PathPipe } from './pipes/inventory/path.pipe';
+import { InventoryPipe } from './pipes/inventory.pipe';
 import { ReplacePipe } from './pipes/replace/replace.pipe';
 import { SentenceCasePipe } from './pipes/sentenceCase/sentence-case.pipe';
+import { WordingPipe } from './pipes/wording.pipe';
 import { AgreementPipe } from './pipes/wording/agreement.pipe';
 import { ChangelogPipe } from './pipes/wording/changelog.pipe';
 import { FooterPipe } from './pipes/wording/footer.pipe';
-import { HeaderPipe } from './pipes/wording/header.pipe';
 import { HomePipe } from './pipes/wording/home.pipe';
 
 const MOCK_INTERCEPTOR_PROVIDER: Provider = {
@@ -55,24 +64,32 @@ if (environment.production) {
 }
 
 @NgModule({
+    bootstrap: [AppComponent],
     declarations: [
+        // PAGE
         AppComponent,
         HomeComponent,
         TanksEquipmentComponent,
         TankEquipmentDescriptionComponent,
         ClanWarComponent,
-        HeaderComponent,
+        SandboxComponent,
+        // COMPONENTS
         IconComponent,
-        UnsubscribeComponent,
         FooterComponent,
         ChangelogComponent,
-        CardLittleComponent,
-        CardChangelogComponent,
         AgreementsComponent,
+        SkeletonLoadingComponent,
+        HeaderComponent,
+        // ANGULAR MATERIAL
+        ButtonComponent,
+        ExpansionPanelComponent,
+        CardComponent,
+        MenuComponent,
+        // PIPE
         ImagePipe,
-        HeaderPipe,
+        WordingPipe,
         ReplacePipe,
-        PathPipe,
+        InventoryPipe,
         HomePipe,
         FieldUrlPipe,
         ClanDataPipe,
@@ -94,8 +111,10 @@ if (environment.production) {
         MatSlideToggleModule,
         NgOptimizedImage,
         MatButtonModule,
+        NgxSkeletonLoaderModule,
+        FormsModule,
+        ReactiveFormsModule,
     ],
-    providers: [...mockProviders, Title, CookieService],
-    bootstrap: [AppComponent],
+    providers: [...mockProviders, Title, CookieService, SentenceCasePipe],
 })
 export class AppModule {}

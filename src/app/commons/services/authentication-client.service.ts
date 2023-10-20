@@ -24,12 +24,10 @@ export class AuthenticationClientService {
                 );
             }
             return of(
-                ArrayCustom.transformToObject(
-                    WindowsCustom.getSearch().replace('?', '').split('&')
-                )
+                ArrayCustom.transformToObject(WindowsCustom.getSearch().replace('?', '').split('&'))
             );
         }
 
-        return this.http.get(this.inventoryClass.getWargamingApi().loginMock);
+        return this.http.get(this.inventoryClass.getWargamingApi()['login-mock']);
     }
 }

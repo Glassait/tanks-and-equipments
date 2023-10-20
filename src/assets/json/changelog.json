@@ -1,6 +1,23 @@
 {
     "changelog": [
         {
+            "version": "1.3.0",
+            "add": [
+                "Création d'un design system propre au site",
+                "Ajout d'une image de font qui change tout les jours"
+            ],
+            "modified": [
+                "Refonte total de l'apparence du site",
+                "Optimisation du code afin d'améliorer les performances",
+                "Le chargement des données s'affiche via un skeleton loading et plus un loader",
+                "Suppression de l'encart sur les statistiques du clan, jugé inutile"
+            ],
+            "fixed": [
+                "Les liens dans le pied de page ne sont plus dynamique",
+                "Les serveurs sur la page d'accueil sont triés par ordre croisant"
+            ]
+        },
+        {
             "version": "1.2.0",
             "add": [
                 "Mise en place d'une API pour accroître la flexibilité du site",
@@ -44,11 +61,15 @@
         },
         {
             "version": "1.1.7",
-            "modified": ["La liste des membres du clan"]
+            "modified": [
+                "La liste des membres du clan"
+            ]
         },
         {
             "version": "1.1.6",
-            "modified": ["Les versions des dépendances NPM"],
+            "modified": [
+                "Les versions des dépendances NPM"
+            ],
             "add": [
                 "Mise en cookie des appels à l'API de Wargaming",
                 "Changement automatique du titre de la page"
@@ -56,15 +77,21 @@
         },
         {
             "version": "1.1.5.1",
-            "fixed": ["L'affichage au format mobile et tablette"]
+            "fixed": [
+                "L'affichage au format mobile et tablette"
+            ]
         },
         {
             "version": "1.1.5",
-            "add": ["Transformation des `SVG` en `TypeScript`"]
+            "add": [
+                "Transformation des `SVG` en `TypeScript`"
+            ]
         },
         {
             "version": "1.1.4 et antérieur",
-            "add": ["Création du site"]
+            "add": [
+                "Création du site"
+            ]
         }
     ]
 }

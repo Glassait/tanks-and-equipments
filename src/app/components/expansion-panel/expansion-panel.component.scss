@@ -1,0 +1,7 @@
+:host {
+    @apply block w-full;
+
+    &:has(.pointer-events-none) {
+        @apply cursor-wait
+    }
+}

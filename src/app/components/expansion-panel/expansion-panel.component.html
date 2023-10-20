@@ -1,0 +1,49 @@
+<ng-container *ngIf='isLoading; then loading; else ready'></ng-container>
+
+<ng-template #ready>
+    <mat-expansion-panel class='w-full'>
+        <mat-expansion-panel-header>
+            <mat-panel-title *ngIf='title || icon'>
+                <div *ngIf='title'>{{ title }}</div>
+
+                <glassait-icon
+                    *ngIf='icon'
+                    [color]='IconColorEnum.TANK'
+                    [height]='24'
+                    [icon]='icon'
+                    [width]='70'
+                ></glassait-icon>
+            </mat-panel-title>
+
+            <mat-panel-description *ngIf='description'>
+                {{ isMobile ? description.length > 10 ? description.slice(0, 9) + "..." : description : description }}
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <ng-content></ng-content>
+    </mat-expansion-panel>
+</ng-template>
+
+<ng-template #loading>
+    <mat-expansion-panel class='pointer-events-none w-full'>
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                <glassait-skeleton-loading
+                    [animation]='AnimationEnum.PULSE'
+                    [appearance]='AppearanceEnum.LINE'
+                    [color]='color'
+                    width='4rem'
+                ></glassait-skeleton-loading>
+            </mat-panel-title>
+
+            <mat-panel-description>
+                <glassait-skeleton-loading
+                    [animation]='AnimationEnum.PULSE'
+                    [appearance]='AppearanceEnum.LINE'
+                    [color]='color'
+                    width='7rem'
+                ></glassait-skeleton-loading>
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+    </mat-expansion-panel>
+</ng-template>

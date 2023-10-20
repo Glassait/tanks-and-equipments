@@ -5,7 +5,6 @@ import { HeaderStore } from 'src/app/commons/stores/header.store';
 import { MemberStore } from 'src/app/commons/stores/member.store';
 import { WordingService } from '../../commons/services/wording.service';
 import { FeatureStore } from '../../commons/stores/feature.store';
-import { FooterStore } from '../../commons/stores/footer.store';
 import { ModeStore } from '../../commons/stores/mode.store';
 import { SentenceCasePipe } from '../../pipes/sentenceCase/sentence-case.pipe';
 
@@ -18,7 +17,6 @@ export class ClanWarComponent {
         private wording: WordingService,
         private headerStore: HeaderStore,
         private memberStore: MemberStore,
-        private footerStore: FooterStore,
         private modeStore: ModeStore,
         private featureStore: FeatureStore,
         private router: Router,
@@ -27,9 +25,7 @@ export class ClanWarComponent {
         this.checkUser();
         this.patchHeaderAndFooter();
 
-        this.title.setTitle(
-            new SentenceCasePipe().transform(this.wording.header.clanWar)
-        );
+        this.title.setTitle(new SentenceCasePipe().transform(this.wording.header['clan-war']));
     }
 
     private patchHeaderAndFooter(): void {
@@ -37,11 +33,6 @@ export class ClanWarComponent {
             showHome: true,
             showTank: true,
             showWar: false,
-        });
-
-        this.footerStore.patch({
-            showChangelog: true,
-            showAgreement: true,
         });
     }
 
