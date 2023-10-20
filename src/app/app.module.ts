@@ -22,9 +22,6 @@ import { AppComponent } from './app.component';
 import { HttpMockInterceptor } from './commons/interceptors/http-mock.interceptor';
 import { ButtonComponent } from './components/button/button.component';
 import { CardComponent } from './components/card/card.component';
-import { CardChangelogComponent } from './components/card/changelog/card-changelog.component';
-import { CardLittleComponent } from './components/card/little/card-little.component';
-import { ChangelogComponent } from './components/changelog/changelog.component';
 import { ClanWarComponent } from './components/clan-war/clan-war.component';
 import { ExpansionPanelComponent } from './components/expansion-panel/expansion-panel.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -34,11 +31,12 @@ import { MenuComponent } from './components/menu/menu.component';
 import { SkeletonLoadingComponent } from './components/skeleton-loading/skeleton-loading.component';
 
 // Page
+import { AgreementsComponent } from './pages/agreements/agreements.component';
+import { ChangelogComponent } from './pages/changelog/changelog.component';
 import { HomeComponent } from './pages/home/home.component';
 import { SandboxComponent } from './pages/sandbox/sandbox.component';
 import { TankEquipmentDescriptionComponent } from './pages/tanks-equipments/tank-equipment-description/tank-equipment-description.component';
 import { TanksEquipmentComponent } from './pages/tanks-equipments/tanks-equipment.component';
-import { AgreementsComponent } from './pages/agreements/agreements.component';
 
 // Pipe
 import { ClanDataPipe } from './pipes/clanRatings/clan-data.pipe';
@@ -79,8 +77,6 @@ if (environment.production) {
         IconComponent,
         FooterComponent,
         ChangelogComponent,
-        CardLittleComponent,
-        CardChangelogComponent,
         AgreementsComponent,
         SkeletonLoadingComponent,
         HeaderComponent,

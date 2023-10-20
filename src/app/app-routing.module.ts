@@ -3,14 +3,14 @@ import { RouterModule, Routes } from '@angular/router';
 import inventory from 'src/assets/json/inventory.json';
 import { AuthGuardService } from './commons/services/auth-guard.service';
 
-import { ChangelogComponent } from './components/changelog/changelog.component';
 import { ClanWarComponent } from './components/clan-war/clan-war.component';
 
 // Pages
+import { AgreementsComponent } from './pages/agreements/agreements.component';
+import { ChangelogComponent } from './pages/changelog/changelog.component';
 import { HomeComponent } from './pages/home/home.component';
 import { SandboxComponent } from './pages/sandbox/sandbox.component';
 import { TanksEquipmentComponent } from './pages/tanks-equipments/tanks-equipment.component';
-import { AgreementsComponent } from './pages/agreements/agreements.component';
 
 const routes: Routes = [
     {
