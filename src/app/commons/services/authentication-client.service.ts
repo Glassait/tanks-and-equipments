@@ -33,4 +33,18 @@ export class AuthenticationClientService {
 
         return this.httpClient.get(this.inventoryService.getWargamingApi()['login-mock']);
     }
+
+    /**
+     * Call the Wargaming api to destroy the access token
+     * @param accessToken The access token to destroyed
+     */
+    public logout(accessToken: string): Observable<any> {
+        if (environment.production) {
+            return this.httpClient.get(
+                this.inventoryService.getWargamingApi()['log-out'] + accessToken
+            );
+        }
+
+        return of(true);
+    }
 }

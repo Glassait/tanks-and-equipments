@@ -38,11 +38,7 @@ export class AuthenticationService {
             this.updateStore(user, token?.access_token);
 
             if (user) {
-                this.cookieService.set(
-                    CookieNameEnum.TOKEN_WARGAMING,
-                    JSON.stringify(token),
-                    DateCustom.getMidnightDate()
-                );
+                this.cookieService.set(CookieNameEnum.TOKEN_WARGAMING, JSON.stringify(token));
                 this.cookieService.set(
                     CookieNameEnum.TOKEN_USER,
                     JSON.stringify(user),
@@ -61,8 +57,16 @@ export class AuthenticationService {
         const token: string = this.cookieService.get(CookieNameEnum.TOKEN_WARGAMING);
         const user: string = this.cookieService.get(CookieNameEnum.TOKEN_USER);
 
-        if (!token && !user) {
+        if (!user) {
             this.memberStore.set('isVisitor', true);
+
+            if (token) {
+                this.authenticationClient.logout(JSON.parse(token)?.access_token).subscribe({
+                    complete: (): void => {
+                        this.cookieService.delete(CookieNameEnum.TOKEN_WARGAMING);
+                    },
+                });
+            }
             return false;
         }
 

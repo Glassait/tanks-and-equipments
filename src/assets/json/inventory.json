@@ -2,6 +2,7 @@
     "wargaming-api": {
         "application-id": "d5cfa347c97b1997c50c1797e2f1cfdc",
         "clan-id": "500179430",
+        "log-out": "https://api.worldoftanks.eu/wot/auth/logout/?application_id=d5cfa347c97b1997c50c1797e2f1cfdc&access_token=",
         "game-servers": "https://api.worldoftanks.eu/wgn/servers/info/?application_id=d5cfa347c97b1997c50c1797e2f1cfdc&game=wot&language=fr",
         "login": "https://api.worldoftanks.eu/wot/auth/login/?application_id=d5cfa347c97b1997c50c1797e2f1cfdc&display=popup",
         "login-mock": "assets/mocks/connection.json"
