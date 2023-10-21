@@ -2,12 +2,13 @@
     "wargaming-api": {
         "application-id": "d5cfa347c97b1997c50c1797e2f1cfdc",
         "clan-id": "500179430",
-        "log-out": "https://api.worldoftanks.eu/wot/auth/logout/?application_id=d5cfa347c97b1997c50c1797e2f1cfdc&access_token=",
-        "game-servers": "https://api.worldoftanks.eu/wgn/servers/info/?application_id=d5cfa347c97b1997c50c1797e2f1cfdc&game=wot&language=fr",
-        "login": "https://api.worldoftanks.eu/wot/auth/login/?application_id=d5cfa347c97b1997c50c1797e2f1cfdc&display=popup",
-        "login-mock": "assets/mocks/connection.json"
+        "log-out": "https://api.worldoftanks.eu/wot/auth/logout/?application_id=applicationId&access_token=accessToken",
+        "game-servers": "https://api.worldoftanks.eu/wgn/servers/info/?application_id=applicationId&game=wot&language=fr",
+        "login": "https://api.worldoftanks.eu/wot/auth/login/?application_id=applicationId&display=popup&redirect_uri=redirectUri",
+        "login-mock": "assets/mocks/connection.json",
+        "member-online": "https://api.worldoftanks.eu/wot/clans/info/?application_id=applicationId&fields=private.online_members&extra=private.online_members&clan_id=clanId&language=fr&access_token=accessToken"
     },
-    "lchp-api": {
+    "glassait-api": {
         "live-url": "https://lchp-backend-73ae62fe95e5.herokuapp.com/api/",
         "localhost": "http://localhost:8080/api/"
     },
@@ -16,9 +17,9 @@
     },
     "path": {
         "home": "accueil",
-        "tanks-and-equipments": "chars-et-equipements",
+        "tanks-and-equipments": "chars-et-équipements",
         "clan-war": "clan-war",
-        "changelog": "changelog",
-        "agreements": "agreements"
+        "changelog": "journal-des-modifications",
+        "agreements": "règlement-et-organisation"
     }
 }

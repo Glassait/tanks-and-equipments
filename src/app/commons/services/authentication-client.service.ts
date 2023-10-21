@@ -24,14 +24,13 @@ export class AuthenticationClientService {
 
             if (search === '') {
                 WindowsCustom.setCurrentUrl(
-                    this.inventoryService.getWargamingApi().login +
-                        `&redirect_uri=${WindowsCustom.getHref()}`
+                    this.inventoryService.getWargamingApi('login', WindowsCustom.getHref())
                 );
             }
             return of(ArrayCustom.transformToObject(search.replace('?', '').split('&')));
         }
 
-        return this.httpClient.get(this.inventoryService.getWargamingApi()['login-mock']);
+        return this.httpClient.get(this.inventoryService.getWargamingApi('login-mock'));
     }
 
     /**
@@ -41,7 +40,7 @@ export class AuthenticationClientService {
     public logout(accessToken: string): Observable<any> {
         if (environment.production) {
             return this.httpClient.get(
-                this.inventoryService.getWargamingApi()['log-out'] + accessToken
+                this.inventoryService.getWargamingApi('log-out', accessToken)
             );
         }
 

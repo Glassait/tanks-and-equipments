@@ -39,17 +39,13 @@ import { TankEquipmentDescriptionComponent } from './pages/tanks-equipments/tank
 import { TanksEquipmentComponent } from './pages/tanks-equipments/tanks-equipment.component';
 
 // Pipe
-import { ClanDataPipe } from './pipes/clanRatings/clan-data.pipe';
 import { FieldUrlPipe } from './pipes/field/url.pipe';
 import { ImagePipe } from './pipes/image/image.pipe';
 import { InventoryPipe } from './pipes/inventory.pipe';
 import { ReplacePipe } from './pipes/replace/replace.pipe';
 import { SentenceCasePipe } from './pipes/sentenceCase/sentence-case.pipe';
 import { WordingPipe } from './pipes/wording.pipe';
-import { AgreementPipe } from './pipes/wording/agreement.pipe';
-import { ChangelogPipe } from './pipes/wording/changelog.pipe';
-import { FooterPipe } from './pipes/wording/footer.pipe';
-import { HomePipe } from './pipes/wording/home.pipe';
+import { ToStringPipe } from './pipes/to-string.pipe';
 
 const MOCK_INTERCEPTOR_PROVIDER: Provider = {
     provide: HTTP_INTERCEPTORS,
@@ -90,13 +86,9 @@ if (environment.production) {
         WordingPipe,
         ReplacePipe,
         InventoryPipe,
-        HomePipe,
         FieldUrlPipe,
-        ClanDataPipe,
         SentenceCasePipe,
-        FooterPipe,
-        ChangelogPipe,
-        AgreementPipe,
+        ToStringPipe,
     ],
     imports: [
         BrowserModule,

@@ -20,8 +20,7 @@ export type IconsType =
     | 'agreement'
     | 'redirect'
     | 'reserve'
-    | 'userGroupIcon'
+    | 'userGroup'
     | 'waiting'
     | 'send'
-    | TankIconType
-    | (string & {});
+    | TankIconType;

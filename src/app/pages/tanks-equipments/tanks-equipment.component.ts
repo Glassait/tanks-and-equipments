@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { HeaderStore } from 'src/app/commons/stores/header.store';
-import { MemberStore } from 'src/app/commons/stores/member.store';
+import { MemberService } from '../../commons/abstract/member.service';
 import { ModeService } from '../../commons/abstract/mode.service';
 import { TanksDataApi } from '../../commons/api/tank-data.api';
 import { CookieNameEnum } from '../../commons/enums/cookie-name.enum';
@@ -33,14 +33,14 @@ export class TanksEquipmentComponent implements OnInit {
         private readonly wordingService: WordingService,
         private readonly sessionService: SessionStorageService,
         protected readonly modeService: ModeService,
+        protected readonly memberService: MemberService,
         // STORE
         private readonly headerStore: HeaderStore,
-        private readonly memberStore: MemberStore,
         // ANGULAR
         private readonly router: Router,
         private readonly title: Title
     ) {
-        if (!this.memberStore.isVisitor()) {
+        if (!this.memberService.isVisitor) {
             return;
         }
 
@@ -60,8 +60,6 @@ export class TanksEquipmentComponent implements OnInit {
             showTank: false,
             showWar: true,
         });
-
-        this.modeService.watchModeStore();
 
         this.getTanksData();
     }
@@ -83,7 +81,7 @@ export class TanksEquipmentComponent implements OnInit {
             return;
         }
 
-        this.tanksDataApi.queryTanksData(this.memberStore.get('accessToken')).subscribe({
+        this.tanksDataApi.queryTanksData(this.memberService.accessToken).subscribe({
             next: (tankData: TankData[]): void => {
                 this.tanksData.data = tankData;
                 this.sessionService.store(CookieNameEnum.TANKS_DATA, JSON.stringify(tankData));

@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
+import { MemberService } from '../../commons/abstract/member.service';
 import { ModeService } from '../../commons/abstract/mode.service';
 import { UnsubscribeDirective } from '../../commons/directives/unsubscribe.directive';
 import { ModeEnum } from '../../commons/enums/modeEnum';
 import { WordingService } from '../../commons/services/wording.service';
 import { HeaderStore } from '../../commons/stores/header.store';
-import { MemberStore } from '../../commons/stores/member.store';
 import { ButtonSizeEnum } from '../../components/button/enums/button-size.enum';
 import { ButtonThemeEnum } from '../../components/button/enums/button-theme.enum';
 import { IconColorEnum } from '../../components/icon/enums/icon-enum';
@@ -30,8 +30,8 @@ export class AgreementsComponent extends UnsubscribeDirective implements OnInit 
         // SERVICE
         protected readonly modeService: ModeService,
         private readonly wording: WordingService,
+        protected readonly memberService: MemberService,
         // STORE
-        private readonly memberStore: MemberStore,
         private readonly headerStore: HeaderStore,
         // ANGULAR
         private readonly router: Router,
@@ -46,7 +46,7 @@ export class AgreementsComponent extends UnsubscribeDirective implements OnInit 
      * Implementation of the {@link OnInit} interface
      */
     ngOnInit(): void {
-        if (this.memberStore.isVisitor()) {
+        if (this.memberService.isVisitor) {
             this.router.navigate(['/']).then((): void => {});
         }
 
@@ -57,8 +57,6 @@ export class AgreementsComponent extends UnsubscribeDirective implements OnInit 
         });
 
         this.title.setTitle(this.sentenceCasePipe.transform(this.wording.footer.agreements));
-
-        this.modeService.watchModeStore();
     }
 
     /**
