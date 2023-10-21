@@ -158,9 +158,6 @@ export class HeaderComponent extends UnsubscribeDirective implements OnInit, Aft
      * @private
      */
     private createSubscribe(): void {
-        this.modeService.watchModeStore();
-        this.memberService.watchMemberStore();
-
         this.headerStore
             .watch()
             .pipe(takeUntil(this.destroy$))

@@ -16,18 +16,29 @@ export class MemberService extends UnsubscribeDirective {
      * Define if the user is a visitor or not (i.e. not connected or not a member of the clan)
      */
     public isVisitor: boolean;
+    /**
+     * The Wargaming access token of the user, get from the login
+     */
+    public accessToken: string;
 
     constructor(private memberStore: MemberStore) {
         super();
+
+        this.isAdmin = this.memberStore.get('isAdmin');
+        this.accessToken = this.memberStore.get('accessToken');
+        this.isVisitor = this.memberStore.get('isVisitor');
+
+        this.watchMemberStore();
     }
 
-    public watchMemberStore(): void {
+    private watchMemberStore(): void {
         this.memberStore
             .watch()
             .pipe(takeUntil(this.destroy$))
             .subscribe((value: MemberInterface): void => {
                 this.isVisitor = value.isVisitor;
                 this.isAdmin = value.isAdmin;
+                this.accessToken = value.accessToken;
             });
     }
 }

@@ -1,9 +1,4 @@
-import {
-    HttpEvent,
-    HttpHandler,
-    HttpInterceptor,
-    HttpRequest,
-} from '@angular/common/http';
+import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -15,25 +10,18 @@ import { InventoryService } from '../services/inventory.service';
     providedIn: 'root',
 })
 export class HttpMockInterceptor implements HttpInterceptor {
-    constructor(private inventory: InventoryService) {}
+    constructor(private inventoryService: InventoryService) {}
 
-    intercept(
-        req: HttpRequest<any>,
-        next: HttpHandler
-    ): Observable<HttpEvent<any>> {
-        if (
-            [MockEnum.EXTERNAL_MOCK, MockEnum.FULL_MOCK].includes(
-                environment.mock
-            )
-        ) {
+    intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+        if ([MockEnum.EXTERNAL_MOCK, MockEnum.FULL_MOCK].includes(environment.mock)) {
             let endPoint: string[] = req.url.split('api.worldoftanks.eu');
 
             if (endPoint.length === 2) {
                 let jsonFile: string = '';
                 if (endPoint[1].includes(WotApiEnum.SERVERS)) {
                     jsonFile = WotApiEnum.SERVERS;
-                } else if (endPoint[1].includes(WotApiEnum.CLANRATINGS)) {
-                    jsonFile = WotApiEnum.CLANRATINGS;
+                } else if (endPoint[1].includes(WotApiEnum.ONLINE_MEMBERS)) {
+                    jsonFile = WotApiEnum.ONLINE_MEMBERS;
                 }
 
                 const mockReq: HttpRequest<any> = req.clone({
@@ -48,18 +36,13 @@ export class HttpMockInterceptor implements HttpInterceptor {
             if (endPoint.length === 2) {
                 if (environment.mock === MockEnum.EXTERNAL_MOCK) {
                     const mockReq: HttpRequest<any> = req.clone({
-                        url: `${this.inventory.getLchpApi().localhost}${
-                            endPoint[1]
-                        }`,
+                        url: `${this.inventoryService.getGlassaitApi().localhost}${endPoint[1]}`,
                         method: 'GET',
                     });
                     return next.handle(mockReq);
                 } else {
                     const mockReq: HttpRequest<any> = req.clone({
-                        url: `/assets/mocks/${endPoint[1].replace(
-                            '/',
-                            '.'
-                        )}.json`,
+                        url: `/assets/mocks/${endPoint[1].replace('/', '.')}.json`,
                         method: 'GET',
                     });
                     return next.handle(mockReq);

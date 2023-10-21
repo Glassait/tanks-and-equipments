@@ -20,9 +20,14 @@ export class ModeService extends UnsubscribeDirective {
 
     constructor(private modeStore: ModeStore) {
         super();
+
+        this.mode = this.modeStore.get('color');
+        this.isMobile = this.modeStore.get('mobile');
+
+        this.watchModeStore();
     }
 
-    public watchModeStore(): void {
+    private watchModeStore(): void {
         this.modeStore
             .watch()
             .pipe(takeUntil(this.destroy$))

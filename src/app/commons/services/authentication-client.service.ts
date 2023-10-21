@@ -11,23 +11,39 @@ import { InventoryService } from './inventory.service';
 })
 export class AuthenticationClientService {
     constructor(
-        private http: HttpClient,
-        private inventoryClass: InventoryService
+        private readonly httpClient: HttpClient,
+        private readonly inventoryService: InventoryService
     ) {}
 
+    /**
+     * Call the Wargaming api to log in the user and get access token
+     */
     public login(): Observable<any> {
         if (environment.production) {
-            if (WindowsCustom.getSearch() === '') {
+            const search: string = WindowsCustom.getSearch();
+
+            if (search === '') {
                 WindowsCustom.setCurrentUrl(
-                    this.inventoryClass.getWargamingApi().login +
-                        `&redirect_uri=${WindowsCustom.getHref()}`
+                    this.inventoryService.getWargamingApi('login', WindowsCustom.getHref())
                 );
             }
-            return of(
-                ArrayCustom.transformToObject(WindowsCustom.getSearch().replace('?', '').split('&'))
+            return of(ArrayCustom.transformToObject(search.replace('?', '').split('&')));
+        }
+
+        return this.httpClient.get(this.inventoryService.getWargamingApi('login-mock'));
+    }
+
+    /**
+     * Call the Wargaming api to destroy the access token
+     * @param accessToken The access token to destroyed
+     */
+    public logout(accessToken: string): Observable<any> {
+        if (environment.production) {
+            return this.httpClient.get(
+                this.inventoryService.getWargamingApi('log-out', accessToken)
             );
         }
 
-        return this.http.get(this.inventoryClass.getWargamingApi()['login-mock']);
+        return of(true);
     }
 }

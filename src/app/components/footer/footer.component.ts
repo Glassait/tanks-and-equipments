@@ -103,9 +103,6 @@ export class FooterComponent implements OnInit {
      * @private
      */
     private createSubscription(): void {
-        this.modeService.watchModeStore();
-        this.memberService.watchMemberStore();
-
         this.featureStore
             .watch()
             .pipe(
