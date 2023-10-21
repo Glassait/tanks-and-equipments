@@ -38,7 +38,7 @@ export class ClanWarComponent {
 
     private checkUser(): void {
         if (
-            this.memberStore.isVisitor() ||
+            this.memberStore.get('isVisitor') ||
             this.modeStore.get('mobile') ||
             !this.featureStore.get('clanWar')
         ) {

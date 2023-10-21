@@ -8,11 +8,24 @@ import { InventoryService } from './inventory.service';
 })
 export class WotService {
     constructor(
-        private httpClient: HttpClient,
-        private inventoryClass: InventoryService
+        private readonly httpClient: HttpClient,
+        private readonly inventoryClass: InventoryService
     ) {}
 
-    getServeurStatus(): Observable<any> {
-        return this.httpClient.get(this.inventoryClass.getWargamingApi()['game-servers']);
+    /**
+     * Get the server status with a http call to the Wargaming api
+     */
+    public getServeurStatus(): Observable<any> {
+        return this.httpClient.get(this.inventoryClass.getWargamingApi('game-servers'));
+    }
+
+    /**
+     * Get the number of member online with a http call to the Wargaming API
+     * @param access_token The access token of the user
+     */
+    public getMemberOnline(access_token: string): Observable<any> {
+        return this.httpClient.get(
+            this.inventoryClass.getWargamingApi('member-online', access_token)
+        );
     }
 }

@@ -4,18 +4,31 @@ import { Injectable } from '@angular/core';
     providedIn: 'root',
 })
 export class SessionStorageService {
-    private _session = sessionStorage;
+    private _session: Storage = sessionStorage;
 
-    public store(key: string, value: string) {
+    /**
+     * Store the value in the session storage with the specified key
+     * @param key The key of the value
+     * @param value The value to store
+     */
+    public store(key: string, value: string): void {
         this._session.setItem(key, value);
     }
 
+    /**
+     * Get the value stored with the specific key
+     * @param key The key to get the value
+     */
     public getFromKey(key: string): string | null {
         return this._session.getItem(key);
     }
 
+    /**
+     * Get the value stored with the specific key and parse it with {@link JSON.parse}
+     * @param key The key to get the value
+     */
     public getFromKeyToObject<T>(key: string): T | null {
-        const obj = this.getFromKey(key);
+        const obj: string | null = this.getFromKey(key);
         if (!obj) {
             return null;
         }

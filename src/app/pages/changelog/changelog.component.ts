@@ -31,14 +31,14 @@ export class ChangelogComponent implements OnInit {
         private readonly title: Title,
         // PIPE
         private readonly sentenceCasePipe: SentenceCasePipe
-    ) {
-        this.changelogs = this.changelogApi.changelogs;
-    }
+    ) {}
 
     /**
      * Implementation of the {@link OnInit} interface
      */
     ngOnInit(): void {
+        this.changelogs = this.changelogApi.changelogs;
+
         this.headerStore.patch({
             showHome: true,
             showTank: true,
@@ -46,7 +46,5 @@ export class ChangelogComponent implements OnInit {
         });
 
         this.title.setTitle(this.sentenceCasePipe.transform(this.wording.footer.changelog));
-
-        this.modeService.watchModeStore();
     }
 }

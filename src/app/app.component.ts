@@ -6,6 +6,7 @@ import { FeatureInterface } from './commons/interfaces/feature.interface';
 import { AuthenticationService } from './commons/services/authentication.service';
 import { IconRegistryService } from './commons/services/icon-registry.service';
 import { FeatureStore } from './commons/stores/feature.store';
+import { MemberStore } from './commons/stores/member.store';
 import { ModeStore } from './commons/stores/mode.store';
 import { DateCustom } from './commons/utils/date.custom';
 import { chargeurIcon } from './components/icon/files/crews/chargeur.icon';
@@ -52,20 +53,19 @@ import { t95Fv4201ChieftainIcon } from './components/icon/files/tanks/t95_fv4201
     templateUrl: './app.component.html',
 })
 export class AppComponent implements OnInit {
-    protected title: string = 'app';
-
     private featureFlipping: FeatureInterface;
 
     constructor(
         // SERVICE
-        private iconRegistry: IconRegistryService,
-        private auth: AuthenticationService,
-        private cookie: CookieService,
+        private readonly iconRegistry: IconRegistryService,
+        private readonly auth: AuthenticationService,
+        private readonly cookie: CookieService,
         // STORE
-        private modeStore: ModeStore,
-        private featureStore: FeatureStore,
+        private readonly modeStore: ModeStore,
+        private readonly memberStore: MemberStore,
+        private readonly featureStore: FeatureStore,
         // API
-        private featureFlippingApi: FeatureFlippingApi
+        private readonly featureFlippingApi: FeatureFlippingApi
     ) {
         if (!this.auth.isLoggedIn()) {
             this.auth.login();
@@ -75,8 +75,13 @@ export class AppComponent implements OnInit {
         this.onResize({});
     }
 
+    /**
+     * Implementation of the {@link OnInit} interface
+     */
     ngOnInit(): void {
-        this.getFeature();
+        if (!this.memberStore.get('isVisitor')) {
+            this.getFeature();
+        }
     }
 
     @HostListener('window:resize', ['$event'])
@@ -88,6 +93,10 @@ export class AppComponent implements OnInit {
         }
     }
 
+    /**
+     * Register all icon used on the site
+     * @private
+     */
     private registerIcons(): void {
         this.iconRegistry.register([
             castleIcon,
@@ -131,6 +140,10 @@ export class AppComponent implements OnInit {
         ]);
     }
 
+    /**
+     * Get the status of all the features
+     * @private
+     */
     private getFeature(): void {
         const cookie: string = this.cookie.get(CookieNameEnum.FEATURE);
         if (cookie) {

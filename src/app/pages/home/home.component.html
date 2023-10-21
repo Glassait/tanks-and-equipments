@@ -18,8 +18,8 @@
     </glassait-card>
 
     <glassait-card
-        *ngIf='!memberService.isVisitor'
-        [actionCallback]='{ func: navigate, parameter: information.information?.lien?.url }'
+        *ngIf='!memberService.isVisitor && information.information'
+        [actionCallback]='{ func: navigate, parameter: information.information.lien.url }'
         [actionTheme]='modeService.mode === ModeEnum.DARK ? ButtonThemeEnum.DARK : ButtonThemeEnum.LIGHT'
         [avatarColor]='modeService.mode === ModeEnum.DARK ? IconColorEnum.DARK : IconColorEnum.LIGHT'
         [isLoading]='information.isLoading'
@@ -27,15 +27,34 @@
         actionAlign='end'
         actionIcon='super_conqueror'
         actionIconSize='36'
-        actionText='{{ information.information?.lien?.text }}'
+        actionText='{{ information.information.lien.text }}'
         avatar='information'
         class='w-[288px] tablet:w-[500px]'
-        hasAction='{{ information.information?.lien?.url !== null }}'
+        hasAction='{{ information.information.lien.url !== null }}'
         title="{{ 'home.title.information' | wording | sentenceCase }}"
     >
         <p class='text-justify'>
-            {{ information.information?.text }}
+            {{ information.information.text }}
         </p>
+    </glassait-card>
+
+    <glassait-card
+        *ngIf='!memberService.isVisitor && memberOnline.amount'
+        [avatarColor]='modeService.mode === ModeEnum.DARK ? IconColorEnum.DARK : IconColorEnum.LIGHT'
+        [isLoading]='memberOnline.isLoading'
+        [loadingColor]='modeService.mode'
+        avatar='userGroup'
+        class='w-[288px] tablet:w-[500px]'
+        title="{{ 'home.title.member-online' | wording | sentenceCase }}"
+    >
+        <ng-container *ngIf='!memberOnline.amount || memberOnline.amount === 0 then noMember; else hasMember'></ng-container>
+
+        <ng-template #noMember class='text-justify'>
+            {{ "home.text.no-member-online" | wording }}
+        </ng-template>
+        <ng-template #hasMember class='text-justify'>
+            {{ "home.text.member-online" | wording | replace : "amount" : (memberOnline.amount | toString) }}
+        </ng-template>
     </glassait-card>
 
     <glassait-card
@@ -49,7 +68,7 @@
     >
         <div class='flex flex-col gap-demi'>
             <div
-                *ngFor='let server of wotServer.servers?.data?.wot'
+                *ngFor='let server of wotServer.servers?.wot'
                 [class]="
                     server.players_online === wotServer.max
                         ? 'bg-warning-300 pt-[2px] pb-[2px]'

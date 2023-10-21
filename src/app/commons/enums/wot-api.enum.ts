@@ -1,4 +1,4 @@
 export enum WotApiEnum {
-    SERVERS = "servers",
-    CLANRATINGS = "clanratings"
+    SERVERS = 'servers',
+    ONLINE_MEMBERS = 'online_members',
 }

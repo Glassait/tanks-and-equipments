@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { HeaderStore } from 'src/app/commons/stores/header.store';
-import { MemberStore } from 'src/app/commons/stores/member.store';
+import { MemberService } from '../../commons/abstract/member.service';
 import { ModeService } from '../../commons/abstract/mode.service';
 import { TanksDataApi } from '../../commons/api/tank-data.api';
 import { CookieNameEnum } from '../../commons/enums/cookie-name.enum';
@@ -28,19 +28,19 @@ export class TanksEquipmentComponent implements OnInit {
 
     constructor(
         // API
-        private tanksDataApi: TanksDataApi,
+        private readonly tanksDataApi: TanksDataApi,
         // SERVICE
-        private wordingService: WordingService,
-        private sessionService: SessionStorageService,
-        protected modeService: ModeService,
+        private readonly wordingService: WordingService,
+        private readonly sessionService: SessionStorageService,
+        protected readonly modeService: ModeService,
+        protected readonly memberService: MemberService,
         // STORE
-        private headerStore: HeaderStore,
-        private memberStore: MemberStore,
+        private readonly headerStore: HeaderStore,
         // ANGULAR
-        private router: Router,
-        private title: Title
+        private readonly router: Router,
+        private readonly title: Title
     ) {
-        if (!this.memberStore.isVisitor()) {
+        if (!this.memberService.isVisitor) {
             return;
         }
 
@@ -61,8 +61,6 @@ export class TanksEquipmentComponent implements OnInit {
             showWar: true,
         });
 
-        this.modeService.watchModeStore();
-
         this.getTanksData();
     }
 
@@ -71,9 +69,9 @@ export class TanksEquipmentComponent implements OnInit {
      * @private
      */
     private getTanksData(): void {
-        const token = {
+        const token: { date: string | null; data: TankData[] | null } = {
             date: this.sessionService.getFromKey(CookieNameEnum.TANKS_DATE),
-            data: this.sessionService.getFromKeyToObject<TankData[]>(CookieNameEnum.TANKS),
+            data: this.sessionService.getFromKeyToObject<TankData[]>(CookieNameEnum.TANKS_DATA),
         };
         const dateToken: Date | null = token.date ? new Date(token.date) : null;
 
@@ -83,10 +81,10 @@ export class TanksEquipmentComponent implements OnInit {
             return;
         }
 
-        this.tanksDataApi.queryTanksData(this.memberStore.get('accessToken')).subscribe({
+        this.tanksDataApi.queryTanksData(this.memberService.accessToken).subscribe({
             next: (tankData: TankData[]): void => {
                 this.tanksData.data = tankData;
-                this.sessionService.store(CookieNameEnum.TANKS, JSON.stringify(tankData));
+                this.sessionService.store(CookieNameEnum.TANKS_DATA, JSON.stringify(tankData));
                 this.sessionService.store(
                     CookieNameEnum.TANKS_DATE,
                     DateCustom.getMidnightDate().toDateString()
