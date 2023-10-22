@@ -14,17 +14,19 @@ export class MembersApi {
     private url: string = 'member';
 
     constructor(
-        private httpClient: HttpClient,
-        private inventoryService: InventoryService
+        private readonly httpClient: HttpClient,
+        private readonly inventoryService: InventoryService
     ) {}
 
-    public isClanMembers(id: number | undefined): Member | undefined {
+    public isClanMembers(id: number): Member | undefined {
         if (!id) {
             return undefined;
         }
         if ([MockEnum.NO_MOCK, MockEnum.EXTERNAL_MOCK].includes(environment.mock)) {
             this.httpClient
-                .get(this.inventoryService.getGlassaitApi()['live-url'] + this.url + '/' + id)
+                .get(
+                    this.inventoryService.getGlassaitApi('live-url', this.url) + `?account_id=${id}`
+                )
                 .subscribe({
                     next: value => {
                         return value;
