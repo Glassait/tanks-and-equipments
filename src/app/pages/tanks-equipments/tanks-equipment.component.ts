@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
@@ -8,6 +9,7 @@ import { TanksDataApi } from '../../commons/api/tank-data.api';
 import { CookieNameEnum } from '../../commons/enums/cookie-name.enum';
 import { SessionStorageService } from '../../commons/services/session-storage.service';
 import { WordingService } from '../../commons/services/wording.service';
+import { MemberStore } from '../../commons/stores/member.store';
 import { TankData } from '../../commons/types/tanks-data.type';
 import { DateCustom } from '../../commons/utils/date.custom';
 import { SentenceCasePipe } from '../../pipes/sentenceCase/sentence-case.pipe';
@@ -36,6 +38,7 @@ export class TanksEquipmentComponent implements OnInit {
         protected readonly memberService: MemberService,
         // STORE
         private readonly headerStore: HeaderStore,
+        private readonly memberStore: MemberStore,
         // ANGULAR
         private readonly router: Router,
         private readonly title: Title
@@ -61,7 +64,9 @@ export class TanksEquipmentComponent implements OnInit {
             showWar: true,
         });
 
-        this.getTanksData();
+        if (!this.memberService.hasErrorOnAccessToken) {
+            this.getTanksData();
+        }
     }
 
     /**
@@ -81,6 +86,10 @@ export class TanksEquipmentComponent implements OnInit {
             return;
         }
 
+        if (this.memberService.hasErrorOnAccessToken) {
+            return;
+        }
+
         this.tanksDataApi.queryTanksData(this.memberService.accessToken).subscribe({
             next: (tankData: TankData[]): void => {
                 this.tanksData.data = tankData;
@@ -90,9 +99,13 @@ export class TanksEquipmentComponent implements OnInit {
                     DateCustom.getMidnightDate().toDateString()
                 );
             },
-            error: _err => {
+            error: (err: HttpErrorResponse): void => {
                 this.tanksData.isError = true;
                 this.tanksData.isLoading = false;
+
+                if (err.status === 401) {
+                    this.memberStore.set('hasErrorOnAccessToken', true);
+                }
             },
             complete: (): void => {
                 this.tanksData.isLoading = false;
