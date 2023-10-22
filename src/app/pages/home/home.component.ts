@@ -227,13 +227,21 @@ export class HomeComponent implements OnInit {
             return;
         }
 
+        if (this.memberService.hasErrorOnAccessToken) {
+            return;
+        }
+
         this.wotService.getMemberOnline(this.memberService.accessToken).subscribe({
             next: (response: DefaultWargaming<MemberOnline>): void => {
                 this.memberOnline.amount = response.data['500179430'].private.online_members.length;
             },
-            error: _err => {
+            error: (err: HttpErrorResponse): void => {
                 this.memberOnline.isError = true;
                 this.memberOnline.isLoading = false;
+
+                if (err.status === 401) {
+                    this.memberStore.set('hasErrorOnAccessToken', true);
+                }
             },
             complete: (): void => {
                 this.cookieService.set(
