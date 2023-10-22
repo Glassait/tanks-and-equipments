@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
@@ -11,6 +12,7 @@ import { InventoryService } from '../../commons/services/inventory.service';
 import { WordingService } from '../../commons/services/wording.service';
 import { WotService } from '../../commons/services/wot.service';
 import { HeaderStore } from '../../commons/stores/header.store';
+import { MemberStore } from '../../commons/stores/member.store';
 import { DefaultHttpType } from '../../commons/types/default-httpType';
 import { DefaultWargaming, MemberOnline, WotServer } from '../../commons/types/wot.type';
 import { InformationType } from '../../commons/types/information.type';
@@ -45,7 +47,8 @@ export class HomeComponent implements OnInit {
      * Store the result of the api call to get the information of the clan
      * @protected
      */
-    protected information: DefaultHttpType & { information?: InformationType } = this.initial;
+    protected information: DefaultHttpType & { information?: InformationType; hasLink?: boolean } =
+        this.initial;
     /**
      * Store the result of the api call to get the information about the wot's server
      * @protected
@@ -65,6 +68,7 @@ export class HomeComponent implements OnInit {
     constructor(
         // STORE
         private readonly headerStore: HeaderStore,
+        private readonly memberStore: MemberStore,
         // API
         private readonly informationApi: InformationApi,
         // SERVICE
@@ -93,7 +97,7 @@ export class HomeComponent implements OnInit {
             showTank: true,
         });
 
-        if (!this.memberService.isVisitor) {
+        if (!this.memberService.isVisitor && !this.memberService.hasErrorOnAccessToken) {
             this.getInformation();
             this.getMemberOnline();
         }
@@ -130,17 +134,28 @@ export class HomeComponent implements OnInit {
         const cookie: string = this.cookieService.get(CookieNameEnum.INFORMATION);
         if (cookie) {
             this.information.information = JSON.parse(cookie);
+            this.information.hasLink = this.information.information?.lien !== null;
             this.information.isLoading = false;
             return;
         }
 
-        this.informationApi.queryInformation().subscribe({
+        if (this.memberService.hasErrorOnAccessToken) {
+            return;
+        }
+
+        this.informationApi.queryInformation(this.memberService.accessToken).subscribe({
             next: (value: InformationType): void => {
                 this.information.information = value;
+                this.information.hasLink = value.lien !== null;
             },
-            error: _err => {
+            error: (err: HttpErrorResponse): void => {
                 this.information.isError = true;
                 this.information.isLoading = false;
+
+                if (err.status === 401) {
+                    this.memberStore.set('hasErrorOnAccessToken', true);
+                    console.error('access_token has expired or is malformed');
+                }
             },
             complete: (): void => {
                 this.cookieService.set(

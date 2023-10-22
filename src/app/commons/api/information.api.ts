@@ -10,11 +10,17 @@ export class InformationApi {
     private url: string = 'information';
 
     constructor(
-        private httpClient: HttpClient,
-        private inventoryService: InventoryService
+        private readonly httpClient: HttpClient,
+        private readonly inventoryService: InventoryService
     ) {}
 
-    public queryInformation(): Observable<any> {
-        return this.httpClient.get(this.inventoryService.getGlassaitApi()['live-url'] + this.url);
+    /**
+     * Make the api call to get the information of the clan
+     * @param accessToken The access token of the user
+     */
+    public queryInformation(accessToken: string): Observable<any> {
+        return this.httpClient.get(
+            this.inventoryService.getGlassaitApi('live-url', this.url, accessToken)
+        );
     }
 }

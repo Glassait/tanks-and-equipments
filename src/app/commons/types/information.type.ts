@@ -1,7 +1,7 @@
 export type InformationType = {
     text: string;
     lien: {
-        text: string | null;
-        url: string | null;
-    };
+        text: string;
+        url: string;
+    } | null;
 };
