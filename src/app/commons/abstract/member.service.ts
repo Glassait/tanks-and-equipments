@@ -20,6 +20,10 @@ export class MemberService extends UnsubscribeDirective {
      * The Wargaming access token of the user, get from the login
      */
     public accessToken: string;
+    /**
+     * If there is an error on the access token
+     */
+    public hasErrorOnAccessToken: boolean;
 
     constructor(private memberStore: MemberStore) {
         super();
@@ -27,6 +31,7 @@ export class MemberService extends UnsubscribeDirective {
         this.isAdmin = this.memberStore.get('isAdmin');
         this.accessToken = this.memberStore.get('accessToken');
         this.isVisitor = this.memberStore.get('isVisitor');
+        this.hasErrorOnAccessToken = this.memberStore.get('hasErrorOnAccessToken');
 
         this.watchMemberStore();
     }
@@ -39,6 +44,7 @@ export class MemberService extends UnsubscribeDirective {
                 this.isVisitor = value.isVisitor;
                 this.isAdmin = value.isAdmin;
                 this.accessToken = value.accessToken;
+                this.hasErrorOnAccessToken = value.hasErrorOnAccessToken;
             });
     }
 }

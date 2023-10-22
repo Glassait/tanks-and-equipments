@@ -9,6 +9,7 @@ import { Member } from '../types/member.type';
 import { CheckGrade } from '../utils/check-grade.util';
 import { DateCustom } from '../utils/date.custom';
 import { AuthenticationClientService } from './authentication-client.service';
+import { SessionStorageService } from './session-storage.service';
 
 @Injectable({
     providedIn: 'root',
@@ -20,6 +21,7 @@ export class AuthenticationService {
         // SERVICE
         private readonly authenticationClient: AuthenticationClientService,
         private readonly cookieService: CookieService,
+        private readonly sessionService: SessionStorageService,
         // STORE
         private readonly memberStore: MemberStore,
         // API
@@ -72,6 +74,21 @@ export class AuthenticationService {
 
         this.updateStore(JSON.parse(user) ?? undefined, JSON.parse(token)?.access_token);
         return true;
+    }
+
+    /**
+     * Log out the user
+     */
+    public logOut(): void {
+        const token: string = this.cookieService.get(CookieNameEnum.TOKEN_WARGAMING);
+
+        if (token) {
+            this.authenticationClient.logout(JSON.parse(token).access_token);
+        }
+
+        this.cookieService.deleteAll();
+        this.sessionService.deleteAll();
+        this.router.navigate(['/']).then((): void => {});
     }
 
     /**

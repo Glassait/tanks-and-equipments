@@ -3,6 +3,7 @@ export interface MemberInterface {
     isAdmin: boolean;
     isVisitor: boolean;
     accessToken: string;
+    hasErrorOnAccessToken: boolean;
 }
 
 export const INTITIAL_STATE_MEMBER: MemberInterface = {
@@ -10,4 +11,5 @@ export const INTITIAL_STATE_MEMBER: MemberInterface = {
     isAdmin: false,
     isVisitor: true,
     accessToken: '',
+    hasErrorOnAccessToken: false,
 };

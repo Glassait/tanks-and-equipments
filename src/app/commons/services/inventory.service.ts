@@ -28,8 +28,20 @@ export class InventoryService {
         return this._inventory.path;
     }
 
-    public getGlassaitApi() {
-        return this._inventory['glassait-api'];
+    /**
+     * Return the url of the backend correctly formatted
+     * @param baseUrl The base url wanted
+     * @param apiUrl The api url to attack
+     * @param access_token The access token of the user
+     */
+    public getGlassaitApi(
+        baseUrl: 'live-url' | 'localhost',
+        apiUrl: string,
+        access_token?: string
+    ): string {
+        return `${this._inventory['glassait-api'][baseUrl]}${apiUrl}${
+            access_token ? '?access_token=' + access_token : ''
+        }`;
     }
 
     public getInventoryFromString(path: string): string {

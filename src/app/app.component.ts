@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, HostListener, OnInit } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { FeatureFlippingApi } from './commons/api/feature-flipping.api';
@@ -79,7 +80,7 @@ export class AppComponent implements OnInit {
      * Implementation of the {@link OnInit} interface
      */
     ngOnInit(): void {
-        if (!this.memberStore.get('isVisitor')) {
+        if (!this.memberStore.get('isVisitor') && !this.memberStore.get('hasErrorOnAccessToken')) {
             this.getFeature();
         }
     }
@@ -151,13 +152,16 @@ export class AppComponent implements OnInit {
             return;
         }
 
-        this.featureFlippingApi.queryFeature().subscribe({
+        this.featureFlippingApi.queryFeature(this.memberStore.get('accessToken')).subscribe({
             next: (value: FeatureInterface): void => {
                 this.featureStore.patch(value);
                 this.featureFlipping = value;
             },
-            error: err => {
-                console.log(err);
+            error: (err: HttpErrorResponse): void => {
+                if (err.status === 401 && !this.memberStore.get('isVisitor')) {
+                    this.memberStore.set('hasErrorOnAccessToken', true);
+                    console.error('access_token expire or malformed');
+                }
             },
             complete: (): void => {
                 this.cookie.set(

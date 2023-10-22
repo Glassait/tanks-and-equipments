@@ -10,7 +10,7 @@ import { InventoryService } from '../services/inventory.service';
     providedIn: 'root',
 })
 export class HttpMockInterceptor implements HttpInterceptor {
-    constructor(private inventoryService: InventoryService) {}
+    constructor(private readonly inventoryService: InventoryService) {}
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         if ([MockEnum.EXTERNAL_MOCK, MockEnum.FULL_MOCK].includes(environment.mock)) {
@@ -36,7 +36,7 @@ export class HttpMockInterceptor implements HttpInterceptor {
             if (endPoint.length === 2) {
                 if (environment.mock === MockEnum.EXTERNAL_MOCK) {
                     const mockReq: HttpRequest<any> = req.clone({
-                        url: `${this.inventoryService.getGlassaitApi().localhost}${endPoint[1]}`,
+                        url: `${this.inventoryService.getGlassaitApi('localhost', endPoint[1])}`,
                         method: 'GET',
                     });
                     return next.handle(mockReq);

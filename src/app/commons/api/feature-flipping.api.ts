@@ -10,11 +10,17 @@ export class FeatureFlippingApi {
     private url: string = 'feature';
 
     constructor(
-        private httpClient: HttpClient,
-        private inventoryClass: InventoryService
+        private readonly httpClient: HttpClient,
+        private readonly inventoryService: InventoryService
     ) {}
 
-    public queryFeature(): Observable<any> {
-        return this.httpClient.get(this.inventoryClass.getGlassaitApi()['live-url'] + this.url);
+    /**
+     * Call the api to get all the features and there status
+     * @param accessToken The access token of the user
+     */
+    public queryFeature(accessToken: string): Observable<any> {
+        return this.httpClient.get(
+            this.inventoryService.getGlassaitApi('live-url', this.url, accessToken)
+        );
     }
 }

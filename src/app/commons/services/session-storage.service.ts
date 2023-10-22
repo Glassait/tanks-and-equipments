@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { CookieNameEnum } from '../enums/cookie-name.enum';
 
 @Injectable({
     providedIn: 'root',
@@ -33,5 +34,13 @@ export class SessionStorageService {
             return null;
         }
         return JSON.parse(obj);
+    }
+
+    /**
+     * Delete all the data store in the session
+     */
+    public deleteAll(): void {
+        this._session.removeItem(CookieNameEnum.TANKS_DATE);
+        this._session.removeItem(CookieNameEnum.TANKS_DATA);
     }
 }
