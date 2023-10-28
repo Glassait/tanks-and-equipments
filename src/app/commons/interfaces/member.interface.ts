@@ -7,9 +7,9 @@ export interface MemberInterface {
 }
 
 export const INTITIAL_STATE_MEMBER: MemberInterface = {
-    account_id: 0,
+    account_id: undefined,
     isAdmin: false,
     isVisitor: true,
-    accessToken: '',
+    accessToken: undefined,
     hasErrorOnAccessToken: false,
 };
