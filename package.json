@@ -36,7 +36,7 @@
         "path": "0.12.7",
         "rxjs": "7.8.1",
         "tslib": "2.6.2",
-        "zone.js": "0.14.0"
+        "zone.js": "0.14.2"
     },
     "devDependencies": {
         "@angular/cli": "17.0.8",
@@ -45,7 +45,7 @@
         "@types/jasmine": "5.1.4",
         "@types/node": "20.10.6",
         "autoprefixer": "10.4.16",
-        "jasmine-core": "5.1.0",
+        "jasmine-core": "5.1.1",
         "karma": "6.4.2",
         "karma-chrome-launcher": "3.2.0",
         "karma-coverage": "2.2.1",

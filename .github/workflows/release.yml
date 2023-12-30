@@ -30,6 +30,9 @@ jobs:
             - name: Major version
               if: ${{ contains(github.event.head_commit.message, 'major') }}
               run: npm version major
+            - name: Prepatch  version
+              if: ${{ contains(github.event.head_commit.message, 'prepatch ') }}
+              run: npm version prepatch
             - name: Push version
               run: |
                   git push --tags https://${{ secrets.TOKEN }}@github.com/${{ github.repository }} main

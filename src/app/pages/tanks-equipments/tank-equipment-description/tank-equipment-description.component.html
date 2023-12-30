@@ -13,7 +13,7 @@
 
     <div class="min-w-[288px] flex-col *:flex *:gap-demi *:tablet:gap-normal">
         <div>
-            @for (crew of data?.crew; track $index) {
+            @for (crew of data.crew; track $index) {
                 <glassait-icon
                     [color]="mode === ModeEnum.DARK ? IconColorEnum.DARK : IconColorEnum.LIGHT"
                     class="rounded-normal border-1 border-secondary-700 dark:border-primary-700"
@@ -24,7 +24,7 @@
             }
         </div>
 
-        @for (skills of data?.skills; track $index) {
+        @for (skills of data.skills; track $index) {
             <div>
                 @for (skill of skills; track $index) {
                     <picture>
@@ -208,7 +208,7 @@
         </div>
 
         <div class="min-w-[288px] *:-ml-6 *:flex *:h-[70px]">
-            @for (field of data?.fields; track $index) {
+            @for (field of data.fields; track $index) {
                 <div class="*:relative">
                     <picture class="-top-4 left-[50%] z-[1] h-8 w-8">
                         <source srcset='{{ "roman_number_" + field.level | image : "fields" : "avif" }}' type="image/avif" />
