@@ -9,7 +9,7 @@
         "member-online": "https://api.worldoftanks.eu/wot/clans/info/?application_id=applicationId&fields=private.online_members&extra=private.online_members&clan_id=clanId&language=fr&access_token=accessToken"
     },
     "glassait-api": {
-        "live-url": "https://lchp-backend-73ae62fe95e5.herokuapp.com/api/",
+        "live-url": "https://fold-backend-5e6c2cf7c25c.herokuapp.com/api/",
         "localhost": "http://localhost:8080/api/"
     },
     "url": {
