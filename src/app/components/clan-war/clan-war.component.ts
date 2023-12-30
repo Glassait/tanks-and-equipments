@@ -8,6 +8,7 @@ import { FeatureStore } from '../../commons/stores/feature.store';
 import { ModeStore } from '../../commons/stores/mode.store';
 import { SentenceCasePipe } from '../../pipes/sentenceCase/sentence-case.pipe';
 
+// TODO TO PASS IN PAGE FOLDER
 @Component({
     selector: 'app-clan-war',
     templateUrl: './clan-war.component.html',
@@ -37,11 +38,7 @@ export class ClanWarComponent {
     }
 
     private checkUser(): void {
-        if (
-            this.memberStore.get('isVisitor') ||
-            this.modeStore.get('mobile') ||
-            !this.featureStore.get('clanWar')
-        ) {
+        if (this.memberStore.get('isVisitor') || this.modeStore.get('mobile') || !this.featureStore.get('clanWar')) {
             this.router.navigate(['/']).then((): void => {
                 // Ignored
             });

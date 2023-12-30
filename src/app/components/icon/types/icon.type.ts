@@ -1,5 +1,8 @@
 import { TankIconType } from './tank-icon.type';
 
+/**
+ * Represent all the name of the icon
+ */
 export type IconsType =
     | 'castle'
     | 'map'

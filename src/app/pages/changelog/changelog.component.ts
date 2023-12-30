@@ -15,10 +15,19 @@ import { SentenceCasePipe } from '../../pipes/sentenceCase/sentence-case.pipe';
     templateUrl: './changelog.component.html',
 })
 export class ChangelogComponent implements OnInit {
+    //region PROTECTED FIELD
+    /**
+     * Represent the field for the link with the json
+     * @protected
+     */
     protected changelogs: VersionType[];
+    //endregion
+
+    //region ENUM
     protected readonly ModeEnum = ModeEnum;
     protected readonly IconColorEnum = IconColorEnum;
     protected readonly Icon = Icon;
+    //endregion
 
     constructor(
         // API

@@ -1,30 +1,28 @@
-<div class='flex justify-center'>
+<div class="flex justify-center">
     <glassait-card
-        [avatarColor]='
-            modeService.mode === ModeEnum.DARK ? IconColorEnum.DARK : IconColorEnum.LIGHT
-        '
-        avatar='agreement'
-        class='w-full'
+        [avatarColor]="modeService.mode === ModeEnum.DARK ? IconColorEnum.DARK : IconColorEnum.LIGHT"
+        avatar="agreement"
+        class="w-full"
         title="{{ 'agreements.title.page' | wording | sentenceCase }}"
     >
-        <div class='flex flex-col gap-normal'>
-            <div class='flex flex-col gap-demi'>
-                <div class='text-title font-medium'>
+        <div class="flex flex-col gap-normal">
+            <div class="flex flex-col gap-demi">
+                <div class="text-title font-medium">
                     {{ 'agreements.title.agreement' | wording | sentenceCase }}
                 </div>
 
-                <ul class='list-disc pl-8'>
-                    <li *ngFor="let agreement of 'agreements.text.agreement' | wording">
-                        {{ agreement }}
-                    </li>
+                <ul class="list-disc pl-8">
+                    @for (agreement of 'agreements.text.agreement' | wording; track $index) {
+                        <li>{{ agreement }}</li>
+                    }
                 </ul>
             </div>
 
-            <div class='flex flex-col gap-demi'>
-                <div class='text-title font-medium'>
+            <div class="flex flex-col gap-demi">
+                <div class="text-title font-medium">
                     {{ 'agreements.title.tanks' | wording | sentenceCase }}
                 </div>
-                <div class='flex items-center gap-demi flex-wrap pl-8'>
+                <div class="flex flex-wrap items-center gap-demi pl-8">
                     <div>{{ 'agreements.text.tanks' | wording }}</div>
                     <glassait-button
                         (click)="
@@ -32,23 +30,19 @@
                                 'https://docs.google.com/spreadsheets/d/1VQhiiMaQqsH-zwiUaX-eH9NTBeBciRtqVCDck8WyTSU/edit?usp=sharing'
                             )
                         "
-                        [size]='ButtonSizeEnum.XSMALL'
-                        [theme]='
-                            modeService.mode === ModeEnum.DARK
-                                ? ButtonThemeEnum.DARK_BLUE
-                                : ButtonThemeEnum.LIGHT_BLUE
-                        '
-                        rightIcon='redirect'
+                        [size]="ButtonSizeEnum.XSMALL"
+                        [theme]="modeService.mode === ModeEnum.DARK ? ButtonThemeEnum.DARK_BLUE : ButtonThemeEnum.LIGHT_BLUE"
+                        rightIcon="redirect"
                         text="{{ 'agreements.title.tanks' | wording | sentenceCase }}"
                     ></glassait-button>
                 </div>
             </div>
 
-            <div class='flex flex-col gap-demi'>
-                <div class='text-title font-bold'>
+            <div class="flex flex-col gap-demi">
+                <div class="text-title font-bold">
                     {{ 'agreements.title.permission' | wording | sentenceCase }}
                 </div>
-                <div class='flex items-center gap-demi flex-wrap pl-8'>
+                <div class="flex flex-wrap items-center gap-demi pl-8">
                     <div>{{ 'agreements.text.permission' | wording }}</div>
                     <glassait-button
                         (click)="
@@ -56,42 +50,38 @@
                                 'https://docs.google.com/spreadsheets/d/1f29HKQZ351By2dozf-m5daCGZN5y2gcO-ViVMKBeWl8/edit?usp=sharing'
                             )
                         "
-                        [size]='ButtonSizeEnum.XSMALL'
-                        [theme]='
-                            modeService.mode === ModeEnum.DARK
-                                ? ButtonThemeEnum.DARK_BLUE
-                                : ButtonThemeEnum.LIGHT_BLUE
-                        '
-                        rightIcon='redirect'
+                        [size]="ButtonSizeEnum.XSMALL"
+                        [theme]="modeService.mode === ModeEnum.DARK ? ButtonThemeEnum.DARK_BLUE : ButtonThemeEnum.LIGHT_BLUE"
+                        rightIcon="redirect"
                         text="{{ 'agreements.title.permission' | wording | sentenceCase }}"
                     ></glassait-button>
                 </div>
             </div>
 
-            <div class='flex flex-col gap-demi'>
-                <div class='text-title font-medium'>
+            <div class="flex flex-col gap-demi">
+                <div class="text-title font-medium">
                     {{ 'agreements.title.officier' | wording | sentenceCase }}
                 </div>
-                <ul class='list-disc pl-8'>
-                    <li *ngFor="let agreement of 'agreements.text.officier' | wording">
-                        {{ agreement }}
-                    </li>
+                <ul class="list-disc pl-8">
+                    @for (agreement of 'agreements.text.officier' | wording; track $index) {
+                        <li>{{ agreement }}</li>
+                    }
                 </ul>
             </div>
 
-            <div class='flex flex-col gap-demi'>
-                <div class='text-title font-medium'>
+            <div class="flex flex-col gap-demi">
+                <div class="text-title font-medium">
                     {{ 'agreements.title.organisation' | wording | sentenceCase }}
                 </div>
                 <picture>
-                    <source srcset='assets/other/organigramme_clan.avif' type='image/avif' />
+                    <source srcset="assets/other/organigramme_clan.avif" type="image/avif" />
                     <img
                         [ngSrc]="'assets/other/organigramme_clan.png'"
-                        alt='Organisation du clan LCHP'
-                        class='tablet:w-[750px] w-[320px]'
-                        height='794'
-                        priority='0'
-                        width='1123'
+                        alt="Organisation du clan LCHP"
+                        class="w-[320px] tablet:w-[750px]"
+                        height="794"
+                        priority="0"
+                        width="1123"
                     />
                 </picture>
             </div>

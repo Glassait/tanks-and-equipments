@@ -1,3 +1,6 @@
+/**
+ * Represent the option for the appearance
+ */
 export enum AppearanceEnum {
     CIRCLE = 'CIRCLE',
     LINE = 'LINE',

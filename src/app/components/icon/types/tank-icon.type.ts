@@ -1,3 +1,6 @@
+/**
+ * Represent all the tanks icon name
+ */
 export type TankIconType =
     | 'super_conqueror'
     | 'amx_m4_mle54'

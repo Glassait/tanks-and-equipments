@@ -10,6 +10,7 @@ import { ButtonThemeEnum } from '../../../components/button/enums/button-theme.e
     templateUrl: './tank-equipment-description.component.html',
 })
 export class TankEquipmentDescriptionComponent {
+    //region INPUT
     /**
      * The data of the tank
      */
@@ -22,15 +23,14 @@ export class TankEquipmentDescriptionComponent {
      * The size of the screen of the mobile
      */
     @Input() isMobile: boolean;
+    //endregion
 
-    /**
-     * ENUM
-     * @protected
-     */
+    //region ENUM
     protected readonly IconColorEnum = IconColorEnum;
     protected readonly ModeEnum = ModeEnum;
     protected readonly ButtonSizeEnum = ButtonSizeEnum;
     protected readonly ButtonThemeEnum = ButtonThemeEnum;
+    //endregion
 
     protected openLink(url: string): void {
         window.open(url, '_blank');

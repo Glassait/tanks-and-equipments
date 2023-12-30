@@ -1,79 +1,69 @@
-<div class='flex w-full flex-wrap justify-center gap-normal'>
-    <glassait-card
-        *ngFor='let changelog of changelogs'
-        [avatarColor]='
-            modeService.mode === ModeEnum.DARK ? IconColorEnum.DARK : IconColorEnum.LIGHT
-        '
-        avatar='changelog'
-        class='flex-shrink-0 flex-grow-0 basis-[100%] tablet:basis-[48%] desktop:basis-[24%]'
-        title='{{ changelog.version | uppercase }}'
-    >
-        <div class='flex flex-col gap-normal'>
-            <div *ngIf='changelog.add' class='flex flex-col gap-demi'>
-                <div class='text-title font-medium'>
-                    {{ 'changelog.add' | wording | sentenceCase }}
-                </div>
+<div class="flex w-full flex-wrap justify-center gap-normal">
+    @for (changelog of changelogs; track $index) {
+        <glassait-card
+            [avatarColor]="modeService.mode === ModeEnum.DARK ? IconColorEnum.DARK : IconColorEnum.LIGHT"
+            avatar="changelog"
+            class="flex-shrink-0 flex-grow-0 basis-[100%] tablet:basis-[48%] desktop:basis-[24%]"
+            title="{{ changelog.version | uppercase }}"
+        >
+            <div class="flex flex-col gap-normal">
+                @if (changelog.add) {
+                    <div class="flex flex-col gap-demi">
+                        <div class="text-title font-medium">
+                            {{ 'changelog.add' | wording | sentenceCase }}
+                        </div>
 
-                <div
-                    *ngFor='let add of changelog.add'
-                    class='flex items-center gap-demi pl-demi pr-demi'
-                >
-                    <glassait-icon
-                        [color]='
-                            modeService.mode === ModeEnum.DARK
-                                ? IconColorEnum.DARK
-                                : IconColorEnum.LIGHT
-                        '
-                        icon='plus'
-                        size='15'
-                    ></glassait-icon>
-                    <div>{{ add + ';' }}</div>
-                </div>
+                        @for (add of changelog.add; track $index) {
+                            <div class="flex items-center gap-demi pl-demi pr-demi">
+                                <glassait-icon
+                                    [color]="modeService.mode === ModeEnum.DARK ? IconColorEnum.DARK : IconColorEnum.LIGHT"
+                                    icon="plus"
+                                    size="15"
+                                ></glassait-icon>
+                                <div>{{ add + ';' }}</div>
+                            </div>
+                        }
+                    </div>
+                }
+
+                @if (changelog.modified) {
+                    <div class="flex flex-col gap-demi">
+                        <div class="text-title font-medium">
+                            {{ 'changelog.modified' | wording | sentenceCase }}
+                        </div>
+
+                        @for (modified of changelog.modified; track $index) {
+                            <div class="flex items-center gap-demi pl-demi pr-demi">
+                                <glassait-icon
+                                    [color]="modeService.mode === ModeEnum.DARK ? IconColorEnum.DARK : IconColorEnum.LIGHT"
+                                    icon="pencil"
+                                    size="15"
+                                ></glassait-icon>
+                                <div>{{ modified + ';' }}</div>
+                            </div>
+                        }
+                    </div>
+                }
+
+                @if (changelog.fixed) {
+                    <div class="flex flex-col gap-demi">
+                        <div class="text-title font-medium">
+                            {{ 'changelog.fixed' | wording | sentenceCase }}
+                        </div>
+
+                        @for (fixed of changelog.fixed; track $index) {
+                            <div class="flex items-center gap-demi pl-demi pr-demi">
+                                <glassait-icon
+                                    [color]="modeService.mode === ModeEnum.DARK ? IconColorEnum.DARK : IconColorEnum.LIGHT"
+                                    icon="wrench"
+                                    size="15"
+                                ></glassait-icon>
+                                <div>{{ fixed + ';' }}</div>
+                            </div>
+                        }
+                    </div>
+                }
             </div>
-
-            <div *ngIf='changelog.modified' class='flex flex-col gap-demi'>
-                <div class='text-title font-medium'>
-                    {{ 'changelog.modified' | wording | sentenceCase }}
-                </div>
-
-                <div
-                    *ngFor='let modified of changelog.modified'
-                    class='flex items-center gap-demi pl-demi pr-demi'
-                >
-                    <glassait-icon
-                        [color]='
-                            modeService.mode === ModeEnum.DARK
-                                ? IconColorEnum.DARK
-                                : IconColorEnum.LIGHT
-                        '
-                        icon='pencil'
-                        size='15'
-                    ></glassait-icon>
-                    <div>{{ modified + ';' }}</div>
-                </div>
-            </div>
-
-            <div *ngIf='changelog.fixed' class='flex flex-col gap-demi'>
-                <div class='text-title font-medium'>
-                    {{ 'changelog.fixed' | wording | sentenceCase }}
-                </div>
-
-                <div
-                    *ngFor='let fixed of changelog.fixed'
-                    class='flex items-center gap-demi pl-demi pr-demi'
-                >
-                    <glassait-icon
-                        [color]='
-                            modeService.mode === ModeEnum.DARK
-                                ? IconColorEnum.DARK
-                                : IconColorEnum.LIGHT
-                        '
-                        icon='wrench'
-                        size='15'
-                    ></glassait-icon>
-                    <div>{{ fixed + ';' }}</div>
-                </div>
-            </div>
-        </div>
-    </glassait-card>
+        </glassait-card>
+    }
 </div>

@@ -13,12 +13,14 @@ import { IconColorEnum } from '../../components/icon/enums/icon-enum';
     templateUrl: './sandbox.component.html',
 })
 export class SandboxComponent extends UnsubscribeDirective {
+    //region PROTECTED FIELD
     protected color: ModeEnum;
-    /**
-     * ENUM
-     */
+    //endregion
+
+    //region ENUM
     protected readonly IconColorEnum = IconColorEnum;
     protected readonly ModeEnum = ModeEnum;
+    //endregion
 
     constructor(
         private router: Router,

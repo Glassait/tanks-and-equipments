@@ -3,10 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import inventory from 'src/assets/json/inventory.json';
 import { AuthGuardService } from './commons/services/auth-guard.service';
 
-import { ClanWarComponent } from './components/clan-war/clan-war.component';
-
 // Pages
-import { AgreementsComponent } from './pages/agreements/agreements.component';
+import { ClanWarComponent } from './components/clan-war/clan-war.component';
 import { ChangelogComponent } from './pages/changelog/changelog.component';
 import { HomeComponent } from './pages/home/home.component';
 import { SandboxComponent } from './pages/sandbox/sandbox.component';
@@ -31,10 +29,10 @@ const routes: Routes = [
         path: inventory.path.changelog,
         component: ChangelogComponent,
     },
-    {
+    /*    {
         path: inventory.path.agreements,
         component: AgreementsComponent,
-    },
+    },*/
     {
         path: 'sandbox',
         component: SandboxComponent,

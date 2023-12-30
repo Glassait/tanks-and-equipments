@@ -21,6 +21,7 @@ import { AppearanceEnum } from '../skeleton-loading/enums/appearance.enum';
     styleUrls: ['./expansion-panel.component.scss'],
 })
 export class ExpansionPanelComponent implements OnInit {
+    //region INPUT
     /**
      * The title of the header i.e. the left text.<p>
      * ! ATTENTION : If title and icon are given, the component throw an error
@@ -52,20 +53,22 @@ export class ExpansionPanelComponent implements OnInit {
      * @see ColorEnum
      */
     @Input({ required: true }) color: ModeEnum;
+    //endregion
 
-    /**
-     * ENUM
-     */
+    //region ENUM
     protected readonly AppearanceEnum = AppearanceEnum;
     protected readonly ColorEnum = ModeEnum;
     protected readonly AnimationEnum = AnimationEnum;
     protected readonly IconColorEnum = IconColorEnum;
+    //endregion
 
+    //region PROTECTED FIELD
     /**
-     * Define if the screen width is the width of a mobile
+     * Represent the description modified by the width of the screen
      * @protected
      */
-    protected isMobile: boolean;
+    protected writableDescription: string;
+    //endregion
 
     /**
      * Implementation of {@link OnInit} interface
@@ -88,6 +91,10 @@ export class ExpansionPanelComponent implements OnInit {
      * @private
      */
     private setIsMobile(): void {
-        this.isMobile = window.innerWidth <= 320;
+        if (window.innerWidth <= 320) {
+            this.writableDescription = this.description.length > 10 ? this.description.slice(0, 9) + '...' : this.description;
+        } else {
+            this.writableDescription = this.description;
+        }
     }
 }

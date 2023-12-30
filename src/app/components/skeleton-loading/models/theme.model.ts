@@ -10,6 +10,7 @@ import { AppearanceEnum } from '../enums/appearance.enum';
     providedIn: 'root',
 })
 export class ThemeModel {
+    //region PRIVATE FIELD
     /**
      * The base theme for the skeleton circle
      * @private
@@ -71,6 +72,7 @@ export class ThemeModel {
         'margin-bottom': '0',
         margin: '0',
     };
+    //endregion
 
     /**
      * Return the constructed theme for the skeleton loading
@@ -79,12 +81,7 @@ export class ThemeModel {
      * @param width The width of the skeleton loading. Only use for {@link AppearanceEnum.CIRCLE}, {@link AppearanceEnum.RECTANGLE_SEMI} and {@link AppearanceEnum.RECTANGLE_NORMAL}
      * @param height The height of the skeleton loading. Only use for {@link AppearanceEnum.RECTANGLE_SEMI} and {@link AppearanceEnum.RECTANGLE_NORMAL}
      */
-    public constructTheme(
-        appearance: AppearanceEnum,
-        color: ModeEnum,
-        width: string,
-        height: string
-    ): NgxSkeletonLoaderConfigTheme {
+    public constructTheme(appearance: AppearanceEnum, color: ModeEnum, width: string, height: string): NgxSkeletonLoaderConfigTheme {
         const mode: NgxSkeletonLoaderConfigTheme = color === ModeEnum.DARK ? this.dark : this.light;
 
         switch (appearance) {

@@ -19,6 +19,7 @@ import { AppearanceEnum } from '../skeleton-loading/enums/appearance.enum';
     templateUrl: './card.component.html',
 })
 export class CardComponent implements OnInit {
+    //region INPUT
     /**
      * The title of the card
      * @example <glassait-card title='This is a title' ></glassait-card>
@@ -106,19 +107,22 @@ export class CardComponent implements OnInit {
      * ? Useless without {@link hasAction}
      */
     @Input() loadingColor: ModeEnum;
+    //endregion
 
-    /**
-     * ENUM
-     */
+    //region ENUM
     protected readonly ButtonSizeEnum = ButtonSizeEnum;
     protected readonly ButtonTypeEnum = ButtonTypeEnum;
     protected readonly AnimationEnum = AnimationEnum;
     protected readonly AppearanceEnum = AppearanceEnum;
+    //endregion
+
+    //region PROTECTED READONLY
     /**
      * The instance of the javascript window
      * @protected
      */
     protected readonly window = window;
+    //endregion
 
     /**
      * Implementation of {@link OnInit} interface
@@ -127,24 +131,16 @@ export class CardComponent implements OnInit {
     ngOnInit(): void {
         if (!this.isLoading) {
             if (this.avatar && !this.avatarColor) {
-                throw new Error(
-                    '<glassait-card> Avatar given but no color given. Please provide the color of the avatar'
-                );
+                throw new Error('<glassait-card> Avatar given but no color given. Please provide the color of the avatar');
             }
             if (this.hasAction && !this.actionText) {
-                throw new Error(
-                    '<glassait-card> The card has an action but no text given. Please provide the text for the action'
-                );
+                throw new Error('<glassait-card> The card has an action but no text given. Please provide the text for the action');
             }
             if (this.hasAction && !this.actionTheme) {
-                throw new Error(
-                    '<glassait-card> The card has an action but no theme given. Please provide the theme for the action'
-                );
+                throw new Error('<glassait-card> The card has an action but no theme given. Please provide the theme for the action');
             }
             if (this.hasAction && !this.actionCallback) {
-                throw new Error(
-                    '<glassait-card> The card has an action but no callback given. Please provide the callback for the action'
-                );
+                throw new Error('<glassait-card> The card has an action but no callback given. Please provide the callback for the action');
             }
         } else if (!this.loadingColor) {
             throw new Error(

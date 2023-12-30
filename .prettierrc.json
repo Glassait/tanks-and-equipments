@@ -12,5 +12,5 @@
     "arrowParens": "avoid",
     "htmlWhitespaceSensitivity": "strict",
     "embeddedLanguageFormatting": "auto",
-    "printWidth": 100
+    "printWidth": 140
 }

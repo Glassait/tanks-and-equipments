@@ -1,30 +1,20 @@
 <div
-    class='flex w-full items-center justify-between gap-demi rounded-t-normal bg-primary-700 p-normal shadow-footer_black dark:bg-secondary-700 dark:shadow-footer_white'
+    class="flex w-full items-center justify-between gap-demi rounded-t-normal bg-primary-700 p-normal shadow-footer_black dark:bg-secondary-700 dark:shadow-footer_white"
 >
     <picture>
-        <source srcset='assets/other/logo.avif' type='image/avif' />
-        <img
-            [ngSrc]="'assets/other/logo.png'"
-            alt='Logo du clan LCHP'
-            class='m-1 w-12 min-w-[3rem]'
-            height='195'
-            width='195'
-        />
+        <source srcset="assets/other/logo.avif" type="image/avif" />
+        <img [ngSrc]="'assets/other/logo.png'" alt="Logo du clan LCHP" class="m-1 w-12 min-w-[3rem]" height="195" width="195" />
     </picture>
 
-    <div class='flex flex-wrap justify-end gap-normal'>
-        <ng-container *ngFor='let link of links'>
+    <div class="flex flex-wrap justify-end gap-normal">
+        @for (link of links; track $index) {
             <glassait-button
-                (click)='navigate(link.path)'
-                *ngIf='link.allowVisitor ? link.enabled : !memberService.isVisitor && link.enabled'
-                [size]='ButtonSizeEnum.XSMALL'
-                [theme]='
-                    modeService.mode === ModeEnum.DARK
-                        ? ButtonThemeEnum.DARK_BLUE
-                        : ButtonThemeEnum.LIGHT_BLUE
-                '
-                text='{{ link.wording | wording | sentenceCase }}'
+                (click)="navigate(link.path)"
+                *ngIf="link.allowVisitor ? link.enabled : !memberService.isVisitor && link.enabled"
+                [size]="ButtonSizeEnum.XSMALL"
+                [theme]="modeService.mode === ModeEnum.DARK ? ButtonThemeEnum.DARK_BLUE : ButtonThemeEnum.LIGHT_BLUE"
+                text="{{ link.wording | wording | sentenceCase }}"
             ></glassait-button>
-        </ng-container>
+        }
     </div>
 </div>

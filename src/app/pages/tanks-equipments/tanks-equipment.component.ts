@@ -17,6 +17,7 @@ import { SentenceCasePipe } from '../../pipes/sentenceCase/sentence-case.pipe';
     templateUrl: './tanks-equipment.component.html',
 })
 export class TanksEquipmentComponent implements OnInit {
+    //region PROTECTED
     /**
      * The data and states of the api call
      * @protected
@@ -25,6 +26,7 @@ export class TanksEquipmentComponent implements OnInit {
         isLoading: true,
         isError: false,
     };
+    //endregion
 
     constructor(
         // API
@@ -51,9 +53,7 @@ export class TanksEquipmentComponent implements OnInit {
      * Implementation of the {@link OnInit} interface
      */
     ngOnInit(): void {
-        this.title.setTitle(
-            new SentenceCasePipe().transform(this.wordingService.header['tanks-and-equipments'])
-        );
+        this.title.setTitle(new SentenceCasePipe().transform(this.wordingService.header['tanks-and-equipments']));
 
         this.headerStore.patch({
             showHome: true,
@@ -85,10 +85,7 @@ export class TanksEquipmentComponent implements OnInit {
             next: (tankData: TankData[]): void => {
                 this.tanksData.data = tankData;
                 this.sessionService.store(CookieNameEnum.TANKS_DATA, JSON.stringify(tankData));
-                this.sessionService.store(
-                    CookieNameEnum.TANKS_DATE,
-                    DateCustom.getMidnightDate().toDateString()
-                );
+                this.sessionService.store(CookieNameEnum.TANKS_DATE, DateCustom.getMidnightDate().toDateString());
             },
             error: _err => {
                 this.tanksData.isError = true;

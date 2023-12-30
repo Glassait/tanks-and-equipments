@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import members from 'src/assets/json/members.json';
+import members from 'src/assets/mocks/members.json';
 import { environment } from '../../../environments/environment';
 import { MockEnum } from '../enums/mock.enum';
 import { InventoryService } from '../services/inventory.service';

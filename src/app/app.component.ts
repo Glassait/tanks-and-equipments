@@ -160,11 +160,7 @@ export class AppComponent implements OnInit {
                 console.log(err);
             },
             complete: (): void => {
-                this.cookie.set(
-                    CookieNameEnum.FEATURE,
-                    JSON.stringify(this.featureFlipping),
-                    DateCustom.getMidnightDate()
-                );
+                this.cookie.set(CookieNameEnum.FEATURE, JSON.stringify(this.featureFlipping), DateCustom.getMidnightDate());
             },
         });
     }

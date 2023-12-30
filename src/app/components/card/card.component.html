@@ -1,84 +1,101 @@
-<mat-card *ngIf='!isLoading'>
-    <mat-card-header>
-        <glassait-icon
-            *ngIf='avatar'
-            [color]='avatarColor'
-            [icon]='avatar'
-            [size]='40'
-            mat-card-avatar
-        ></glassait-icon>
-        <mat-card-title>{{ title }}</mat-card-title>
-        <mat-card-subtitle *ngIf='subtitle' class='text-justify'>
-            {{ subtitle }}
-        </mat-card-subtitle>
-    </mat-card-header>
-    <mat-card-content>
-        <ng-content></ng-content>
-    </mat-card-content>
-    <mat-card-actions *ngIf='hasAction' [align]='actionAlign'>
-        <glassait-button
-            (click)='actionCallback.func(actionCallback.parameter)'
-            [iconSize]='actionIconSize'
-            [rightIcon]='actionIcon'
-            [size]='ButtonSizeEnum.NORMAL'
-            [text]='actionText'
-            [theme]='actionTheme'
-            [type]='ButtonTypeEnum.BASIC'
-        ></glassait-button>
-    </mat-card-actions>
-</mat-card>
+@if (!isLoading) {
+    <mat-card>
+        <mat-card-header>
+            @if (avatar) {
+                <glassait-icon [color]="avatarColor" [icon]="avatar" [size]="40" mat-card-avatar></glassait-icon>
+            }
 
-<mat-card *ngIf='isLoading'>
-    <mat-card-header>
-        <glassait-skeleton-loading
-            *ngIf='avatar'
-            [animation]='AnimationEnum.PULSE'
-            [appearance]='AppearanceEnum.CIRCLE'
-            [color]='loadingColor'
-            height='40px'
-            mat-card-avatar
-            width='40px'
-        ></glassait-skeleton-loading>
-        <mat-card-title>
-            <glassait-skeleton-loading
-                [animation]='AnimationEnum.PULSE'
-                [appearance]='AppearanceEnum.FAT_LINE'
-                [color]='loadingColor'
-                width='114px'
-            ></glassait-skeleton-loading>
-        </mat-card-title>
-        <mat-card-subtitle *ngIf='subtitle'>
-            <glassait-skeleton-loading
-                [animation]='AnimationEnum.PULSE'
-                [appearance]='AppearanceEnum.LINE'
-                [color]='loadingColor'
-                width='200px'
-            ></glassait-skeleton-loading>
-        </mat-card-subtitle>
-    </mat-card-header>
-    <mat-card-content>
-        <div class='flex flex-col gap-demi'>
-            <glassait-skeleton-loading
-                [animation]='AnimationEnum.PULSE'
-                [appearance]='AppearanceEnum.LINE'
-                [color]='loadingColor'
-                width='{{ window.screen.width <= 320 ? "256px" : "468px"}}'
-            ></glassait-skeleton-loading>
-            <glassait-skeleton-loading
-                [animation]='AnimationEnum.PULSE'
-                [appearance]='AppearanceEnum.LINE'
-                [color]='loadingColor'
-                width='{{ window.screen.width <= 320 ? "256px" : "468px"}}'
-            ></glassait-skeleton-loading>
-        </div>
-    </mat-card-content>
-    <mat-card-actions *ngIf='hasAction' [align]='actionAlign'>
-        <glassait-button
-            [size]='ButtonSizeEnum.NORMAL'
-            [theme]='actionTheme'
-            [type]='ButtonTypeEnum.BASIC'
-            loading='true'
-            text=''
-        ></glassait-button>
-    </mat-card-actions>
-</mat-card>
+            <mat-card-title>{{ title }}</mat-card-title>
+
+            @if (subtitle) {
+                <mat-card-subtitle class="text-justify">
+                    {{ subtitle }}
+                </mat-card-subtitle>
+            }
+        </mat-card-header>
+
+        <mat-card-content>
+            <ng-content></ng-content>
+        </mat-card-content>
+
+        @if (hasAction) {
+            <mat-card-actions [align]="actionAlign">
+                <glassait-button
+                    (click)="actionCallback.func(actionCallback.parameter)"
+                    [iconSize]="actionIconSize"
+                    [rightIcon]="actionIcon"
+                    [size]="ButtonSizeEnum.NORMAL"
+                    [text]="actionText"
+                    [theme]="actionTheme"
+                    [type]="ButtonTypeEnum.BASIC"
+                ></glassait-button>
+            </mat-card-actions>
+        }
+    </mat-card>
+}
+
+@if (isLoading) {
+    <mat-card>
+        <mat-card-header>
+            @if (avatar) {
+                <glassait-skeleton-loading
+                    [animation]="AnimationEnum.PULSE"
+                    [appearance]="AppearanceEnum.CIRCLE"
+                    [color]="loadingColor"
+                    height="40px"
+                    mat-card-avatar
+                    width="40px"
+                ></glassait-skeleton-loading>
+            }
+
+            <mat-card-title>
+                <glassait-skeleton-loading
+                    [animation]="AnimationEnum.PULSE"
+                    [appearance]="AppearanceEnum.FAT_LINE"
+                    [color]="loadingColor"
+                    width="114px"
+                ></glassait-skeleton-loading>
+            </mat-card-title>
+
+            @if (subtitle) {
+                <mat-card-subtitle>
+                    <glassait-skeleton-loading
+                        [animation]="AnimationEnum.PULSE"
+                        [appearance]="AppearanceEnum.LINE"
+                        [color]="loadingColor"
+                        width="200px"
+                    ></glassait-skeleton-loading>
+                </mat-card-subtitle>
+            }
+        </mat-card-header>
+
+        <mat-card-content>
+            <div class="flex flex-col gap-demi">
+                <glassait-skeleton-loading
+                    [animation]="AnimationEnum.PULSE"
+                    [appearance]="AppearanceEnum.LINE"
+                    [color]="loadingColor"
+                    width="{{ window.screen.width <= 320 ? '256px' : '468px' }}"
+                ></glassait-skeleton-loading>
+                <glassait-skeleton-loading
+                    [animation]="AnimationEnum.PULSE"
+                    [appearance]="AppearanceEnum.LINE"
+                    [color]="loadingColor"
+                    width="{{ window.screen.width <= 320 ? '256px' : '468px' }}"
+                ></glassait-skeleton-loading>
+            </div>
+        </mat-card-content>
+
+        @if (hasAction) {
+            <mat-card-actions [align]="actionAlign">
+                <glassait-button
+                    [size]="ButtonSizeEnum.NORMAL"
+                    [theme]="actionTheme"
+                    [type]="ButtonTypeEnum.BASIC"
+                    loading="true"
+                    text=""
+                ></glassait-button>
+            </mat-card-actions>
+        }
+    </mat-card>
+}

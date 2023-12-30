@@ -6,8 +6,6 @@ import { FieldComposant } from 'src/app/commons/types/tanks-data.type';
 })
 export class FieldUrlPipe implements PipeTransform {
     transform(value: FieldComposant, ...args: unknown[]): string {
-        return `/assets/fields/${value.image}${
-            value.active ? '' : '.disabled'
-        }.${args[0]}`;
+        return `/assets/fields/${value.image}${value.active ? '' : '.disabled'}.${args[0]}`;
     }
 }

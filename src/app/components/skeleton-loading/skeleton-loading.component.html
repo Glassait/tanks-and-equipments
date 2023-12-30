@@ -1,8 +1,9 @@
-<ngx-skeleton-loader
-    *ngIf='appearance'
-    [animation]='animation'
-    [appearance]='ngxAppearance'
-    [count]='count'
-    [theme]='ngxTheme'
-    class='flex'
-></ngx-skeleton-loader>
+@if (appearance) {
+    <ngx-skeleton-loader
+        [animation]="animation"
+        [appearance]="ngxAppearance"
+        [count]="count"
+        [theme]="ngxTheme"
+        class="flex"
+    ></ngx-skeleton-loader>
+}

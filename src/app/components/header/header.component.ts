@@ -23,23 +23,27 @@ import { MenuItemType } from '../menu/types/menu-item.type';
 export class HeaderComponent extends UnsubscribeDirective implements OnInit, AfterViewInit {
     @ViewChild('darkModeSwitch', { read: ElementRef }) slideToogle: ElementRef | undefined;
 
+    //region PROTECTED FIELD
     /**
      * The menu item to pass to {@link MenuComponent}
      * @protected
      */
     protected menuItems: MenuItemType[];
+    //endregion
 
-    /**
-     * ENUM
-     */
+    //region ENUM
     protected readonly ModeEnum = ModeEnum;
+    //endregion
 
+    //region PRIVATE FIELD
     /**
      * All the feature of the site
      * @private
      */
     private feature: FeatureInterface;
+    //endregion
 
+    //region PRIVATE READONLY
     /**
      * The day of the week
      * Used for the background
@@ -51,6 +55,7 @@ export class HeaderComponent extends UnsubscribeDirective implements OnInit, Aft
      * @private
      */
     private readonly allMenuItems: MenuItemType[];
+    //endregion
 
     constructor(
         // STORE
@@ -72,27 +77,19 @@ export class HeaderComponent extends UnsubscribeDirective implements OnInit, Aft
             {
                 text: this.wording.getWordingFromString('header.home'),
                 callback: (): void => {
-                    this.router
-                        .navigate([this.inventory.getInventoryFromString('path.home')])
-                        .then(_r => {});
+                    this.router.navigate([this.inventory.getInventoryFromString('path.home')]).then(_r => {});
                 },
             },
             {
                 text: this.wording.getWordingFromString('header.tanks-and-equipments'),
                 callback: (): void => {
-                    this.router
-                        .navigate([
-                            this.inventory.getInventoryFromString('path.tanks-and-equipments'),
-                        ])
-                        .then(_r => {});
+                    this.router.navigate([this.inventory.getInventoryFromString('path.tanks-and-equipments')]).then(_r => {});
                 },
             },
             {
                 text: this.wording.getWordingFromString('header.clan-war'),
                 callback: (): void => {
-                    this.router
-                        .navigate([this.inventory.getInventoryFromString('path.clan-war')])
-                        .then(_r => {});
+                    this.router.navigate([this.inventory.getInventoryFromString('path.clan-war')]).then(_r => {});
                 },
             },
         ];
@@ -158,18 +155,18 @@ export class HeaderComponent extends UnsubscribeDirective implements OnInit, Aft
      * @private
      */
     private createSubscribe(): void {
-        this.headerStore
-            .watch()
-            .pipe(takeUntil(this.destroy$))
-            .subscribe((headerInterface: HeaderInterface): void => {
-                this.createMenuItemList(headerInterface);
-            });
-
         this.featureStore
             .watch()
             .pipe(takeWhile((value: any) => value !== null && value !== undefined, true))
             .subscribe((featureInterface: FeatureInterface): void => {
                 this.feature = featureInterface;
+            });
+
+        this.headerStore
+            .watch()
+            .pipe(takeUntil(this.destroy$))
+            .subscribe((headerInterface: HeaderInterface): void => {
+                this.createMenuItemList(headerInterface);
             });
     }
 

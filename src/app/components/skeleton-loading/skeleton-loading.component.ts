@@ -15,6 +15,7 @@ import { ThemeModel } from './models/theme.model';
     templateUrl: './skeleton-loading.component.html',
 })
 export class SkeletonLoadingComponent {
+    //region INPUT
     /**
      * The number of element wanted.
      * @example <glassait-skeleton-loading count="2"></glassait-skeleton-loading>
@@ -49,7 +50,9 @@ export class SkeletonLoadingComponent {
      * @default 2.5rem
      */
     @Input() height: string = '2.5rem';
+    //endregion
 
+    //region PROTECTED FIELD
     /**
      * The traduction of the different appearance in ngx appearance
      * @protected
@@ -61,9 +64,11 @@ export class SkeletonLoadingComponent {
      * @protected
      */
     protected ngxTheme: NgxSkeletonLoaderConfigTheme;
+    //endregion
 
     constructor(private themeModel: ThemeModel) {}
 
+    //region INPUT OVERRIDE
     /**
      * The appearance of skeleton loading wanted.
      * @see AppearanceEnum
@@ -82,6 +87,7 @@ export class SkeletonLoadingComponent {
         this._appearance = appearance;
         this.setNgx();
     }
+    //endregion
 
     /**
      * Set the {@link ngxAppearance} and the {@link ngxTheme} from the input {@link _appearance}
@@ -107,11 +113,6 @@ export class SkeletonLoadingComponent {
                 break;
         }
 
-        this.ngxTheme = this.themeModel.constructTheme(
-            this._appearance,
-            this.color,
-            this.width,
-            this.height
-        );
+        this.ngxTheme = this.themeModel.constructTheme(this._appearance, this.color, this.width, this.height);
     }
 }
