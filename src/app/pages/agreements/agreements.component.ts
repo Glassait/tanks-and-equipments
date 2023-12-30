@@ -17,14 +17,12 @@ import { SentenceCasePipe } from '../../pipes/sentenceCase/sentence-case.pipe';
     templateUrl: './agreements.component.html',
 })
 export class AgreementsComponent extends UnsubscribeDirective implements OnInit {
-    /**
-     * ENUM
-     * @protected
-     */
+    //region ENUM
     protected readonly IconColorEnum = IconColorEnum;
     protected readonly ModeEnum = ModeEnum;
     protected readonly ButtonThemeEnum = ButtonThemeEnum;
     protected readonly ButtonSizeEnum = ButtonSizeEnum;
+    //endregion
 
     constructor(
         // SERVICE

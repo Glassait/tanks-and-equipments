@@ -1,5 +1,5 @@
 /**
- * All the valu possible for the menu item
+ * All the value possible for the menu item
  */
 export type MenuItemType = {
     text: string;

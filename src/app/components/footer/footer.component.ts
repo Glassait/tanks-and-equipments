@@ -15,6 +15,7 @@ import { ButtonThemeEnum } from '../button/enums/button-theme.enum';
     templateUrl: './footer.component.html',
 })
 export class FooterComponent implements OnInit {
+    //region PROTECTED FIELD
     /**
      * Define all the button in the footer
      * @protected
@@ -56,14 +57,13 @@ export class FooterComponent implements OnInit {
             enabled: true,
         },*/
     ];
+    //endregion
 
-    /**
-     * ENUM
-     * @protected
-     */
+    //region ENUM
     protected readonly ModeEnum = ModeEnum;
     protected readonly ButtonThemeEnum = ButtonThemeEnum;
     protected readonly ButtonSizeEnum = ButtonSizeEnum;
+    //endregion
 
     constructor(
         // SERVICE

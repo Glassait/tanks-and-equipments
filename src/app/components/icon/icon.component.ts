@@ -14,6 +14,7 @@ import { IconsType } from './types/icon.type';
     template: '<div class="{{ svg?.isStroke ? StrokeEnum[color] : FillEnum[color] }}"></div>',
 })
 export class IconComponent implements OnInit {
+    //region INPUT
     /**
      * This svg icon<p>
      * ! If the icon is not registered is the {@link IconRegistryService}, throw an error
@@ -50,18 +51,20 @@ export class IconComponent implements OnInit {
      * @example <glassait-icon [color]='IconColorEnum.DARK'></glassait-icon>
      */
     @Input({ required: true }) color: IconColorEnum;
+    //endregion
 
+    //region PROTECTED FIELD
     /**
      * All the data of the icon, gotten from {@link IconRegistryService}
      * @protected
      */
     protected svg: Icon | undefined;
+    //endregion
 
-    /**
-     * ENUM
-     */
+    //region ENUM
     protected readonly FillEnum = FillEnum;
     protected readonly StrokeEnum = StrokeEnum;
+    //endregion
 
     constructor(
         private iconRegistry: IconRegistryService,
@@ -74,9 +77,7 @@ export class IconComponent implements OnInit {
      */
     ngOnInit(): void {
         this.svg = this.iconRegistry.get(this.icon);
-        this.element.nativeElement
-            .querySelector('div')
-            .appendChild(this._svgElementFromString(this.svg?.data));
+        this.element.nativeElement.querySelector('div').appendChild(this._svgElementFromString(this.svg?.data));
     }
 
     /**

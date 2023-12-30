@@ -35,6 +35,17 @@
 }
 
 /*
+* || MENU ALIGNEMENT
+*/
+.START {
+    justify-content: flex-start !important;
+}
+
+.END {
+    justify-content: flex-end !important;
+}
+
+/*
 * || VARIABLE TO EXTEND
 */
 %border-radius {
@@ -50,15 +61,4 @@
 
 .mat-mdc-menu-item {
     padding: 0 spacing.$normal !important;
-}
-
-/*
-* || MENU ALIGNEMENT
-*/
-.START {
-    justify-content: flex-start !important;
-}
-
-.END {
-    justify-content: flex-end !important;
 }

@@ -1,3 +1,6 @@
+/**
+ * This enum defined all the themes for the button
+ */
 export enum ButtonThemeEnum {
     DARK = 'DARK',
     LIGHT = 'LIGHT',

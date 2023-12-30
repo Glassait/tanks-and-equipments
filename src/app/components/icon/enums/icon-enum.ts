@@ -1,3 +1,6 @@
+/**
+ * Represent the css class for stroke svg icon
+ */
 export enum StrokeEnum {
     DARK = 'stroke-primary-700 fill-none',
     LIGHT = 'stroke-secondary-700 fill-none',
@@ -8,6 +11,9 @@ export enum StrokeEnum {
     TANK = 'TANK',
 }
 
+/**
+ * Represent the css class for fill svg icon
+ */
 export enum FillEnum {
     DARK = 'fill-primary-700',
     LIGHT = 'fill-secondary-700',
@@ -18,6 +24,9 @@ export enum FillEnum {
     TANK = 'TANK',
 }
 
+/**
+ * Represent the theme for the icon
+ */
 export enum IconColorEnum {
     DARK = 'DARK',
     LIGHT = 'LIGHT',

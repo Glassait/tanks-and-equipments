@@ -16,6 +16,7 @@ import { ButtonTypeEnum } from './enums/button-type.enum';
     templateUrl: './button.component.html',
 })
 export class ButtonComponent implements OnInit {
+    //region INPUT
     /**
      * Le texte du bouton
      * @example <glassait-button text="this is a text"></glassait-button>
@@ -62,7 +63,9 @@ export class ButtonComponent implements OnInit {
      * @implements numberAttribute
      */
     @Input({ transform: numberAttribute }) iconSize: number = 18;
+    //endregion
 
+    //region PROTECTED FIELD
     /**
      * The color of the icon
      * @protected
@@ -72,22 +75,25 @@ export class ButtonComponent implements OnInit {
      * The color of the loading component
      */
     protected loadingColor: ModeEnum;
+    //endregion
 
-    /**
-     * ENUM
-     */
+    //region ENUM
     protected readonly ButtonTypeEnum = ButtonTypeEnum;
     protected readonly AnimationEnum = AnimationEnum;
     protected readonly AppearanceEnum = AppearanceEnum;
     protected readonly SizeInRemEnum = ButtonSizeInRemEnum;
     protected readonly IconColorEnum = IconColorEnum;
+    //endregion
 
+    //region PRIVATE
     /**
      * The theme of the button.
      * @private
      */
     private _theme: ButtonThemeEnum;
+    //endregion
 
+    //region INPUT OVERRIDE
     /**
      * @see _theme
      */
@@ -130,6 +136,7 @@ export class ButtonComponent implements OnInit {
         this._disabled = value;
         this.setDisabledTheme();
     }
+    //endregion
 
     /**
      * Implementation of {@link OnInit} interface

@@ -39,15 +39,19 @@
 /*
  * || BUTTON THEME
  */
-
 .BUTTON {
+    --mdc-text-button-container-shape: #{borders.$radius-normal} !important;
+
     &.DARK {
         --mat-mdc-button-persistent-ripple-color: #{colors.$secondary-200} !important;
+        --mat-protected-button-state-layer-color: #{colors.$secondary-200} !important;
         --mat-mdc-button-ripple-color: #{colors.$secondary-700} !important;
         --mdc-protected-button-label-text-color: #{colors.$primary-700} !important;
         --mdc-text-button-label-text-color: #{colors.$primary-700} !important;
 
-        &:hover, &:focus, &:focus-within {
+        &:hover,
+        &:focus,
+        &:focus-within {
             @extend %opacity;
         }
 
@@ -61,11 +65,14 @@
 
     &.DARK_BLUE {
         --mat-mdc-button-persistent-ripple-color: #{colors.$secondary-200} !important;
+        --mat-protected-button-state-layer-color: #{colors.$secondary-200} !important;
         --mat-mdc-button-ripple-color: #{colors.$secondary-700} !important;
         --mdc-protected-button-label-text-color: #{colors.$info-400} !important;
         --mdc-text-button-label-text-color: #{colors.$info-400} !important;
 
-        &:hover, &:focus, &:focus-within {
+        &:hover,
+        &:focus,
+        &:focus-within {
             @extend %opacity;
         }
 
@@ -91,11 +98,14 @@
 
     &.LIGHT {
         --mat-mdc-button-persistent-ripple-color: #{colors.$primary-200} !important;
+        --mat-protected-button-state-layer-color: #{colors.$primary-200} !important;
         --mat-mdc-button-ripple-color: #{colors.$primary-700} !important;
         --mdc-protected-button-label-text-color: #{colors.$secondary-700} !important;
         --mdc-text-button-label-text-color: #{colors.$secondary-700} !important;
 
-        &:hover, &:focus, &:focus-within {
+        &:hover,
+        &:focus,
+        &:focus-within {
             @extend %opacity;
         }
 
@@ -109,11 +119,14 @@
 
     &.LIGHT_BLUE {
         --mat-mdc-button-persistent-ripple-color: #{colors.$primary-200} !important;
+        --mat-protected-button-state-layer-color: #{colors.$primary-200} !important;
         --mat-mdc-button-ripple-color: #{colors.$primary-700} !important;
         --mdc-protected-button-label-text-color: #{colors.$info-900} !important;
         --mdc-text-button-label-text-color: #{colors.$info-900} !important;
 
-        &:hover, &:focus, &:focus-within {
+        &:hover,
+        &:focus,
+        &:focus-within {
             @extend %opacity;
         }
 
@@ -146,7 +159,8 @@
 }
 
 %opacity {
-    .mat-mdc-button-persistent-ripple::before, .mat-mdc-raised-button.cdk-keyboard-focused .mat-mdc-button-persistent-ripple::before {
+    .mat-mdc-button-persistent-ripple::before,
+    .mat-mdc-raised-button.cdk-keyboard-focused .mat-mdc-button-persistent-ripple::before {
         opacity: 1 !important;
     }
 }
@@ -171,8 +185,4 @@
 
     line-height: typography.$body-line-height !important;
     padding: 0 spacing.$normal !important;
-}
-
-html {
-    --mdc-text-button-container-shape: #{borders.$radius-normal};
 }

@@ -10,6 +10,7 @@ import { MenuItemType } from './types/menu-item.type';
     templateUrl: './menu.component.html',
 })
 export class MenuComponent implements OnInit {
+    //region INPUT
     /**
      * The text of the menu button
      * @example <glassait-menu textMenu="Text menu" [theme]="ModeEnum.DARK" [menuItems]="menuItems"></glassait-menu>
@@ -42,24 +43,29 @@ export class MenuComponent implements OnInit {
      * @default 'START'
      */
     @Input() alignItem: 'START' | 'END' = 'START';
+    //endregion
 
+    //region PROTECTED FIELD
     /**
      * The theme of the button
      * @protected
      */
     protected buttonTheme: ButtonThemeEnum;
+    //endregion
 
-    /**
-     * ENUM
-     */
+    //region ENUM
     protected readonly ButtonTypeEnum = ButtonTypeEnum;
+    //endregion
 
+    //region PRIVATE FIELD
     /**
      * The theme of the menu button
      * @example <glassait-menu textMenu="Text menu" [theme]="ModeEnum.DARK" [menuItems]="menuItems"></glassait-menu>
      */
     private _theme: ModeEnum;
+    //endregion
 
+    //region INPUT OVERRIDE
     /**
      * @see _theme
      */
@@ -72,13 +78,11 @@ export class MenuComponent implements OnInit {
         this._theme = value;
         this.buttonTheme = ButtonThemeEnum[value];
     }
+    //endregion
 
     ngOnInit(): void {
         if (this.disabled) {
-            this.buttonTheme =
-                this._theme === ModeEnum.DARK
-                    ? ButtonThemeEnum.DARK_DISABLED
-                    : ButtonThemeEnum.LIGHT_DISABLED;
+            this.buttonTheme = this._theme === ModeEnum.DARK ? ButtonThemeEnum.DARK_DISABLED : ButtonThemeEnum.LIGHT_DISABLED;
         }
     }
 }
