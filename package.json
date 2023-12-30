@@ -36,7 +36,7 @@
         "path": "0.12.7",
         "rxjs": "7.8.1",
         "tslib": "2.6.2",
-        "zone.js": "0.14.0"
+        "zone.js": "0.14.2"
     },
     "devDependencies": {
         "@angular/cli": "17.0.8",
