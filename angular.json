@@ -4,7 +4,8 @@
       "cache": {
         "environment": "all",
         "enabled": true
-      }
+      },
+      "analytics": false
     },
     "version": 1,
     "newProjectRoot": "projects",
@@ -79,13 +80,13 @@
                     "builder": "@angular-devkit/build-angular:dev-server",
                     "configurations": {
                         "production": {
-                            "browserTarget": "app:build:production"
+                            "buildTarget": "app:build:production"
                         },
                         "external-mock": {
-                            "browserTarget": "app:build:external-mock"
+                            "buildTarget": "app:build:external-mock"
                         },
                         "full-mock": {
-                            "browserTarget": "app:build:full-mock"
+                            "buildTarget": "app:build:full-mock"
                         }
                     },
                     "defaultConfiguration": "development"
@@ -93,7 +94,7 @@
                 "extract-i18n": {
                     "builder": "@angular-devkit/build-angular:extract-i18n",
                     "options": {
-                        "browserTarget": "app:build"
+                        "buildTarget": "app:build"
                     }
                 },
                 "test": {

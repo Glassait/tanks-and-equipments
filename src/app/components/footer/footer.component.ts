@@ -49,12 +49,12 @@ export class FooterComponent implements OnInit {
             allowVisitor: false,
             enabled: true,
         },
-        {
+        /*        {
             wording: 'footer.agreements',
             path: 'path.agreements',
             allowVisitor: false,
             enabled: true,
-        },
+        },*/
     ];
 
     /**
@@ -89,13 +89,11 @@ export class FooterComponent implements OnInit {
      * @protected
      */
     protected navigate(path: string): void {
-        this.router
-            .navigate([this.inventory.getInventoryFromString(path)])
-            .then((value: boolean): void => {
-                if (value) {
-                    window.scrollTo(0, 0);
-                }
-            });
+        this.router.navigate([this.inventory.getInventoryFromString(path)]).then((value: boolean): void => {
+            if (value) {
+                window.scrollTo(0, 0);
+            }
+        });
     }
 
     /**
@@ -105,9 +103,7 @@ export class FooterComponent implements OnInit {
     private createSubscription(): void {
         this.featureStore
             .watch()
-            .pipe(
-                takeWhile((value: FeatureInterface) => value !== null && value !== undefined, true)
-            )
+            .pipe(takeWhile((value: FeatureInterface) => value !== null && value !== undefined, true))
             .subscribe((value: FeatureInterface): void => {
                 this.links[2].enabled = value.clanWar;
             });

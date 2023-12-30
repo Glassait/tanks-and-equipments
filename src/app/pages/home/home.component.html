@@ -1,104 +1,96 @@
-<div
-    class='flex flex-col items-center desktop:items-end gap-normal'
->
-    <glassait-card
-        *ngIf='memberService.isVisitor'
-        [avatarColor]='modeService.mode === ModeEnum.DARK ? IconColorEnum.DARK : IconColorEnum.LIGHT'
-        avatar='visitor'
-        class='w-[288px] tablet:w-[500px]'
-        title="{{ 'home.title.visitor' | wording | sentenceCase }}"
-    >
-        <p class='text-justify'>
-            {{ "home.text.visitor" | wording }}
-        </p>
-        <br>
-        <p class='text-justify'>
-            {{ "home.text.visitor-help" | wording }}
-        </p>
-    </glassait-card>
+<div class="flex flex-col items-center gap-normal desktop:items-end">
+    @if (memberService.isVisitor) {
+        <glassait-card
+            [avatarColor]="modeService.mode === ModeEnum.DARK ? IconColorEnum.DARK : IconColorEnum.LIGHT"
+            avatar="visitor"
+            class="w-[288px] *:text-justify tablet:w-[500px]"
+            title="{{ 'home.title.visitor' | wording | sentenceCase }}"
+        >
+            <p>{{ 'home.text.visitor' | wording }}</p>
+            <br />
+            <p>{{ 'home.text.visitor-help' | wording }}</p>
+        </glassait-card>
+    }
+
+    @if (memberService.isVisitor) {
+        <glassait-card
+            [avatarColor]="modeService.mode === ModeEnum.DARK ? IconColorEnum.DARK : IconColorEnum.LIGHT"
+            avatar="visitor"
+            class="w-[288px] *:text-justify tablet:w-[500px]"
+            title="{{ 'home.title.visitor' | wording | sentenceCase }}"
+        >
+            <p>{{ 'home.text.visitor' | wording }}</p>
+            <br />
+            <p>{{ 'home.text.visitor-help' | wording }}</p>
+        </glassait-card>
+    }
+
+    @if (!memberService.isVisitor && information.information) {
+        <glassait-card
+            [actionCallback]="{ func: navigate, parameter: information.information.lien.url }"
+            [actionTheme]="modeService.mode === ModeEnum.DARK ? ButtonThemeEnum.DARK : ButtonThemeEnum.LIGHT"
+            [avatarColor]="modeService.mode === ModeEnum.DARK ? IconColorEnum.DARK : IconColorEnum.LIGHT"
+            [isLoading]="information.isLoading"
+            [loadingColor]="modeService.mode"
+            actionAlign="end"
+            actionIcon="super_conqueror"
+            actionIconSize="36"
+            actionText="{{ information.information.lien.text }}"
+            avatar="information"
+            class="w-[288px] *:text-justify tablet:w-[500px]"
+            hasAction="{{ information.information.lien.url !== null }}"
+            title="{{ 'home.title.information' | wording | sentenceCase }}"
+        >
+            <p>{{ information.information.text }}</p>
+        </glassait-card>
+    }
+
+    @if (!memberService.isVisitor && memberOnline.amount) {
+        <glassait-card
+            [avatarColor]="modeService.mode === ModeEnum.DARK ? IconColorEnum.DARK : IconColorEnum.LIGHT"
+            [isLoading]="memberOnline.isLoading"
+            [loadingColor]="modeService.mode"
+            avatar="userGroup"
+            class="w-[288px] *:text-justify tablet:w-[500px]"
+            title="{{ 'home.title.member-online' | wording | sentenceCase }}"
+        >
+            @if (!memberOnline.amount || memberOnline.amount === 0) {
+                {{ 'home.text.no-member-online' | wording }}
+            } @else {
+                {{ 'home.text.member-online' | wording | replace: 'amount' : (memberOnline.amount | toString) }}
+            }
+        </glassait-card>
+    }
 
     <glassait-card
-        *ngIf='!memberService.isVisitor && information.information'
-        [actionCallback]='{ func: navigate, parameter: information.information.lien.url }'
-        [actionTheme]='modeService.mode === ModeEnum.DARK ? ButtonThemeEnum.DARK : ButtonThemeEnum.LIGHT'
-        [avatarColor]='modeService.mode === ModeEnum.DARK ? IconColorEnum.DARK : IconColorEnum.LIGHT'
-        [isLoading]='information.isLoading'
-        [loadingColor]='modeService.mode'
-        actionAlign='end'
-        actionIcon='super_conqueror'
-        actionIconSize='36'
-        actionText='{{ information.information.lien.text }}'
-        avatar='information'
-        class='w-[288px] tablet:w-[500px]'
-        hasAction='{{ information.information.lien.url !== null }}'
-        title="{{ 'home.title.information' | wording | sentenceCase }}"
-    >
-        <p class='text-justify'>
-            {{ information.information.text }}
-        </p>
-    </glassait-card>
-
-    <glassait-card
-        *ngIf='!memberService.isVisitor && memberOnline.amount'
-        [avatarColor]='modeService.mode === ModeEnum.DARK ? IconColorEnum.DARK : IconColorEnum.LIGHT'
-        [isLoading]='memberOnline.isLoading'
-        [loadingColor]='modeService.mode'
-        avatar='userGroup'
-        class='w-[288px] tablet:w-[500px]'
-        title="{{ 'home.title.member-online' | wording | sentenceCase }}"
-    >
-        <ng-container *ngIf='!memberOnline.amount || memberOnline.amount === 0 then noMember; else hasMember'></ng-container>
-
-        <ng-template #noMember class='text-justify'>
-            {{ "home.text.no-member-online" | wording }}
-        </ng-template>
-        <ng-template #hasMember class='text-justify'>
-            {{ "home.text.member-online" | wording | replace : "amount" : (memberOnline.amount | toString) }}
-        </ng-template>
-    </glassait-card>
-
-    <glassait-card
-        [avatarColor]='modeService.mode === ModeEnum.DARK ? IconColorEnum.DARK : IconColorEnum.LIGHT'
-        [isLoading]='wotServer.isLoading'
-        [loadingColor]='modeService.mode'
-        avatar='server'
-        class='w-[288px] tablet:w-[500px]'
+        [avatarColor]="modeService.mode === ModeEnum.DARK ? IconColorEnum.DARK : IconColorEnum.LIGHT"
+        [isLoading]="wotServer.isLoading"
+        [loadingColor]="modeService.mode"
+        avatar="server"
+        class="w-[288px] tablet:w-[500px]"
         subtitle="{{ 'home.subtitle.server-status' | wording | sentenceCase }}"
         title="{{ 'home.title.server-status' | wording | sentenceCase }}"
     >
-        <div class='flex flex-col gap-demi'>
-            <div
-                *ngFor='let server of wotServer.servers?.wot'
-                [class]="
-                    server.players_online === wotServer.max
-                        ? 'bg-warning-300 pt-[2px] pb-[2px]'
-                        : ''
-                "
-                class='flex items-center gap-normal rounded-normal pl-outside_tablet pr-outside_tablet'
-            >
-                <glassait-icon
-                    *ngIf='server.players_online !== wotServer.max'
-                    [color]='modeService.mode === ModeEnum.DARK ? IconColorEnum.DARK : IconColorEnum.LIGHT'
-                    icon='ok'
-                    size='30'
-                ></glassait-icon>
-                <glassait-icon
-                    *ngIf='server.players_online === wotServer.max'
-                    [color]='IconColorEnum.LIGHT'
-                    icon='waiting'
-                    size='30'
-                ></glassait-icon>
+        <div class="flex flex-col gap-demi">
+            @for (server of wotServer.servers?.wot; track $index) {
                 <div
-                    [class]="server.players_online === wotServer.max ? 'text-secondary-700' : ''"
-                    class='text-title'
+                    [class]="server.players_online === wotServer.max ? 'bg-warning-300 pb-[2px] pt-[2px] *:text-secondary-700' : ''"
+                    class="flex items-center gap-normal rounded-normal pl-outside_tablet pr-outside_tablet"
                 >
-                    {{ server.server }}
+                    @if (server.players_online !== wotServer.max) {
+                        <glassait-icon
+                            [color]="modeService.mode === ModeEnum.DARK ? IconColorEnum.DARK : IconColorEnum.LIGHT"
+                            icon="ok"
+                            size="30"
+                        ></glassait-icon>
+                    } @else {
+                        <glassait-icon [color]="IconColorEnum.LIGHT" icon="waiting" size="30"></glassait-icon>
+                    }
+
+                    <div class="text-title">{{ server.server }}</div>
+                    <div> {{ server.players_online }} {{ 'home.text.server-status' | wording }}{{ server.players_online > 1 ? 's' : '' }} </div>
                 </div>
-                <div [class]="server.players_online === wotServer.max ? 'text-secondary-700' : ''">
-                    {{ server.players_online }} {{ 'home.text.server-status' | wording
-                    }}{{ server.players_online > 1 ? 's' : '' }}
-                </div>
-            </div>
+            }
         </div>
     </glassait-card>
 </div>

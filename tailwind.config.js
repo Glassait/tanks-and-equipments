@@ -79,13 +79,11 @@ module.exports = {
             bold: '700',
         },
         boxShadow: {
-            card_white:
-                '0 -2px 5px 0 rgba(255, 255, 255, 0.25), 0 2px 5px 0 rgba(255, 255, 255, 0.25)',
+            card_white: '0 -2px 5px 0 rgba(255, 255, 255, 0.25), 0 2px 5px 0 rgba(255, 255, 255, 0.25)',
             card_black: '0 -2px 5px 0 rgba(0, 0, 0, 0.25), 0 2px 5px 0 rgba(0, 0, 0, 0.25)',
             slide_white:
                 '0 1px 5px 0 rgba(255, 255, 255, 0.12), 0 2px 2px 0 rgba(255, 255, 255, 0.14), 0 1px 1px 0 rgba(255, 255, 255, 0.20)',
-            slide_black:
-                '0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 1px 0 rgba(0, 0, 0, 0.20)',
+            slide_black: '0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 1px 0 rgba(0, 0, 0, 0.20)',
             footer_white: '0 -2px 5px 0 rgba(255, 255, 255, 0.25)',
             footer_black: '0 -2px 5px 0 rgba(0, 0, 0, 0.25)',
             header_white: '0 2px 5px 0 rgba(255, 255, 255, 0.25)',
@@ -108,10 +106,5 @@ module.exports = {
             },
         },
     },
-    plugins: [
-        require('tailwindcss'),
-        require('@tailwindcss/container-queries'),
-        require('prettier-plugin-tailwindcss'),
-        require('autoprefixer'),
-    ],
+    plugins: [require('tailwindcss'), require('@tailwindcss/container-queries'), 'prettier-plugin-tailwindcss', require('autoprefixer')],
 };

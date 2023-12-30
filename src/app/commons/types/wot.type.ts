@@ -11,7 +11,7 @@ export type WotServer = {
 };
 
 export type MemberOnline = {
-    '500179430': {
+    [key: string]: {
         private: {
             online_members: number[];
         };

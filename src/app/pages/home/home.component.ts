@@ -24,14 +24,13 @@ import { SentenceCasePipe } from '../../pipes/sentenceCase/sentence-case.pipe';
     templateUrl: './home.component.html',
 })
 export class HomeComponent implements OnInit {
-    /**
-     * ENUM
-     * @protected
-     */
+    //region ENUM
     protected readonly ModeEnum = ModeEnum;
     protected readonly IconColorEnum = IconColorEnum;
     protected readonly ButtonThemeEnum = ButtonThemeEnum;
+    //endregion
 
+    //region PRIVATE READONLY FIELD
     /**
      * The initial state of the http field
      * @private
@@ -40,7 +39,9 @@ export class HomeComponent implements OnInit {
         isLoading: true,
         isError: false,
     };
+    //endregion
 
+    //region PROTECTED FIELD
     /**
      * Store the result of the api call to get the information of the clan
      * @protected
@@ -61,6 +62,7 @@ export class HomeComponent implements OnInit {
     protected memberOnline: DefaultHttpType & {
         amount?: number;
     } = this.initial;
+    //endregion
 
     constructor(
         // STORE
@@ -112,13 +114,11 @@ export class HomeComponent implements OnInit {
         if (path.indexOf('https') >= 0) {
             window.location.href = path;
         } else {
-            this.router
-                .navigate([this.inventoryService.getInventoryFromString(path)])
-                .then((value: boolean): void => {
-                    if (value) {
-                        window.scrollTo(0, 0);
-                    }
-                });
+            this.router.navigate([this.inventoryService.getInventoryFromString(path)]).then((value: boolean): void => {
+                if (value) {
+                    window.scrollTo(0, 0);
+                }
+            });
         }
     };
 
@@ -173,12 +173,8 @@ export class HomeComponent implements OnInit {
                 this.wotServer.servers.wot.forEach((server: any): void => {
                     server.server = server.server.replace('20', 'EU');
                 });
-                this.wotServer.servers.wot.sort((a: any, b: any) =>
-                    a.server.localeCompare(b.server)
-                );
-                this.wotServer.max = Math.max(
-                    ...this.wotServer.servers.wot.map((value: any) => value.players_online)
-                );
+                this.wotServer.servers.wot.sort((a: any, b: any) => a.server.localeCompare(b.server));
+                this.wotServer.max = Math.max(...this.wotServer.servers.wot.map((value: any) => value.players_online));
             },
             error: _err => {
                 this.wotServer.isError = true;
@@ -214,7 +210,7 @@ export class HomeComponent implements OnInit {
 
         this.wotService.getMemberOnline(this.memberService.accessToken).subscribe({
             next: (response: DefaultWargaming<MemberOnline>): void => {
-                this.memberOnline.amount = response.data['500179430'].private.online_members.length;
+                this.memberOnline.amount = response.data[this.inventoryService.clanId].private.online_members.length;
             },
             error: _err => {
                 this.memberOnline.isError = true;
