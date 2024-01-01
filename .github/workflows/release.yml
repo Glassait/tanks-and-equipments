@@ -31,7 +31,7 @@ jobs:
               if: ${{ contains(github.event.head_commit.message, 'major') }}
               run: npm version premajor
             - name: Prerelease version
-              if: ${{ contains(github.event.head_commit.message, 'release ') }}
+              if: ${{ contains(github.event.head_commit.message, 'release') }}
               run: npm version prerelease
             - name: Push version
               run: |
