@@ -7,6 +7,7 @@ export type IconsType =
     | 'castle'
     | 'map'
     | 'ok'
+    | 'minus'
     | 'ko'
     | 'chargeur'
     | 'commandant'

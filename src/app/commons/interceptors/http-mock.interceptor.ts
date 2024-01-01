@@ -42,7 +42,7 @@ export class HttpMockInterceptor implements HttpInterceptor {
                     return next.handle(mockReq);
                 } else {
                     const mockReq: HttpRequest<any> = req.clone({
-                        url: `/assets/mocks/${endPoint[1].replace('/', '.')}.json`,
+                        url: `/assets/mocks/${endPoint[1].replace('/', '.').replace(/\?access_token=[0-9a-zA-Z]{40}/, "")}.json`,
                         method: 'GET',
                     });
                     return next.handle(mockReq);

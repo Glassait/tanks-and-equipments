@@ -3,4 +3,5 @@ export type VersionType = {
     add?: string[];
     modified?: string[];
     fixed?: string[];
+    removed?: string[];
 };

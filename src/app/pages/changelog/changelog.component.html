@@ -63,6 +63,25 @@
                         }
                     </div>
                 }
+
+                @if (changelog.removed) {
+                    <div class="flex flex-col gap-demi">
+                        <div class="text-title font-medium">
+                            {{ 'changelog.removed' | wording | sentenceCase }}
+                        </div>
+
+                        @for (removed of changelog.removed; track $index) {
+                            <div class="flex items-center gap-demi pl-demi pr-demi">
+                                <glassait-icon
+                                    [color]="modeService.mode === ModeEnum.DARK ? IconColorEnum.DARK : IconColorEnum.LIGHT"
+                                    icon="minus"
+                                    size="15"
+                                ></glassait-icon>
+                                <div>{{ removed + ';' }}</div>
+                            </div>
+                        }
+                    </div>
+                }
             </div>
         </glassait-card>
     }

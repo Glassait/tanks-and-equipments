@@ -1,14 +1,30 @@
 {
     "changelog": [
         {
+            "version": "2.0.1",
+            "add": [
+                "Ajout des chars suivants : `T110E5`, `BZ-75`, `60TP LEWANDOWSKIEGO` et `AMX 50 B`",
+                "Ajout de la partie supprimés dans le journal des modifications"
+            ],
+            "modified": [
+                "Modification des images des chars pour une meilleur qualité",
+                "Modification de la configuration pour les chars suivants : `Object 277`, `Object 260`, `Object 907`, `Object 140`, `Super Conqueror`, `CS-63`, `Panhard EBR 105`, `Object 279 early`, `Kampfpanzer 07 P(E)`"
+            ],
+            "removed": [
+                "Suppression des chars suivants : `T95/FV4201 Chieftain`, `T110E3`, `Object 268 version 4`, `Leopard 1`, `STRV 103B`, `IS-7`"
+            ]
+        },
+        {
             "version": "2.0.0",
             "modified": [
                 "Changement du logo pour le clan FOLD_",
                 "Changement des liens pour le clan FOLD_",
-                "Suppression de la page règlement",
                 "Passage à Angular 17",
                 "Passage à TailwindsCSS 3.4",
                 "Clean code et optimisation"
+            ],
+            "removed": [
+                "Suppression de la page règlement"
             ]
         },
         {
@@ -23,12 +39,14 @@
             "modified": [
                 "Refonte total de l'apparence du site",
                 "Optimisation du code afin d'améliorer les performances",
-                "Le chargement des données s'affiche via un skeleton loading et plus un loader",
-                "Suppression de l'encart sur les statistiques du clan, jugé inutile"
+                "Le chargement des données s'affiche via un skeleton loading et plus un loader"
             ],
             "fixed": [
                 "Les liens dans le pied de page ne sont plus dynamique",
                 "Les serveurs sur la page d'accueil sont triés par ordre croisant"
+            ],
+            "removed": [
+                "Suppression de l'encart sur les statistiques du clan, jugé inutile"
             ]
         },
         {
@@ -37,7 +55,7 @@
                 "Mise en place d'une API pour accroître la flexibilité du site",
                 "Mise en place d'une base de données pour faciliter les modifications des valeurs de manière plus intuitive"
             ],
-            "fixed": ["Suppression de l'instruction `localStorage.clear`"]
+            "removed": ["Suppression de l'instruction `localStorage.clear`"]
         },
         {
             "version": "1.1.9",

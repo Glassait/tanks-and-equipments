@@ -47,6 +47,11 @@ import { strv103bIcon } from './components/icon/files/tanks/strv_103b.icon';
 import { superConquerorIcon } from './components/icon/files/tanks/super_conqueror.icon';
 import { t110e3Icon } from './components/icon/files/tanks/t110e3.icon';
 import { t95Fv4201ChieftainIcon } from './components/icon/files/tanks/t95_fv4201_chieftain.icon';
+import { amx_50_bIcon } from './components/icon/files/tanks/amx_50_b.icon';
+import { bz_75Icon } from './components/icon/files/tanks/bz_75.icon';
+import { tp_lewandowskiegoIcon } from './components/icon/files/tanks/60tp_lewandowskiego.icon';
+import { t110e5Icon } from './components/icon/files/tanks/t110e5.icon';
+import { minusIcon } from './components/icon/files/other/minus.icon';
 
 @Component({
     selector: 'app-root',
@@ -102,6 +107,7 @@ export class AppComponent implements OnInit {
             castleIcon,
             mapIcon,
             okIcon,
+            minusIcon,
             amxM4Mle54Icon,
             cs63Icon,
             panhardEbr105Icon,
@@ -118,6 +124,10 @@ export class AppComponent implements OnInit {
             t95Fv4201ChieftainIcon,
             t110e3Icon,
             kpz07pEIcon,
+            amx_50_bIcon,
+            bz_75Icon,
+            tp_lewandowskiegoIcon,
+            t110e5Icon,
             chargeurIcon,
             commandantIcon,
             operateurRadioIcon,
@@ -151,7 +161,7 @@ export class AppComponent implements OnInit {
             return;
         }
 
-        this.featureFlippingApi.queryFeature().subscribe({
+        this.featureFlippingApi.queryFeature(this.memberStore.get('accessToken')).subscribe({
             next: (value: FeatureInterface): void => {
                 this.featureStore.patch(value);
                 this.featureFlipping = value;

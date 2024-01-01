@@ -30,7 +30,8 @@
     "changelog": {
         "add": "Ajoutés",
         "modified": "Modifiés",
-        "fixed": "Corrigés"
+        "fixed": "Corrigés",
+        "removed": "Supprimés"
     },
     "agreements": {
         "title": {
