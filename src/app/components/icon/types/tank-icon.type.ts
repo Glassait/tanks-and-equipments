@@ -17,4 +17,8 @@ export type TankIconType =
     | 'strv_103b'
     | 't95_fv4201_chieftain'
     | 't110e3'
-    | 'kampfpanzer_07_p(e)';
+    | 'kampfpanzer_07_p(e)'
+    | 't110e5'
+    | 'BZ-75'
+    | "AMX 50 B"
+    | "60tp_lewandowskiego";

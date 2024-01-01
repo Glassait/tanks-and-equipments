@@ -7,7 +7,7 @@ import { InventoryService } from '../services/inventory.service';
     providedIn: 'root',
 })
 export class TanksDataApi {
-    private url: string = 'tanks';
+    private url: string = 'tanks?access_token=';
 
     constructor(
         private httpClient: HttpClient,
@@ -16,7 +16,7 @@ export class TanksDataApi {
 
     public queryTanksData(accessToken: string): Observable<any> {
         return this.httpClient.get(
-            this.inventoryService.getGlassaitApi()['live-url'] + this.url + '/' + accessToken
+            this.inventoryService.getGlassaitApi()['live-url'] + this.url + accessToken
         );
     }
 }

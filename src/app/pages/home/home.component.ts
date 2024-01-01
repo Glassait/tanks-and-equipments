@@ -134,7 +134,7 @@ export class HomeComponent implements OnInit {
             return;
         }
 
-        this.informationApi.queryInformation().subscribe({
+        this.informationApi.queryInformation(this.memberService.accessToken).subscribe({
             next: (value: InformationType): void => {
                 this.information.information = value;
             },
