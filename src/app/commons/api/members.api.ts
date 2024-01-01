@@ -18,10 +18,7 @@ export class MembersApi {
         private inventoryService: InventoryService
     ) {}
 
-    public isClanMembers(id: number | undefined): Member | undefined {
-        if (!id) {
-            return undefined;
-        }
+    public isClanMembers(id: number): Member {
         if ([MockEnum.NO_MOCK, MockEnum.EXTERNAL_MOCK].includes(environment.mock)) {
             this.httpClient.get(this.inventoryService.getGlassaitApi()['live-url'] + this.url + id).subscribe({
                 next: value => {
@@ -34,6 +31,12 @@ export class MembersApi {
             });
         }
 
-        return this._members.find((member: Member): boolean => id === member.account_id);
+        return (
+            this._members.find((member: Member): boolean => id === member.account_id) ??
+            ({
+                account_id: null,
+                role: '',
+            } as unknown as Member)
+        );
     }
 }
