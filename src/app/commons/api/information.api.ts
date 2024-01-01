@@ -7,14 +7,14 @@ import { InventoryService } from '../services/inventory.service';
     providedIn: 'root',
 })
 export class InformationApi {
-    private url: string = 'information';
+    private url: string = 'information?access_token=';
 
     constructor(
         private httpClient: HttpClient,
         private inventoryService: InventoryService
     ) {}
 
-    public queryInformation(): Observable<any> {
-        return this.httpClient.get(this.inventoryService.getGlassaitApi()['live-url'] + this.url);
+    public queryInformation(accessToken: string): Observable<any> {
+        return this.httpClient.get(this.inventoryService.getGlassaitApi()['live-url'] + this.url + accessToken);
     }
 }

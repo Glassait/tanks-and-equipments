@@ -7,14 +7,14 @@ import { InventoryService } from '../services/inventory.service';
     providedIn: 'root',
 })
 export class FeatureFlippingApi {
-    private url: string = 'feature';
+    private url: string = 'feature?access_token=';
 
     constructor(
         private httpClient: HttpClient,
         private inventoryClass: InventoryService
     ) {}
 
-    public queryFeature(): Observable<any> {
-        return this.httpClient.get(this.inventoryClass.getGlassaitApi()['live-url'] + this.url);
+    public queryFeature(accessToken: string): Observable<any> {
+        return this.httpClient.get(this.inventoryClass.getGlassaitApi()['live-url'] + this.url + accessToken);
     }
 }

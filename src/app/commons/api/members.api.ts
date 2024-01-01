@@ -11,7 +11,7 @@ import { Member } from '../types/member.type';
 })
 export class MembersApi {
     private _members: Member[] = members.members;
-    private url: string = 'member';
+    private url: string = 'member?account_id=';
 
     constructor(
         private httpClient: HttpClient,
@@ -23,17 +23,15 @@ export class MembersApi {
             return undefined;
         }
         if ([MockEnum.NO_MOCK, MockEnum.EXTERNAL_MOCK].includes(environment.mock)) {
-            this.httpClient
-                .get(this.inventoryService.getGlassaitApi()['live-url'] + this.url + '/' + id)
-                .subscribe({
-                    next: value => {
-                        return value;
-                    },
-                    error: err => {
-                        console.log(err);
-                    },
-                    complete: (): void => {},
-                });
+            this.httpClient.get(this.inventoryService.getGlassaitApi()['live-url'] + this.url + id).subscribe({
+                next: value => {
+                    return value;
+                },
+                error: err => {
+                    console.log(err);
+                },
+                complete: (): void => {},
+            });
         }
 
         return this._members.find((member: Member): boolean => id === member.account_id);
