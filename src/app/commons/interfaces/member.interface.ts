@@ -1,12 +1,14 @@
+import { Member } from '../types/member.type';
+
 export interface MemberInterface {
-    account_id: number;
+    user?: Member;
     isAdmin: boolean;
     isVisitor: boolean;
     accessToken: string;
 }
 
-export const INTITIAL_STATE_MEMBER: MemberInterface = {
-    account_id: 0,
+export const INITIAL_STATE_MEMBER: MemberInterface = {
+    user: undefined,
     isAdmin: false,
     isVisitor: true,
     accessToken: '',
