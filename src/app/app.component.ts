@@ -58,6 +58,8 @@ import { minusIcon } from './components/icon/files/other/minus.icon';
     templateUrl: './app.component.html',
 })
 export class AppComponent implements OnInit {
+    protected featureFetch: boolean = false;
+
     private featureFlipping: FeatureInterface;
 
     constructor(
@@ -75,18 +77,21 @@ export class AppComponent implements OnInit {
         if (!this.auth.isLoggedIn()) {
             this.auth.login();
         }
-
-        this.registerIcons();
-        this.onResize({});
     }
 
     /**
      * Implementation of the {@link OnInit} interface
      */
     ngOnInit(): void {
-        if (!this.memberStore.get('isVisitor')) {
-            this.getFeature();
-        }
+        this.registerIcons();
+        this.onResize({});
+
+        this.memberStore.watch().subscribe(value => {
+            if (!value.isVisitor && !this.featureFetch) {
+                this.getFeature();
+                this.featureFetch = true;
+            }
+        });
     }
 
     @HostListener('window:resize', ['$event'])

@@ -46,8 +46,6 @@ export class AuthenticationService {
                 console.error(err);
             },
             complete: (): void => {
-                this.updateStore(user, token?.access_token);
-
                 if (user) {
                     console.log('User found and authenticated');
                     this.cookieService.set(CookieNameEnum.TOKEN_WARGAMING, JSON.stringify(token), DateCustom.getToWeeks());
@@ -55,6 +53,8 @@ export class AuthenticationService {
                     this.cookieService.set(CookieNameEnum.TOKEN_USER, JSON.stringify(user), DateCustom.getToWeeks());
                     console.log(`Cookie ${CookieNameEnum.TOKEN_USER} created`);
                 }
+
+                this.updateStore(user, token?.access_token);
                 this.router.navigate(['/']).then((): void => {});
             },
         });

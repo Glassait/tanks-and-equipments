@@ -1,7 +1,9 @@
 <app-header role="banner"></app-header>
 
-<main class="p-outside_tablet desktop:pl-outside_desktop desktop:pr-outside_desktop" role="main">
-    <router-outlet></router-outlet>
-</main>
+@if (featureFetch) {
+    <main class="p-outside_tablet desktop:pl-outside_desktop desktop:pr-outside_desktop" role="main">
+        <router-outlet></router-outlet>
+    </main>
+}
 
 <app-footer role="contentinfo"></app-footer>
