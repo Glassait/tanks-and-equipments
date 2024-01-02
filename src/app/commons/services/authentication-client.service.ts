@@ -20,7 +20,7 @@ export class AuthenticationClientService {
 
     /**
      * Logs in the user and retrieves an access token
-     * @returns Observable that resolves with the user's access token
+     * @returns {Observable} that resolves with the user's access token
      */
     public login(): Observable<any> {
         if (environment.production) {
@@ -33,18 +33,5 @@ export class AuthenticationClientService {
         }
 
         return this.httpClient.get(this.inventoryService.getWargamingApi('login-mock'));
-    }
-
-    /**
-     * Destroys the user's access token
-     * @param {string} accessToken The access token to destroy
-     * @returns Observable that resolves with a boolean indicating success
-     */
-    public logout(accessToken: string): Observable<any> {
-        if (environment.production) {
-            return this.httpClient.get(this.inventoryService.getWargamingApi('log-out', accessToken));
-        }
-
-        return of(true);
     }
 }
