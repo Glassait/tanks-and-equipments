@@ -62,8 +62,6 @@ import { takeWhile } from 'rxjs';
     templateUrl: './app.component.html',
 })
 export class AppComponent implements OnInit {
-    protected isVisitor: boolean = true;
-
     constructor(
         // SERVICE
         private readonly iconRegistry: IconRegistryService,
@@ -84,7 +82,8 @@ export class AppComponent implements OnInit {
     }
 
     /**
-     * Implementation of the {@link OnInit} interface
+     * Registers all icons used on the site, listens for window resize events, and subscribes to the member store to fetch the feature flag when the user logs in.
+     * @Implementaion of {@link OnInit}
      */
     ngOnInit(): void {
         this.registerIcons();
@@ -95,7 +94,6 @@ export class AppComponent implements OnInit {
             .watch()
             .pipe(takeWhile((_value: MemberInterface) => !featureFetch))
             .subscribe((value: MemberInterface): void => {
-                this.isVisitor = value.isVisitor;
                 if (!value.isVisitor && value.token && value.token.status !== 'error' && !featureFetch) {
                     this.getFeature(value.token);
                     featureFetch = true;
@@ -165,8 +163,8 @@ export class AppComponent implements OnInit {
     }
 
     /**
-     * Get the status of all the features
-     * @private
+     * Get the feature from the server and store it in the store
+     * @param {ConnectionSuccess} token - The authentication token
      */
     private getFeature(token: ConnectionSuccess): void {
         const cookie: string = this.cookie.get(CookieNameEnum.FEATURE);
