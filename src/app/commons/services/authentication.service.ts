@@ -100,7 +100,7 @@ export class AuthenticationService {
         this.memberStore.patch({
             user: user,
             isAdmin: CheckGrade.isAdmin(user.role),
-            isVisitor: !user,
+            isVisitor: !user.account_id,
             accessToken: accessToken,
         });
     }

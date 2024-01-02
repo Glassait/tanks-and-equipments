@@ -3,7 +3,8 @@
         "menu": "menu",
         "home": "page d'accueil",
         "tanks-and-equipments": "chars & équipements",
-        "clan-war": "clan War"
+        "clan-war": "clan War",
+        "connection": "connexion"
     },
     "home": {
         "title": {

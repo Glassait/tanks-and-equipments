@@ -34,6 +34,13 @@
                 textMenu="{{ 'header.menu' | wording | titlecase }}"
                 xPosition="before"
             ></glassait-menu>
+        } @else {
+            <glassait-button
+                text="{{ 'header.connection' | wording | titlecase }}"
+                [theme]="ButtonThemeEnum[modeService.mode]"
+                [type]="ButtonTypeEnum.RAISED"
+                (click)="login()"
+            ></glassait-button>
         }
     </div>
 </div>

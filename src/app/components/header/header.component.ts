@@ -15,7 +15,13 @@ import { ModeEnum } from '../../commons/enums/modeEnum';
 import { FeatureInterface } from '../../commons/interfaces/feature.interface';
 import { FeatureStore } from '../../commons/stores/feature.store';
 import { MenuItemType } from '../menu/types/menu-item.type';
+import { ButtonThemeEnum } from '../button/enums/button-theme.enum';
+import { ButtonTypeEnum } from '../button/enums/button-type.enum';
+import { AuthenticationService } from '../../commons/services/authentication.service';
 
+/**
+ * Component for the header of the site
+ */
 @Component({
     selector: 'app-header',
     templateUrl: './header.component.html',
@@ -33,6 +39,8 @@ export class HeaderComponent extends UnsubscribeDirective implements OnInit, Aft
 
     //region ENUM
     protected readonly ModeEnum = ModeEnum;
+    protected readonly ButtonThemeEnum = ButtonThemeEnum;
+    protected readonly ButtonTypeEnum = ButtonTypeEnum;
     //endregion
 
     //region PRIVATE FIELD
@@ -55,20 +63,22 @@ export class HeaderComponent extends UnsubscribeDirective implements OnInit, Aft
      * @private
      */
     private readonly allMenuItems: MenuItemType[];
+
     //endregion
 
     constructor(
         // STORE
-        private modeStore: ModeStore,
-        private headerStore: HeaderStore,
-        private featureStore: FeatureStore,
+        private readonly modeStore: ModeStore,
+        private readonly headerStore: HeaderStore,
+        private readonly featureStore: FeatureStore,
         // SERVICE
-        private wording: WordingService,
-        private inventory: InventoryService,
-        protected memberService: MemberService,
-        protected modeService: ModeService,
+        private readonly wording: WordingService,
+        private readonly inventory: InventoryService,
+        private readonly auth: AuthenticationService,
+        protected readonly memberService: MemberService,
+        protected readonly modeService: ModeService,
         // ANGULAR
-        private router: Router
+        private readonly router: Router
     ) {
         super();
         this.dayNumber = new Date().getDay();
@@ -132,8 +142,8 @@ export class HeaderComponent extends UnsubscribeDirective implements OnInit, Aft
     }
 
     /**
-     * Slide toggle event that change between light and dark mode
-     * @param change
+     * Slide toggle event that changes between light and dark mode
+     * @param {MatSlideToggleChange} change - The change event
      * @protected
      */
     protected changeMode(change: MatSlideToggleChange): void {
@@ -148,6 +158,13 @@ export class HeaderComponent extends UnsubscribeDirective implements OnInit, Aft
             document.documentElement.classList.remove('dark');
             this.modeStore.set('color', ModeEnum.LIGHT);
         }
+    }
+
+    /**
+     * Logs the user in
+     */
+    protected login(): void {
+        this.auth.login();
     }
 
     /**
@@ -171,8 +188,8 @@ export class HeaderComponent extends UnsubscribeDirective implements OnInit, Aft
     }
 
     /**
-     * Create the list of items for {@link MenuComponent}
-     * @param header
+     * Creates the list of items for {@link MenuComponent}
+     * @param {HeaderInterface} header - The header interface
      * @private
      */
     private createMenuItemList(header: HeaderInterface): void {
