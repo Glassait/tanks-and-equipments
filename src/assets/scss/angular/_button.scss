@@ -169,12 +169,14 @@
     --mdc-protected-button-container-elevation: #{box-shadow.$box-shadow-card-white} !important;
     --mdc-protected-button-focus-container-elevation: #{box-shadow.$box-shadow-card-white} !important;
     --mdc-protected-button-hover-container-elevation: #{box-shadow.$box-shadow-card-white} !important;
+    box-shadow: #{box-shadow.$box-shadow-card-white} !important;
 }
 
 %box-black {
     --mdc-protected-button-container-elevation: #{box-shadow.$box-shadow-card-black} !important;
     --mdc-protected-button-focus-container-elevation: #{box-shadow.$box-shadow-card-black} !important;
     --mdc-protected-button-hover-container-elevation: #{box-shadow.$box-shadow-card-black} !important;
+    box-shadow: #{box-shadow.$box-shadow-card-black} !important;
 }
 
 /*

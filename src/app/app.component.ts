@@ -52,16 +52,16 @@ import { bz_75Icon } from './components/icon/files/tanks/bz_75.icon';
 import { tp_lewandowskiegoIcon } from './components/icon/files/tanks/60tp_lewandowskiego.icon';
 import { t110e5Icon } from './components/icon/files/tanks/t110e5.icon';
 import { minusIcon } from './components/icon/files/other/minus.icon';
+import { MemberInterface } from './commons/interfaces/member.interface';
+import { WindowsCustom } from './commons/utils/windows-custom.util';
+import { ConnectionSuccess } from './commons/types/connection.type';
+import { takeWhile } from 'rxjs';
 
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
 })
 export class AppComponent implements OnInit {
-    protected featureFetch: boolean = false;
-
-    private featureFlipping: FeatureInterface;
-
     constructor(
         // SERVICE
         private readonly iconRegistry: IconRegistryService,
@@ -74,24 +74,31 @@ export class AppComponent implements OnInit {
         // API
         private readonly featureFlippingApi: FeatureFlippingApi
     ) {
-        if (!this.auth.isLoggedIn()) {
+        if (WindowsCustom.getSearch() !== '') {
             this.auth.login();
+        } else {
+            this.auth.loginFromCookie();
         }
     }
 
     /**
-     * Implementation of the {@link OnInit} interface
+     * Registers all icons used on the site, listens for window resize events, and subscribes to the member store to fetch the feature flag when the user logs in.
+     * @Implementaion of {@link OnInit}
      */
     ngOnInit(): void {
         this.registerIcons();
         this.onResize({});
 
-        this.memberStore.watch().subscribe(value => {
-            if (!value.isVisitor && !this.featureFetch) {
-                this.getFeature();
-                this.featureFetch = true;
-            }
-        });
+        let featureFetch = false;
+        this.memberStore
+            .watch()
+            .pipe(takeWhile((_value: MemberInterface) => !featureFetch))
+            .subscribe((value: MemberInterface): void => {
+                if (!value.isVisitor && value.token && value.token.status !== 'error' && !featureFetch) {
+                    this.getFeature(value.token);
+                    featureFetch = true;
+                }
+            });
     }
 
     @HostListener('window:resize', ['$event'])
@@ -156,26 +163,28 @@ export class AppComponent implements OnInit {
     }
 
     /**
-     * Get the status of all the features
-     * @private
+     * Get the feature from the server and store it in the store
+     * @param {ConnectionSuccess} token - The authentication token
      */
-    private getFeature(): void {
+    private getFeature(token: ConnectionSuccess): void {
         const cookie: string = this.cookie.get(CookieNameEnum.FEATURE);
         if (cookie) {
             this.featureStore.patch(JSON.parse(cookie));
             return;
         }
 
-        this.featureFlippingApi.queryFeature(this.memberStore.get('accessToken')).subscribe({
+        let featureFlipping: FeatureInterface;
+
+        this.featureFlippingApi.queryFeature(token.access_token).subscribe({
             next: (value: FeatureInterface): void => {
                 this.featureStore.patch(value);
-                this.featureFlipping = value;
+                featureFlipping = value;
             },
             error: err => {
                 console.log(err);
             },
             complete: (): void => {
-                this.cookie.set(CookieNameEnum.FEATURE, JSON.stringify(this.featureFlipping), DateCustom.getMidnightDate());
+                this.cookie.set(CookieNameEnum.FEATURE, JSON.stringify(featureFlipping), DateCustom.getMidnightDate());
             },
         });
     }

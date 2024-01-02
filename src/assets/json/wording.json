@@ -3,7 +3,8 @@
         "menu": "menu",
         "home": "page d'accueil",
         "tanks-and-equipments": "chars & équipements",
-        "clan-war": "clan War"
+        "clan-war": "clan War",
+        "connection": "connexion"
     },
     "home": {
         "title": {
@@ -17,7 +18,7 @@
         },
         "text": {
             "server-status": "joueur",
-            "visitor": "Si vous observez cette carte, cela signifie que vous n'êtes pas connecté(e) ou que vous ne faites pas partie du clan. Si vous appartenez effectivement au clan, veuillez essayer de supprimer les cookies et la session et de recharger la page pour vous connecter.",
+            "visitor": "Si vous observez cette carte, cela signifie que vous n'êtes pas connecté(e) ou que vous ne faites pas partie du clan. Si vous appartenez effectivement au clan, veuillez essayer de supprimer les cookies puis de cliquer sur le bouton `Connexion` situé en haut à droite de l'écran.",
             "visitor-help": "Si le problème persiste, veuillez vérifier que vous utilisez le bon compte Wargaming. Si le problème persiste toujours, veuillez contacter un administrateur sur Discord.",
             "no-member-online": "Il n'y a actuellement personne de connecté sur le jeu, mais tu peux changer cela !",
             "member-online": "Il y a amount personnes connectées sur le jeu. Dépêche-toi de les rejoindre sur Discord !"
