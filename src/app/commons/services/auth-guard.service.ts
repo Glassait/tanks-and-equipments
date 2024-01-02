@@ -19,12 +19,10 @@ export class AuthGuardService {
     }
 
     private checkLogin(): Observable<boolean> {
-        if (!this.authService.isLoggedIn()) {
-            this.router
-                .navigate([this.inventory.getPath().home])
-                .then((): void => {
-                    // Ignored
-                });
+        if (!this.authService.loginFromCookie()) {
+            this.router.navigate([this.inventory.getPath().home]).then((): void => {
+                // Ignored
+            });
             return of(false);
         }
 

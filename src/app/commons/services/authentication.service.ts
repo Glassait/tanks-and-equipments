@@ -64,10 +64,10 @@ export class AuthenticationService {
     }
 
     /**
-     * Checks if the user is logged in or not
-     * If the user's data is found in the cookie, the user is automatically logged in
+     * Checks if the user is already authenticated from the cookies
+     * @returns {boolean} true if the user is authenticated, false otherwise
      */
-    public isLoggedIn(): boolean {
+    public loginFromCookie(): boolean {
         const token: string = this.cookieService.get(CookieNameEnum.TOKEN_WARGAMING);
         const user: string = this.cookieService.get(CookieNameEnum.TOKEN_USER);
 

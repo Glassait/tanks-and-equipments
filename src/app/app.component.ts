@@ -79,7 +79,7 @@ export class AppComponent implements OnInit {
         if (WindowsCustom.getSearch() !== '') {
             this.auth.login();
         } else {
-            this.auth.isLoggedIn();
+            this.auth.loginFromCookie();
         }
     }
 
