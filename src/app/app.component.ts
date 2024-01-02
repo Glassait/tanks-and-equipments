@@ -54,6 +54,7 @@ import { t110e5Icon } from './components/icon/files/tanks/t110e5.icon';
 import { minusIcon } from './components/icon/files/other/minus.icon';
 import { MemberInterface } from './commons/interfaces/member.interface';
 import { WindowsCustom } from './commons/utils/windows-custom.util';
+import { ConnectionSuccess } from './commons/types/connection.type';
 
 @Component({
     selector: 'app-root',
@@ -89,8 +90,8 @@ export class AppComponent implements OnInit {
         let featureFetch = false;
         this.memberStore.watch().subscribe((value: MemberInterface): void => {
             this.isVisitor = value.isVisitor;
-            if (!value.isVisitor && !featureFetch) {
-                this.getFeature();
+            if (!value.isVisitor && value.token && value.token.status !== 'error' && !featureFetch) {
+                this.getFeature(value.token);
                 featureFetch = true;
             }
         });
@@ -161,7 +162,7 @@ export class AppComponent implements OnInit {
      * Get the status of all the features
      * @private
      */
-    private getFeature(): void {
+    private getFeature(token: ConnectionSuccess): void {
         const cookie: string = this.cookie.get(CookieNameEnum.FEATURE);
         if (cookie) {
             this.featureStore.patch(JSON.parse(cookie));
@@ -170,7 +171,7 @@ export class AppComponent implements OnInit {
 
         let featureFlipping: FeatureInterface;
 
-        this.featureFlippingApi.queryFeature(this.memberStore.get('accessToken')).subscribe({
+        this.featureFlippingApi.queryFeature(token.access_token).subscribe({
             next: (value: FeatureInterface): void => {
                 this.featureStore.patch(value);
                 featureFlipping = value;

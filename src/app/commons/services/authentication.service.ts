@@ -40,21 +40,24 @@ export class AuthenticationService {
             next: (connection: Connection): void => {
                 console.log('Wot api authentication success');
                 token = connection;
-                user = this.membersApi.isClanMembers(Number(connection.account_id));
+
+                if (connection.status !== 'error') {
+                    user = this.membersApi.isClanMembers(Number(connection.account_id));
+                }
             },
             error: err => {
                 console.error(err);
             },
             complete: (): void => {
-                if (user) {
+                if (user && token.status !== 'error') {
                     console.log('User found and authenticated');
                     this.cookieService.set(CookieNameEnum.TOKEN_WARGAMING, JSON.stringify(token), DateCustom.getToWeeks());
                     console.log(`Cookie ${CookieNameEnum.TOKEN_WARGAMING} created`);
                     this.cookieService.set(CookieNameEnum.TOKEN_USER, JSON.stringify(user), DateCustom.getToWeeks());
                     console.log(`Cookie ${CookieNameEnum.TOKEN_USER} created`);
+                    this.updateStore(user, token);
                 }
 
-                this.updateStore(user, token?.access_token);
                 this.router.navigate(['/']).then((): void => {});
             },
         });
@@ -93,15 +96,15 @@ export class AuthenticationService {
     /**
      * Updates the member store with the data of the connected user
      * @param user The connected user
-     * @param accessToken The Wargaming access token
+     * @param token The Wargaming access token
      * @private
      */
-    private updateStore(user: Member, accessToken: string | undefined): void {
+    private updateStore(user: Member, token: Connection): void {
         this.memberStore.patch({
             user: user,
+            token: token,
             isAdmin: CheckGrade.isAdmin(user.role),
             isVisitor: !user.account_id,
-            accessToken: accessToken,
         });
     }
 }
