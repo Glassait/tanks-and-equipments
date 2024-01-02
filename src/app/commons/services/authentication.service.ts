@@ -40,25 +40,33 @@ export class AuthenticationService {
             next: (connection: Connection): void => {
                 console.log('Wot api authentication success');
                 token = connection;
-
-                if (connection.status !== 'error') {
-                    user = this.membersApi.isClanMembers(Number(connection.account_id));
-                }
             },
             error: err => {
                 console.error(err);
             },
             complete: (): void => {
-                if (user && token.status !== 'error') {
-                    console.log('User found and authenticated');
-                    this.cookieService.set(CookieNameEnum.TOKEN_WARGAMING, JSON.stringify(token), DateCustom.getToWeeks());
-                    console.log(`Cookie ${CookieNameEnum.TOKEN_WARGAMING} created`);
-                    this.cookieService.set(CookieNameEnum.TOKEN_USER, JSON.stringify(user), DateCustom.getToWeeks());
-                    console.log(`Cookie ${CookieNameEnum.TOKEN_USER} created`);
-                    this.updateStore(user, token);
-                }
+                if (token.status !== 'error') {
+                    this.membersApi.isClanMembers(Number(token.account_id)).subscribe({
+                        next: (member: Member): void => {
+                            user = member;
+                        },
+                        error: (err: any): void => {
+                            console.error(err);
+                        },
+                        complete: (): void => {
+                            if (user && token.status !== 'error') {
+                                console.log('User found and authenticated');
+                                this.cookieService.set(CookieNameEnum.TOKEN_WARGAMING, JSON.stringify(token), DateCustom.getToWeeks());
+                                console.log(`Cookie ${CookieNameEnum.TOKEN_WARGAMING} created`);
+                                this.cookieService.set(CookieNameEnum.TOKEN_USER, JSON.stringify(user), DateCustom.getToWeeks());
+                                console.log(`Cookie ${CookieNameEnum.TOKEN_USER} created`);
+                                this.updateStore(user, token);
+                            }
 
-                this.router.navigate(['/']).then((): void => {});
+                            this.router.navigate(['/']).then((): void => {});
+                        },
+                    });
+                }
             },
         });
     }
