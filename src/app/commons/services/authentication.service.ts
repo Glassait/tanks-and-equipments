@@ -73,23 +73,10 @@ export class AuthenticationService {
 
         if (!user) {
             this.memberStore.set('isVisitor', true);
-
-            if (token) {
-                this.authenticationClient.logout(JSON.parse(token)?.access_token).subscribe({
-                    complete: (): void => {
-                        if (this.cookieService.check(CookieNameEnum.TOKEN_WARGAMING)) {
-                            this.cookieService.delete(CookieNameEnum.TOKEN_WARGAMING);
-                        }
-                        if (this.cookieService.check(CookieNameEnum.TOKEN_USER)) {
-                            this.cookieService.delete(CookieNameEnum.TOKEN_USER);
-                        }
-                    },
-                });
-            }
             return false;
         }
 
-        this.updateStore(JSON.parse(user), JSON.parse(token)?.access_token);
+        this.updateStore(JSON.parse(user), JSON.parse(token));
         return true;
     }
 

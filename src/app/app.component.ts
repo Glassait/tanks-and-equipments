@@ -55,6 +55,7 @@ import { minusIcon } from './components/icon/files/other/minus.icon';
 import { MemberInterface } from './commons/interfaces/member.interface';
 import { WindowsCustom } from './commons/utils/windows-custom.util';
 import { ConnectionSuccess } from './commons/types/connection.type';
+import { takeWhile } from 'rxjs';
 
 @Component({
     selector: 'app-root',
@@ -75,8 +76,10 @@ export class AppComponent implements OnInit {
         // API
         private readonly featureFlippingApi: FeatureFlippingApi
     ) {
-        if (WindowsCustom.getSearch() != '') {
+        if (WindowsCustom.getSearch() !== '') {
             this.auth.login();
+        } else {
+            this.auth.isLoggedIn();
         }
     }
 
@@ -88,13 +91,16 @@ export class AppComponent implements OnInit {
         this.onResize({});
 
         let featureFetch = false;
-        this.memberStore.watch().subscribe((value: MemberInterface): void => {
-            this.isVisitor = value.isVisitor;
-            if (!value.isVisitor && value.token && value.token.status !== 'error' && !featureFetch) {
-                this.getFeature(value.token);
-                featureFetch = true;
-            }
-        });
+        this.memberStore
+            .watch()
+            .pipe(takeWhile((_value: MemberInterface) => !featureFetch))
+            .subscribe((value: MemberInterface): void => {
+                this.isVisitor = value.isVisitor;
+                if (!value.isVisitor && value.token && value.token.status !== 'error' && !featureFetch) {
+                    this.getFeature(value.token);
+                    featureFetch = true;
+                }
+            });
     }
 
     @HostListener('window:resize', ['$event'])
