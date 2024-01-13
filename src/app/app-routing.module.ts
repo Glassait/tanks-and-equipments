@@ -3,39 +3,32 @@ import { RouterModule, Routes } from '@angular/router';
 import inventory from 'src/assets/json/inventory.json';
 import { AuthGuardService } from './commons/services/auth-guard.service';
 
-// Pages
-import { ClanWarComponent } from './components/clan-war/clan-war.component';
-import { ChangelogComponent } from './pages/changelog/changelog.component';
-import { HomeComponent } from './pages/home/home.component';
-import { SandboxComponent } from './pages/sandbox/sandbox.component';
-import { TanksEquipmentComponent } from './pages/tanks-equipments/tanks-equipment.component';
-
 const routes: Routes = [
     {
         path: inventory.path.home,
-        component: HomeComponent,
+        loadChildren: () => import('./pages/home/home.module').then(m => m.HomeModule),
     },
     {
         path: inventory.path['tanks-and-equipments'],
-        component: TanksEquipmentComponent,
+        loadChildren: () => import('./pages/tanks-equipments/tanks-equipment.module').then(m => m.TanksEquipmentModule),
         canActivate: [AuthGuardService],
     },
     {
         path: inventory.path['clan-war'],
-        component: ClanWarComponent,
+        loadChildren: () => import('./components/clan-war/clan-war.module').then(m => m.ClanWarModule),
         canActivate: [AuthGuardService],
     },
     {
         path: inventory.path.changelog,
-        component: ChangelogComponent,
+        loadChildren: () => import('./pages/changelog/changelog.module').then(m => m.ChangelogModule),
     },
     /*    {
         path: inventory.path.agreements,
-        component: AgreementsComponent,
+        loadChildren: () => import('./pages/agreements/agreements.module').then(m => m.AgreementsModule)
     },*/
     {
         path: 'sandbox',
-        component: SandboxComponent,
+        loadChildren: () => import('./pages/sandbox/sandbox.module').then(m => m.SandboxModule),
     },
     {
         path: '**',

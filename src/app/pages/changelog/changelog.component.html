@@ -1,7 +1,7 @@
 <div class="flex w-full flex-wrap justify-center gap-normal">
     @for (changelog of changelogs; track $index) {
         <glassait-card
-            [avatarColor]="modeService.mode === ModeEnum.DARK ? IconColorEnum.DARK : IconColorEnum.LIGHT"
+            [theme]="modeService.mode"
             avatar="changelog"
             class="flex-shrink-0 flex-grow-0 basis-[100%] tablet:basis-[48%] desktop:basis-[24%]"
             title="{{ changelog.version | uppercase }}"

@@ -71,7 +71,7 @@ module.exports = {
             h1: ['30px', { lineHeight: '38px' }],
         },
         fontFamily: {
-            ui: 'Roboto Condensed, sans-serif',
+            ui: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
         },
         fontWeight: {
             regular: '400',

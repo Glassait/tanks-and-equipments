@@ -7,37 +7,34 @@
 @use 'assets/scss/tailwind/config';
 
 // ANGULAR
-@use "assets/scss/angular/theme";
-
-// EXPANSION PANEL
-@use "assets/scss/angular/expansion-panel";
-@use "assets/scss/angular/expansion-panel-header";
-@use "assets/scss/angular/expansion-panel-body";
-
-// BUTTON
-@use "assets/scss/angular/button";
-
-// CARD
-@use "assets/scss/angular/card";
-
-// Menu
-@use "assets/scss/angular/menu";
+@use 'assets/scss/angular/theme';
 
 // Slide
-@use "assets/scss/angular/slide";
+@use 'assets/scss/angular/slide';
 
 // AUTRE
-@use "assets/scss/standard";
+@use 'assets/scss/standard';
 
 .mat-mdc-slide-toggle .mdc-switch__ripple::after {
     opacity: 0.3 !important;
 }
 
 html {
-    -moz-background-size: cover !important;
-    -o-background-size: cover !important;
-    -webkit-background-size: cover !important;
-    background-size: cover !important;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    -webkit-background-size: cover;
+    background-size: cover;
 
     scroll-behavior: smooth;
+
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
+    &[image='6'] {
+        background-image: image-set(
+                url('./assets/backgrounds/bg-dark-6.avif') type('image/avif'),
+                url('./assets/backgrounds/bg-dark-6.png') type('image/png')
+        );
+    }
 }

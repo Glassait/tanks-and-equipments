@@ -1,7 +1,7 @@
 <div class="flex flex-col items-center gap-normal desktop:items-end">
     @if (memberService.isVisitor) {
         <glassait-card
-            [avatarColor]="modeService.mode === ModeEnum.DARK ? IconColorEnum.DARK : IconColorEnum.LIGHT"
+            [theme]="modeService.mode"
             avatar="visitor"
             class="w-[288px] *:text-justify tablet:w-[500px]"
             title="{{ 'home.title.visitor' | wording | sentenceCase }}"
@@ -15,8 +15,7 @@
     @if (!memberService.isVisitor && information.information) {
         <glassait-card
             [actionCallback]="{ func: navigate, parameter: information.information.lien.url }"
-            [actionTheme]="modeService.mode === ModeEnum.DARK ? ButtonThemeEnum.DARK : ButtonThemeEnum.LIGHT"
-            [avatarColor]="modeService.mode === ModeEnum.DARK ? IconColorEnum.DARK : IconColorEnum.LIGHT"
+            [theme]="modeService.mode"
             [isLoading]="information.isLoading"
             [loadingColor]="modeService.mode"
             actionAlign="end"
@@ -34,7 +33,7 @@
 
     @if (!memberService.isVisitor && memberOnline.amount) {
         <glassait-card
-            [avatarColor]="modeService.mode === ModeEnum.DARK ? IconColorEnum.DARK : IconColorEnum.LIGHT"
+            [theme]="modeService.mode"
             [isLoading]="memberOnline.isLoading"
             [loadingColor]="modeService.mode"
             avatar="userGroup"
@@ -50,9 +49,9 @@
     }
 
     <glassait-card
-        [avatarColor]="modeService.mode === ModeEnum.DARK ? IconColorEnum.DARK : IconColorEnum.LIGHT"
         [isLoading]="wotServer.isLoading"
         [loadingColor]="modeService.mode"
+        [theme]="modeService.mode"
         avatar="server"
         class="w-[288px] tablet:w-[500px]"
         subtitle="{{ 'home.subtitle.server-status' | wording | sentenceCase }}"
@@ -75,7 +74,9 @@
                     }
 
                     <div class="text-title">{{ server.server }}</div>
-                    <div>{{ server.players_online }} {{ 'home.text.server-status' | wording }}{{ server.players_online > 1 ? 's' : '' }}</div>
+                    <div>
+                        {{ server.players_online }} {{ 'home.text.server-status' | wording }} {{ server.players_online > 1 ? 's' : '' }}
+                    </div>
                 </div>
             }
         </div>
