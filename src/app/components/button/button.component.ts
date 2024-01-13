@@ -14,6 +14,7 @@ import { ButtonTypeEnum } from './enums/button-type.enum';
 @Component({
     selector: 'glassait-button',
     templateUrl: './button.component.html',
+    styleUrl: './button.component.scss',
 })
 export class ButtonComponent implements OnInit {
     //region INPUT
@@ -104,11 +105,7 @@ export class ButtonComponent implements OnInit {
 
     set theme(value: ButtonThemeEnum) {
         this._theme = value;
-        this.loadingColor = [
-            ButtonThemeEnum.DARK,
-            ButtonThemeEnum.DARK_BLUE,
-            ButtonThemeEnum.DARK_DISABLED,
-        ].includes(value)
+        this.loadingColor = [ButtonThemeEnum.DARK, ButtonThemeEnum.DARK_BLUE, ButtonThemeEnum.DARK_DISABLED].includes(value)
             ? ModeEnum.DARK
             : ModeEnum.LIGHT;
         this.iconColor = IconColorEnum[value];
@@ -152,11 +149,7 @@ export class ButtonComponent implements OnInit {
      * @private
      */
     private setDisabledTheme(): void {
-        this.theme = [
-            ButtonThemeEnum.DARK,
-            ButtonThemeEnum.DARK_BLUE,
-            ButtonThemeEnum.DARK_DISABLED,
-        ].includes(this._theme)
+        this.theme = [ButtonThemeEnum.DARK, ButtonThemeEnum.DARK_BLUE, ButtonThemeEnum.DARK_DISABLED].includes(this._theme)
             ? ButtonThemeEnum.DARK_DISABLED
             : ButtonThemeEnum.LIGHT_DISABLED;
     }

@@ -53,12 +53,6 @@ export class HeaderComponent extends UnsubscribeDirective implements OnInit, Aft
 
     //region PRIVATE READONLY
     /**
-     * The day of the week
-     * Used for the background
-     * @private
-     */
-    private readonly dayNumber: number;
-    /**
      * All the items of the navigation menu
      * @private
      */
@@ -81,7 +75,6 @@ export class HeaderComponent extends UnsubscribeDirective implements OnInit, Aft
         private readonly router: Router
     ) {
         super();
-        this.dayNumber = new Date().getDay();
 
         this.allMenuItems = [
             {
@@ -149,12 +142,12 @@ export class HeaderComponent extends UnsubscribeDirective implements OnInit, Aft
     protected changeMode(change: MatSlideToggleChange): void {
         if (change.checked) {
             document.documentElement.classList.add('dark');
-            document.documentElement.style.background = `url('/assets/backgrounds/bg-dark-${this.dayNumber}.png') center center no-repeat fixed`;
+            // .style.background = `url('/assets/backgrounds/bg-dark-${this.dayNumber}.png') center center no-repeat fixed`;
             document.documentElement.classList.remove('light');
             this.modeStore.set('color', ModeEnum.DARK);
         } else {
             document.documentElement.classList.add('light');
-            document.documentElement.style.background = `url('/assets/backgrounds/bg-light-${this.dayNumber}.png') center center no-repeat fixed`;
+            // document.documentElement.style.background = `url('/assets/backgrounds/bg-light-${this.dayNumber}.png') center center no-repeat fixed`;
             document.documentElement.classList.remove('dark');
             this.modeStore.set('color', ModeEnum.LIGHT);
         }

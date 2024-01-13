@@ -8,6 +8,7 @@ import { MenuItemType } from './types/menu-item.type';
 @Component({
     selector: 'glassait-menu',
     templateUrl: './menu.component.html',
+    styleUrl: './menu.component.scss',
 })
 export class MenuComponent implements OnInit {
     //region INPUT
