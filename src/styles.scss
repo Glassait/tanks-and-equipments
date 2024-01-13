@@ -4,25 +4,24 @@
 /*                                   IMPORT                                   */
 /* -------------------------------------------------------------------------- */
 
-@use 'sass:string';
 @use 'assets/scss/tailwind/config';
 
 // ANGULAR
 @use 'assets/scss/angular/theme';
 
-// Button
-@use 'assets/scss/angular/button';
-
-// Menu
-@use 'assets/scss/angular/menu';
-
-// Expansion panel
+// EXPANSION PANEL
 @use 'assets/scss/angular/expansion-panel';
 @use 'assets/scss/angular/expansion-panel-header';
 @use 'assets/scss/angular/expansion-panel-body';
 
+// BUTTON
+@use 'assets/scss/angular/button';
+
 // CARD
 @use 'assets/scss/angular/card';
+
+// Menu
+@use 'assets/scss/angular/menu';
 
 // Slide
 @use 'assets/scss/angular/slide';
