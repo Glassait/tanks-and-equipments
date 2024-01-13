@@ -1,14 +1,18 @@
 import { booleanAttribute, Component, Input, OnInit } from '@angular/core';
-import { MenuPositionX, MenuPositionY } from '@angular/material/menu';
+import { MatMenuModule, MenuPositionX, MenuPositionY } from '@angular/material/menu';
 import { ModeEnum } from '../../commons/enums/modeEnum';
 import { ButtonThemeEnum } from '../button/enums/button-theme.enum';
 import { ButtonTypeEnum } from '../button/enums/button-type.enum';
 import { MenuItemType } from './types/menu-item.type';
+import { ButtonComponent } from '../button/button.component';
+import { UpperCasePipe } from '@angular/common';
 
 @Component({
+    standalone: true,
     selector: 'glassait-menu',
     templateUrl: './menu.component.html',
     styleUrl: './menu.component.scss',
+    imports: [ButtonComponent, MatMenuModule, UpperCasePipe],
 })
 export class MenuComponent implements OnInit {
     //region INPUT
@@ -79,6 +83,7 @@ export class MenuComponent implements OnInit {
         this._theme = value;
         this.buttonTheme = ButtonThemeEnum[value];
     }
+
     //endregion
 
     ngOnInit(): void {

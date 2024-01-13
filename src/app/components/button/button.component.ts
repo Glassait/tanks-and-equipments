@@ -7,14 +7,20 @@ import { AppearanceEnum } from '../skeleton-loading/enums/appearance.enum';
 import { ButtonSizeEnum, ButtonSizeInRemEnum } from './enums/button-size.enum';
 import { ButtonThemeEnum } from './enums/button-theme.enum';
 import { ButtonTypeEnum } from './enums/button-type.enum';
+import { NgTemplateOutlet } from '@angular/common';
+import { SkeletonLoadingComponent } from '../skeleton-loading/skeleton-loading.component';
+import { IconComponent } from '../icon/icon.component';
+import { MatButtonModule } from '@angular/material/button';
 
 /**
  * Button component
  */
 @Component({
+    standalone: true,
     selector: 'glassait-button',
     templateUrl: './button.component.html',
     styleUrl: './button.component.scss',
+    imports: [NgTemplateOutlet, SkeletonLoadingComponent, IconComponent, MatButtonModule],
 })
 export class ButtonComponent implements OnInit {
     //region INPUT
@@ -133,6 +139,7 @@ export class ButtonComponent implements OnInit {
         this._disabled = value;
         this.setDisabledTheme();
     }
+
     //endregion
 
     /**

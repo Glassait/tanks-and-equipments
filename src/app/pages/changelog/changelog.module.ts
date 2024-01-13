@@ -3,12 +3,13 @@ import { CommonModule } from '@angular/common';
 
 import { ChangelogRoutingModule } from './changelog-routing.module';
 import { ChangelogComponent } from './changelog.component';
-import { CardModule } from '../../components/card/card.module';
-import { IconModule } from '../../components/icon/icon.module';
-import { PipesModule } from '../../pipes/pipes.module';
+import { CardComponent } from '../../components/card/card.component';
+import { WordingPipe } from '../../pipes/wording.pipe';
+import { SentenceCasePipe } from '../../pipes/sentence-case.pipe';
+import { IconComponent } from '../../components/icon/icon.component';
 
 @NgModule({
     declarations: [ChangelogComponent],
-    imports: [CommonModule, ChangelogRoutingModule, CardModule, IconModule, PipesModule],
+    imports: [CommonModule, ChangelogRoutingModule, CardComponent, WordingPipe, SentenceCasePipe, IconComponent],
 })
 export class ChangelogModule {}

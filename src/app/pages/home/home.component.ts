@@ -17,7 +17,7 @@ import { InformationType } from '../../commons/types/information.type';
 import { DateCustom } from '../../commons/utils/date.custom';
 import { ButtonThemeEnum } from '../../components/button/enums/button-theme.enum';
 import { IconColorEnum } from '../../components/icon/enums/icon-enum';
-import { SentenceCasePipe } from '../../pipes/sentenceCase/sentence-case.pipe';
+import { SentenceCasePipe } from '../../pipes/sentence-case.pipe';
 
 @Component({
     selector: 'app-home',
@@ -62,6 +62,7 @@ export class HomeComponent implements OnInit {
     protected memberOnline: DefaultHttpType & {
         amount?: number;
     } = this.initial;
+
     //endregion
 
     constructor(

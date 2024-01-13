@@ -7,6 +7,10 @@ import { IconColorEnum } from '../icon/enums/icon-enum';
 import { IconsType } from '../icon/types/icon.type';
 import { AnimationEnum } from '../skeleton-loading/enums/animation.enum';
 import { AppearanceEnum } from '../skeleton-loading/enums/appearance.enum';
+import { MatCardModule } from '@angular/material/card';
+import { IconComponent } from '../icon/icon.component';
+import { ButtonComponent } from '../button/button.component';
+import { SkeletonLoadingComponent } from '../skeleton-loading/skeleton-loading.component';
 
 /**
  * The design system component that use angular material card.<p>
@@ -15,9 +19,11 @@ import { AppearanceEnum } from '../skeleton-loading/enums/appearance.enum';
  * @see https://material.angular.io/components/card/overview
  */
 @Component({
+    standalone: true,
     selector: 'glassait-card',
     templateUrl: './card.component.html',
     styleUrl: './card.component.scss',
+    imports: [MatCardModule, IconComponent, ButtonComponent, SkeletonLoadingComponent],
 })
 export class CardComponent implements OnInit {
     //region INPUT

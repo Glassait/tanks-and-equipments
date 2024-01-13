@@ -4,6 +4,10 @@ import { IconColorEnum } from '../icon/enums/icon-enum';
 import { TankIconType } from '../icon/types/tank-icon.type';
 import { AnimationEnum } from '../skeleton-loading/enums/animation.enum';
 import { AppearanceEnum } from '../skeleton-loading/enums/appearance.enum';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { SkeletonLoadingComponent } from '../skeleton-loading/skeleton-loading.component';
+import { IconComponent } from '../icon/icon.component';
+import { NgIf } from '@angular/common';
 
 /**
  * This component manage the angular material expansion-panel.<p>
@@ -16,9 +20,11 @@ import { AppearanceEnum } from '../skeleton-loading/enums/appearance.enum';
  * @see https://material.angular.io/components/expansion/overview
  */
 @Component({
+    standalone: true,
     selector: 'glassait-expansion-panel',
     templateUrl: './expansion-panel.component.html',
     styleUrls: ['./expansion-panel.component.scss'],
+    imports: [MatExpansionModule, SkeletonLoadingComponent, IconComponent, NgIf],
 })
 export class ExpansionPanelComponent implements OnInit {
     //region INPUT
@@ -68,6 +74,7 @@ export class ExpansionPanelComponent implements OnInit {
      * @protected
      */
     protected writableDescription: string;
+
     //endregion
 
     /**

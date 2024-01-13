@@ -9,10 +9,16 @@ import { InventoryService } from '../../commons/services/inventory.service';
 import { FeatureStore } from '../../commons/stores/feature.store';
 import { ButtonSizeEnum } from '../button/enums/button-size.enum';
 import { ButtonThemeEnum } from '../button/enums/button-theme.enum';
+import { NgIf, NgOptimizedImage } from '@angular/common';
+import { ButtonComponent } from '../button/button.component';
+import { WordingPipe } from '../../pipes/wording.pipe';
+import { SentenceCasePipe } from '../../pipes/sentence-case.pipe';
 
 @Component({
+    standalone: true,
     selector: 'app-footer',
     templateUrl: './footer.component.html',
+    imports: [NgOptimizedImage, ButtonComponent, WordingPipe, NgIf, SentenceCasePipe],
 })
 export class FooterComponent implements OnInit {
     //region PROTECTED FIELD
@@ -63,6 +69,7 @@ export class FooterComponent implements OnInit {
     protected readonly ModeEnum = ModeEnum;
     protected readonly ButtonThemeEnum = ButtonThemeEnum;
     protected readonly ButtonSizeEnum = ButtonSizeEnum;
+
     //endregion
 
     constructor(

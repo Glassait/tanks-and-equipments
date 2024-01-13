@@ -10,7 +10,7 @@ import { HeaderStore } from '../../commons/stores/header.store';
 import { ButtonSizeEnum } from '../../components/button/enums/button-size.enum';
 import { ButtonThemeEnum } from '../../components/button/enums/button-theme.enum';
 import { IconColorEnum } from '../../components/icon/enums/icon-enum';
-import { SentenceCasePipe } from '../../pipes/sentenceCase/sentence-case.pipe';
+import { SentenceCasePipe } from '../../pipes/sentence-case.pipe';
 
 @Component({
     selector: 'app-agreements',
@@ -22,6 +22,7 @@ export class AgreementsComponent extends UnsubscribeDirective implements OnInit 
     protected readonly ModeEnum = ModeEnum;
     protected readonly ButtonThemeEnum = ButtonThemeEnum;
     protected readonly ButtonSizeEnum = ButtonSizeEnum;
+
     //endregion
 
     constructor(

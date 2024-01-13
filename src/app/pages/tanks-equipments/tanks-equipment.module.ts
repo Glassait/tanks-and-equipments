@@ -5,10 +5,11 @@ import { TanksEquipmentRoutingModule } from './tanks-equipment-routing.module';
 import { TanksEquipmentComponent } from './tanks-equipment.component';
 import { TankEquipmentDescriptionComponent } from './tank-equipment-description/tank-equipment-description.component';
 import { MatExpansionModule } from '@angular/material/expansion';
-import { ExpansionPanelModule } from '../../components/expansion-panel/expansion-panel.module';
-import { PipesModule } from '../../pipes/pipes.module';
-import { ButtonModule } from '../../components/button/button.module';
-import { IconModule } from '../../components/icon/icon.module';
+import { ExpansionPanelComponent } from '../../components/expansion-panel/expansion-panel.component';
+import { ImagePipe } from '../../pipes/image.pipe';
+import { ButtonComponent } from '../../components/button/button.component';
+import { IconComponent } from '../../components/icon/icon.component';
+import { FieldUrlPipe } from '../../pipes/url.pipe';
 
 @NgModule({
     declarations: [TanksEquipmentComponent, TankEquipmentDescriptionComponent],
@@ -16,11 +17,12 @@ import { IconModule } from '../../components/icon/icon.module';
         CommonModule,
         TanksEquipmentRoutingModule,
         MatExpansionModule,
-        ExpansionPanelModule,
-        PipesModule,
-        ButtonModule,
-        IconModule,
         NgOptimizedImage,
+        ExpansionPanelComponent,
+        ImagePipe,
+        ButtonComponent,
+        IconComponent,
+        FieldUrlPipe,
     ],
 })
 export class TanksEquipmentModule {}

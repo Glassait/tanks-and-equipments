@@ -3,12 +3,13 @@ import { CommonModule, NgOptimizedImage } from '@angular/common';
 
 import { AgreementsRoutingModule } from './agreements-routing.module';
 import { AgreementsComponent } from './agreements.component';
-import { CardModule } from '../../components/card/card.module';
-import { PipesModule } from '../../pipes/pipes.module';
-import { ButtonModule } from '../../components/button/button.module';
+import { CardComponent } from '../../components/card/card.component';
+import { WordingPipe } from '../../pipes/wording.pipe';
+import { SentenceCasePipe } from '../../pipes/sentence-case.pipe';
+import { ButtonComponent } from '../../components/button/button.component';
 
 @NgModule({
     declarations: [AgreementsComponent],
-    imports: [CommonModule, AgreementsRoutingModule, CardModule, PipesModule, ButtonModule, NgOptimizedImage],
+    imports: [CommonModule, AgreementsRoutingModule, NgOptimizedImage, CardComponent, WordingPipe, SentenceCasePipe, ButtonComponent],
 })
 export class AgreementsModule {}

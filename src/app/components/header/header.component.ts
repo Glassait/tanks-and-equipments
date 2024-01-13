@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { MatSlideToggleChange } from '@angular/material/slide-toggle';
+import { MatSlideToggleChange, MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { Router } from '@angular/router';
 import { takeUntil, takeWhile } from 'rxjs';
 import { UnsubscribeDirective } from 'src/app/commons/directives/unsubscribe.directive';
@@ -18,13 +18,20 @@ import { MenuItemType } from '../menu/types/menu-item.type';
 import { ButtonThemeEnum } from '../button/enums/button-theme.enum';
 import { ButtonTypeEnum } from '../button/enums/button-type.enum';
 import { AuthenticationService } from '../../commons/services/authentication.service';
+import { InventoryPipe } from '../../pipes/inventory.pipe';
+import { NgOptimizedImage, TitleCasePipe } from '@angular/common';
+import { WordingPipe } from '../../pipes/wording.pipe';
+import { ButtonComponent } from '../button/button.component';
+import { MenuComponent } from '../menu/menu.component';
 
 /**
  * Component for the header of the site
  */
 @Component({
+    standalone: true,
     selector: 'app-header',
     templateUrl: './header.component.html',
+    imports: [MatSlideToggleModule, InventoryPipe, NgOptimizedImage, WordingPipe, TitleCasePipe, ButtonComponent, MenuComponent],
 })
 export class HeaderComponent extends UnsubscribeDirective implements OnInit, AfterViewInit {
     @ViewChild('darkModeSwitch', { read: ElementRef }) slideToogle: ElementRef | undefined;

@@ -10,11 +10,12 @@ import { AppRoutingModule } from './app-routing.module';
 
 // Component
 import { HttpMockInterceptor } from './commons/interceptors/http-mock.interceptor';
+import { HeaderComponent } from './components/header/header.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 // Page
 import { AppComponent } from './app.component';
-import { FooterModule } from './components/footer/footer.module';
-import { HeaderModule } from './components/header/header.module';
+import { SentenceCasePipe } from './pipes/sentence-case.pipe';
 
 const MOCK_INTERCEPTOR_PROVIDER: Provider = {
     provide: HTTP_INTERCEPTORS,
@@ -38,9 +39,9 @@ if (environment.production) {
         HttpClientModule,
         FormsModule,
         ReactiveFormsModule,
-        FooterModule,
-        HeaderModule,
+        HeaderComponent,
+        FooterComponent,
     ],
-    providers: [...mockProviders, Title, CookieService],
+    providers: [...mockProviders, Title, CookieService, SentenceCasePipe],
 })
 export class AppModule {}
