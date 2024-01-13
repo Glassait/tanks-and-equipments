@@ -3,6 +3,7 @@ import { WordingService } from 'src/app/commons/services/wording.service';
 
 @Pipe({
     name: 'wording',
+    standalone: true,
 })
 export class WordingPipe implements PipeTransform {
     constructor(private wording: WordingService) {}

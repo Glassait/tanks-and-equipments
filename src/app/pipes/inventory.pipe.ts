@@ -3,6 +3,7 @@ import { InventoryService } from 'src/app/commons/services/inventory.service';
 
 @Pipe({
     name: 'inventory',
+    standalone: true,
 })
 export class InventoryPipe implements PipeTransform {
     constructor(private inventory: InventoryService) {}
