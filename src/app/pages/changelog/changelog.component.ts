@@ -8,7 +8,7 @@ import { HeaderStore } from '../../commons/stores/header.store';
 import { VersionType } from '../../commons/types/version.type';
 import { Icon } from '../../commons/utils/icon.util';
 import { IconColorEnum } from '../../components/icon/enums/icon-enum';
-import { SentenceCasePipe } from '../../pipes/sentenceCase/sentence-case.pipe';
+import { SentenceCasePipe } from '../../pipes/sentence-case.pipe';
 
 @Component({
     selector: 'app-changelog',
@@ -27,6 +27,7 @@ export class ChangelogComponent implements OnInit {
     protected readonly ModeEnum = ModeEnum;
     protected readonly IconColorEnum = IconColorEnum;
     protected readonly Icon = Icon;
+
     //endregion
 
     constructor(

@@ -10,6 +10,7 @@ import { IconsType } from './types/icon.type';
  * @example <icon [color]='IconColorEnum.DARK' icon='changelog' size='18'></icon>
  */
 @Component({
+    standalone: true,
     selector: 'glassait-icon',
     template: '<div class="{{ svg?.isStroke ? StrokeEnum[color] : FillEnum[color] }}"></div>',
 })
@@ -64,6 +65,7 @@ export class IconComponent implements OnInit {
     //region ENUM
     protected readonly FillEnum = FillEnum;
     protected readonly StrokeEnum = StrokeEnum;
+
     //endregion
 
     constructor(

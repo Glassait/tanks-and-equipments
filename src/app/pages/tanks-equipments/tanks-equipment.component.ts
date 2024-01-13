@@ -10,7 +10,7 @@ import { SessionStorageService } from '../../commons/services/session-storage.se
 import { WordingService } from '../../commons/services/wording.service';
 import { TankData } from '../../commons/types/tanks-data.type';
 import { DateCustom } from '../../commons/utils/date.custom';
-import { SentenceCasePipe } from '../../pipes/sentenceCase/sentence-case.pipe';
+import { SentenceCasePipe } from '../../pipes/sentence-case.pipe';
 
 @Component({
     selector: 'app-tanks-equipment',
@@ -26,6 +26,7 @@ export class TanksEquipmentComponent implements OnInit {
         isLoading: true,
         isError: false,
     };
+
     //endregion
 
     constructor(

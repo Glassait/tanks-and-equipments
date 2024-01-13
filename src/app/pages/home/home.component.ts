@@ -17,7 +17,10 @@ import { InformationType } from '../../commons/types/information.type';
 import { DateCustom } from '../../commons/utils/date.custom';
 import { ButtonThemeEnum } from '../../components/button/enums/button-theme.enum';
 import { IconColorEnum } from '../../components/icon/enums/icon-enum';
-import { SentenceCasePipe } from '../../pipes/sentenceCase/sentence-case.pipe';
+import { SentenceCasePipe } from '../../pipes/sentence-case.pipe';
+import { MemberStore } from '../../commons/stores/member.store';
+import { MemberInterface } from '../../commons/interfaces/member.interface';
+import { takeWhile } from 'rxjs';
 
 @Component({
     selector: 'app-home',
@@ -62,11 +65,13 @@ export class HomeComponent implements OnInit {
     protected memberOnline: DefaultHttpType & {
         amount?: number;
     } = this.initial;
+
     //endregion
 
     constructor(
         // STORE
         private readonly headerStore: HeaderStore,
+        private readonly memberStore: MemberStore,
         // API
         private readonly informationApi: InformationApi,
         // SERVICE
@@ -95,10 +100,16 @@ export class HomeComponent implements OnInit {
             showTank: true,
         });
 
-        if (!this.memberService.isVisitor) {
-            this.getInformation();
-            this.getMemberOnline();
-        }
+        this.memberStore
+            .watch()
+            .pipe(takeWhile((member: MemberInterface) => member.isVisitor, true))
+            .subscribe((member: MemberInterface): void => {
+                if (!member.isVisitor) {
+                    this.getInformation();
+                    this.getMemberOnline();
+                }
+            });
+
         this.getWotServerStatus();
     }
 

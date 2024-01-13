@@ -1,6 +1,6 @@
 <div class="flex justify-center">
     <glassait-card
-        [avatarColor]="modeService.mode === ModeEnum.DARK ? IconColorEnum.DARK : IconColorEnum.LIGHT"
+        [theme]="modeService.mode"
         avatar="agreement"
         class="w-full"
         title="{{ 'agreements.title.page' | wording | sentenceCase }}"

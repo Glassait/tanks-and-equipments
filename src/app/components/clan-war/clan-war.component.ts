@@ -6,7 +6,7 @@ import { MemberStore } from 'src/app/commons/stores/member.store';
 import { WordingService } from '../../commons/services/wording.service';
 import { FeatureStore } from '../../commons/stores/feature.store';
 import { ModeStore } from '../../commons/stores/mode.store';
-import { SentenceCasePipe } from '../../pipes/sentenceCase/sentence-case.pipe';
+import { SentenceCasePipe } from '../../pipes/sentence-case.pipe';
 
 // TODO TO PASS IN PAGE FOLDER
 @Component({

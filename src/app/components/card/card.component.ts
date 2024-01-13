@@ -7,6 +7,10 @@ import { IconColorEnum } from '../icon/enums/icon-enum';
 import { IconsType } from '../icon/types/icon.type';
 import { AnimationEnum } from '../skeleton-loading/enums/animation.enum';
 import { AppearanceEnum } from '../skeleton-loading/enums/appearance.enum';
+import { MatCardModule } from '@angular/material/card';
+import { IconComponent } from '../icon/icon.component';
+import { ButtonComponent } from '../button/button.component';
+import { SkeletonLoadingComponent } from '../skeleton-loading/skeleton-loading.component';
 
 /**
  * The design system component that use angular material card.<p>
@@ -15,8 +19,10 @@ import { AppearanceEnum } from '../skeleton-loading/enums/appearance.enum';
  * @see https://material.angular.io/components/card/overview
  */
 @Component({
+    standalone: true,
     selector: 'glassait-card',
     templateUrl: './card.component.html',
+    imports: [MatCardModule, IconComponent, ButtonComponent, SkeletonLoadingComponent],
 })
 export class CardComponent implements OnInit {
     //region INPUT
@@ -122,6 +128,36 @@ export class CardComponent implements OnInit {
      * @protected
      */
     protected readonly window = window;
+    //endregion
+
+    //region OVERRIDE INPUT
+    /**
+     * The theme of the card
+     * @private
+     */
+    private _theme: ModeEnum;
+
+    /**
+     * Getter of {@link _theme}
+     */
+    @Input()
+    get theme(): ModeEnum {
+        return this._theme;
+    }
+
+    /**
+     * Setter of {@link _theme}
+     * @param mode The theme of the card
+     * @override avatarColor if not set
+     *           actionTheme if not set
+     */
+    set theme(mode: ModeEnum) {
+        this._theme = mode;
+
+        this.avatarColor = mode === ModeEnum.DARK ? IconColorEnum.DARK : IconColorEnum.LIGHT;
+        this.actionTheme = mode === ModeEnum.DARK ? ButtonThemeEnum.DARK : ButtonThemeEnum.LIGHT;
+    }
+
     //endregion
 
     /**

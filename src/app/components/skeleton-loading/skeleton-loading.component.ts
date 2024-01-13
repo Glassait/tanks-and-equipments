@@ -4,6 +4,7 @@ import { ModeEnum } from '../../commons/enums/modeEnum';
 import { AnimationEnum } from './enums/animation.enum';
 import { AppearanceEnum } from './enums/appearance.enum';
 import { ThemeModel } from './models/theme.model';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
 /**
  * This component use the npm library for create skeleton loading.
@@ -11,8 +12,10 @@ import { ThemeModel } from './models/theme.model';
  * @see https://www.npmjs.com/package/ngx-skeleton-loader#setup
  */
 @Component({
+    standalone: true,
     selector: 'glassait-skeleton-loading',
     templateUrl: './skeleton-loading.component.html',
+    imports: [NgxSkeletonLoaderModule],
 })
 export class SkeletonLoadingComponent {
     //region INPUT
@@ -64,6 +67,7 @@ export class SkeletonLoadingComponent {
      * @protected
      */
     protected ngxTheme: NgxSkeletonLoaderConfigTheme;
+
     //endregion
 
     constructor(private themeModel: ThemeModel) {}
@@ -87,6 +91,7 @@ export class SkeletonLoadingComponent {
         this._appearance = appearance;
         this.setNgx();
     }
+
     //endregion
 
     /**

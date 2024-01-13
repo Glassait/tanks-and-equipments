@@ -3,6 +3,7 @@ import { FieldComposant } from 'src/app/commons/types/tanks-data.type';
 
 @Pipe({
     name: 'getFieldUrl',
+    standalone: true,
 })
 export class FieldUrlPipe implements PipeTransform {
     transform(value: FieldComposant, ...args: unknown[]): string {

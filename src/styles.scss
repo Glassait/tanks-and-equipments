@@ -7,37 +7,53 @@
 @use 'assets/scss/tailwind/config';
 
 // ANGULAR
-@use "assets/scss/angular/theme";
+@use 'assets/scss/angular/theme';
 
 // EXPANSION PANEL
-@use "assets/scss/angular/expansion-panel";
-@use "assets/scss/angular/expansion-panel-header";
-@use "assets/scss/angular/expansion-panel-body";
+@use 'assets/scss/angular/expansion-panel';
+@use 'assets/scss/angular/expansion-panel-header';
+@use 'assets/scss/angular/expansion-panel-body';
 
 // BUTTON
-@use "assets/scss/angular/button";
+@use 'assets/scss/angular/button';
 
 // CARD
-@use "assets/scss/angular/card";
+@use 'assets/scss/angular/card';
 
 // Menu
-@use "assets/scss/angular/menu";
+@use 'assets/scss/angular/menu';
 
 // Slide
-@use "assets/scss/angular/slide";
+@use 'assets/scss/angular/slide';
 
 // AUTRE
-@use "assets/scss/standard";
+@use 'assets/scss/standard';
 
 .mat-mdc-slide-toggle .mdc-switch__ripple::after {
     opacity: 0.3 !important;
 }
 
 html {
-    -moz-background-size: cover !important;
-    -o-background-size: cover !important;
-    -webkit-background-size: cover !important;
-    background-size: cover !important;
-
     scroll-behavior: smooth;
+
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+
+    @for $i from 0 to 7 {
+        &[image='#{ $i }'] {
+            background-image: image-set(
+                    url('./assets/backgrounds/bg-light-#{$i}.avif') type('image/avif'),
+                    url('./assets/backgrounds/bg-light-#{$i}.png') type('image/png')
+            );
+
+            &:is(.dark) {
+                background-image: image-set(
+                        url('./assets/backgrounds/bg-dark-#{$i}.avif') type('image/avif'),
+                        url('./assets/backgrounds/bg-dark-#{$i}.png') type('image/png')
+                );
+            }
+        }
+    }
 }

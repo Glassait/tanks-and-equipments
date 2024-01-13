@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { MatSlideToggleChange } from '@angular/material/slide-toggle';
+import { MatSlideToggleChange, MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { Router } from '@angular/router';
 import { takeUntil, takeWhile } from 'rxjs';
 import { UnsubscribeDirective } from 'src/app/commons/directives/unsubscribe.directive';
@@ -18,13 +18,20 @@ import { MenuItemType } from '../menu/types/menu-item.type';
 import { ButtonThemeEnum } from '../button/enums/button-theme.enum';
 import { ButtonTypeEnum } from '../button/enums/button-type.enum';
 import { AuthenticationService } from '../../commons/services/authentication.service';
+import { InventoryPipe } from '../../pipes/inventory.pipe';
+import { NgOptimizedImage, TitleCasePipe } from '@angular/common';
+import { WordingPipe } from '../../pipes/wording.pipe';
+import { ButtonComponent } from '../button/button.component';
+import { MenuComponent } from '../menu/menu.component';
 
 /**
  * Component for the header of the site
  */
 @Component({
+    standalone: true,
     selector: 'app-header',
     templateUrl: './header.component.html',
+    imports: [MatSlideToggleModule, InventoryPipe, NgOptimizedImage, WordingPipe, TitleCasePipe, ButtonComponent, MenuComponent],
 })
 export class HeaderComponent extends UnsubscribeDirective implements OnInit, AfterViewInit {
     @ViewChild('darkModeSwitch', { read: ElementRef }) slideToogle: ElementRef | undefined;
@@ -53,12 +60,6 @@ export class HeaderComponent extends UnsubscribeDirective implements OnInit, Aft
 
     //region PRIVATE READONLY
     /**
-     * The day of the week
-     * Used for the background
-     * @private
-     */
-    private readonly dayNumber: number;
-    /**
      * All the items of the navigation menu
      * @private
      */
@@ -81,7 +82,6 @@ export class HeaderComponent extends UnsubscribeDirective implements OnInit, Aft
         private readonly router: Router
     ) {
         super();
-        this.dayNumber = new Date().getDay();
 
         this.allMenuItems = [
             {
@@ -149,12 +149,10 @@ export class HeaderComponent extends UnsubscribeDirective implements OnInit, Aft
     protected changeMode(change: MatSlideToggleChange): void {
         if (change.checked) {
             document.documentElement.classList.add('dark');
-            document.documentElement.style.background = `url('/assets/backgrounds/bg-dark-${this.dayNumber}.png') center center no-repeat fixed`;
             document.documentElement.classList.remove('light');
             this.modeStore.set('color', ModeEnum.DARK);
         } else {
             document.documentElement.classList.add('light');
-            document.documentElement.style.background = `url('/assets/backgrounds/bg-light-${this.dayNumber}.png') center center no-repeat fixed`;
             document.documentElement.classList.remove('dark');
             this.modeStore.set('color', ModeEnum.LIGHT);
         }
