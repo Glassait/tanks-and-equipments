@@ -58,7 +58,7 @@ export class ExpansionPanelComponent implements OnInit {
      * @enum ColorEnum
      * @see ColorEnum
      */
-    @Input({ required: true }) color: ModeEnum;
+    @Input({ required: true }) theme: ModeEnum;
     //endregion
 
     //region ENUM

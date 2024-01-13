@@ -1,16 +1,16 @@
 <div class="flex items-center justify-center *:flex *:w-full *:flex-col *:gap-demi" id="conteneur-tank-equipment">
     @if (tanksData.isLoading) {
         <mat-accordion>
-            <glassait-expansion-panel [color]="modeService.mode" isLoading="true"></glassait-expansion-panel>
-            <glassait-expansion-panel [color]="modeService.mode" isLoading="true"></glassait-expansion-panel>
-            <glassait-expansion-panel [color]="modeService.mode" isLoading="true"></glassait-expansion-panel>
-            <glassait-expansion-panel [color]="modeService.mode" isLoading="true"></glassait-expansion-panel>
+            <glassait-expansion-panel [theme]="modeService.mode" isLoading="true"></glassait-expansion-panel>
+            <glassait-expansion-panel [theme]="modeService.mode" isLoading="true"></glassait-expansion-panel>
+            <glassait-expansion-panel [theme]="modeService.mode" isLoading="true"></glassait-expansion-panel>
+            <glassait-expansion-panel [theme]="modeService.mode" isLoading="true"></glassait-expansion-panel>
         </mat-accordion>
     } @else {
         <mat-accordion>
             @for (data of tanksData.data; track $index) {
                 <glassait-expansion-panel
-                    [color]="modeService.mode"
+                    [theme]="modeService.mode"
                     description="{{ data.name | uppercase }}"
                     icon="{{ data.name | image }}"
                 >

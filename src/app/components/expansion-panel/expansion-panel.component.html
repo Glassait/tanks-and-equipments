@@ -1,11 +1,11 @@
 @if (isLoading) {
-    <mat-expansion-panel class="pointer-events-none w-full">
-        <mat-expansion-panel-header>
+    <mat-expansion-panel class="pointer-events-none w-full EXPANSION-PANEL {{ theme }}">
+        <mat-expansion-panel-header class="EXPANSION-PANEL-HEADER {{ theme }}">
             <mat-panel-title>
                 <glassait-skeleton-loading
                     [animation]="AnimationEnum.PULSE"
                     [appearance]="AppearanceEnum.LINE"
-                    [color]="color"
+                    [color]="theme"
                     width="4rem"
                 ></glassait-skeleton-loading>
             </mat-panel-title>
@@ -14,15 +14,15 @@
                 <glassait-skeleton-loading
                     [animation]="AnimationEnum.PULSE"
                     [appearance]="AppearanceEnum.LINE"
-                    [color]="color"
+                    [color]="theme"
                     width="7rem"
                 ></glassait-skeleton-loading>
             </mat-panel-description>
         </mat-expansion-panel-header>
     </mat-expansion-panel>
 } @else {
-    <mat-expansion-panel class="w-full">
-        <mat-expansion-panel-header>
+    <mat-expansion-panel class="w-full EXPANSION-PANEL {{ theme }}">
+        <mat-expansion-panel-header class="EXPANSION-PANEL-HEADER {{ theme }}">
             @if (title || icon) {
                 <mat-panel-title>
                     @if (title) {

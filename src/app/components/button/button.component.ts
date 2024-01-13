@@ -19,7 +19,6 @@ import { MatButtonModule } from '@angular/material/button';
     standalone: true,
     selector: 'glassait-button',
     templateUrl: './button.component.html',
-    styleUrl: './button.component.scss',
     imports: [NgTemplateOutlet, SkeletonLoadingComponent, IconComponent, MatButtonModule],
 })
 export class ButtonComponent implements OnInit {

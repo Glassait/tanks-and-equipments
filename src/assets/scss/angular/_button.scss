@@ -2,11 +2,11 @@
  * || IMPORT / USE
  * Tips search `||` to move to section
  */
-@use '../../../assets/scss/commons/colors';
-@use '../../../assets/scss/commons/spacing';
-@use '../../../assets/scss/commons/borders';
-@use '../../../assets/scss/commons/typography';
-@use '../../../assets/scss/commons/box-shadow';
+@use '../commons/colors';
+@use '../commons/spacing';
+@use '../commons/borders';
+@use '../commons/typography';
+@use '../commons/box-shadow';
 
 /*
 * || BUTTON SIZE
@@ -163,12 +163,6 @@
     .mat-mdc-raised-button.cdk-keyboard-focused .mat-mdc-button-persistent-ripple::before {
         opacity: 1 !important;
     }
-
-    --mat-text-button-hover-state-layer-opacity: 1;
-    --mat-protected-button-hover-state-layer-opacity: 1;
-    --mat-text-button-focus-state-layer-opacity: 1;
-    --mat-protected-button-focus-state-layer-opacity: 1;
-    --mat-protected-button-pressed-state-layer-opacity: 1;
 }
 
 %box-white {

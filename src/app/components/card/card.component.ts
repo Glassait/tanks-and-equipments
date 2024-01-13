@@ -22,7 +22,6 @@ import { SkeletonLoadingComponent } from '../skeleton-loading/skeleton-loading.c
     standalone: true,
     selector: 'glassait-card',
     templateUrl: './card.component.html',
-    styleUrl: './card.component.scss',
     imports: [MatCardModule, IconComponent, ButtonComponent, SkeletonLoadingComponent],
 })
 export class CardComponent implements OnInit {

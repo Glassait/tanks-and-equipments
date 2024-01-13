@@ -11,7 +11,6 @@ import { UpperCasePipe } from '@angular/common';
     standalone: true,
     selector: 'glassait-menu',
     templateUrl: './menu.component.html',
-    styleUrl: './menu.component.scss',
     imports: [ButtonComponent, MatMenuModule, UpperCasePipe],
 })
 export class MenuComponent implements OnInit {

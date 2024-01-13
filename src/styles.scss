@@ -9,6 +9,20 @@
 // ANGULAR
 @use 'assets/scss/angular/theme';
 
+// Button
+@use 'assets/scss/angular/button';
+
+// Menu
+@use 'assets/scss/angular/menu';
+
+// Expansion panel
+@use 'assets/scss/angular/expansion-panel';
+@use 'assets/scss/angular/expansion-panel-header';
+@use 'assets/scss/angular/expansion-panel-body';
+
+// CARD
+@use 'assets/scss/angular/card';
+
 // Slide
 @use 'assets/scss/angular/slide';
 
