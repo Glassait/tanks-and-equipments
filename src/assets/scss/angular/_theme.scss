@@ -63,32 +63,40 @@ $warn: mat.define-palette(mat.$red-palette);
 $font-family: 'Roboto Condensed, sans-serif';
 
 $light-theme: mat.define-light-theme(
-    (
-        color: (
-            primary: $primary,
-            accent: $accent,
-            warn: $warn,
-        ),
-        typography: mat.define-typography-config($font-family),
-        density: 0,
-    )
+        (
+            color: (
+                primary: $primary,
+                accent: $accent,
+                warn: $warn,
+            ),
+            typography: mat.define-typography-config($font-family),
+            density: 0,
+        )
 );
 
 $dark-theme: mat.define-dark-theme(
-    (
-        color: (
-            primary: $secondary,
-            accent: $accent,
-            warn: $warn,
-        ),
-        density: -1,
-    )
+        (
+            color: (
+                primary: $secondary,
+                accent: $accent,
+                warn: $warn,
+            ),
+            density: -1,
+        )
 );
 
 @include mat.core-theme($light-theme);
-@include mat.all-component-themes($light-theme);
+@include mat.button-theme($light-theme);
+@include mat.menu-theme($light-theme);
+@include mat.card-theme($light-theme);
+@include mat.expansion-theme($light-theme);
+@include mat.slide-toggle-theme($light-theme);
 
 :is(.dark) {
     @include mat.core-theme($dark-theme);
-    @include mat.all-component-themes($dark-theme);
+    @include mat.button-theme($dark-theme);
+    @include mat.menu-theme($dark-theme);
+    @include mat.card-theme($dark-theme);
+    @include mat.expansion-theme($dark-theme);
+    @include mat.slide-toggle-theme($dark-theme);
 }
