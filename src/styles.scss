@@ -4,6 +4,7 @@
 /*                                   IMPORT                                   */
 /* -------------------------------------------------------------------------- */
 
+@use 'sass:string';
 @use 'assets/scss/tailwind/config';
 
 // ANGULAR
@@ -34,21 +35,26 @@
 }
 
 html {
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    -webkit-background-size: cover;
-    background-size: cover;
-
     scroll-behavior: smooth;
 
     background-position: center center;
     background-repeat: no-repeat;
     background-attachment: fixed;
+    background-size: cover;
 
-    &[image='6'] {
-        background-image: image-set(
-                url('./assets/backgrounds/bg-dark-6.avif') type('image/avif'),
-                url('./assets/backgrounds/bg-dark-6.png') type('image/png')
-        );
+    @for $i from 0 to 7 {
+        &[image='#{ $i }'] {
+            background-image: image-set(
+                    url('./assets/backgrounds/bg-light-#{$i}.avif') type('image/avif'),
+                    url('./assets/backgrounds/bg-light-#{$i}.png') type('image/png')
+            );
+
+            &:is(.dark) {
+                background-image: image-set(
+                        url('./assets/backgrounds/bg-dark-#{$i}.avif') type('image/avif'),
+                        url('./assets/backgrounds/bg-dark-#{$i}.png') type('image/png')
+                );
+            }
+        }
     }
 }

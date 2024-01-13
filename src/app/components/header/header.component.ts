@@ -149,12 +149,10 @@ export class HeaderComponent extends UnsubscribeDirective implements OnInit, Aft
     protected changeMode(change: MatSlideToggleChange): void {
         if (change.checked) {
             document.documentElement.classList.add('dark');
-            // .style.background = `url('/assets/backgrounds/bg-dark-${this.dayNumber}.png') center center no-repeat fixed`;
             document.documentElement.classList.remove('light');
             this.modeStore.set('color', ModeEnum.DARK);
         } else {
             document.documentElement.classList.add('light');
-            // document.documentElement.style.background = `url('/assets/backgrounds/bg-light-${this.dayNumber}.png') center center no-repeat fixed`;
             document.documentElement.classList.remove('dark');
             this.modeStore.set('color', ModeEnum.LIGHT);
         }
