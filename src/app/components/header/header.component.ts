@@ -115,7 +115,7 @@ export class HeaderComponent extends UnsubscribeDirective implements OnInit, Aft
             {
                 text: this.wording.getWordingFromString('header.admin'),
                 callback: (): void => {
-                    this.router.navigate([this.inventory.getInventoryFromString('path.clan-war')]).then((_r: boolean): void => {});
+                    this.router.navigate([this.inventory.getInventoryFromString('path.admin')]).then((_r: boolean): void => {});
                 },
             },
         ];

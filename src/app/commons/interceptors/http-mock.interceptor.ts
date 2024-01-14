@@ -37,12 +37,12 @@ export class HttpMockInterceptor implements HttpInterceptor {
                 if (environment.mock === MockEnum.EXTERNAL_MOCK) {
                     const mockReq: HttpRequest<any> = req.clone({
                         url: `${this.inventoryService.getGlassaitApi().localhost}${endPoint[1]}`,
-                        method: 'GET',
+                        method: req.method,
                     });
                     return next.handle(mockReq);
                 } else {
                     const mockReq: HttpRequest<any> = req.clone({
-                        url: `/assets/mocks/${endPoint[1].replace('/', '.').replace(/\?access_token=[0-9a-zA-Z]{40}/, "")}.json`,
+                        url: `/assets/mocks/${endPoint[1].replace('/', '.').replace(/\?access_token=[0-9a-zA-Z]{40}/, '')}.json`,
                         method: 'GET',
                     });
                     return next.handle(mockReq);

@@ -89,7 +89,7 @@ export class CardComponent implements OnInit {
      * ! Needed for the action button
      * ? Useless without {@link hasAction}
      */
-    @Input() actionCallback: { func: any; parameter: any };
+    @Input() actionCallback: { func: any; parameter?: any };
     /**
      * The icon of the action button
      * ? Useless without {@link hasAction}
@@ -107,6 +107,13 @@ export class CardComponent implements OnInit {
      * @implements booleanAttribute
      */
     @Input({ transform: booleanAttribute }) isLoading: boolean;
+    /**
+     * The color of the loading display
+     *! Needed by {@link isLoading}
+     * @example <glassait-card actionLoading='true' [loadingColor]="ModeEnum.DARK"></glassait-card>
+     * @example <glassait-card [actionLoading]='true' [loadingColor]="ModeEnum.DARK"></glassait-card>
+     */
+    @Input({ transform: booleanAttribute }) actionLoading: boolean;
     /**
      * The color of the loading
      * ! Needed for the loading

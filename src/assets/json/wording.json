@@ -66,5 +66,12 @@
                 "Vous avez également la possibilité d'inscrire des équipes à des tournois, en priorisant l'invitation de vos camarades de clan."
             ]
         }
+    },
+    "admin": {
+        "bdd": {
+            "title": "Actualisation de la base de donnée",
+            "action": "Actualiser",
+            "text": "Cet encart est conçu pour actualiser manuellement la base de données des membres du clan. Cela n'interrompt pas l'actualisation automatique qui a lieu toutes les heures."
+        }
     }
 }
