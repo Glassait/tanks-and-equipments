@@ -35,13 +35,6 @@ export class SkeletonLoadingComponent {
      */
     @Input() animation: AnimationEnum = AnimationEnum.PROGRESS;
     /**
-     * The color of the skeleton loading.
-     * @example <glassait-skeleton-loading [color]="ColorEnum.DARK"></glassait-skeleton-loading>
-     * @enum ModeEnum
-     * @see ModeEnum
-     */
-    @Input({ required: true }) color: ModeEnum;
-    /**
      * The width of the skeleton loading.
      * @example <glassait-skeleton-loading width="2rem"></glassait-skeleton-loading>
      * @default 2.5rem
@@ -80,15 +73,42 @@ export class SkeletonLoadingComponent {
     private _appearance: AppearanceEnum;
 
     /**
-     * @see _appearance
+     * Getter for {@link _appearance}
      */
     @Input({ required: true })
     get appearance(): AppearanceEnum {
         return this._appearance;
     }
 
+    /**
+     * Setter for {@link _appearance}
+     */
     set appearance(appearance: AppearanceEnum) {
         this._appearance = appearance;
+        this.setNgx();
+    }
+
+    /**
+     * The color of the skeleton loading.
+     * @example <glassait-skeleton-loading [color]="ColorEnum.DARK"></glassait-skeleton-loading>
+     * @enum ModeEnum
+     * @see ModeEnum
+     */
+    private _color: ModeEnum;
+
+    /**
+     * Getter for {@link _color}
+     */
+    @Input({ required: true })
+    get color(): ModeEnum {
+        return this._color;
+    }
+
+    /**
+     * Setter for {@link _color}
+     */
+    set color(color: ModeEnum) {
+        this._color = color;
         this.setNgx();
     }
 

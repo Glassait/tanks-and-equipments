@@ -86,17 +86,9 @@ $dark-theme: mat.define-dark-theme(
 );
 
 @include mat.core-theme($light-theme);
-@include mat.button-theme($light-theme);
-@include mat.menu-theme($light-theme);
-@include mat.card-theme($light-theme);
-@include mat.expansion-theme($light-theme);
-@include mat.slide-toggle-theme($light-theme);
+@include mat.all-component-themes($light-theme);
 
 :is(.dark) {
     @include mat.core-theme($dark-theme);
-    @include mat.button-theme($dark-theme);
-    @include mat.menu-theme($dark-theme);
-    @include mat.card-theme($dark-theme);
-    @include mat.expansion-theme($dark-theme);
-    @include mat.slide-toggle-theme($dark-theme);
+    @include mat.all-component-themes($dark-theme);
 }

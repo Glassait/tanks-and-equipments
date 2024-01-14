@@ -1,0 +1,23 @@
+@if (loading) {
+    <mat-form-field class="SELECT-LOADING {{ _theme }}">
+        <mat-label class="SELECT-LABEL-LOADING">
+            <glassait-skeleton-loading
+                [color]="loadingColor"
+                [appearance]="AppearanceEnum.LINE"
+                [animation]="AnimationEnum.PULSE"
+                width="9.375rem"
+                height="1.5rem"
+            ></glassait-skeleton-loading>
+        </mat-label>
+        <mat-select [disabled]="true"></mat-select>
+    </mat-form-field>
+} @else {
+    <mat-form-field class="SELECT {{ _theme }}">
+        <mat-label class="SELECT-LABEL"> {{ label }}</mat-label>
+        <mat-select [disabled]="disabled">
+            @for (option of options; track $index) {
+                <mat-option value="{{ option.value }}" disabled="{{ !!option.disabled }}">{{ option.label }}</mat-option>
+            }
+        </mat-select>
+    </mat-form-field>
+}
