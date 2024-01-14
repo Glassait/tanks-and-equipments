@@ -19,7 +19,8 @@
         "home": "accueil",
         "tanks-and-equipments": "chars-et-équipements",
         "clan-war": "clan-war",
-        "changelog": "journal-des-modifications"
+        "changelog": "journal-des-modifications",
+        "admin": "admin"
     },
     "disabled_path": {
         "agreements": "règlement-et-organisation"

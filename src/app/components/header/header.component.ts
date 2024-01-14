@@ -23,6 +23,8 @@ import { NgOptimizedImage, TitleCasePipe } from '@angular/common';
 import { WordingPipe } from '../../pipes/wording.pipe';
 import { ButtonComponent } from '../button/button.component';
 import { MenuComponent } from '../menu/menu.component';
+import { MemberStore } from '../../commons/stores/member.store';
+import { MemberInterface } from '../../commons/interfaces/member.interface';
 
 /**
  * Component for the header of the site
@@ -42,6 +44,11 @@ export class HeaderComponent extends UnsubscribeDirective implements OnInit, Aft
      * @protected
      */
     protected menuItems: MenuItemType[];
+    /**
+     * The option of the header
+     * @protected
+     */
+    protected header: HeaderInterface;
     //endregion
 
     //region ENUM
@@ -70,6 +77,7 @@ export class HeaderComponent extends UnsubscribeDirective implements OnInit, Aft
     constructor(
         // STORE
         private readonly modeStore: ModeStore,
+        private readonly memberStore: MemberStore,
         private readonly headerStore: HeaderStore,
         private readonly featureStore: FeatureStore,
         // SERVICE
@@ -87,19 +95,27 @@ export class HeaderComponent extends UnsubscribeDirective implements OnInit, Aft
             {
                 text: this.wording.getWordingFromString('header.home'),
                 callback: (): void => {
-                    this.router.navigate([this.inventory.getInventoryFromString('path.home')]).then(_r => {});
+                    this.router.navigate([this.inventory.getInventoryFromString('path.home')]).then((_r: boolean): void => {});
                 },
             },
             {
                 text: this.wording.getWordingFromString('header.tanks-and-equipments'),
                 callback: (): void => {
-                    this.router.navigate([this.inventory.getInventoryFromString('path.tanks-and-equipments')]).then(_r => {});
+                    this.router
+                        .navigate([this.inventory.getInventoryFromString('path.tanks-and-equipments')])
+                        .then((_r: boolean): void => {});
                 },
             },
             {
                 text: this.wording.getWordingFromString('header.clan-war'),
                 callback: (): void => {
-                    this.router.navigate([this.inventory.getInventoryFromString('path.clan-war')]).then(_r => {});
+                    this.router.navigate([this.inventory.getInventoryFromString('path.clan-war')]).then((_r: boolean): void => {});
+                },
+            },
+            {
+                text: this.wording.getWordingFromString('header.admin'),
+                callback: (): void => {
+                    this.router.navigate([this.inventory.getInventoryFromString('path.clan-war')]).then((_r: boolean): void => {});
                 },
             },
         ];
@@ -181,7 +197,15 @@ export class HeaderComponent extends UnsubscribeDirective implements OnInit, Aft
             .watch()
             .pipe(takeUntil(this.destroy$))
             .subscribe((headerInterface: HeaderInterface): void => {
+                this.header = headerInterface;
                 this.createMenuItemList(headerInterface);
+            });
+
+        this.memberStore
+            .watch()
+            .pipe(takeUntil(this.destroy$))
+            .subscribe((_value: MemberInterface): void => {
+                this.createMenuItemList(this.header);
             });
     }
 
@@ -206,6 +230,10 @@ export class HeaderComponent extends UnsubscribeDirective implements OnInit, Aft
 
         if (header.showWar && this.feature && this.feature.clanWar) {
             this.menuItems.push(this.allMenuItems[2]);
+        }
+
+        if (header.showAdmin && !this.memberService.isVisitor && this.memberService.isAdmin) {
+            this.menuItems.push(this.allMenuItems[3]);
         }
     }
 }

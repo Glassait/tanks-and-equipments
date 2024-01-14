@@ -60,6 +60,7 @@ export class TanksEquipmentComponent implements OnInit {
             showHome: true,
             showTank: false,
             showWar: true,
+            showAdmin: true,
         });
 
         this.getTanksData();

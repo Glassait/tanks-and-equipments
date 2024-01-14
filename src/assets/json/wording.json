@@ -4,7 +4,8 @@
         "home": "page d'accueil",
         "tanks-and-equipments": "chars & équipements",
         "clan-war": "clan War",
-        "connection": "connexion"
+        "connection": "connexion",
+        "admin": "administration"
     },
     "home": {
         "title": {

@@ -22,6 +22,10 @@ const routes: Routes = [
         path: inventory.path.changelog,
         loadChildren: () => import('./pages/changelog/changelog.module').then(m => m.ChangelogModule),
     },
+    {
+        path: inventory.path.admin,
+        loadChildren: () => import('./pages/admin/admin.module').then(m => m.AdminModule),
+    },
     /*    {
         path: inventory.path.agreements,
         loadChildren: () => import('./pages/agreements/agreements.module').then(m => m.AgreementsModule)

@@ -20,6 +20,7 @@ export class SandboxComponent extends UnsubscribeDirective {
     //region ENUM
     protected readonly IconColorEnum = IconColorEnum;
     protected readonly ModeEnum = ModeEnum;
+
     //endregion
 
     constructor(
@@ -39,6 +40,7 @@ export class SandboxComponent extends UnsubscribeDirective {
             showTank: true,
             showWar: true,
             showHome: true,
+            showAdmin: true,
         });
 
         this.modeStore
