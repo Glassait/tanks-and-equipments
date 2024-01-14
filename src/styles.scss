@@ -20,11 +20,14 @@
 // CARD
 @use 'assets/scss/angular/card';
 
-// Menu
+// MENU
 @use 'assets/scss/angular/menu';
 
-// Slide
+// SLIDE
 @use 'assets/scss/angular/slide';
+
+// SELECT
+@use 'assets/scss/angular/select';
 
 // AUTRE
 @use 'assets/scss/standard';
@@ -34,12 +37,12 @@
 }
 
 html {
-    scroll-behavior: smooth;
-
+    background-attachment: fixed;
     background-position: center center;
     background-repeat: no-repeat;
-    background-attachment: fixed;
     background-size: cover;
+
+    scroll-behavior: smooth;
 
     @for $i from 0 to 7 {
         &[image='#{ $i }'] {
