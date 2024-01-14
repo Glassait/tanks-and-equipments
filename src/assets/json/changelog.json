@@ -1,7 +1,7 @@
 {
     "changelog": [
         {
-            "version": "2.1.1",
+            "version": "2.2.0",
             "add": ["Ajout de la page administration", "Ajout de la carte pour update la base de données des membres du clan"]
         },
         {
