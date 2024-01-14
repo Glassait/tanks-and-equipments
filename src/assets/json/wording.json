@@ -4,7 +4,8 @@
         "home": "page d'accueil",
         "tanks-and-equipments": "chars & équipements",
         "clan-war": "clan War",
-        "connection": "connexion"
+        "connection": "connexion",
+        "admin": "administration"
     },
     "home": {
         "title": {
@@ -64,6 +65,13 @@
                 "Les changements de grades, les exclusions, et autres aspects similaires sont pris en charge par un officier de l'État-Major, et non par un officier de combat.",
                 "Vous avez également la possibilité d'inscrire des équipes à des tournois, en priorisant l'invitation de vos camarades de clan."
             ]
+        }
+    },
+    "admin": {
+        "bdd": {
+            "title": "Actualisation de la base de donnée",
+            "action": "Actualiser",
+            "text": "Cet encart est conçu pour actualiser manuellement la base de données des membres du clan. Cela n'interrompt pas l'actualisation automatique qui a lieu toutes les heures."
         }
     }
 }

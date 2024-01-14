@@ -8,14 +8,25 @@ import { Member } from '../types/member.type';
 import { Observable, of } from 'rxjs';
 
 /**
- * Injectable service that provides methods for interacting with the Glassnode API.
+ * Injectable service that provides methods for interacting with the Glassait API.
  */
 @Injectable({
     providedIn: 'root',
 })
 export class MembersApi {
+    //region PRIVATE FIELD
+    /**
+     * The mock file
+     * @private
+     */
     private _members: Member[] = members.members;
-    private url: string = 'member?account_id=';
+    /**
+     * All the base ulr for the member api
+     * @private
+     */
+    private url = { getMember: 'member?account_id=', updateMember: 'member/update?access_token=' };
+
+    //endregion
 
     constructor(
         private httpClient: HttpClient,
@@ -29,7 +40,7 @@ export class MembersApi {
      */
     public isClanMembers(id: number): Observable<any> {
         if ([MockEnum.NO_MOCK, MockEnum.EXTERNAL_MOCK].includes(environment.mock)) {
-            return this.httpClient.get(this.inventoryService.getGlassaitApi()['live-url'] + this.url + id);
+            return this.httpClient.get(this.inventoryService.getGlassaitApi()['live-url'] + this.url.getMember + id);
         }
 
         return of(
@@ -39,5 +50,17 @@ export class MembersApi {
                     role: '',
                 } as unknown as Member)
         );
+    }
+
+    /**
+     * Update the database members
+     * @param access_token The wot access token of the user
+     */
+    public updateMember(access_token: string): Observable<any> {
+        if ([MockEnum.NO_MOCK, MockEnum.EXTERNAL_MOCK].includes(environment.mock)) {
+            return this.httpClient.post(this.inventoryService.getGlassaitApi()['live-url'] + this.url.updateMember + access_token, {});
+        }
+
+        return of('Databased updated');
     }
 }

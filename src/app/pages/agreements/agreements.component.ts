@@ -53,6 +53,7 @@ export class AgreementsComponent extends UnsubscribeDirective implements OnInit 
             showHome: true,
             showTank: true,
             showWar: true,
+            showAdmin: true,
         });
 
         this.title.setTitle(this.sentenceCasePipe.transform(this.wording.footer.agreements));

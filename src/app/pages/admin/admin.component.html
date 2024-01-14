@@ -1,0 +1,21 @@
+<div
+    class="flex flex-col desktop:flex-row items-center gap-normal *:flex *:w-full *:flex-col *:items-center *:gap-normal desktop:items-end">
+    <div>
+        <glassait-card
+            [actionCallback]="{ func: actualiseBdd }"
+            [actionLoading]="updateBddLoading"
+            [loadingColor]="modeService.mode"
+            [theme]="modeService.mode"
+            actionAlign="end"
+            actionIcon="visitor"
+            actionText="{{ 'admin.bdd.action' | wording | sentenceCase }}"
+            avatar="server"
+            class="w-[288px] *:text-justify tablet:w-[500px]"
+            hasAction="true"
+            title="{{ 'admin.bdd.title' | wording | sentenceCase }}"
+        >
+            <p>{{ 'admin.bdd.text' | wording | sentenceCase }}</p>
+        </glassait-card>
+    </div>
+    <div></div>
+</div>

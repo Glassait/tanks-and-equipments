@@ -98,6 +98,7 @@ export class HomeComponent implements OnInit {
             showHome: false,
             showWar: true,
             showTank: true,
+            showAdmin: true,
         });
 
         this.memberStore

@@ -1,5 +1,5 @@
 @if (!isLoading) {
-    <mat-card class="CARD {{  theme }}">
+    <mat-card class="CARD {{ theme }}">
         <mat-card-header>
             @if (avatar) {
                 <glassait-icon [color]="avatarColor" [icon]="avatar" [size]="40" mat-card-avatar></glassait-icon>
@@ -18,7 +18,7 @@
             <ng-content></ng-content>
         </mat-card-content>
 
-        @if (hasAction) {
+        @if (hasAction && !actionLoading) {
             <mat-card-actions [align]="actionAlign">
                 <glassait-button
                     (click)="actionCallback.func(actionCallback.parameter)"
@@ -28,6 +28,16 @@
                     [text]="actionText"
                     [theme]="actionTheme"
                     [type]="ButtonTypeEnum.BASIC"
+                ></glassait-button>
+            </mat-card-actions>
+        } @else if (hasAction && actionLoading) {
+            <mat-card-actions [align]="actionAlign">
+                <glassait-button
+                    [size]="ButtonSizeEnum.NORMAL"
+                    [theme]="actionTheme"
+                    [type]="ButtonTypeEnum.BASIC"
+                    loading="true"
+                    text=""
                 ></glassait-button>
             </mat-card-actions>
         }
