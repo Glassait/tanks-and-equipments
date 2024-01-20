@@ -1,4 +1,4 @@
-import { booleanAttribute, Component, Input } from '@angular/core';
+import { booleanAttribute, ChangeDetectorRef, Component, forwardRef, Input, OnInit } from '@angular/core';
 import { ModeEnum } from '../../commons/enums/modeEnum';
 import { MatSelectModule } from '@angular/material/select';
 import { SkeletonLoadingComponent } from '../skeleton-loading/skeleton-loading.component';
@@ -6,15 +6,28 @@ import { AppearanceEnum } from '../skeleton-loading/enums/appearance.enum';
 import { AnimationEnum } from '../skeleton-loading/enums/animation.enum';
 import { SelectThemeEnum } from './enums/select-theme.enum';
 import { SelectOptionType } from './types/select-option.type';
+import { ControlValueAccessor, FormControl, FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
     selector: 'glassait-select',
     standalone: true,
-    imports: [MatSelectModule, SkeletonLoadingComponent],
+    imports: [MatSelectModule, SkeletonLoadingComponent, FormsModule, ReactiveFormsModule],
     templateUrl: './select.component.html',
     styles: ':host() { @apply block }',
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => SelectComponent),
+            multi: true,
+        },
+    ],
 })
-export class SelectComponent {
+export class SelectComponent implements ControlValueAccessor, OnInit {
+    /**
+     * The value selected in the mat-select
+     */
+    public selected: FormControl<string> = new FormControl();
+
     //region INPUT
     /**
      * The floating label of the select
@@ -51,7 +64,7 @@ export class SelectComponent {
     }
 
     set theme(value: ModeEnum) {
-        if (this._disabled) {
+        if (this.selected.disabled) {
             this._theme = value === ModeEnum.DARK ? SelectThemeEnum.DARK_DISABLED : SelectThemeEnum.LIGHT_DISABLED;
         } else {
             this._theme = value === ModeEnum.DARK ? SelectThemeEnum.DARK : SelectThemeEnum.LIGHT;
@@ -82,32 +95,55 @@ export class SelectComponent {
         this._loading = value;
         if (value) {
             setTimeout((): void => {
-                this.disabled = true;
+                this.selected.disable();
             }, 1);
         }
     }
 
-    /**
-     * If the select is disabled
-     * @example <glassait-select disabled="true"></glassait-select>
-     * @example <glassait-select [disabled]="true"></glassait-select>
-     * @implements booleanAttribute
-     */
-    private _disabled: boolean;
+    //endregion
 
-    /**
-     * Getter for {@link _disabled}
-     */
-    @Input({ transform: booleanAttribute })
-    get disabled(): boolean {
-        return this._disabled;
+    constructor(private readonly changeDetector: ChangeDetectorRef) {}
+
+    //region ANGULAR INTERFACE
+    ngOnInit(): void {
+        this.selected.valueChanges.subscribe((): void => {
+            this.onChange(this.selected.value);
+        });
     }
 
-    /**
-     * Setter for {@link _disabled}
-     */
-    set disabled(value: boolean) {
-        this._disabled = value;
+    //endregion
+
+    //region CONTROL VALUE ACCESSORS
+    protected onChange: any = (): void => {
+        // This is intentional
+    };
+    protected onTouched: any = (): void => {
+        // This is intentional
+    };
+
+    writeValue(obj: string): void {
+        if (!obj) {
+            return;
+        }
+
+        this.selected.setValue(obj);
+        this.changeDetector.markForCheck();
+    }
+
+    registerOnChange(fn: any): void {
+        this.onChange = fn;
+    }
+
+    registerOnTouched(fn: any): void {
+        this.onTouched = fn;
+    }
+
+    setDisabledState?(isDisabled: boolean): void {
+        if (isDisabled) {
+            this.selected.disable();
+        } else {
+            this.selected.enable();
+        }
         this.theme = this._theme === SelectThemeEnum.DARK ? ModeEnum.DARK : ModeEnum.LIGHT;
     }
 
