@@ -2,7 +2,8 @@
  * The representation of the option for the select
  */
 export type SelectOptionType = {
-    value: string;
+    value: any;
     label: string;
     disabled?: boolean;
+    metadata?: any;
 };

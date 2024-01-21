@@ -1,6 +1,7 @@
 <div
-    class="flex flex-col desktop:flex-row items-center gap-normal *:flex *:w-full *:flex-col *:items-center *:gap-normal desktop:items-end">
-    <div>
+    class="flex flex-col items-center gap-normal *:flex *:w-full *:flex-col *:items-center *:gap-normal desktop:flex-row desktop:items-end"
+>
+    <div class="*:w-[288px] *:tablet:w-[500px]">
         <glassait-card
             [actionCallback]="{ func: actualiseBdd }"
             [actionLoading]="updateBddLoading"
@@ -10,12 +11,75 @@
             actionIcon="visitor"
             actionText="{{ 'admin.bdd.action' | wording | sentenceCase }}"
             avatar="server"
-            class="w-[288px] *:text-justify tablet:w-[500px]"
+            class="*:text-justify"
             hasAction="true"
             title="{{ 'admin.bdd.title' | wording | sentenceCase }}"
         >
             <p>{{ 'admin.bdd.text' | wording | sentenceCase }}</p>
         </glassait-card>
+
+        @if (!clanReserves.isLoading && !clanReserves.isError) {
+            <glassait-card
+                [theme]="modeService.mode"
+                avatar="reserve"
+                class="*:text-justify"
+                subtitle="{{ 'admin.reserve.subtitle' | wording | sentenceCase }}"
+                title="{{ 'admin.reserve.title' | wording | sentenceCase }}"
+            >
+                <form
+                    [formGroup]="clanReservesFormGroup"
+                    class="flex flex-col gap-normal *:flex *:flex-wrap *:items-center *:justify-between"
+                >
+                    @for (reserve of clanReserves.reserves; track i; let i = $index) {
+                        <div>
+                            <div class="flex w-[50%] min-w-[160px] flex-col">
+                                <p class="font-bold">{{ reserve.name }}</p>
+                                <p class="text-wrap text-secondary-100 dark:text-primary-100">
+                                    Bonus {{ reserve.bonus_type | replace: 'obtenue' : '' | replace: 'obtenus' : '' }}
+                                </p>
+                            </div>
+
+                            @if (!reserve.active_till) {
+                                <div class="w-[30%] min-w-[100px]">
+                                    <glassait-select
+                                        formControlName="{{ reserve.type }}"
+                                        [theme]="modeService.mode"
+                                        class="w-[6.25rem]"
+                                        label="{{ 'admin.reserve.label_select' | wording | sentenceCase }}"
+                                        [options]="reserve.options"
+                                    ></glassait-select>
+                                </div>
+                                <div class="w-[20%] min-w-[80px]">
+                                    <glassait-button
+                                        class="w-fit"
+                                        [theme]="modeService.mode === ModeEnum.DARK ? ButtonThemeEnum.DARK : ButtonThemeEnum.LIGHT"
+                                        text="{{ 'admin.reserve.label_button' | wording | sentenceCase }}"
+                                        [type]="ButtonTypeEnum.RAISED"
+                                        (click)="activateReserve($event, reserve.type)"
+                                        [disabled]="!clanReservesFormGroup.controls[reserve.type].value"
+                                    ></glassait-button>
+                                </div>
+                            } @else if (reserve.clock) {
+                                Temps restant :
+                                @if (reserve.clock.seconds() > 0) {
+                                    {{ reserve.clock.hours() }}:{{ reserve.clock.minutes() }}:{{ reserve.clock.seconds() }}
+                                } @else {
+                                    00:00:00
+                                }
+                            }
+                        </div>
+                    }
+                </form>
+            </glassait-card>
+        } @else {
+            <glassait-card
+                avatar="reserve"
+                subtitle=""
+                title=""
+                [isLoading]="clanReserves.isLoading"
+                [loadingColor]="modeService.mode"
+            ></glassait-card>
+        }
     </div>
     <div></div>
 </div>

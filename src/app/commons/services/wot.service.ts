@@ -24,8 +24,14 @@ export class WotService {
      * @param access_token The access token of the user
      */
     public getMemberOnline(access_token: string): Observable<any> {
-        return this.httpClient.get(
-            this.inventoryClass.getWargamingApi('member-online', access_token)
-        );
+        return this.httpClient.get(this.inventoryClass.getWargamingApi('member-online', access_token));
+    }
+
+    /**
+     * Get all the clan reservations with a http call to the Wargaming API
+     * @param access_token The access token of the user
+     */
+    public getClanReserve(access_token: string): Observable<any> {
+        return this.httpClient.get(this.inventoryClass.getWargamingApi('clan_reserves', access_token));
     }
 }

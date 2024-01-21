@@ -20,7 +20,10 @@ export class InventoryService {
      * @param url The url to get
      * @param arg Can be the access token of the redirect url
      */
-    public getWargamingApi(url: 'log-out' | 'game-servers' | 'login' | 'member-online' | 'login-mock', arg: string = ''): string {
+    public getWargamingApi(
+        url: 'log-out' | 'game-servers' | 'login' | 'member-online' | 'login-mock' | 'clan_reserves',
+        arg: string = ''
+    ): string {
         return this._inventory['wargaming-api'][url]
             .replace('applicationId', this._inventory['wargaming-api']['application-id'])
             .replace('clanId', this._inventory['wargaming-api']['clan-id'])

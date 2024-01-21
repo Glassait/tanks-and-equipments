@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { MockEnum } from '../enums/mock.enum';
-import { WotApiEnum } from '../enums/wot-api.enum';
 import { InventoryService } from '../services/inventory.service';
 
 @Injectable({
@@ -16,20 +15,22 @@ export class HttpMockInterceptor implements HttpInterceptor {
         if ([MockEnum.EXTERNAL_MOCK, MockEnum.FULL_MOCK].includes(environment.mock)) {
             let endPoint: string[] = req.url.split('api.worldoftanks.eu');
 
-            if (endPoint.length === 2) {
-                let jsonFile: string = '';
-                if (endPoint[1].includes(WotApiEnum.SERVERS)) {
-                    jsonFile = WotApiEnum.SERVERS;
-                } else if (endPoint[1].includes(WotApiEnum.ONLINE_MEMBERS)) {
-                    jsonFile = WotApiEnum.ONLINE_MEMBERS;
-                }
-
-                const mockReq: HttpRequest<any> = req.clone({
-                    url: `/assets/mocks/${jsonFile}.json`,
-                    method: 'GET',
-                });
-                return next.handle(mockReq);
-            }
+            // if (endPoint.length === 2) {
+            //     let jsonFile: string = '';
+            //     if (endPoint[1].includes(WotApiEnum.SERVERS)) {
+            //         jsonFile = WotApiEnum.SERVERS;
+            //     } else if (endPoint[1].includes(WotApiEnum.ONLINE_MEMBERS)) {
+            //         jsonFile = WotApiEnum.ONLINE_MEMBERS;
+            //     } else if (endPoint[1].includes(WotApiEnum.CLAN_RESERVES)) {
+            //         jsonFile = WotApiEnum.CLAN_RESERVES;
+            //     }
+            //
+            //     const mockReq: HttpRequest<any> = req.clone({
+            //         url: `/assets/mocks/${jsonFile}.json`,
+            //         method: req.method,
+            //     });
+            //     return next.handle(mockReq);
+            // }
 
             endPoint = req.url.split('herokuapp.com/api/');
 

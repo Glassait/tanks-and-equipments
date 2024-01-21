@@ -6,7 +6,8 @@
         "game-servers": "https://api.worldoftanks.eu/wgn/servers/info/?application_id=applicationId&game=wot&language=fr",
         "login": "https://api.worldoftanks.eu/wot/auth/login/?application_id=applicationId&display=popup&redirect_uri=redirectUri",
         "login-mock": "assets/mocks/connection.json",
-        "member-online": "https://api.worldoftanks.eu/wot/clans/info/?application_id=applicationId&fields=private.online_members&extra=private.online_members&clan_id=clanId&language=fr&access_token=accessToken"
+        "member-online": "https://api.worldoftanks.eu/wot/clans/info/?application_id=applicationId&fields=private.online_members&extra=private.online_members&clan_id=clanId&language=fr&access_token=accessToken",
+        "clan_reserves": "https://api.worldoftanks.eu/wot/stronghold/clanreserves/?application_id=applicationId&access_token=accessToken&fields=disposable%2C+bonus_type%2C+name%2C+type%2C+in_stock%2C+-in_stock.x_level_only%2C+-in_stock.bonus_values&language=fr"
     },
     "glassait-api": {
         "live-url": "https://fold-backend-5e6c2cf7c25c.herokuapp.com/api/",
