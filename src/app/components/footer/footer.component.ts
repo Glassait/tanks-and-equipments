@@ -30,38 +30,50 @@ export class FooterComponent implements OnInit {
         wording: string;
         path: string;
         allowVisitor: boolean;
-        enabled: boolean | undefined;
+        admin: boolean;
+        enabled: boolean;
     }[] = [
         {
             wording: 'header.home',
             path: 'path.home',
             allowVisitor: true,
+            admin: false,
             enabled: true,
         },
         {
             wording: 'header.tanks-and-equipments',
             path: 'path.tanks-and-equipments',
             allowVisitor: false,
+            admin: false,
             enabled: true,
         },
         {
             wording: 'header.clan-war',
             path: 'path.clan-war',
             allowVisitor: false,
+            admin: false,
             enabled: false,
         },
         {
             wording: 'footer.changelog',
             path: 'path.changelog',
             allowVisitor: false,
+            admin: false,
             enabled: true,
         },
         /*        {
-            wording: 'footer.agreements',
-            path: 'path.agreements',
+         wording: 'footer.agreements',
+         path: 'path.agreements',
+         allowVisitor: false,
+         enabled: true,
+         },*/
+        {
+            wording: 'header.admin',
+            path: 'path.admin',
             allowVisitor: false,
+            admin: true,
             enabled: true,
-        },*/
+        },
     ];
     //endregion
 
@@ -112,7 +124,7 @@ export class FooterComponent implements OnInit {
             .watch()
             .pipe(takeWhile((value: FeatureInterface) => value !== null && value !== undefined, true))
             .subscribe((value: FeatureInterface): void => {
-                this.links[2].enabled = value.clanWar;
+                this.links[2].enabled = !!value.clanWar;
             });
     }
 }
