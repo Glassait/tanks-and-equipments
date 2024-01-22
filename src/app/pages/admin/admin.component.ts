@@ -198,6 +198,7 @@ export class AdminComponent implements OnInit {
                 this.clanReserves.isError = true;
             },
             complete: (): void => {
+                console.log(this.clanReserves);
                 this.clanReserves.isLoading = false;
             },
         });

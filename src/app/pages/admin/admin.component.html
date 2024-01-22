@@ -62,7 +62,7 @@
                             } @else if (reserve.clock) {
                                 Temps restant :
                                 @if (reserve.clock.seconds() > 0) {
-                                    {{ reserve.clock.hours() }}:{{ reserve.clock.minutes() }}:{{ reserve.clock.seconds() }}
+                                    {{ reserve.clock.hours() }}h {{ reserve.clock.minutes() }} min {{ reserve.clock.seconds() }} sec
                                 } @else {
                                     00:00:00
                                 }
