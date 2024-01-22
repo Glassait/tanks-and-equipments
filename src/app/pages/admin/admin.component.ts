@@ -9,13 +9,13 @@ import { SentenceCasePipe } from '../../pipes/sentence-case.pipe';
 import { MembersApi } from '../../commons/api/members.api';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { WotService } from 'src/app/commons/services/wot.service';
-import { ClanReserves, DefaultWargaming, Reserve } from '../../commons/types/wot.type';
+import { ClanReserve, DefaultWargaming, Reserve } from '../../commons/types/wot.type';
 import { defaultHttpType, DefaultHttpType } from '../../commons/types/default-httpType';
 import { ModeEnum } from '../../commons/enums/modeEnum';
 import { ButtonTypeEnum } from '../../components/button/enums/button-type.enum';
 import { ButtonThemeEnum } from '../../components/button/enums/button-theme.enum';
 import { FormControl, FormGroup } from '@angular/forms';
-import { ClanReservesType } from './types/clan-reserves.type';
+import { ClanReserveType } from './types/clan-reserve.type';
 import { ClanReserveEnum } from './enums/clan-reserve.enum';
 import { SelectOptionType } from '../../components/select/types/select-option.type';
 import moment from 'moment';
@@ -33,7 +33,7 @@ export class AdminComponent implements OnInit {
      */
     protected updateBddLoading: boolean = false;
     protected clanReservesFormGroup: FormGroup = new FormGroup({});
-    protected clanReserves: DefaultHttpType & { reserves?: ClanReservesType[] } = defaultHttpType;
+    protected clanReserves: DefaultHttpType & { reserves?: ClanReserveType[] } = { ...defaultHttpType };
     //endregion
 
     //region ENUM
@@ -114,8 +114,8 @@ export class AdminComponent implements OnInit {
     protected activateReserve(event: MouseEvent, type: string): void {
         event.preventDefault();
         const level: string = this.clanReservesFormGroup.controls[type].value;
-        const clanReserve: ClanReservesType | undefined = this.clanReserves.reserves?.find(
-            (clanReserves: ClanReservesType): boolean => clanReserves.type === type
+        const clanReserve: ClanReserveType | undefined = this.clanReserves.reserves?.find(
+            (clanReserves: ClanReserveType): boolean => clanReserves.type === type
         );
 
         if (!clanReserve) {
@@ -130,23 +130,44 @@ export class AdminComponent implements OnInit {
             return;
         }
 
-        this.createTimer(clanReserve, option.metadata);
-        this.checkActivatedReserves();
+        this.wotService.activateClanReserve(this.memberService.accessToken, level, clanReserve.type).subscribe({
+            next: (value: any): void => {
+                if (value.status === 'error') {
+                    this.snackBar.open('La reserve ne doit plus existé, merci de recharger la page', '', {
+                        duration: this.snackBarDuration,
+                    });
+                } else {
+                    this.snackBar.open('La réserve a bien été activée', '', { duration: this.snackBarDuration });
+                    this.createTimer(clanReserve, option.metadata);
+                    this.checkActivatedReserves();
+                }
+            },
+            error: (err: any): void => {
+                console.error(err);
+                this.snackBar.open("Une erreur est survenue lors de l'activation de la reserve, merci de réessayer plus tard", '', {
+                    duration: this.snackBarDuration,
+                });
+            },
+        });
     }
 
+    /**
+     * Get all the clan reserves with the wot api
+     * @private
+     */
     private getClanReserves(): void {
         this.wotService.getClanReserve(this.memberService.accessToken).subscribe({
-            next: (response: DefaultWargaming<ClanReserves[]>): void => {
+            next: (response: DefaultWargaming<ClanReserve[]>): void => {
                 response.data
-                    .filter((clanReserves: ClanReserves) => !clanReserves.disposable)
-                    .forEach((reserves: ClanReserves): void => {
+                    .filter((clanReserves: ClanReserve) => !clanReserves.disposable)
+                    .forEach((reserves: ClanReserve): void => {
                         this.clanReservesFormGroup.addControl(reserves.type, new FormControl());
 
                         if (!this.clanReserves.reserves) {
                             this.clanReserves.reserves = [];
                         }
 
-                        const clanReserves: ClanReservesType = {
+                        const clanReserves: ClanReserveType = {
                             name: reserves.name,
                             type: reserves.type,
                             bonus_type: reserves.bonus_type,
@@ -183,9 +204,13 @@ export class AdminComponent implements OnInit {
         });
     }
 
+    /**
+     * Checks the bond reserves
+     * @private
+     */
     private checkActivatedReserves(): void {
-        this.clanReserves.reserves?.forEach((clanReserves: ClanReservesType): void => {
-            const linked = this.clanReserves.reserves?.find((value: ClanReservesType): boolean => value.type === clanReserves.link_to);
+        this.clanReserves.reserves?.forEach((clanReserves: ClanReserveType): void => {
+            const linked = this.clanReserves.reserves?.find((value: ClanReserveType): boolean => value.type === clanReserves.link_to);
 
             if (linked?.active_till) {
                 clanReserves.active_till = linked.active_till;
@@ -195,23 +220,29 @@ export class AdminComponent implements OnInit {
         });
     }
 
-    private createTimer(clanReserves: ClanReservesType, reserve: Reserve): void {
+    /**
+     * Create the timer when the reserve is activated or has been activated
+     * @param clanReserve The clan reserve
+     * @param reserve The in stock reserve
+     * @private
+     */
+    private createTimer(clanReserve: ClanReserveType, reserve: Reserve): void {
         const target = new Date();
         target.setHours(target.getHours() + reserve.action_time / 3600);
-        const linked = this.clanReserves.reserves?.find((value: ClanReservesType): boolean => value.type === clanReserves.link_to);
+        const linked = this.clanReserves.reserves?.find((value: ClanReserveType): boolean => value.type === clanReserve.link_to);
 
-        clanReserves.active_till = clanReserves.active_till ?? target;
-        clanReserves.duration = reserve.action_time;
+        clanReserve.active_till = clanReserve.active_till ?? target;
+        clanReserve.duration = reserve.action_time;
         timer(0, 1000)
             .pipe(
                 map(() => new Date()),
                 share(),
                 takeWhile((date: Date): boolean => {
-                    const seconds = moment.duration(moment(clanReserves.active_till).diff(date)).seconds();
+                    const seconds = moment.duration(moment(clanReserve.active_till).diff(date)).seconds();
                     if (seconds <= 0) {
-                        clanReserves.duration = undefined;
-                        clanReserves.active_till = undefined;
-                        clanReserves.clock = undefined;
+                        clanReserve.duration = undefined;
+                        clanReserve.active_till = undefined;
+                        clanReserve.clock = undefined;
                         reserve.amount--;
 
                         if (linked) {
@@ -224,9 +255,9 @@ export class AdminComponent implements OnInit {
                 })
             )
             .subscribe((date: Date): void => {
-                clanReserves.clock = moment.duration(moment(clanReserves.active_till).diff(date));
+                clanReserve.clock = moment.duration(moment(clanReserve.active_till).diff(date));
                 if (linked) {
-                    linked.clock = clanReserves.clock;
+                    linked.clock = clanReserve.clock;
                 }
             });
     }

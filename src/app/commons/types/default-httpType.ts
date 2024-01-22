@@ -8,6 +8,8 @@ export type DefaultHttpType = {
 
 /**
  * The default state for http variable
+ * @clone To work is highly recommended to clone this object `{...defaultHttpType}`.
+ * Else you will get side effect because this is a global variable
  */
 export const defaultHttpType: DefaultHttpType = {
     isLoading: true,

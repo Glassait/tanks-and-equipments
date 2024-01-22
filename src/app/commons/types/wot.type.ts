@@ -42,7 +42,7 @@ export type Reserve = {
 /**
  * Type for the WoT api response for the clan reserves
  */
-export type ClanReserves = {
+export type ClanReserve = {
     type: string;
     in_stock: Reserve[];
     disposable: boolean;
