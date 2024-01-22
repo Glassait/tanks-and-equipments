@@ -58,7 +58,7 @@
             "disposable": false,
             "in_stock": [
                 {
-                    "status": "ready_to_activate",
+                    "status": "cannot_be_activated",
                     "action_time": 3600,
                     "active_till": null,
                     "level": 7,
@@ -219,22 +219,14 @@
             "in_stock": [
                 {
                     "status": "active",
-                    "action_time": 3600,
-                    "active_till": 1705863302,
-                    "level": 7,
-                    "activated_at": 1705859702,
-                    "amount": 1
-                },
-                {
-                    "status": "ready_to_activate",
                     "action_time": 7200,
-                    "active_till": null,
+                    "active_till": 1705947812,
                     "level": 8,
-                    "activated_at": null,
+                    "activated_at": 1705940612,
                     "amount": 2
                 },
                 {
-                    "status": "ready_to_activate",
+                    "status": "cannot_be_activated",
                     "action_time": 3600,
                     "active_till": null,
                     "level": 9,
@@ -242,7 +234,7 @@
                     "amount": 1
                 },
                 {
-                    "status": "ready_to_activate",
+                    "status": "cannot_be_activated",
                     "action_time": 7200,
                     "active_till": null,
                     "level": 10,

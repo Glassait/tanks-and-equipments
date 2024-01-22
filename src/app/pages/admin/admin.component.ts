@@ -198,7 +198,6 @@ export class AdminComponent implements OnInit {
                 this.clanReserves.isError = true;
             },
             complete: (): void => {
-                console.log(this.clanReserves);
                 this.clanReserves.isLoading = false;
             },
         });
@@ -238,8 +237,8 @@ export class AdminComponent implements OnInit {
                 map(() => new Date()),
                 share(),
                 takeWhile((date: Date): boolean => {
-                    const seconds = moment.duration(moment(clanReserve.active_till).diff(date)).seconds();
-                    if (seconds <= 0) {
+                    const duration = moment.duration(moment(clanReserve.active_till).diff(date));
+                    if (duration.seconds() <= 0 && duration.minutes() <= 0 && duration.hours() <= 0) {
                         clanReserve.duration = undefined;
                         clanReserve.active_till = undefined;
                         clanReserve.clock = undefined;
@@ -251,7 +250,7 @@ export class AdminComponent implements OnInit {
                             linked.clock = undefined;
                         }
                     }
-                    return seconds > 0;
+                    return !(duration.seconds() < 0 && duration.minutes() < 0 && duration.hours() < 0);
                 })
             )
             .subscribe((date: Date): void => {
