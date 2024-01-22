@@ -14,7 +14,7 @@
 } @else {
     <mat-form-field class="SELECT {{ _theme }}">
         <mat-label class="SELECT-LABEL"> {{ label }}</mat-label>
-        <mat-select [disabled]="disabled">
+        <mat-select [formControl]="selected">
             @for (option of options; track $index) {
                 <mat-option value="{{ option.value }}" disabled="{{ !!option.disabled }}">{{ option.label }}</mat-option>
             }

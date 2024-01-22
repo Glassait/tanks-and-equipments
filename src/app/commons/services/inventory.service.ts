@@ -14,13 +14,20 @@ export class InventoryService {
         return this._inventory['wargaming-api']['clan-id'];
     }
 
+    public get applicationId(): string {
+        return this._inventory['wargaming-api']['application-id'];
+    }
+
     /**
      * Get from the inventaire the url of the Wargaming api
      * Will add to this url all the data (application id, clan id, etc)
      * @param url The url to get
      * @param arg Can be the access token of the redirect url
      */
-    public getWargamingApi(url: 'log-out' | 'game-servers' | 'login' | 'member-online' | 'login-mock', arg: string = ''): string {
+    public getWargamingApi(
+        url: 'log-out' | 'game-servers' | 'login' | 'member-online' | 'login-mock' | 'clan_reserves' | 'activate_reserve',
+        arg: string = ''
+    ): string {
         return this._inventory['wargaming-api'][url]
             .replace('applicationId', this._inventory['wargaming-api']['application-id'])
             .replace('clanId', this._inventory['wargaming-api']['clan-id'])

@@ -1,6 +1,10 @@
 {
     "changelog": [
         {
+            "version": "2.2.1",
+            "add": ["Ajout de la page administration dans le pied de page", "Ajout de la carte pour voir et activer les réserves de clan"]
+        },
+        {
             "version": "2.2.0",
             "add": ["Ajout de la page administration", "Ajout de la carte pour update la base de données des membres du clan"]
         },

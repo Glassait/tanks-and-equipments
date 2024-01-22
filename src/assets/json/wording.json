@@ -72,6 +72,12 @@
             "title": "Actualisation de la base de donnée",
             "action": "Actualiser",
             "text": "Cet encart est conçu pour actualiser manuellement la base de données des membres du clan. Cela n'interrompt pas l'actualisation automatique qui a lieu toutes les heures."
+        },
+        "reserve": {
+            "title": "Activer des réserves de clan",
+            "subtitle": "Cet encart permet d'activer les réserves du clan.",
+            "label_select": "Level",
+            "label_button": "Activer"
         }
     }
 }

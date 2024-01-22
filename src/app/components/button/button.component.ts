@@ -155,8 +155,14 @@ export class ButtonComponent implements OnInit {
      * @private
      */
     private setDisabledTheme(): void {
-        this.theme = [ButtonThemeEnum.DARK, ButtonThemeEnum.DARK_BLUE, ButtonThemeEnum.DARK_DISABLED].includes(this._theme)
-            ? ButtonThemeEnum.DARK_DISABLED
-            : ButtonThemeEnum.LIGHT_DISABLED;
+        if (this._disabled) {
+            this.theme = [ButtonThemeEnum.DARK, ButtonThemeEnum.DARK_BLUE, ButtonThemeEnum.DARK_DISABLED].includes(this._theme)
+                ? ButtonThemeEnum.DARK_DISABLED
+                : ButtonThemeEnum.LIGHT_DISABLED;
+        } else {
+            this.theme = [ButtonThemeEnum.DARK, ButtonThemeEnum.DARK_BLUE, ButtonThemeEnum.DARK_DISABLED].includes(this._theme)
+                ? ButtonThemeEnum.DARK
+                : ButtonThemeEnum.LIGHT;
+        }
     }
 }
