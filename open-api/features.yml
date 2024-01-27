@@ -1,0 +1,50 @@
+openapi: 3.0.3
+info:
+    title: Features API
+    description: Api to fetch the features of the site
+    version: 1.0.0
+servers:
+    -   url: https://fold-backend-5e6c2cf7c25c.herokuapp.com
+paths:
+    /api/features:
+        get:
+            tags:
+                - features
+            description: Returns all the features of the site from de database
+            summary: Returns all the features of the site from de database
+            operationId: features
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            $ref: "#/components/schemas/RequestBody"
+            responses:
+                200:
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/FeatureDto'
+                401:
+                    description: Access token not valid
+            deprecated: false
+
+components:
+    schemas:
+        RequestBody:
+            type: object
+            properties:
+                access_token:
+                    description: The wot access token of the user
+                    type: string
+                    minLength: 40
+                    maxLength: 40
+                    pattern: "[a-e0-9]{40}"
+        FeatureDto:
+            type: object
+            properties:
+                clanWar:
+                    type: boolean
+                    description: If the clan war tab is enabled
+                    example: true

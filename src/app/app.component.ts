@@ -1,6 +1,5 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
-import { FeatureFlippingApi } from './commons/api/feature-flipping.api';
 import { CookieNameEnum } from './commons/enums/cookie-name.enum';
 import { FeatureInterface } from './commons/interfaces/feature.interface';
 import { AuthenticationService } from './commons/services/authentication.service';
@@ -56,6 +55,7 @@ import { MemberInterface } from './commons/interfaces/member.interface';
 import { WindowsCustom } from './commons/utils/windows-custom.util';
 import { ConnectionSuccess } from './commons/types/connection.type';
 import { takeWhile } from 'rxjs';
+import { FeaturesService } from '../generated-api/glassait/features';
 
 @Component({
     selector: 'app-root',
@@ -72,7 +72,7 @@ export class AppComponent implements OnInit {
         private readonly memberStore: MemberStore,
         private readonly featureStore: FeatureStore,
         // API
-        private readonly featureFlippingApi: FeatureFlippingApi
+        private readonly featuresService: FeaturesService
     ) {
         if (WindowsCustom.getSearch() !== '') {
             this.auth.login();
@@ -175,7 +175,7 @@ export class AppComponent implements OnInit {
 
         let featureFlipping: FeatureInterface;
 
-        this.featureFlippingApi.queryFeature(token.access_token).subscribe({
+        this.featuresService.features({ access_token: token.access_token }).subscribe({
             next: (value: FeatureInterface): void => {
                 this.featureStore.patch(value);
                 featureFlipping = value;
