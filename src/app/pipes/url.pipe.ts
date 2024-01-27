@@ -1,12 +1,12 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { FieldComposant } from 'src/app/commons/types/tanks-data.type';
+import { FieldDetail } from '../../generated-api/glassait/tanks';
 
 @Pipe({
     name: 'getFieldUrl',
     standalone: true,
 })
 export class FieldUrlPipe implements PipeTransform {
-    transform(value: FieldComposant, ...args: unknown[]): string {
+    transform(value: FieldDetail, ...args: unknown[]): string {
         return `/assets/fields/${value.image}${value.active ? '' : '.disabled'}.${args[0]}`;
     }
 }

@@ -18,7 +18,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: "#/components/schemas/RequestBody"
+                            $ref: '#/components/schemas/RequestBodyToken'
             responses:
                 200:
                     description: OK
@@ -32,7 +32,7 @@ paths:
 
 components:
     schemas:
-        RequestBody:
+        RequestBodyToken:
             type: object
             properties:
                 access_token:
@@ -40,7 +40,7 @@ components:
                     type: string
                     minLength: 40
                     maxLength: 40
-                    pattern: "[a-e0-9]{40}"
+                    pattern: '[a-e0-9]{40}'
         InformationDto:
             title: InformationDto
             type: object
@@ -50,7 +50,10 @@ components:
                     description: The text of the information
                     example: La clan war commence
                 link:
-                    $ref: "#/components/schemas/InformationLinkDto"
+                    $ref: '#/components/schemas/InformationLinkDto'
+            required:
+                - text
+                - link
         InformationLinkDto:
             title: InformationLinkDto
             description: The link of the information
@@ -60,7 +63,12 @@ components:
                     type: string
                     description: The text of the link
                     example: Visualisation LU clan war
+                    nullable: true
                 url:
                     type: string
                     description: The url of the link
                     example: path.clanWar
+                    nullable: true
+            required:
+                - text
+                - url

@@ -70,13 +70,6 @@ components:
                 account_id:
                     description: The wot access token of the user
                     type: integer
-        MembersDto:
-            type: object
-            properties:
-                members:
-                    type: array
-                    items:
-                        $ref: "#/components/schemas/MemberDto"
         MemberDto:
             title: MemberDto
             type: object
@@ -89,6 +82,9 @@ components:
                     type: integer
                     description: The wot account id of the user
                     example: 1234a
+            required:
+                - role
+                - account_id
         UpdateDto:
             title: UpdateDto
             type: object
@@ -97,3 +93,5 @@ components:
                     type: string
                     description: The status of the response
                     example: OK
+            required:
+                - status

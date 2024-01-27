@@ -8,7 +8,7 @@ import { FeatureDto } from '../../../generated-api/glassait/features';
 export class FeaturesStore extends Store<FeatureDto> {
     constructor() {
         super({
-            clanWar: undefined,
+            clanWar: false,
         });
     }
 }

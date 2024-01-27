@@ -1,9 +1,9 @@
 import { Component, Input } from '@angular/core';
-import { TankData } from 'src/app/commons/types/tanks-data.type';
 import { IconColorEnum } from 'src/app/components/icon/enums/icon-enum';
 import { ModeEnum } from '../../../commons/enums/modeEnum';
 import { ButtonSizeEnum } from '../../../components/button/enums/button-size.enum';
 import { ButtonThemeEnum } from '../../../components/button/enums/button-theme.enum';
+import { TankDto } from '../../../../generated-api/glassait/tanks';
 
 @Component({
     selector: 'app-tank-equipment-description',
@@ -14,7 +14,7 @@ export class TankEquipmentDescriptionComponent {
     /**
      * The data of the tank
      */
-    @Input() data: TankData;
+    @Input() data: TankDto;
     /**
      * The settings of the user (light or dark mode)
      */

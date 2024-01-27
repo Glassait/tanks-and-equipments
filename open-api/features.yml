@@ -18,7 +18,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: "#/components/schemas/RequestBody"
+                            $ref: "#/components/schemas/RequestBodyToken"
             responses:
                 200:
                     description: OK
@@ -32,7 +32,7 @@ paths:
 
 components:
     schemas:
-        RequestBody:
+        RequestBodyToken:
             type: object
             properties:
                 access_token:
@@ -48,3 +48,5 @@ components:
                     type: boolean
                     description: If the clan war tab is enabled
                     example: true
+            required:
+                - clanWar

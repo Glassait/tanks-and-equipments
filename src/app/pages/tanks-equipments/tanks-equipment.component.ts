@@ -4,13 +4,12 @@ import { Router } from '@angular/router';
 import { HeaderStore } from 'src/app/commons/stores/header.store';
 import { MemberService } from '../../commons/abstract/member.service';
 import { ModeService } from '../../commons/abstract/mode.service';
-import { TanksDataApi } from '../../commons/api/tank-data.api';
 import { CookieNameEnum } from '../../commons/enums/cookie-name.enum';
 import { SessionStorageService } from '../../commons/services/session-storage.service';
 import { WordingService } from '../../commons/services/wording.service';
-import { TankData } from '../../commons/types/tanks-data.type';
 import { DateCustom } from '../../commons/utils/date.custom';
 import { SentenceCasePipe } from '../../pipes/sentence-case.pipe';
+import { TankDto, TanksService } from '../../../generated-api/glassait/tanks';
 
 @Component({
     selector: 'app-tanks-equipment',
@@ -22,7 +21,7 @@ export class TanksEquipmentComponent implements OnInit {
      * The data and states of the api call
      * @protected
      */
-    protected tanksData: { isLoading: boolean; isError: boolean; data?: TankData[] } = {
+    protected tanksData: { isLoading: boolean; isError: boolean; data?: TankDto[] } = {
         isLoading: true,
         isError: false,
     };
@@ -31,7 +30,7 @@ export class TanksEquipmentComponent implements OnInit {
 
     constructor(
         // API
-        private readonly tanksDataApi: TanksDataApi,
+        private readonly tanksService: TanksService,
         // SERVICE
         private readonly wordingService: WordingService,
         private readonly sessionService: SessionStorageService,
@@ -71,9 +70,9 @@ export class TanksEquipmentComponent implements OnInit {
      * @private
      */
     private getTanksData(): void {
-        const token: { date: string | null; data: TankData[] | null } = {
+        const token: { date: string | null; data: TankDto[] | null } = {
             date: this.sessionService.getFromKey(CookieNameEnum.TANKS_DATE),
-            data: this.sessionService.getFromKeyToObject<TankData[]>(CookieNameEnum.TANKS_DATA),
+            data: this.sessionService.getFromKeyToObject<TankDto[]>(CookieNameEnum.TANKS_DATA),
         };
         const dateToken: Date | null = token.date ? new Date(token.date) : null;
 
@@ -83,8 +82,8 @@ export class TanksEquipmentComponent implements OnInit {
             return;
         }
 
-        this.tanksDataApi.queryTanksData(this.memberService.accessToken).subscribe({
-            next: (tankData: TankData[]): void => {
+        this.tanksService.tanks({ access_token: this.memberService.accessToken }).subscribe({
+            next: (tankData: TankDto[]): void => {
                 this.tanksData.data = tankData;
                 this.sessionService.store(CookieNameEnum.TANKS_DATA, JSON.stringify(tankData));
                 this.sessionService.store(CookieNameEnum.TANKS_DATE, DateCustom.getMidnightDate().toDateString());
