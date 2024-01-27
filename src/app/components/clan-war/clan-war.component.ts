@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { HeaderStore } from 'src/app/commons/stores/header.store';
 import { MemberStore } from 'src/app/commons/stores/member.store';
 import { WordingService } from '../../commons/services/wording.service';
-import { FeatureStore } from '../../commons/stores/feature.store';
+import { FeaturesStore } from '../../commons/stores/features.store';
 import { ModeStore } from '../../commons/stores/mode.store';
 import { SentenceCasePipe } from '../../pipes/sentence-case.pipe';
 
@@ -19,7 +19,7 @@ export class ClanWarComponent {
         private headerStore: HeaderStore,
         private memberStore: MemberStore,
         private modeStore: ModeStore,
-        private featureStore: FeatureStore,
+        private featureStore: FeaturesStore,
         private router: Router,
         private title: Title
     ) {

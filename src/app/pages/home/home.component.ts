@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { MemberService } from '../../commons/abstract/member.service';
 import { ModeService } from '../../commons/abstract/mode.service';
-import { InformationApi } from '../../commons/api/information.api';
 import { CookieNameEnum } from '../../commons/enums/cookie-name.enum';
 import { ModeEnum } from '../../commons/enums/modeEnum';
 import { InventoryService } from '../../commons/services/inventory.service';
@@ -13,7 +12,6 @@ import { WotService } from '../../commons/services/wot.service';
 import { HeaderStore } from '../../commons/stores/header.store';
 import { DefaultHttpType } from '../../commons/types/default-httpType';
 import { DefaultWargaming, MemberOnline, WotServer } from '../../commons/types/wot.type';
-import { InformationType } from '../../commons/types/information.type';
 import { DateCustom } from '../../commons/utils/date.custom';
 import { ButtonThemeEnum } from '../../components/button/enums/button-theme.enum';
 import { IconColorEnum } from '../../components/icon/enums/icon-enum';
@@ -21,6 +19,7 @@ import { SentenceCasePipe } from '../../pipes/sentence-case.pipe';
 import { MemberStore } from '../../commons/stores/member.store';
 import { MemberInterface } from '../../commons/interfaces/member.interface';
 import { takeWhile } from 'rxjs';
+import { InformationDto, InformationService } from '../../../generated-api/glassait/information';
 
 @Component({
     selector: 'app-home',
@@ -49,7 +48,7 @@ export class HomeComponent implements OnInit {
      * Store the result of the api call to get the information of the clan
      * @protected
      */
-    protected information: DefaultHttpType & { information?: InformationType } = this.initial;
+    protected information: DefaultHttpType & { information?: InformationDto } = this.initial;
     /**
      * Store the result of the api call to get the information about the wot's server
      * @protected
@@ -73,7 +72,7 @@ export class HomeComponent implements OnInit {
         private readonly headerStore: HeaderStore,
         private readonly memberStore: MemberStore,
         // API
-        private readonly informationApi: InformationApi,
+        private readonly informationService: InformationService,
         // SERVICE
         private readonly cookieService: CookieService,
         private readonly wotService: WotService,
@@ -146,8 +145,8 @@ export class HomeComponent implements OnInit {
             return;
         }
 
-        this.informationApi.queryInformation(this.memberService.accessToken).subscribe({
-            next: (value: InformationType): void => {
+        this.informationService.informations({ access_token: this.memberService.accessToken }).subscribe({
+            next: (value: InformationDto): void => {
                 this.information.information = value;
             },
             error: _err => {

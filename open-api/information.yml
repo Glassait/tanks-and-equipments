@@ -1,0 +1,66 @@
+openapi: 3.0.3
+info:
+    title: Informations API
+    description: API to fetch the information stored in the database
+    version: 1.0.0
+servers:
+    -   url: https://fold-backend-5e6c2cf7c25c.herokuapp.com
+paths:
+    /api/information:
+        get:
+            tags:
+                - information
+            description: Returns the last information of the site from de database
+            summary: Returns the last information of the site from de database
+            operationId: informations
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            $ref: "#/components/schemas/RequestBody"
+            responses:
+                200:
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/InformationDto'
+                401:
+                    description: Access token not valid
+            deprecated: false
+
+components:
+    schemas:
+        RequestBody:
+            type: object
+            properties:
+                access_token:
+                    description: The wot access token of the user
+                    type: string
+                    minLength: 40
+                    maxLength: 40
+                    pattern: "[a-e0-9]{40}"
+        InformationDto:
+            title: InformationDto
+            type: object
+            properties:
+                text:
+                    type: string
+                    description: The text of the information
+                    example: La clan war commence
+                link:
+                    $ref: "#/components/schemas/InformationLinkDto"
+        InformationLinkDto:
+            title: InformationLinkDto
+            description: The link of the information
+            type: object
+            properties:
+                text:
+                    type: string
+                    description: The text of the link
+                    example: Visualisation LU clan war
+                url:
+                    type: string
+                    description: The url of the link
+                    example: path.clanWar

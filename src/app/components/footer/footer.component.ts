@@ -4,15 +4,15 @@ import { takeWhile } from 'rxjs';
 import { MemberService } from '../../commons/abstract/member.service';
 import { ModeService } from '../../commons/abstract/mode.service';
 import { ModeEnum } from '../../commons/enums/modeEnum';
-import { FeatureInterface } from '../../commons/interfaces/feature.interface';
 import { InventoryService } from '../../commons/services/inventory.service';
-import { FeatureStore } from '../../commons/stores/feature.store';
+import { FeaturesStore } from '../../commons/stores/features.store';
 import { ButtonSizeEnum } from '../button/enums/button-size.enum';
 import { ButtonThemeEnum } from '../button/enums/button-theme.enum';
 import { NgIf, NgOptimizedImage } from '@angular/common';
 import { ButtonComponent } from '../button/button.component';
 import { WordingPipe } from '../../pipes/wording.pipe';
 import { SentenceCasePipe } from '../../pipes/sentence-case.pipe';
+import { FeatureDto } from '../../../generated-api/glassait/features';
 
 @Component({
     standalone: true,
@@ -92,7 +92,7 @@ export class FooterComponent implements OnInit {
         // ANGULAR
         private router: Router,
         // STORE
-        private featureStore: FeatureStore
+        private featureStore: FeaturesStore
     ) {}
 
     /**
@@ -122,9 +122,9 @@ export class FooterComponent implements OnInit {
     private createSubscription(): void {
         this.featureStore
             .watch()
-            .pipe(takeWhile((value: FeatureInterface) => value !== null && value !== undefined, true))
-            .subscribe((value: FeatureInterface): void => {
-                this.links[2].enabled = !!value.clanWar;
+            .pipe(takeWhile((features: FeatureDto) => features !== null && features !== undefined, true))
+            .subscribe((features: FeatureDto): void => {
+                this.links[2].enabled = !!features.clanWar;
             });
     }
 }

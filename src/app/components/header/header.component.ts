@@ -12,8 +12,7 @@ import { SvgCustom } from 'src/app/commons/utils/svg-custom.util';
 import { MemberService } from '../../commons/abstract/member.service';
 import { ModeService } from '../../commons/abstract/mode.service';
 import { ModeEnum } from '../../commons/enums/modeEnum';
-import { FeatureInterface } from '../../commons/interfaces/feature.interface';
-import { FeatureStore } from '../../commons/stores/feature.store';
+import { FeaturesStore } from '../../commons/stores/features.store';
 import { MenuItemType } from '../menu/types/menu-item.type';
 import { ButtonThemeEnum } from '../button/enums/button-theme.enum';
 import { ButtonTypeEnum } from '../button/enums/button-type.enum';
@@ -25,6 +24,7 @@ import { ButtonComponent } from '../button/button.component';
 import { MenuComponent } from '../menu/menu.component';
 import { MemberStore } from '../../commons/stores/member.store';
 import { MemberInterface } from '../../commons/interfaces/member.interface';
+import { FeatureDto } from '../../../generated-api/glassait/features';
 
 /**
  * Component for the header of the site
@@ -59,10 +59,10 @@ export class HeaderComponent extends UnsubscribeDirective implements OnInit, Aft
 
     //region PRIVATE FIELD
     /**
-     * All the feature of the site
+     * All the features of the site
      * @private
      */
-    private feature: FeatureInterface;
+    private features: FeatureDto;
     //endregion
 
     //region PRIVATE READONLY
@@ -79,7 +79,7 @@ export class HeaderComponent extends UnsubscribeDirective implements OnInit, Aft
         private readonly modeStore: ModeStore,
         private readonly memberStore: MemberStore,
         private readonly headerStore: HeaderStore,
-        private readonly featureStore: FeatureStore,
+        private readonly featureStore: FeaturesStore,
         // SERVICE
         private readonly wording: WordingService,
         private readonly inventory: InventoryService,
@@ -189,8 +189,8 @@ export class HeaderComponent extends UnsubscribeDirective implements OnInit, Aft
         this.featureStore
             .watch()
             .pipe(takeWhile((value: any) => value !== null && value !== undefined, true))
-            .subscribe((featureInterface: FeatureInterface): void => {
-                this.feature = featureInterface;
+            .subscribe((features: FeatureDto): void => {
+                this.features = features;
             });
 
         this.headerStore
@@ -228,7 +228,7 @@ export class HeaderComponent extends UnsubscribeDirective implements OnInit, Aft
             this.menuItems.push(this.allMenuItems[1]);
         }
 
-        if (header.showWar && this.feature && this.feature.clanWar) {
+        if (header.showWar && this.features && this.features.clanWar) {
             this.menuItems.push(this.allMenuItems[2]);
         }
 

@@ -13,8 +13,9 @@
         "test": "ng test",
         "bundle": "rimraf dist && ng build",
         "pack": "npm pack",
-        "generate:api": "npm run generate:features",
-        "generate:features": "openapi-generator-cli generate -i ./open-api/features.yml -g typescript-angular --additional-properties stringEnum=true -o src/generated-api/glassait/features"
+        "generate:api": "npm run generate:features && npm run generate:information",
+        "generate:features": "openapi-generator-cli generate -i ./open-api/features.yml -g typescript-angular --additional-properties stringEnum=true -o src/generated-api/glassait/features",
+        "generate:information": "openapi-generator-cli generate -i ./open-api/information.yml -g typescript-angular --additional-properties stringEnum=true -o src/generated-api/glassait/information"
     },
     "engines": {
         "node": "18.16.0",
