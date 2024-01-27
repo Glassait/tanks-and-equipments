@@ -1,8 +1,4 @@
 {
-    "members": [
-        {
-            "role": "commander",
-            "account_id": 501326687
-        }
-    ]
+    "role": "commander",
+    "account_id": 501326687
 }

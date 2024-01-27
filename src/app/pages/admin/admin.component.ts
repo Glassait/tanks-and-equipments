@@ -6,7 +6,6 @@ import { ModeService } from '../../commons/abstract/mode.service';
 import { WordingService } from '../../commons/services/wording.service';
 import { HeaderStore } from '../../commons/stores/header.store';
 import { SentenceCasePipe } from '../../pipes/sentence-case.pipe';
-import { MembersApi } from '../../commons/api/members.api';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { WotService } from 'src/app/commons/services/wot.service';
 import { ClanReserve, DefaultWargaming, Reserve } from '../../commons/types/wot.type';
@@ -20,6 +19,7 @@ import { ClanReserveEnum } from './enums/clan-reserve.enum';
 import { SelectOptionType } from '../../components/select/types/select-option.type';
 import moment from 'moment';
 import { map, share, takeWhile, timer } from 'rxjs';
+import { MembersService } from 'src/generated-api/glassait/members/api/members.service';
 
 @Component({
     selector: 'app-home',
@@ -65,7 +65,7 @@ export class AdminComponent implements OnInit {
         // PIPE
         private readonly sentenceCasePipe: SentenceCasePipe,
         // API
-        private readonly membersApi: MembersApi,
+        private readonly membersService: MembersService,
         private readonly wotService: WotService
     ) {}
 
@@ -94,7 +94,7 @@ export class AdminComponent implements OnInit {
      */
     protected actualiseBdd = (): void => {
         this.updateBddLoading = true;
-        this.membersApi.updateMember(this.memberService.accessToken).subscribe({
+        this.membersService.updateMembers({ access_token: this.memberService.accessToken }).subscribe({
             next: (_value: any): void => {},
             error: (err: any): void => {
                 console.error(err);

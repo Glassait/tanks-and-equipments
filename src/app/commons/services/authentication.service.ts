@@ -1,14 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
-import { MembersApi } from '../api/members.api';
 import { CookieNameEnum } from '../enums/cookie-name.enum';
 import { MemberStore } from '../stores/member.store';
 import { Connection } from '../types/connection.type';
-import { Member } from '../types/member.type';
 import { CheckGrade } from '../utils/check-grade.util';
 import { DateCustom } from '../utils/date.custom';
 import { AuthenticationClientService } from './authentication-client.service';
+import { MemberDto, MembersService } from '../../../generated-api/glassait/members';
 
 /**
  * Service for authentication
@@ -26,7 +25,7 @@ export class AuthenticationService {
         // STORE
         private readonly memberStore: MemberStore,
         // API
-        private readonly membersApi: MembersApi
+        private readonly membersService: MembersService
     ) {}
 
     /**
@@ -34,7 +33,7 @@ export class AuthenticationService {
      */
     public login(): void {
         let token: Connection;
-        let user: Member;
+        let user: MemberDto;
 
         this.authenticationClient.login().subscribe({
             next: (connection: Connection): void => {
@@ -46,8 +45,8 @@ export class AuthenticationService {
             },
             complete: (): void => {
                 if (token.status !== 'error') {
-                    this.membersApi.isClanMembers(Number(token.account_id)).subscribe({
-                        next: (member: Member): void => {
+                    this.membersService.members({ account_id: Number(token.account_id) }).subscribe({
+                        next: (member: MemberDto): void => {
                             user = member;
                         },
                         error: (err: any): void => {
@@ -94,7 +93,7 @@ export class AuthenticationService {
      * @param token The Wargaming access token
      * @private
      */
-    private updateStore(user: Member, token: Connection): void {
+    private updateStore(user: MemberDto, token: Connection): void {
         this.memberStore.patch({
             user: user,
             token: token,
