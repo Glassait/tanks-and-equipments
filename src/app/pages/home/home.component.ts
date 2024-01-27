@@ -11,7 +11,6 @@ import { WordingService } from '../../commons/services/wording.service';
 import { WotService } from '../../commons/services/wot.service';
 import { HeaderStore } from '../../commons/stores/header.store';
 import { DefaultHttpType } from '../../commons/types/default-httpType';
-import { DefaultWargaming, MemberOnline } from '../../commons/types/wot.type';
 import { DateCustom } from '../../commons/utils/date.custom';
 import { ButtonThemeEnum } from '../../components/button/enums/button-theme.enum';
 import { IconColorEnum } from '../../components/icon/enums/icon-enum';
@@ -20,7 +19,8 @@ import { MemberStore } from '../../commons/stores/member.store';
 import { MemberInterface } from '../../commons/interfaces/member.interface';
 import { takeWhile } from 'rxjs';
 import { InformationDto, InformationService } from '../../../generated-api/glassait/information';
-import { ServerInfo200Response, ServerInfoSuccessData, WgnService } from '../../../generated-api/glassait/wgn';
+import { ServerInfo200Response, ServerInfoData, WgnService } from '../../../generated-api/glassait/wgn';
+import { ClansService, OnlineMember200Response } from '../../../generated-api/glassait/clans';
 
 @Component({
     selector: 'app-home',
@@ -55,7 +55,7 @@ export class HomeComponent implements OnInit {
      * @protected
      */
     protected wotServer: DefaultHttpType & {
-        servers?: ServerInfoSuccessData;
+        servers?: ServerInfoData;
         max?: number;
     } = this.initial;
     /**
@@ -75,6 +75,7 @@ export class HomeComponent implements OnInit {
         // API
         private readonly informationService: InformationService,
         private readonly wngService: WgnService,
+        private readonly clansService: ClansService,
         // SERVICE
         private readonly cookieService: CookieService,
         private readonly wotService: WotService,
@@ -180,7 +181,7 @@ export class HomeComponent implements OnInit {
             return;
         }
 
-        this.wngService.serverInfo(this.inventoryService.applicationId, 'wot', 'fr').subscribe({
+        this.wngService.serverInfo(this.inventoryService.applicationId, 'fr').subscribe({
             next: (response: ServerInfo200Response): void => {
                 if (response.status === 'error') {
                     this.wotServer.isError = true;
@@ -200,6 +201,10 @@ export class HomeComponent implements OnInit {
                 this.wotServer.isLoading = false;
             },
             complete: (): void => {
+                if (this.wotServer.isError) {
+                    return;
+                }
+
                 this.cookieService.set(
                     CookieNameEnum.SERVER_STATUS,
                     JSON.stringify(this.wotServer.servers),
@@ -227,22 +232,34 @@ export class HomeComponent implements OnInit {
             return;
         }
 
-        this.wotService.getMemberOnline(this.memberService.accessToken).subscribe({
-            next: (response: DefaultWargaming<MemberOnline>): void => {
-                this.memberOnline.amount = response.data[this.inventoryService.clanId].private.online_members.length;
-            },
-            error: _err => {
-                this.memberOnline.isError = true;
-                this.memberOnline.isLoading = false;
-            },
-            complete: (): void => {
-                this.cookieService.set(
-                    CookieNameEnum.MEMBER_ONLINE,
-                    JSON.stringify(this.memberOnline.amount),
-                    DateCustom.getTodayDatePlusTenMinute()
-                );
-                this.memberOnline.isLoading = false;
-            },
-        });
+        this.clansService
+            .onlineMember(this.inventoryService.applicationId, this.inventoryService.clanId, this.memberService.accessToken, 'fr')
+            .subscribe({
+                next: (response: OnlineMember200Response): void => {
+                    if (response.status === 'error') {
+                        this.memberOnline.isError = true;
+                        this.memberOnline.isLoading = false;
+                        return;
+                    }
+
+                    this.memberOnline.amount = response.data[this.inventoryService.clanId]['private'].online_members.length;
+                },
+                error: _err => {
+                    this.memberOnline.isError = true;
+                    this.memberOnline.isLoading = false;
+                },
+                complete: (): void => {
+                    if (this.memberOnline.isError) {
+                        return;
+                    }
+
+                    this.cookieService.set(
+                        CookieNameEnum.MEMBER_ONLINE,
+                        JSON.stringify(this.memberOnline.amount),
+                        DateCustom.getTodayDatePlusTenMinute()
+                    );
+                    this.memberOnline.isLoading = false;
+                },
+            });
     }
 }

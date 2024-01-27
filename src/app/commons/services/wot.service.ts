@@ -13,14 +13,6 @@ export class WotService {
     ) {}
 
     /**
-     * Get the number of member online with a http call to the Wargaming API
-     * @param access_token The access token of the user
-     */
-    public getMemberOnline(access_token: string): Observable<any> {
-        return this.httpClient.get(this.inventory.getWargamingApi('member-online', access_token));
-    }
-
-    /**
      * Get all the clan reserves with a http call to the Wargaming API
      * @param access_token The access token of the user
      */
