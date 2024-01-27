@@ -82,7 +82,7 @@ export class TanksEquipmentComponent implements OnInit {
             return;
         }
 
-        this.tanksService.tanks({ access_token: this.memberService.accessToken }).subscribe({
+        this.tanksService.tanks(this.memberService.accessToken).subscribe({
             next: (tankData: TankDto[]): void => {
                 this.tanksData.data = tankData;
                 this.sessionService.store(CookieNameEnum.TANKS_DATA, JSON.stringify(tankData));

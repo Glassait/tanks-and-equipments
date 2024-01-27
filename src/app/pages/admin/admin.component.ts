@@ -94,7 +94,7 @@ export class AdminComponent implements OnInit {
      */
     protected actualiseBdd = (): void => {
         this.updateBddLoading = true;
-        this.membersService.updateMembers({ access_token: this.memberService.accessToken }).subscribe({
+        this.membersService.updateMembers(this.memberService.accessToken).subscribe({
             next: (_value: any): void => {},
             error: (err: any): void => {
                 console.error(err);

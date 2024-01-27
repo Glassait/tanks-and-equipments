@@ -174,7 +174,7 @@ export class AppComponent implements OnInit {
 
         let feature: FeatureDto;
 
-        this.featuresService.features({ access_token: token.access_token }).subscribe({
+        this.featuresService.features(token.access_token).subscribe({
             next: (value: FeatureDto): void => {
                 this.featureStore.patch(value);
                 feature = value;

@@ -14,17 +14,17 @@
 
     @if (!memberService.isVisitor && information.information) {
         <glassait-card
-            [actionCallback]="{ func: navigate, parameter: information.information.link?.url }"
+            [actionCallback]="{ func: navigate, parameter: information.information.link.url }"
             [theme]="modeService.mode"
             [isLoading]="information.isLoading"
             [loadingColor]="modeService.mode"
             actionAlign="end"
             actionIcon="super_conqueror"
             actionIconSize="36"
-            actionText="{{ information.information.link?.text }}"
+            actionText="{{ information.information.link.text }}"
             avatar="information"
             class="w-[288px] *:text-justify tablet:w-[500px]"
-            hasAction="{{ information.information.link?.url }}"
+            hasAction="{{ information.information.link.url !== null }}"
             title="{{ 'home.title.information' | wording | sentenceCase }}"
         >
             <p>{{ information.information.text }}</p>

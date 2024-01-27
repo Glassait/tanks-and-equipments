@@ -45,7 +45,7 @@ export class AuthenticationService {
             },
             complete: (): void => {
                 if (token.status !== 'error') {
-                    this.membersService.members({ account_id: Number(token.account_id) }).subscribe({
+                    this.membersService.members(Number(token.account_id)).subscribe({
                         next: (member: MemberDto): void => {
                             user = member;
                         },

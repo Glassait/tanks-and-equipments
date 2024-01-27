@@ -145,7 +145,7 @@ export class HomeComponent implements OnInit {
             return;
         }
 
-        this.informationService.informations({ access_token: this.memberService.accessToken }).subscribe({
+        this.informationService.informations(this.memberService.accessToken).subscribe({
             next: (value: InformationDto): void => {
                 this.information.information = value;
             },
