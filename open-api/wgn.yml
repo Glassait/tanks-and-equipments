@@ -1,0 +1,103 @@
+openapi: 3.0.3
+info:
+    title: Wargaming API
+    description: overall Wargaming API
+    version: 1.0.0
+servers:
+    -   url: https://api.worldoftanks.eu/wgn
+paths:
+    /servers/info/:
+        get:
+            tags:
+                - wgn
+            description: Get the information about the WoT servers
+            summary: Get the information about the WoT servers
+            operationId: serverInfo
+            parameters:
+                -   name: application_id
+                    in: query
+                    description: The application id for the Wargaming API
+                    required: true
+                    schema:
+                        type: string
+                -   name: game
+                    in: query
+                    description: The game to fetch server
+                    schema:
+                        type: string
+                        default: wot
+                -   name: language
+                    in: query
+                    description: The redirect uri
+                    schema:
+                        type: string
+                        default: fr
+            responses:
+                200:
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                oneOf:
+                                    -   $ref: "#/components/schemas/ServerInfoError"
+                                    -   $ref: "#/components/schemas/ServerInfoSuccess"
+            deprecated: false
+components:
+    schemas:
+        ServerInfoError:
+            type: object
+            properties:
+                status:
+                    enum:
+                        - error
+                error:
+                    type: object
+                    properties:
+                        code:
+                            type: string
+                        message:
+                            type: string
+                        field:
+                            type: string
+                        value:
+                            type: string
+                    required:
+                        - code
+                        - message
+                        - field
+                        - value
+            required:
+                - status
+                - error
+        ServerInfoSuccess:
+            type: object
+            properties:
+                status:
+                    enum:
+                        - ok
+                meta:
+                    type: object
+                    properties:
+                        count:
+                            type: integer
+                data:
+                    type: object
+                    properties:
+                        wot:
+                            type: array
+                            items:
+                                type: object
+                                properties:
+                                    players_online:
+                                        type: integer
+                                    server:
+                                        type: string
+                                required:
+                                    - players_online
+                                    - server
+                    required:
+                        - wot
+            required:
+                - status
+                - meta
+                - data

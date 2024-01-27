@@ -11,7 +11,7 @@ import { WordingService } from '../../commons/services/wording.service';
 import { WotService } from '../../commons/services/wot.service';
 import { HeaderStore } from '../../commons/stores/header.store';
 import { DefaultHttpType } from '../../commons/types/default-httpType';
-import { DefaultWargaming, MemberOnline, WotServer } from '../../commons/types/wot.type';
+import { DefaultWargaming, MemberOnline } from '../../commons/types/wot.type';
 import { DateCustom } from '../../commons/utils/date.custom';
 import { ButtonThemeEnum } from '../../components/button/enums/button-theme.enum';
 import { IconColorEnum } from '../../components/icon/enums/icon-enum';
@@ -20,6 +20,7 @@ import { MemberStore } from '../../commons/stores/member.store';
 import { MemberInterface } from '../../commons/interfaces/member.interface';
 import { takeWhile } from 'rxjs';
 import { InformationDto, InformationService } from '../../../generated-api/glassait/information';
+import { ServerInfo200Response, ServerInfoSuccessData, WgnService } from '../../../generated-api/glassait/wgn';
 
 @Component({
     selector: 'app-home',
@@ -54,7 +55,7 @@ export class HomeComponent implements OnInit {
      * @protected
      */
     protected wotServer: DefaultHttpType & {
-        servers?: WotServer;
+        servers?: ServerInfoSuccessData;
         max?: number;
     } = this.initial;
     /**
@@ -73,6 +74,7 @@ export class HomeComponent implements OnInit {
         private readonly memberStore: MemberStore,
         // API
         private readonly informationService: InformationService,
+        private readonly wngService: WgnService,
         // SERVICE
         private readonly cookieService: CookieService,
         private readonly wotService: WotService,
@@ -178,8 +180,14 @@ export class HomeComponent implements OnInit {
             return;
         }
 
-        this.wotService.getServeurStatus().subscribe({
-            next: (response: DefaultWargaming<WotServer>): void => {
+        this.wngService.serverInfo(this.inventoryService.applicationId, 'wot', 'fr').subscribe({
+            next: (response: ServerInfo200Response): void => {
+                if (response.status === 'error') {
+                    this.wotServer.isError = true;
+                    this.wotServer.isLoading = false;
+                    return;
+                }
+
                 this.wotServer.servers = response.data;
                 this.wotServer.servers.wot.forEach((server: any): void => {
                     server.server = server.server.replace('20', 'EU');

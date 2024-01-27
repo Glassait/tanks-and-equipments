@@ -13,11 +13,12 @@
         "test": "ng test",
         "bundle": "rimraf dist && ng build",
         "pack": "npm pack",
-        "generate:api": "npm run generate:features && npm run generate:information && npm run generate:members && npm run generate:tanks",
+        "generate:api": "npm run generate:features && npm run generate:information && npm run generate:members && npm run generate:tanks && npm run generate:wgn",
         "generate:features": "openapi-generator-cli generate -i ./open-api/features.yml -g typescript-angular --additional-properties stringEnum=true -o src/generated-api/glassait/features",
         "generate:information": "openapi-generator-cli generate -i ./open-api/information.yml -g typescript-angular --additional-properties stringEnum=true -o src/generated-api/glassait/information",
         "generate:members": "openapi-generator-cli generate -i ./open-api/members.yml -g typescript-angular --additional-properties stringEnum=true -o src/generated-api/glassait/members",
-        "generate:tanks": "openapi-generator-cli generate -i ./open-api/tanks.yml -g typescript-angular --additional-properties stringEnum=true -o src/generated-api/glassait/tanks"
+        "generate:tanks": "openapi-generator-cli generate -i ./open-api/tanks.yml -g typescript-angular --additional-properties stringEnum=true -o src/generated-api/glassait/tanks",
+        "generate:wgn": "openapi-generator-cli generate -i open-api/wgn.yml -g typescript-angular --additional-properties stringEnum=true -o src/generated-api/glassait/wgn"
     },
     "engines": {
         "node": "18.16.0",

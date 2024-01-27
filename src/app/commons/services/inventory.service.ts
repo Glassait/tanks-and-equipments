@@ -24,10 +24,7 @@ export class InventoryService {
      * @param url The url to get
      * @param arg Can be the access token of the redirect url
      */
-    public getWargamingApi(
-        url: 'log-out' | 'game-servers' | 'login' | 'member-online' | 'login-mock' | 'clan_reserves' | 'activate_reserve',
-        arg: string = ''
-    ): string {
+    public getWargamingApi(url: 'login' | 'member-online' | 'login-mock' | 'clan_reserves' | 'activate_reserve', arg: string = ''): string {
         return this._inventory['wargaming-api'][url]
             .replace('applicationId', this._inventory['wargaming-api']['application-id'])
             .replace('clanId', this._inventory['wargaming-api']['clan-id'])
@@ -37,10 +34,6 @@ export class InventoryService {
 
     public getPath() {
         return this._inventory.path;
-    }
-
-    public getGlassaitApi() {
-        return this._inventory['glassait-api'];
     }
 
     public getInventoryFromString(path: string): string {

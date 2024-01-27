@@ -13,13 +13,6 @@ export class WotService {
     ) {}
 
     /**
-     * Get the server status with a http call to the Wargaming api
-     */
-    public getServeurStatus(): Observable<any> {
-        return this.httpClient.get(this.inventory.getWargamingApi('game-servers'));
-    }
-
-    /**
      * Get the number of member online with a http call to the Wargaming API
      * @param access_token The access token of the user
      */
