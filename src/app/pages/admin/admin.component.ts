@@ -17,14 +17,9 @@ import { ClanReserveEnum } from './enums/clan-reserve.enum';
 import { SelectOptionType } from '../../components/select/types/select-option.type';
 import moment from 'moment';
 import { map, share, takeWhile, timer } from 'rxjs';
-import { MembersService } from 'src/generated-api/glassait/members/api/members.service';
-import {
-    ClanReserveDataInner,
-    ClanReserveDataInnerInStockInner,
-    ClanReservesResponse,
-    StrongholdService,
-} from '../../../generated-api/glassait/stronghold';
 import { InventoryService } from '../../commons/services/inventory.service';
+import { ClanReserveData, ClanReservesResponse, Reserve, StrongholdService } from '../../../generated-api/stronghold';
+import { MembersService } from '../../../generated-api/members';
 
 @Component({
     selector: 'app-home',
@@ -62,8 +57,8 @@ export class AdminComponent implements OnInit {
         // SERVICE
         private readonly wording: WordingService,
         private readonly inventory: InventoryService,
-        protected readonly memberService: MemberService,
-        protected readonly modeService: ModeService,
+        protected readonly member: MemberService,
+        protected readonly mode: ModeService,
         // ANGULAR
         private readonly router: Router,
         private readonly title: Title,
@@ -79,7 +74,7 @@ export class AdminComponent implements OnInit {
      * Implementation of the {@link OnInit} interface
      */
     ngOnInit(): void {
-        if (!this.memberService.isAdmin || this.memberService.isVisitor) {
+        if (!this.member.isAdmin || this.member.isVisitor) {
             this.router.navigate(['/']).then((): void => {});
         }
 
@@ -100,7 +95,7 @@ export class AdminComponent implements OnInit {
      */
     protected actualiseBdd = (): void => {
         this.updateBddLoading = true;
-        this.membersService.updateMembers(this.memberService.accessToken).subscribe({
+        this.membersService.updateMembers(this.member.accessToken).subscribe({
             next: (_value: any): void => {},
             error: (err: any): void => {
                 console.error(err);
@@ -137,7 +132,7 @@ export class AdminComponent implements OnInit {
         }
 
         this.strongholdService
-            .activateReserve(this.inventory.applicationId, this.memberService.accessToken, level, clanReserve.type, 'fr')
+            .activateReserve(this.inventory.applicationId, this.member.accessToken, level, clanReserve.type, 'fr')
             .subscribe({
                 next: (value: any): void => {
                     if (value.status === 'error') {
@@ -164,7 +159,7 @@ export class AdminComponent implements OnInit {
      * @private
      */
     private getClanReserves(): void {
-        this.strongholdService.clanReserves(this.inventory.applicationId, this.memberService.accessToken, 'fr').subscribe({
+        this.strongholdService.clanReserves(this.inventory.applicationId, this.member.accessToken, 'fr').subscribe({
             next: (response: ClanReservesResponse): void => {
                 if (response.status === 'error') {
                     this.clanReserves.isError = true;
@@ -173,23 +168,23 @@ export class AdminComponent implements OnInit {
                 }
 
                 response.data
-                    .filter((clanReserves: ClanReserveDataInner) => !clanReserves.disposable)
-                    .forEach((reserves: ClanReserveDataInner): void => {
-                        this.clanReservesFormGroup.addControl(reserves.type, new FormControl());
+                    .filter((clanReserve: ClanReserveData) => !clanReserve.disposable)
+                    .forEach((clanReserve: ClanReserveData): void => {
+                        this.clanReservesFormGroup.addControl(clanReserve.type, new FormControl());
 
                         if (!this.clanReserves.reserves) {
                             this.clanReserves.reserves = [];
                         }
 
                         const clanReserves: ClanReserveType = {
-                            name: reserves.name,
-                            type: reserves.type,
-                            bonus_type: reserves.bonus_type,
+                            name: clanReserve.name,
+                            type: clanReserve.type,
+                            bonus_type: clanReserve.bonus_type,
                             options: [],
-                            link_to: ClanReserveEnum[reserves.type as keyof typeof ClanReserveEnum],
+                            link_to: ClanReserveEnum[clanReserve.type as keyof typeof ClanReserveEnum],
                         };
 
-                        reserves.in_stock.forEach((reserve: ClanReserveDataInnerInStockInner): void => {
+                        clanReserve.in_stock.forEach((reserve: Reserve): void => {
                             if (reserve.active_till) {
                                 clanReserves.active_till = new Date((reserve.active_till ?? 0) * 1000);
                                 this.createTimer(clanReserves, reserve);
@@ -244,7 +239,7 @@ export class AdminComponent implements OnInit {
      * @param reserve The in stock reserve
      * @private
      */
-    private createTimer(clanReserve: ClanReserveType, reserve: ClanReserveDataInnerInStockInner): void {
+    private createTimer(clanReserve: ClanReserveType, reserve: Reserve): void {
         const target = new Date();
         target.setHours(target.getHours() + reserve.action_time / 3600);
         const linked = this.clanReserves.reserves?.find((value: ClanReserveType): boolean => value.type === clanReserve.link_to);

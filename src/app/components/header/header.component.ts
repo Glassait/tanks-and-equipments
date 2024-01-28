@@ -24,7 +24,7 @@ import { ButtonComponent } from '../button/button.component';
 import { MenuComponent } from '../menu/menu.component';
 import { MemberStore } from '../../commons/stores/member.store';
 import { MemberInterface } from '../../commons/interfaces/member.interface';
-import { FeatureDto } from '../../../generated-api/glassait/features';
+import { FeatureDto } from '../../../generated-api/features';
 
 /**
  * Component for the header of the site

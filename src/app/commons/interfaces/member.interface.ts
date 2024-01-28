@@ -1,5 +1,5 @@
 import { Connection } from '../types/connection.type';
-import { MemberDto } from '../../../generated-api/glassait/members';
+import { MemberDto } from '../../../generated-api/members';
 
 export interface MemberInterface {
     user?: MemberDto;

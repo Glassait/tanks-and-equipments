@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@elie29/store';
-import { FeatureDto } from '../../../generated-api/glassait/features';
+import { FeatureDto } from '../../../generated-api/features';
 
 @Injectable({
     providedIn: 'root',

@@ -14,97 +14,57 @@ paths:
             summary: Get the information about the WoT servers
             operationId: onlineMember
             parameters:
-                -   name: application_id
-                    in: query
-                    description: The application id for the Wargaming API
-                    required: true
-                    schema:
-                        type: string
-                -   name: clan_id
-                    required: true
-                    in: query
-                    description: The clan id
-                    schema:
-                        type: string
-                -   name: access_token
-                    in: query
-                    description: The wot access token of the user
-                    required: true
-                    schema:
-                        type: string
-                        minLength: 40
-                        maxLength: 40
-                        pattern: '[a-e0-9]{40}'
-                -   name: language
-                    in: query
-                    description: The redirect uri
-                    schema:
-                        type: string
-                        default: fr
+                -   $ref: "./wgn.yml/#/components/parameters/application_id"
+                -   $ref: "./wgn.yml/#/components/parameters/clan_id"
+                -   $ref: "./wgn.yml/#/components/parameters/access_token"
+                -   $ref: "./wgn.yml/#/components/parameters/language"
             responses:
                 200:
                     description: OK
                     content:
                         application/json:
                             schema:
+                                title: OnlineMemberResponse
                                 oneOf:
-                                    -   $ref: "#/components/schemas/ClansError"
                                     -   $ref: "#/components/schemas/OnlineMember"
+                                    -   $ref: "./wgn.yml#/components/schemas/WgnError"
             deprecated: false
 components:
     schemas:
-        ClansError:
-            type: object
-            properties:
-                status:
-                    enum:
-                        - error
-                error:
-                    type: object
-                    properties:
-                        code:
-                            type: string
-                        message:
-                            type: string
-                        field:
-                            type: string
-                        value:
-                            type: string
-                    required:
-                        - code
-                        - message
-                        - field
-                        - value
-            required:
-                - status
-                - error
         OnlineMember:
             type: object
-            properties:
-                status:
-                    enum:
-                        - ok
-                meta:
-                    type: object
+            allOf:
+                -   $ref: "./wgn.yml#/components/schemas/DefaultWgn"
+                -   type: object
                     properties:
-                        count:
-                            type: integer
-                data:
-                    type: object
-                    additionalProperties:
-                        type: object
-                        additionalProperties:
+                        status:
+                            enum:
+                                - ok
+                        meta:
                             type: object
                             properties:
-                                online_members:
-                                    type: array
-                                    items:
-                                        type: integer
+                                count:
+                                    type: integer
+                        data:
+                            type: object
+                            example:
+                                123456: {
+                                    private: {
+                                        online_members: [ 123456789 ]
+                                    }
+                                }
+                            additionalProperties:
+                                type: object
+                                additionalProperties:
+                                    type: object
+                                    properties:
+                                        online_members:
+                                            type: array
+                                            items:
+                                                type: integer
+                                    required:
+                                        - online_members
                             required:
-                                - online_members
+                                - wot
                     required:
-                        - wot
-            required:
-                - status
-                - meta
-                - data
+                        - data

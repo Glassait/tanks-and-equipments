@@ -7,7 +7,7 @@ import { Connection } from '../types/connection.type';
 import { CheckGrade } from '../utils/check-grade.util';
 import { DateCustom } from '../utils/date.custom';
 import { AuthenticationClientService } from './authentication-client.service';
-import { MemberDto, MembersService } from '../../../generated-api/glassait/members';
+import { MemberDto, MembersService } from '../../../generated-api/members';
 
 /**
  * Service for authentication

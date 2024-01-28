@@ -45,7 +45,7 @@ export class ChangelogComponent implements OnInit {
      * Implementation of the {@link OnInit} interface
      */
     ngOnInit(): void {
-        this.changelogs = changelog as unknown as VersionType[];
+        this.changelogs = changelog.changelog as unknown as VersionType[];
 
         this.headerStore.patch({
             showHome: true,

@@ -54,7 +54,7 @@ import { MemberInterface } from './commons/interfaces/member.interface';
 import { WindowsCustom } from './commons/utils/windows-custom.util';
 import { ConnectionSuccess } from './commons/types/connection.type';
 import { takeWhile } from 'rxjs';
-import { FeatureDto, FeaturesService } from '../generated-api/glassait/features';
+import { FeatureDto, FeaturesService } from '../generated-api/features';
 
 @Component({
     selector: 'app-root',

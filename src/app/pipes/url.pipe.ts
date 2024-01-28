@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { FieldDetail } from '../../generated-api/glassait/tanks';
+import { FieldDetail } from '../../generated-api/tanks';
 
 @Pipe({
     name: 'getFieldUrl',

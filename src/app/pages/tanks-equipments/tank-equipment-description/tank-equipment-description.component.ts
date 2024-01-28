@@ -3,7 +3,7 @@ import { IconColorEnum } from 'src/app/components/icon/enums/icon-enum';
 import { ModeEnum } from '../../../commons/enums/modeEnum';
 import { ButtonSizeEnum } from '../../../components/button/enums/button-size.enum';
 import { ButtonThemeEnum } from '../../../components/button/enums/button-theme.enum';
-import { TankDto } from '../../../../generated-api/glassait/tanks';
+import { TankDto } from '../../../../generated-api/tanks';
 
 @Component({
     selector: 'app-tank-equipment-description',
@@ -30,6 +30,7 @@ export class TankEquipmentDescriptionComponent {
     protected readonly ModeEnum = ModeEnum;
     protected readonly ButtonSizeEnum = ButtonSizeEnum;
     protected readonly ButtonThemeEnum = ButtonThemeEnum;
+
     //endregion
 
     protected openLink(url: string): void {

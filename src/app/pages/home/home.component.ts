@@ -17,9 +17,9 @@ import { SentenceCasePipe } from '../../pipes/sentence-case.pipe';
 import { MemberStore } from '../../commons/stores/member.store';
 import { MemberInterface } from '../../commons/interfaces/member.interface';
 import { takeWhile } from 'rxjs';
-import { InformationDto, InformationService } from '../../../generated-api/glassait/information';
-import { ServerInfo200Response, ServerInfoData, WgnService } from '../../../generated-api/glassait/wgn';
-import { ClansService, OnlineMember200Response } from '../../../generated-api/glassait/clans';
+import { ClansService, OnlineMemberResponse } from '../../../generated-api/clans';
+import { ServerInfoData, ServerResponse, WgnService, WotServer } from '../../../generated-api/wgn';
+import { InformationDto, InformationService } from '../../../generated-api/information';
 
 @Component({
     selector: 'app-home',
@@ -77,10 +77,10 @@ export class HomeComponent implements OnInit {
         private readonly clansService: ClansService,
         // SERVICE
         private readonly cookieService: CookieService,
-        private readonly inventoryService: InventoryService,
+        private readonly inventory: InventoryService,
         private readonly wording: WordingService,
-        protected readonly memberService: MemberService,
-        protected readonly modeService: ModeService,
+        protected readonly member: MemberService,
+        protected readonly mode: ModeService,
         // ANGULAR
         private readonly router: Router,
         private readonly title: Title,
@@ -126,7 +126,7 @@ export class HomeComponent implements OnInit {
         if (path.indexOf('https') >= 0) {
             window.location.href = path;
         } else {
-            this.router.navigate([this.inventoryService.getInventoryFromString(path)]).then((value: boolean): void => {
+            this.router.navigate([this.inventory.getInventoryFromString(path)]).then((value: boolean): void => {
                 if (value) {
                     window.scrollTo(0, 0);
                 }
@@ -146,7 +146,7 @@ export class HomeComponent implements OnInit {
             return;
         }
 
-        this.informationService.informations(this.memberService.accessToken).subscribe({
+        this.informationService.informations(this.member.accessToken).subscribe({
             next: (value: InformationDto): void => {
                 this.information.information = value;
             },
@@ -179,8 +179,8 @@ export class HomeComponent implements OnInit {
             return;
         }
 
-        this.wngService.serverInfo(this.inventoryService.applicationId, 'fr').subscribe({
-            next: (response: ServerInfo200Response): void => {
+        this.wngService.serverInfo(this.inventory.applicationId, 'fr').subscribe({
+            next: (response: ServerResponse): void => {
                 if (response.status === 'error') {
                     this.wotServer.isError = true;
                     this.wotServer.isLoading = false;
@@ -188,11 +188,11 @@ export class HomeComponent implements OnInit {
                 }
 
                 this.wotServer.servers = response.data;
-                this.wotServer.servers.wot.forEach((server: any): void => {
+                this.wotServer.servers.wot.forEach((server: WotServer): void => {
                     server.server = server.server.replace('20', 'EU');
                 });
-                this.wotServer.servers.wot.sort((a: any, b: any) => a.server.localeCompare(b.server));
-                this.wotServer.max = Math.max(...this.wotServer.servers.wot.map((value: any) => value.players_online));
+                this.wotServer.servers.wot.sort((a: WotServer, b: WotServer) => a.server.localeCompare(b.server));
+                this.wotServer.max = Math.max(...this.wotServer.servers.wot.map((server: WotServer) => server.players_online));
             },
             error: _err => {
                 this.wotServer.isError = true;
@@ -230,34 +230,34 @@ export class HomeComponent implements OnInit {
             return;
         }
 
-        this.clansService
-            .onlineMember(this.inventoryService.applicationId, this.inventoryService.clanId, this.memberService.accessToken, 'fr')
-            .subscribe({
-                next: (response: OnlineMember200Response): void => {
-                    if (response.status === 'error') {
-                        this.memberOnline.isError = true;
-                        this.memberOnline.isLoading = false;
-                        return;
-                    }
-
-                    this.memberOnline.amount = response.data[this.inventoryService.clanId]['private'].online_members.length;
-                },
-                error: _err => {
+        this.clansService.onlineMember(this.inventory.applicationId, this.inventory.clanId, this.member.accessToken, 'fr').subscribe({
+            next: (response: OnlineMemberResponse): void => {
+                if (response.status === 'error') {
+                    console.error(response.error);
                     this.memberOnline.isError = true;
                     this.memberOnline.isLoading = false;
-                },
-                complete: (): void => {
-                    if (this.memberOnline.isError) {
-                        return;
-                    }
+                    return;
+                }
 
-                    this.cookieService.set(
-                        CookieNameEnum.MEMBER_ONLINE,
-                        JSON.stringify(this.memberOnline.amount),
-                        DateCustom.getTodayDatePlusTenMinute()
-                    );
-                    this.memberOnline.isLoading = false;
-                },
-            });
+                this.memberOnline.amount = response.data[this.inventory.clanId]['private'].online_members.length;
+            },
+            error: err => {
+                console.error(err);
+                this.memberOnline.isError = true;
+                this.memberOnline.isLoading = false;
+            },
+            complete: (): void => {
+                if (this.memberOnline.isError) {
+                    return;
+                }
+
+                this.cookieService.set(
+                    CookieNameEnum.MEMBER_ONLINE,
+                    JSON.stringify(this.memberOnline.amount),
+                    DateCustom.getTodayDatePlusTenMinute()
+                );
+                this.memberOnline.isLoading = false;
+            },
+        });
     }
 }

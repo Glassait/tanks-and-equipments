@@ -9,7 +9,7 @@ import { SessionStorageService } from '../../commons/services/session-storage.se
 import { WordingService } from '../../commons/services/wording.service';
 import { DateCustom } from '../../commons/utils/date.custom';
 import { SentenceCasePipe } from '../../pipes/sentence-case.pipe';
-import { TankDto, TanksService } from '../../../generated-api/glassait/tanks';
+import { TankDto, TanksService } from '../../../generated-api/tanks';
 
 @Component({
     selector: 'app-tanks-equipment',

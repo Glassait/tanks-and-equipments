@@ -12,7 +12,7 @@ import { NgIf, NgOptimizedImage } from '@angular/common';
 import { ButtonComponent } from '../button/button.component';
 import { WordingPipe } from '../../pipes/wording.pipe';
 import { SentenceCasePipe } from '../../pipes/sentence-case.pipe';
-import { FeatureDto } from '../../../generated-api/glassait/features';
+import { FeatureDto } from '../../../generated-api/features';
 
 @Component({
     standalone: true,
@@ -124,7 +124,7 @@ export class FooterComponent implements OnInit {
             .watch()
             .pipe(takeWhile((features: FeatureDto) => features !== null && features !== undefined, true))
             .subscribe((features: FeatureDto): void => {
-                this.links[2].enabled = !!features.clanWar;
+                this.links[2].enabled = features.clanWar;
             });
     }
 }
