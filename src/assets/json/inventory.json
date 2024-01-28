@@ -3,10 +3,7 @@
         "application-id": "d5cfa347c97b1997c50c1797e2f1cfdc",
         "clan-id": "500312605",
         "login": "https://api.worldoftanks.eu/wot/auth/login/?application_id=applicationId&display=popup&redirect_uri=redirectUri",
-        "login-mock": "assets/mocks/connection.json",
-        "member-online": "https://api.worldoftanks.eu/wot/clans/info/?application_id=applicationId&fields=private.online_members&extra=private.online_members&clan_id=clanId&language=fr&access_token=accessToken",
-        "clan_reserves": "https://api.worldoftanks.eu/wot/stronghold/clanreserves/?application_id=applicationId&access_token=accessToken&fields=disposable%2C+bonus_type%2C+name%2C+type%2C+in_stock%2C+-in_stock.x_level_only%2C+-in_stock.bonus_values&language=fr",
-        "activate_reserve": "https://api.worldoftanks.eu/wot/stronghold/activateclanreserve/"
+        "login-mock": "assets/mocks/connection.json"
     },
     "url": {
         "clan": "https://eu.wargaming.net/clans/wot/500312605/"

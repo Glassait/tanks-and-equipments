@@ -1,0 +1,199 @@
+openapi: 3.0.3
+info:
+    title: Wargaming API
+    description: Stronghold Wargaming API
+    version: 1.0.0
+servers:
+    -   url: https://api.worldoftanks.eu/wot/stronghold
+
+paths:
+    /clanreserves/?fields=disposable%2C+bonus_type%2C+name%2C+type%2C+in_stock%2C+-in_stock.x_level_only%2C+-in_stock.bonus_values:
+        get:
+            tags:
+                - stronghold
+            description: Get all the clan reserves from the WoT API
+            summary: Get all the clan reserves from the WoT API
+            operationId: clanReserves
+            parameters:
+                -   name: application_id
+                    in: query
+                    description: The application id for the Wargaming API
+                    required: true
+                    schema:
+                        type: string
+                -   name: access_token
+                    in: query
+                    description: The wot access token of the user
+                    required: true
+                    schema:
+                        type: string
+                        minLength: 40
+                        maxLength: 40
+                        pattern: "[a-e0-9]{40}"
+                -   name: language
+                    in: query
+                    description: The redirect uri
+                    schema:
+                        type: string
+                        default: fr
+            responses:
+                200:
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                title: ClanReservesResponse
+                                oneOf:
+                                    -   $ref: "#/components/schemas/WgnError"
+                                    -   $ref: "#/components/schemas/ClanReserve"
+            deprecated: false
+    /activateclanreserve/:
+        post:
+            tags:
+                - stronghold
+            description: Activate the selected clan reserves from the WoT API
+            summary: Activate the selected clan reserves from the WoT API
+            operationId: activateReserve
+            requestBody:
+                content:
+                    multipart/form-data:
+                        schema:
+                            type: object
+                            properties:
+                                application_id:
+                                    description: The application id for the Wargaming API
+                                    type: string
+                                access_token:
+                                    description: The wot access token of the user
+                                    type: string
+                                    minLength: 40
+                                    maxLength: 40
+                                    pattern: "[a-e0-9]{40}"
+                                reserve_level:
+                                    description: The reserve level
+                                    type: string
+                                reserve_type:
+                                    description: The reserve type
+                                    type: string
+                                language:
+                                    description: The redirect uri
+                                    type: string
+                                    default: fr
+            responses:
+                200:
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                title: ActivatedReservesResponse
+                                oneOf:
+                                    -   $ref: "#/components/schemas/WgnError"
+                                    -   $ref: "#/components/schemas/Activated"
+            deprecated: false
+
+components:
+    schemas:
+        WgnError:
+            type: object
+            properties:
+                status:
+                    enum:
+                        - error
+                error:
+                    type: object
+                    properties:
+                        code:
+                            type: string
+                        message:
+                            type: string
+                        field:
+                            type: string
+                        value:
+                            type: string
+                    required:
+                        - code
+                        - message
+                        - field
+                        - value
+            required:
+                - status
+                - error
+        ClanReserve:
+            type: object
+            properties:
+                status:
+                    enum:
+                        - ok
+                meta:
+                    type: object
+                    properties:
+                        count:
+                            type: integer
+                data:
+                    type: array
+                    items:
+                        type: object
+                        properties:
+                            type:
+                                type: string
+                                description: The reserve type
+                            disposable:
+                                type: boolean
+                                description: Is the reserve disposable
+                            name:
+                                type: string
+                                description: The reserve name
+                            bonus_type:
+                                type: string
+                                description: The reserve bonus type
+                            in_stock:
+                                type: array
+                                items:
+                                    properties:
+                                        status:
+                                            type: string
+                                        action_time:
+                                            type: integer
+                                        active_till:
+                                            type: integer
+                                            nullable: true
+                                        level:
+                                            type: integer
+                                        activated_at:
+                                            type: integer
+                                            nullable: true
+                                        amount:
+                                            type: integer
+                                    required:
+                                        - status
+                                        - action_time
+                                        - active_till
+                                        - level
+                                        - activated_at
+                                        - amount
+                        required:
+                            - type
+                            - disposable
+                            - name
+                            - bonus_type
+                            - in_stock
+            required:
+                - status
+                - meta
+                - data
+        Activated:
+            type: object
+            properties:
+                status:
+                    enum:
+                        - ok
+                meta:
+                    type: object
+                    properties:
+                        count:
+                            type: integer
+                data:
+                    type: object
+                    properties:
+                        activated_at:
+                            type: string

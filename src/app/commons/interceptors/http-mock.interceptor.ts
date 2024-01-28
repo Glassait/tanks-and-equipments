@@ -1,4 +1,4 @@
-import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
+import { HttpEvent, HttpHandler, HttpInterceptor, HttpParams, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -10,7 +10,7 @@ import { MockEnum } from '../enums/mock.enum';
 export class HttpMockInterceptor implements HttpInterceptor {
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         if ([MockEnum.EXTERNAL_MOCK, MockEnum.FULL_MOCK].includes(environment.mock)) {
-            let endPoint: string[] = req.url.split('api.worldoftanks.eu');
+            let endPoint: string[] = req.url.split('api.worldoftanks.eu'); // TODO
 
             // if (endPoint.length === 2) {
             //     let jsonFile: string = '';
@@ -43,6 +43,7 @@ export class HttpMockInterceptor implements HttpInterceptor {
                 } else {
                     const mockReq: HttpRequest<any> = req.clone({
                         url: `/assets/mocks/${endPoint[1].replace('/', '.').replace(/\?access_token=[0-9a-zA-Z]{40}/, '')}.json`,
+                        params: new HttpParams(),
                         method: 'GET',
                     });
                     return next.handle(mockReq);

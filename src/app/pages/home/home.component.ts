@@ -8,7 +8,6 @@ import { CookieNameEnum } from '../../commons/enums/cookie-name.enum';
 import { ModeEnum } from '../../commons/enums/modeEnum';
 import { InventoryService } from '../../commons/services/inventory.service';
 import { WordingService } from '../../commons/services/wording.service';
-import { WotService } from '../../commons/services/wot.service';
 import { HeaderStore } from '../../commons/stores/header.store';
 import { DefaultHttpType } from '../../commons/types/default-httpType';
 import { DateCustom } from '../../commons/utils/date.custom';
@@ -78,7 +77,6 @@ export class HomeComponent implements OnInit {
         private readonly clansService: ClansService,
         // SERVICE
         private readonly cookieService: CookieService,
-        private readonly wotService: WotService,
         private readonly inventoryService: InventoryService,
         private readonly wording: WordingService,
         protected readonly memberService: MemberService,
