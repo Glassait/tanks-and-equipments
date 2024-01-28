@@ -8,7 +8,7 @@
         "start:external-mock": "npm run generate:api && ng serve --configuration external-mock --port 4200",
         "start:full-mock": "npm run generate:api && ng serve --configuration full-mock --port 4200",
         "build": "ng build",
-        "heroku-postbuild": "ng build",
+        "heroku-postbuild": "npm run generate:api && ng build",
         "watch": "ng build --watch --configuration development",
         "test": "ng test",
         "bundle": "rimraf dist && ng build",
