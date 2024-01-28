@@ -71,7 +71,7 @@
         "bdd": {
             "title": "Actualisation de la base de donnée",
             "action": "Actualiser",
-            "text": "Cet encart est conçu pour actualiser manuellement la base de données des membres du clan. Cela n'interrompt pas l'actualisation automatique qui a lieu toutes les heures."
+            "text": "Cet encart est conçu pour actualiser manuellement la base de données des membres du clan. Cela n'interrompt pas l'actualisation automatique qui a lieu toutes les deux heures."
         },
         "reserve": {
             "title": "Activer des réserves de clan",

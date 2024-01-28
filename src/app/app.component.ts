@@ -1,11 +1,9 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
-import { FeatureFlippingApi } from './commons/api/feature-flipping.api';
 import { CookieNameEnum } from './commons/enums/cookie-name.enum';
-import { FeatureInterface } from './commons/interfaces/feature.interface';
 import { AuthenticationService } from './commons/services/authentication.service';
 import { IconRegistryService } from './commons/services/icon-registry.service';
-import { FeatureStore } from './commons/stores/feature.store';
+import { FeaturesStore } from './commons/stores/features.store';
 import { MemberStore } from './commons/stores/member.store';
 import { ModeStore } from './commons/stores/mode.store';
 import { DateCustom } from './commons/utils/date.custom';
@@ -56,6 +54,7 @@ import { MemberInterface } from './commons/interfaces/member.interface';
 import { WindowsCustom } from './commons/utils/windows-custom.util';
 import { ConnectionSuccess } from './commons/types/connection.type';
 import { takeWhile } from 'rxjs';
+import { FeatureDto, FeaturesService } from '../generated-api/features';
 
 @Component({
     selector: 'app-root',
@@ -70,9 +69,9 @@ export class AppComponent implements OnInit {
         // STORE
         private readonly modeStore: ModeStore,
         private readonly memberStore: MemberStore,
-        private readonly featureStore: FeatureStore,
+        private readonly featureStore: FeaturesStore,
         // API
-        private readonly featureFlippingApi: FeatureFlippingApi
+        private readonly featuresService: FeaturesService
     ) {
         if (WindowsCustom.getSearch() !== '') {
             this.auth.login();
@@ -167,24 +166,24 @@ export class AppComponent implements OnInit {
      * @param {ConnectionSuccess} token - The authentication token
      */
     private getFeature(token: ConnectionSuccess): void {
-        const cookie: string = this.cookie.get(CookieNameEnum.FEATURE);
+        const cookie: string = this.cookie.get(CookieNameEnum.FEATURES);
         if (cookie) {
             this.featureStore.patch(JSON.parse(cookie));
             return;
         }
 
-        let featureFlipping: FeatureInterface;
+        let feature: FeatureDto;
 
-        this.featureFlippingApi.queryFeature(token.access_token).subscribe({
-            next: (value: FeatureInterface): void => {
+        this.featuresService.features(token.access_token).subscribe({
+            next: (value: FeatureDto): void => {
                 this.featureStore.patch(value);
-                featureFlipping = value;
+                feature = value;
             },
             error: err => {
                 console.log(err);
             },
             complete: (): void => {
-                this.cookie.set(CookieNameEnum.FEATURE, JSON.stringify(featureFlipping), DateCustom.getMidnightDate());
+                this.cookie.set(CookieNameEnum.FEATURES, JSON.stringify(feature), DateCustom.getMidnightDate());
             },
         });
     }

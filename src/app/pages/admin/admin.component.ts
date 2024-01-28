@@ -6,10 +6,7 @@ import { ModeService } from '../../commons/abstract/mode.service';
 import { WordingService } from '../../commons/services/wording.service';
 import { HeaderStore } from '../../commons/stores/header.store';
 import { SentenceCasePipe } from '../../pipes/sentence-case.pipe';
-import { MembersApi } from '../../commons/api/members.api';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { WotService } from 'src/app/commons/services/wot.service';
-import { ClanReserve, DefaultWargaming, Reserve } from '../../commons/types/wot.type';
 import { defaultHttpType, DefaultHttpType } from '../../commons/types/default-httpType';
 import { ModeEnum } from '../../commons/enums/modeEnum';
 import { ButtonTypeEnum } from '../../components/button/enums/button-type.enum';
@@ -20,6 +17,9 @@ import { ClanReserveEnum } from './enums/clan-reserve.enum';
 import { SelectOptionType } from '../../components/select/types/select-option.type';
 import moment from 'moment';
 import { map, share, takeWhile, timer } from 'rxjs';
+import { InventoryService } from '../../commons/services/inventory.service';
+import { ClanReserveData, ClanReservesResponse, Reserve, StrongholdService } from '../../../generated-api/stronghold';
+import { MembersService } from '../../../generated-api/members';
 
 @Component({
     selector: 'app-home',
@@ -56,8 +56,9 @@ export class AdminComponent implements OnInit {
         private readonly headerStore: HeaderStore,
         // SERVICE
         private readonly wording: WordingService,
-        protected readonly memberService: MemberService,
-        protected readonly modeService: ModeService,
+        private readonly inventory: InventoryService,
+        protected readonly member: MemberService,
+        protected readonly mode: ModeService,
         // ANGULAR
         private readonly router: Router,
         private readonly title: Title,
@@ -65,15 +66,15 @@ export class AdminComponent implements OnInit {
         // PIPE
         private readonly sentenceCasePipe: SentenceCasePipe,
         // API
-        private readonly membersApi: MembersApi,
-        private readonly wotService: WotService
+        private readonly membersService: MembersService,
+        private readonly strongholdService: StrongholdService
     ) {}
 
     /**
      * Implementation of the {@link OnInit} interface
      */
     ngOnInit(): void {
-        if (!this.memberService.isAdmin || this.memberService.isVisitor) {
+        if (!this.member.isAdmin || this.member.isVisitor) {
             this.router.navigate(['/']).then((): void => {});
         }
 
@@ -94,7 +95,7 @@ export class AdminComponent implements OnInit {
      */
     protected actualiseBdd = (): void => {
         this.updateBddLoading = true;
-        this.membersApi.updateMember(this.memberService.accessToken).subscribe({
+        this.membersService.updateMembers(this.member.accessToken).subscribe({
             next: (_value: any): void => {},
             error: (err: any): void => {
                 console.error(err);
@@ -130,25 +131,27 @@ export class AdminComponent implements OnInit {
             return;
         }
 
-        this.wotService.activateClanReserve(this.memberService.accessToken, level, clanReserve.type).subscribe({
-            next: (value: any): void => {
-                if (value.status === 'error') {
-                    this.snackBar.open('La reserve ne doit plus existé, merci de recharger la page', '', {
+        this.strongholdService
+            .activateReserve(this.inventory.applicationId, this.member.accessToken, level, clanReserve.type, 'fr')
+            .subscribe({
+                next: (value: any): void => {
+                    if (value.status === 'error') {
+                        this.snackBar.open('La reserve ne doit plus existé, merci de recharger la page', '', {
+                            duration: this.snackBarDuration,
+                        });
+                    } else {
+                        this.snackBar.open('La réserve a bien été activée', '', { duration: this.snackBarDuration });
+                        this.createTimer(clanReserve, option.metadata);
+                        this.checkActivatedReserves();
+                    }
+                },
+                error: (err: any): void => {
+                    console.error(err);
+                    this.snackBar.open("Une erreur est survenue lors de l'activation de la reserve, merci de réessayer plus tard", '', {
                         duration: this.snackBarDuration,
                     });
-                } else {
-                    this.snackBar.open('La réserve a bien été activée', '', { duration: this.snackBarDuration });
-                    this.createTimer(clanReserve, option.metadata);
-                    this.checkActivatedReserves();
-                }
-            },
-            error: (err: any): void => {
-                console.error(err);
-                this.snackBar.open("Une erreur est survenue lors de l'activation de la reserve, merci de réessayer plus tard", '', {
-                    duration: this.snackBarDuration,
-                });
-            },
-        });
+                },
+            });
     }
 
     /**
@@ -156,26 +159,32 @@ export class AdminComponent implements OnInit {
      * @private
      */
     private getClanReserves(): void {
-        this.wotService.getClanReserve(this.memberService.accessToken).subscribe({
-            next: (response: DefaultWargaming<ClanReserve[]>): void => {
+        this.strongholdService.clanReserves(this.inventory.applicationId, this.member.accessToken, 'fr').subscribe({
+            next: (response: ClanReservesResponse): void => {
+                if (response.status === 'error') {
+                    this.clanReserves.isError = true;
+                    this.clanReserves.isLoading = false;
+                    return;
+                }
+
                 response.data
-                    .filter((clanReserves: ClanReserve) => !clanReserves.disposable)
-                    .forEach((reserves: ClanReserve): void => {
-                        this.clanReservesFormGroup.addControl(reserves.type, new FormControl());
+                    .filter((clanReserve: ClanReserveData) => !clanReserve.disposable)
+                    .forEach((clanReserve: ClanReserveData): void => {
+                        this.clanReservesFormGroup.addControl(clanReserve.type, new FormControl());
 
                         if (!this.clanReserves.reserves) {
                             this.clanReserves.reserves = [];
                         }
 
                         const clanReserves: ClanReserveType = {
-                            name: reserves.name,
-                            type: reserves.type,
-                            bonus_type: reserves.bonus_type,
+                            name: clanReserve.name,
+                            type: clanReserve.type,
+                            bonus_type: clanReserve.bonus_type,
                             options: [],
-                            link_to: ClanReserveEnum[reserves.type as keyof typeof ClanReserveEnum],
+                            link_to: ClanReserveEnum[clanReserve.type as keyof typeof ClanReserveEnum],
                         };
 
-                        reserves.in_stock.forEach((reserve: Reserve): void => {
+                        clanReserve.in_stock.forEach((reserve: Reserve): void => {
                             if (reserve.active_till) {
                                 clanReserves.active_till = new Date((reserve.active_till ?? 0) * 1000);
                                 this.createTimer(clanReserves, reserve);
@@ -198,6 +207,10 @@ export class AdminComponent implements OnInit {
                 this.clanReserves.isError = true;
             },
             complete: (): void => {
+                if (this.clanReserves.isError) {
+                    return;
+                }
+
                 console.log(this.clanReserves);
                 this.clanReserves.isLoading = false;
             },

@@ -1,7 +1,7 @@
 <div class="flex flex-col items-center gap-normal desktop:items-end">
-    @if (memberService.isVisitor) {
+    @if (member.isVisitor) {
         <glassait-card
-            [theme]="modeService.mode"
+            [theme]="mode.mode"
             avatar="visitor"
             class="w-[288px] *:text-justify tablet:w-[500px]"
             title="{{ 'home.title.visitor' | wording | sentenceCase }}"
@@ -12,30 +12,30 @@
         </glassait-card>
     }
 
-    @if (!memberService.isVisitor && information.information) {
+    @if (!member.isVisitor && information.information) {
         <glassait-card
-            [actionCallback]="{ func: navigate, parameter: information.information.lien.url }"
-            [theme]="modeService.mode"
+            [actionCallback]="{ func: navigate, parameter: information.information.link.url }"
+            [theme]="mode.mode"
             [isLoading]="information.isLoading"
-            [loadingColor]="modeService.mode"
+            [loadingColor]="mode.mode"
             actionAlign="end"
             actionIcon="super_conqueror"
             actionIconSize="36"
-            actionText="{{ information.information.lien.text }}"
+            actionText="{{ information.information.link.text }}"
             avatar="information"
             class="w-[288px] *:text-justify tablet:w-[500px]"
-            hasAction="{{ information.information.lien.url !== null }}"
+            hasAction="{{ information.information.link.url !== null }}"
             title="{{ 'home.title.information' | wording | sentenceCase }}"
         >
             <p>{{ information.information.text }}</p>
         </glassait-card>
     }
 
-    @if (!memberService.isVisitor && memberOnline.amount) {
+    @if (!member.isVisitor && memberOnline.amount) {
         <glassait-card
-            [theme]="modeService.mode"
+            [theme]="mode.mode"
             [isLoading]="memberOnline.isLoading"
-            [loadingColor]="modeService.mode"
+            [loadingColor]="mode.mode"
             avatar="userGroup"
             class="w-[288px] *:text-justify tablet:w-[500px]"
             title="{{ 'home.title.member-online' | wording | sentenceCase }}"
@@ -50,8 +50,8 @@
 
     <glassait-card
         [isLoading]="wotServer.isLoading"
-        [loadingColor]="modeService.mode"
-        [theme]="modeService.mode"
+        [loadingColor]="mode.mode"
+        [theme]="mode.mode"
         avatar="server"
         class="w-[288px] tablet:w-[500px]"
         subtitle="{{ 'home.subtitle.server-status' | wording | sentenceCase }}"
@@ -65,7 +65,7 @@
                 >
                     @if (server.players_online !== wotServer.max) {
                         <glassait-icon
-                            [color]="modeService.mode === ModeEnum.DARK ? IconColorEnum.DARK : IconColorEnum.LIGHT"
+                            [color]="mode.mode === ModeEnum.DARK ? IconColorEnum.DARK : IconColorEnum.LIGHT"
                             icon="ok"
                             size="30"
                         ></glassait-icon>
@@ -75,7 +75,7 @@
 
                     <div class="text-title">{{ server.server }}</div>
                     <div>
-                        {{ server.players_online }} {{ 'home.text.server-status' | wording }} {{ server.players_online > 1 ? 's' : '' }}
+                        {{ server.players_online }} {{ 'home.text.server-status' | wording }}{{ server.players_online > 1 ? 's' : '' }}
                     </div>
                 </div>
             }

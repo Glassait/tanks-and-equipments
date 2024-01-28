@@ -3,16 +3,24 @@
     "version": "2.2.1-0",
     "scripts": {
         "ng": "ng",
-        "start": "node server.js",
-        "start:production": "ng serve --configuration production --port 4200",
-        "start:external-mock": "ng serve --configuration external-mock --port 4200",
-        "start:full-mock": "ng serve --configuration full-mock --port 4200",
+        "start": "npm run generate:api && node server.js",
+        "start:production": "npm run generate:api && ng serve --configuration production --port 4200",
+        "start:external-mock": "npm run generate:api && ng serve --configuration external-mock --port 4200",
+        "start:full-mock": "npm run generate:api && ng serve --configuration full-mock --port 4200",
         "build": "ng build",
         "heroku-postbuild": "ng build",
         "watch": "ng build --watch --configuration development",
         "test": "ng test",
         "bundle": "rimraf dist && ng build",
-        "pack": "npm pack"
+        "pack": "npm pack",
+        "generate:api": "npm run generate:features && npm run generate:information && npm run generate:members && npm run generate:tanks && npm run generate:wgn && npm run generate:clans && npm run generate:stronghold",
+        "generate:features": "openapi-generator-cli generate -i ./open-api/features.yml -g typescript-angular -o src/generated-api/features",
+        "generate:information": "openapi-generator-cli generate -i ./open-api/information.yml -g typescript-angular -o src/generated-api/information",
+        "generate:members": "openapi-generator-cli generate -i ./open-api/members.yml -g typescript-angular -o src/generated-api/members",
+        "generate:tanks": "openapi-generator-cli generate -i ./open-api/tanks.yml -g typescript-angular -o src/generated-api/tanks",
+        "generate:wgn": "openapi-generator-cli generate -i open-api/wgn.yml -g typescript-angular -o src/generated-api/wgn",
+        "generate:clans": "openapi-generator-cli generate -i open-api/clans.yml -g typescript-angular -o src/generated-api/clans",
+        "generate:stronghold": "openapi-generator-cli generate -i open-api/stronghold.yml -g typescript-angular -o src/generated-api/stronghold"
     },
     "engines": {
         "node": "18.16.0",
@@ -31,6 +39,7 @@
         "@angular/router": "17.0.8",
         "@elie29/store": "2.0.0",
         "@tailwindcss/container-queries": "0.1.1",
+        "@openapitools/openapi-generator-cli": "^2.9.0",
         "express": "4.18.2",
         "express-rate-limit": "7.1.5",
         "moment": "^2.30.1",
@@ -42,7 +51,7 @@
         "zone.js": "0.14.2"
     },
     "devDependencies": {
-        "@angular-devkit/build-angular": "^17.1.0",
+        "@angular-devkit/build-angular": "^17.1.1",
         "@angular/cli": "17.0.8",
         "@angular/compiler-cli": "17.0.8",
         "@types/jasmine": "5.1.4",

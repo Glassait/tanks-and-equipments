@@ -1,0 +1,251 @@
+openapi: 3.0.3
+info:
+    title: Tanks API
+    description: API to manage fetch in the database
+    version: 1.0.0
+servers:
+    -   url: https://fold-backend-5e6c2cf7c25c.herokuapp.com
+paths:
+    /api/tanks:
+        get:
+            tags:
+                - tanks
+            description: Returns all the tanks from the database
+            summary: Returns all the tanks from the database
+            operationId: tanks
+            parameters:
+                -   $ref: "./wgn.yml/#/components/parameters/access_token"
+            responses:
+                200:
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    $ref: "#/components/schemas/TankDto"
+                401:
+                    description: Access token not valid
+            deprecated: false
+
+components:
+    schemas:
+        TankDto:
+            title: TankDto
+            type: object
+            properties:
+                name:
+                    type: string
+                    description: The name of the tank
+                    example: Object 277
+
+                priority:
+                    type: integer
+                    description: The priority to have the tank (1 lowest - 5 highest)
+                    minimum: 1
+                    maximum: 5
+                crew:
+                    type: array
+                    description: The crew list of the tank
+                    minItems: 2
+                    maxItems: 7
+                    items:
+                        type: string
+                skills:
+                    type: array
+                    description: The skills list for the crew of the tank
+                    minItems: 5
+                    maxItems: 5
+                    items:
+                        type: array
+                        minItems: 2
+                        maxItems: 7
+                        items:
+                            type: string
+                shells:
+                    type: array
+                    description: The shells list for the crew of the tank
+                    minItems: 3
+                    maxItems: 3
+                    items:
+                        $ref: "#/components/schemas/Shell"
+                fields:
+                    type: array
+                    description: The fields list for the crew of the tank
+                    minItems: 6
+                    maxItems: 6
+                    items:
+                        $ref: "#/components/schemas/Fields"
+                directive:
+                    $ref: "#/components/schemas/Directive"
+                equipments:
+                    $ref: "#/components/schemas/Equipments"
+                consumables:
+                    $ref: "#/components/schemas/Consumables"
+                links:
+                    type: array
+                    items:
+                        $ref: "#/components/schemas/Link"
+            required:
+                - name
+                - priority
+                - crew
+                - skills
+                - shells
+                - fields
+                - directive
+                - equipments
+                - consumables
+                - links
+        Shell:
+            title: Shell
+            type: object
+            properties:
+                name:
+                    type: string
+                    description: The name of the shell
+                    example: AP
+                amount:
+                    type: integer
+                    description: The amount of shell needed
+                    example: 20
+                premium:
+                    type: boolean
+                    description: If the shell is a premium shell or not
+                    example: false
+            required:
+                - name
+                - amount
+                - premium
+        Fields:
+            title: Fields
+            type: object
+            properties:
+                level:
+                    type: integer
+                    description: The level of the field
+                    minimum: 2
+                    maximum: 8
+                field:
+                    $ref: "#/components/schemas/Field"
+            required:
+                - level
+                - field
+        Field:
+            title: Field
+            type: object
+            properties:
+                left:
+                    $ref: "#/components/schemas/FieldDetail"
+                right:
+                    $ref: "#/components/schemas/FieldDetail"
+            required:
+                - left
+                - right
+        FieldDetail:
+            title: FieldDetail
+            type: object
+            properties:
+                name:
+                    type: string
+                    description: The name of the field
+                    example: Suspension tout-terrain
+                image:
+                    type: string
+                    description: The image name of the field
+                    example: additionalGrousers
+                active:
+                    type: boolean
+                    description: If the field is active or not
+                    example: true
+            required:
+                - name
+                - image
+                - active
+        Directive:
+            title: Directive
+            type: object
+            properties:
+                name:
+                    type: string
+                    description: The name of the directive
+                    example: Râtelier de munitions en ordre
+                image:
+                    type: string
+                    description: The image name of the directive
+                    example: fouloir_de_canon
+            required:
+                - name
+                - image
+        Equipments:
+            title: Equipments
+            type: object
+            properties:
+                first:
+                    type: array
+                    description: The list of equipment for the set 1
+                    minItems: 3
+                    maxItems: 3
+                    items:
+                        $ref: "#/components/schemas/EquipmentDetail"
+                second:
+                    type: array
+                    description: The list of equipment for the set 2
+                    minItems: 3
+                    maxItems: 3
+                    items:
+                        $ref: "#/components/schemas/EquipmentDetail"
+            required:
+                - first
+                - second
+        EquipmentDetail:
+            title: EquipmentDetail
+            type: object
+            properties:
+                name:
+                    type: string
+                    description: The name of the equipment
+                    example: Fouloir à canon
+                modernized:
+                    type: boolean
+                    description: If the equipment is modernized of not
+                    example: false
+            required:
+                - name
+                - modernized
+        Consumables:
+            title: Consumables
+            type: object
+            properties:
+                first:
+                    type: array
+                    description: The list of consumables for the set 1
+                    minItems: 3
+                    maxItems: 3
+                    items:
+                        type: string
+                second:
+                    type: array
+                    description: The list of consumables for the set 2
+                    minItems: 3
+                    maxItems: 3
+                    items:
+                        type: string
+            required:
+                - first
+                - second
+        Link:
+            title: Link
+            type: object
+            properties:
+                name:
+                    type: string
+                    description: The name of the link
+                    example: Link 1
+                url:
+                    type: string
+                    description: The url of the link
+                    example: link1
+            required:
+                - name
+                - url

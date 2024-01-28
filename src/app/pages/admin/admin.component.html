@@ -5,8 +5,8 @@
         <glassait-card
             [actionCallback]="{ func: actualiseBdd }"
             [actionLoading]="updateBddLoading"
-            [loadingColor]="modeService.mode"
-            [theme]="modeService.mode"
+            [loadingColor]="mode.mode"
+            [theme]="mode.mode"
             actionAlign="end"
             actionIcon="visitor"
             actionText="{{ 'admin.bdd.action' | wording | sentenceCase }}"
@@ -20,7 +20,7 @@
 
         @if (!clanReserves.isLoading && !clanReserves.isError) {
             <glassait-card
-                [theme]="modeService.mode"
+                [theme]="mode.mode"
                 avatar="reserve"
                 class="*:text-justify"
                 subtitle="{{ 'admin.reserve.subtitle' | wording | sentenceCase }}"
@@ -43,7 +43,7 @@
                                 <div class="w-[30%] min-w-[100px]">
                                     <glassait-select
                                         formControlName="{{ reserve.type }}"
-                                        [theme]="modeService.mode"
+                                        [theme]="mode.mode"
                                         class="w-[6.25rem]"
                                         label="{{ 'admin.reserve.label_select' | wording | sentenceCase }}"
                                         [options]="reserve.options"
@@ -52,7 +52,7 @@
                                 <div class="w-[20%] min-w-[80px]">
                                     <glassait-button
                                         class="w-fit"
-                                        [theme]="modeService.mode === ModeEnum.DARK ? ButtonThemeEnum.DARK : ButtonThemeEnum.LIGHT"
+                                        [theme]="mode.mode === ModeEnum.DARK ? ButtonThemeEnum.DARK : ButtonThemeEnum.LIGHT"
                                         text="{{ 'admin.reserve.label_button' | wording | sentenceCase }}"
                                         [type]="ButtonTypeEnum.RAISED"
                                         (click)="activateReserve($event, reserve.type)"
@@ -77,7 +77,7 @@
                 subtitle=""
                 title=""
                 [isLoading]="clanReserves.isLoading"
-                [loadingColor]="modeService.mode"
+                [loadingColor]="mode.mode"
             ></glassait-card>
         }
     </div>

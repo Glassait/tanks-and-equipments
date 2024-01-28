@@ -4,16 +4,12 @@ import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { MemberService } from '../../commons/abstract/member.service';
 import { ModeService } from '../../commons/abstract/mode.service';
-import { InformationApi } from '../../commons/api/information.api';
 import { CookieNameEnum } from '../../commons/enums/cookie-name.enum';
 import { ModeEnum } from '../../commons/enums/modeEnum';
 import { InventoryService } from '../../commons/services/inventory.service';
 import { WordingService } from '../../commons/services/wording.service';
-import { WotService } from '../../commons/services/wot.service';
 import { HeaderStore } from '../../commons/stores/header.store';
 import { DefaultHttpType } from '../../commons/types/default-httpType';
-import { DefaultWargaming, MemberOnline, WotServer } from '../../commons/types/wot.type';
-import { InformationType } from '../../commons/types/information.type';
 import { DateCustom } from '../../commons/utils/date.custom';
 import { ButtonThemeEnum } from '../../components/button/enums/button-theme.enum';
 import { IconColorEnum } from '../../components/icon/enums/icon-enum';
@@ -21,6 +17,9 @@ import { SentenceCasePipe } from '../../pipes/sentence-case.pipe';
 import { MemberStore } from '../../commons/stores/member.store';
 import { MemberInterface } from '../../commons/interfaces/member.interface';
 import { takeWhile } from 'rxjs';
+import { ClansService, OnlineMemberResponse } from '../../../generated-api/clans';
+import { ServerInfoData, ServerResponse, WgnService, WotServer } from '../../../generated-api/wgn';
+import { InformationDto, InformationService } from '../../../generated-api/information';
 
 @Component({
     selector: 'app-home',
@@ -49,13 +48,13 @@ export class HomeComponent implements OnInit {
      * Store the result of the api call to get the information of the clan
      * @protected
      */
-    protected information: DefaultHttpType & { information?: InformationType } = this.initial;
+    protected information: DefaultHttpType & { information?: InformationDto } = this.initial;
     /**
      * Store the result of the api call to get the information about the wot's server
      * @protected
      */
     protected wotServer: DefaultHttpType & {
-        servers?: WotServer;
+        servers?: ServerInfoData;
         max?: number;
     } = this.initial;
     /**
@@ -73,14 +72,15 @@ export class HomeComponent implements OnInit {
         private readonly headerStore: HeaderStore,
         private readonly memberStore: MemberStore,
         // API
-        private readonly informationApi: InformationApi,
+        private readonly informationService: InformationService,
+        private readonly wngService: WgnService,
+        private readonly clansService: ClansService,
         // SERVICE
         private readonly cookieService: CookieService,
-        private readonly wotService: WotService,
-        private readonly inventoryService: InventoryService,
+        private readonly inventory: InventoryService,
         private readonly wording: WordingService,
-        protected readonly memberService: MemberService,
-        protected readonly modeService: ModeService,
+        protected readonly member: MemberService,
+        protected readonly mode: ModeService,
         // ANGULAR
         private readonly router: Router,
         private readonly title: Title,
@@ -126,7 +126,7 @@ export class HomeComponent implements OnInit {
         if (path.indexOf('https') >= 0) {
             window.location.href = path;
         } else {
-            this.router.navigate([this.inventoryService.getInventoryFromString(path)]).then((value: boolean): void => {
+            this.router.navigate([this.inventory.getInventoryFromString(path)]).then((value: boolean): void => {
                 if (value) {
                     window.scrollTo(0, 0);
                 }
@@ -146,8 +146,8 @@ export class HomeComponent implements OnInit {
             return;
         }
 
-        this.informationApi.queryInformation(this.memberService.accessToken).subscribe({
-            next: (value: InformationType): void => {
+        this.informationService.informations(this.member.accessToken).subscribe({
+            next: (value: InformationDto): void => {
                 this.information.information = value;
             },
             error: _err => {
@@ -179,20 +179,30 @@ export class HomeComponent implements OnInit {
             return;
         }
 
-        this.wotService.getServeurStatus().subscribe({
-            next: (response: DefaultWargaming<WotServer>): void => {
+        this.wngService.serverInfo(this.inventory.applicationId, 'fr').subscribe({
+            next: (response: ServerResponse): void => {
+                if (response.status === 'error') {
+                    this.wotServer.isError = true;
+                    this.wotServer.isLoading = false;
+                    return;
+                }
+
                 this.wotServer.servers = response.data;
-                this.wotServer.servers.wot.forEach((server: any): void => {
+                this.wotServer.servers.wot.forEach((server: WotServer): void => {
                     server.server = server.server.replace('20', 'EU');
                 });
-                this.wotServer.servers.wot.sort((a: any, b: any) => a.server.localeCompare(b.server));
-                this.wotServer.max = Math.max(...this.wotServer.servers.wot.map((value: any) => value.players_online));
+                this.wotServer.servers.wot.sort((a: WotServer, b: WotServer) => a.server.localeCompare(b.server));
+                this.wotServer.max = Math.max(...this.wotServer.servers.wot.map((server: WotServer) => server.players_online));
             },
             error: _err => {
                 this.wotServer.isError = true;
                 this.wotServer.isLoading = false;
             },
             complete: (): void => {
+                if (this.wotServer.isError) {
+                    return;
+                }
+
                 this.cookieService.set(
                     CookieNameEnum.SERVER_STATUS,
                     JSON.stringify(this.wotServer.servers),
@@ -220,15 +230,27 @@ export class HomeComponent implements OnInit {
             return;
         }
 
-        this.wotService.getMemberOnline(this.memberService.accessToken).subscribe({
-            next: (response: DefaultWargaming<MemberOnline>): void => {
-                this.memberOnline.amount = response.data[this.inventoryService.clanId].private.online_members.length;
+        this.clansService.onlineMember(this.inventory.applicationId, this.inventory.clanId, this.member.accessToken, 'fr').subscribe({
+            next: (response: OnlineMemberResponse): void => {
+                if (response.status === 'error') {
+                    console.error(response.error);
+                    this.memberOnline.isError = true;
+                    this.memberOnline.isLoading = false;
+                    return;
+                }
+
+                this.memberOnline.amount = response.data[this.inventory.clanId]['private'].online_members.length;
             },
-            error: _err => {
+            error: err => {
+                console.error(err);
                 this.memberOnline.isError = true;
                 this.memberOnline.isLoading = false;
             },
             complete: (): void => {
+                if (this.memberOnline.isError) {
+                    return;
+                }
+
                 this.cookieService.set(
                     CookieNameEnum.MEMBER_ONLINE,
                     JSON.stringify(this.memberOnline.amount),

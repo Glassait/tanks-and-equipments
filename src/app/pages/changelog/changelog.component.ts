@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ModeService } from '../../commons/abstract/mode.service';
-import { ChangelogApi } from '../../commons/api/changelog.api';
 import { ModeEnum } from '../../commons/enums/modeEnum';
 import { WordingService } from '../../commons/services/wording.service';
 import { HeaderStore } from '../../commons/stores/header.store';
@@ -9,6 +8,7 @@ import { VersionType } from '../../commons/types/version.type';
 import { Icon } from '../../commons/utils/icon.util';
 import { IconColorEnum } from '../../components/icon/enums/icon-enum';
 import { SentenceCasePipe } from '../../pipes/sentence-case.pipe';
+import changelog from 'src/assets/json/changelog.json';
 
 @Component({
     selector: 'app-changelog',
@@ -31,8 +31,6 @@ export class ChangelogComponent implements OnInit {
     //endregion
 
     constructor(
-        // API
-        private readonly changelogApi: ChangelogApi,
         // SERVICE
         protected readonly modeService: ModeService,
         private readonly wording: WordingService,
@@ -47,7 +45,7 @@ export class ChangelogComponent implements OnInit {
      * Implementation of the {@link OnInit} interface
      */
     ngOnInit(): void {
-        this.changelogs = this.changelogApi.changelogs;
+        this.changelogs = changelog.changelog as unknown as VersionType[];
 
         this.headerStore.patch({
             showHome: true,

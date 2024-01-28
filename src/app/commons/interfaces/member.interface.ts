@@ -1,8 +1,8 @@
-import { Member } from '../types/member.type';
 import { Connection } from '../types/connection.type';
+import { MemberDto } from '../../../generated-api/members';
 
 export interface MemberInterface {
-    user?: Member;
+    user?: MemberDto;
     token?: Connection;
     isAdmin: boolean;
     isVisitor: boolean;
