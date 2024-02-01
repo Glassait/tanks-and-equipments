@@ -44,7 +44,7 @@
         "express-rate-limit": "7.1.5",
         "moment": "^2.30.1",
         "ngx-cookie-service": "17.0.1",
-        "ngx-skeleton-loader": "8.1.0",
+        "ngx-skeleton-loader": "9.0.0",
         "path": "0.12.7",
         "rxjs": "7.8.1",
         "tslib": "2.6.2",
