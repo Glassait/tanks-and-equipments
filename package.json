@@ -1,6 +1,6 @@
 {
     "name": "app",
-    "version": "2.2.1-3",
+    "version": "2.2.1-4",
     "scripts": {
         "ng": "ng",
         "start": "npm run generate:api && node server.js",
