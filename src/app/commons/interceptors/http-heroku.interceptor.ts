@@ -23,7 +23,7 @@ export class HttpHerokuInterceptor implements HttpInterceptor {
 
         if (environment.mock === MockEnum.EXTERNAL_MOCK) {
             mockReq = req.clone({
-                url: `http://localhost:8080/api/${endPoint[1]}`,
+                url: `http://localhost:5000/api/${endPoint[1]}`,
                 method: req.method,
             });
         } else {
