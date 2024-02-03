@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import { takeUntil } from 'rxjs';
-import { UnsubscribeDirective } from '../directives/unsubscribe.directive';
 import { MemberInterface } from '../interfaces/member.interface';
 import { MemberStore } from '../stores/member.store';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 /**
  * Injectable service that provides information about the currently authenticated user.
@@ -10,7 +9,7 @@ import { MemberStore } from '../stores/member.store';
 @Injectable({
     providedIn: 'root',
 })
-export class MemberService extends UnsubscribeDirective {
+export class MemberService {
     /**
      * Define if the user is an administrator or not
      */
@@ -25,8 +24,6 @@ export class MemberService extends UnsubscribeDirective {
     public accessToken: string;
 
     constructor(private memberStore: MemberStore) {
-        super();
-
         this.isAdmin = this.memberStore.get('isAdmin');
         const token = this.memberStore.get('token');
         this.accessToken = token && token.status !== 'error' ? token.access_token : '';
@@ -41,7 +38,7 @@ export class MemberService extends UnsubscribeDirective {
     private watchMemberStore(): void {
         this.memberStore
             .watch()
-            .pipe(takeUntil(this.destroy$))
+            .pipe(takeUntilDestroyed())
             .subscribe((value: MemberInterface): void => {
                 this.isVisitor = value.isVisitor;
                 this.isAdmin = value.isAdmin;

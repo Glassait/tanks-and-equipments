@@ -242,7 +242,7 @@ export class AdminComponent implements OnInit {
     private createTimer(clanReserve: ClanReserveType, reserve: Reserve): void {
         const target = new Date();
         target.setHours(target.getHours() + reserve.action_time / 3600);
-        const linked = this.clanReserves.reserves?.find((value: ClanReserveType): boolean => value.type === clanReserve.link_to);
+        let linked = this.clanReserves.reserves?.find((value: ClanReserveType): boolean => value.type === clanReserve.link_to);
 
         clanReserve.active_till = clanReserve.active_till ?? target;
         clanReserve.duration = reserve.action_time;
@@ -251,6 +251,10 @@ export class AdminComponent implements OnInit {
                 map(() => new Date()),
                 share(),
                 takeWhile((date: Date): boolean => {
+                    if (!linked) {
+                        linked = this.clanReserves.reserves?.find((value: ClanReserveType): boolean => value.type === clanReserve.link_to);
+                    }
+
                     const duration = moment.duration(moment(clanReserve.active_till).diff(date));
                     if (duration.seconds() <= 0 && duration.minutes() <= 0 && duration.hours() <= 0) {
                         clanReserve.duration = undefined;
