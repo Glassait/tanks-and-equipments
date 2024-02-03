@@ -1,6 +1,10 @@
 {
     "changelog": [
         {
+            "version": "2.2.2",
+            "add": ["Ajout de la carte admin pour gérer les fonctionnalités du site"]
+        },
+        {
             "version": "2.2.1",
             "add": ["Ajout de la page administration dans le pied de page", "Ajout de la carte pour voir et activer les réserves de clan"],
             "fixed": ["Correction du minuteur pour les réserves activées"]
