@@ -1,14 +1,13 @@
 import { Injectable } from '@angular/core';
-import { takeUntil } from 'rxjs';
-import { UnsubscribeDirective } from '../directives/unsubscribe.directive';
 import { ModeEnum } from '../enums/modeEnum';
 import { ModeInterface } from '../interfaces/mode.interface';
 import { ModeStore } from '../stores/mode.store';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Injectable({
     providedIn: 'root',
 })
-export class ModeService extends UnsubscribeDirective {
+export class ModeService {
     /**
      * The settings of the user (light or dark mode)
      */
@@ -19,8 +18,6 @@ export class ModeService extends UnsubscribeDirective {
     public isMobile: boolean;
 
     constructor(private modeStore: ModeStore) {
-        super();
-
         this.mode = this.modeStore.get('color');
         this.isMobile = this.modeStore.get('mobile');
 
@@ -30,7 +27,7 @@ export class ModeService extends UnsubscribeDirective {
     private watchModeStore(): void {
         this.modeStore
             .watch()
-            .pipe(takeUntil(this.destroy$))
+            .pipe(takeUntilDestroyed())
             .subscribe((value: ModeInterface): void => {
                 this.mode = value.color;
                 this.isMobile = value.mobile;

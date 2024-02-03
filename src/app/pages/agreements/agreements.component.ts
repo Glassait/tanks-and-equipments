@@ -3,7 +3,6 @@ import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { MemberService } from '../../commons/abstract/member.service';
 import { ModeService } from '../../commons/abstract/mode.service';
-import { UnsubscribeDirective } from '../../commons/directives/unsubscribe.directive';
 import { ModeEnum } from '../../commons/enums/modeEnum';
 import { WordingService } from '../../commons/services/wording.service';
 import { HeaderStore } from '../../commons/stores/header.store';
@@ -16,7 +15,7 @@ import { SentenceCasePipe } from '../../pipes/sentence-case.pipe';
     selector: 'app-agreements',
     templateUrl: './agreements.component.html',
 })
-export class AgreementsComponent extends UnsubscribeDirective implements OnInit {
+export class AgreementsComponent implements OnInit {
     //region ENUM
     protected readonly IconColorEnum = IconColorEnum;
     protected readonly ModeEnum = ModeEnum;
@@ -37,9 +36,7 @@ export class AgreementsComponent extends UnsubscribeDirective implements OnInit 
         private readonly title: Title,
         // PIPE
         private readonly sentenceCasePipe: SentenceCasePipe
-    ) {
-        super();
-    }
+    ) {}
 
     /**
      * Implementation of the {@link OnInit} interface

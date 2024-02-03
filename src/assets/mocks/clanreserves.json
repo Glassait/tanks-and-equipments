@@ -220,7 +220,7 @@
                 {
                     "status": "active",
                     "action_time": 7200,
-                    "active_till": 1705942800,
+                    "active_till": null,
                     "level": 8,
                     "activated_at": null,
                     "amount": 2

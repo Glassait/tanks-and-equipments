@@ -1,8 +1,7 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { MatSlideToggleChange, MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { Router } from '@angular/router';
-import { takeUntil, takeWhile } from 'rxjs';
-import { UnsubscribeDirective } from 'src/app/commons/directives/unsubscribe.directive';
+import { takeWhile } from 'rxjs';
 import { HeaderInterface } from 'src/app/commons/interfaces/header.interface';
 import { InventoryService } from 'src/app/commons/services/inventory.service';
 import { WordingService } from 'src/app/commons/services/wording.service';
@@ -25,6 +24,7 @@ import { MenuComponent } from '../menu/menu.component';
 import { MemberStore } from '../../commons/stores/member.store';
 import { MemberInterface } from '../../commons/interfaces/member.interface';
 import { FeatureDto } from '../../../generated-api/features';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 /**
  * Component for the header of the site
@@ -35,7 +35,7 @@ import { FeatureDto } from '../../../generated-api/features';
     templateUrl: './header.component.html',
     imports: [MatSlideToggleModule, InventoryPipe, NgOptimizedImage, WordingPipe, TitleCasePipe, ButtonComponent, MenuComponent],
 })
-export class HeaderComponent extends UnsubscribeDirective implements OnInit, AfterViewInit {
+export class HeaderComponent implements AfterViewInit {
     @ViewChild('darkModeSwitch', { read: ElementRef }) slideToogle: ElementRef | undefined;
 
     //region PROTECTED FIELD
@@ -89,8 +89,6 @@ export class HeaderComponent extends UnsubscribeDirective implements OnInit, Aft
         // ANGULAR
         private readonly router: Router
     ) {
-        super();
-
         this.allMenuItems = [
             {
                 text: this.wording.getWordingFromString('header.home'),
@@ -119,12 +117,7 @@ export class HeaderComponent extends UnsubscribeDirective implements OnInit, Aft
                 },
             },
         ];
-    }
 
-    /**
-     * Implementation of the {@link OnInit} interface
-     */
-    ngOnInit(): void {
         this.createSubscribe();
     }
 
@@ -195,7 +188,7 @@ export class HeaderComponent extends UnsubscribeDirective implements OnInit, Aft
 
         this.headerStore
             .watch()
-            .pipe(takeUntil(this.destroy$))
+            .pipe(takeUntilDestroyed())
             .subscribe((headerInterface: HeaderInterface): void => {
                 this.header = headerInterface;
                 this.createMenuItemList(headerInterface);
@@ -203,7 +196,7 @@ export class HeaderComponent extends UnsubscribeDirective implements OnInit, Aft
 
         this.memberStore
             .watch()
-            .pipe(takeUntil(this.destroy$))
+            .pipe(takeUntilDestroyed())
             .subscribe((_value: MemberInterface): void => {
                 this.createMenuItemList(this.header);
             });

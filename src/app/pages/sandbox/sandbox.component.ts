@@ -1,18 +1,17 @@
 import { Component, isDevMode } from '@angular/core';
 import { Router } from '@angular/router';
-import { takeUntil } from 'rxjs';
-import { UnsubscribeDirective } from '../../commons/directives/unsubscribe.directive';
 import { ModeEnum } from '../../commons/enums/modeEnum';
 import { ModeInterface } from '../../commons/interfaces/mode.interface';
 import { HeaderStore } from '../../commons/stores/header.store';
 import { ModeStore } from '../../commons/stores/mode.store';
 import { IconColorEnum } from '../../components/icon/enums/icon-enum';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
     selector: 'app-sandbox',
     templateUrl: './sandbox.component.html',
 })
-export class SandboxComponent extends UnsubscribeDirective {
+export class SandboxComponent {
     //region PROTECTED FIELD
     protected color: ModeEnum;
     //endregion
@@ -28,8 +27,6 @@ export class SandboxComponent extends UnsubscribeDirective {
         private modeStore: ModeStore,
         private headerStore: HeaderStore
     ) {
-        super();
-
         if (!isDevMode()) {
             this.router.navigate(['/']).then((): void => {
                 // Ignored
@@ -45,7 +42,7 @@ export class SandboxComponent extends UnsubscribeDirective {
 
         this.modeStore
             .watch()
-            .pipe(takeUntil(this.destroy$))
+            .pipe(takeUntilDestroyed())
             .subscribe((modeInterface: ModeInterface): void => {
                 this.color = modeInterface.color;
             });
