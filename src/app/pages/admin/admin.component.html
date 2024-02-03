@@ -1,5 +1,5 @@
 <div
-    class="flex flex-col items-center gap-normal *:flex *:w-full *:flex-col *:items-center *:gap-normal desktop:flex-row desktop:items-end"
+    class="flex flex-col items-center gap-normal *:flex *:w-full *:flex-col *:items-center *:gap-normal desktop:flex-row desktop:items-start"
 >
     <div class="*:w-[288px] *:tablet:w-[500px]">
         <glassait-card
@@ -81,5 +81,37 @@
             ></glassait-card>
         }
     </div>
-    <div></div>
+
+    <div class="*:w-[288px] *:tablet:w-[500px]">
+        <glassait-card
+            [theme]="mode.mode"
+            avatar="server"
+            class="*:text-justify"
+            subtitle="{{ 'admin.features.subtitle' | wording | sentenceCase }}"
+            title="{{ 'admin.features.title' | wording | sentenceCase }}"
+        >
+            <div>
+                @for (feature of features.keys; track $index) {
+                    <div class="flex items-center">
+                        <glassait-icon
+                            icon="map"
+                            [color]="mode.mode === ModeEnum.DARK ? IconColorEnum.DARK : IconColorEnum.LIGHT"
+                            size="40"
+                        ></glassait-icon>
+                        <p class="w-full">{{ feature }}</p>
+                        <glassait-button
+                            [text]="
+                                (feature | value: features.value)
+                                    ? ('admin.features.désactiver' | wording | sentenceCase)
+                                    : ('admin.features.activer' | wording | sentenceCase)
+                            "
+                            [theme]="mode.mode === ModeEnum.DARK ? ButtonThemeEnum.DARK : ButtonThemeEnum.LIGHT"
+                            [type]="ButtonTypeEnum.RAISED"
+                            (click)="featuresApi.updateFeature(feature, member.accessToken)"
+                        ></glassait-button>
+                    </div>
+                }
+            </div>
+        </glassait-card>
+    </div>
 </div>

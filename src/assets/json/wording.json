@@ -78,6 +78,12 @@
             "subtitle": "Cet encart permet d'activer les réserves du clan.",
             "label_select": "Level",
             "label_button": "Activer"
+        },
+        "features": {
+            "title": "Gérer les fonctionnalités",
+            "subtitle": "Cet encart permet d’activer/désactiver les fonctionnalités du site.",
+            "activer": "Activer",
+            "désactiver": "Désactiver"
         }
     }
 }

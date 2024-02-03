@@ -1,7 +1,6 @@
 import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { MatSlideToggleChange, MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { Router } from '@angular/router';
-import { takeWhile } from 'rxjs';
 import { HeaderInterface } from 'src/app/commons/interfaces/header.interface';
 import { InventoryService } from 'src/app/commons/services/inventory.service';
 import { WordingService } from 'src/app/commons/services/wording.service';
@@ -181,9 +180,10 @@ export class HeaderComponent implements AfterViewInit {
     private createSubscribe(): void {
         this.featureStore
             .watch()
-            .pipe(takeWhile((value: any) => value !== null && value !== undefined, true))
+            .pipe(takeUntilDestroyed())
             .subscribe((features: FeatureDto): void => {
                 this.features = features;
+                this.createMenuItemList(this.header);
             });
 
         this.headerStore

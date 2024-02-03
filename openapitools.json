@@ -6,7 +6,8 @@
         "generators": {
             "v3.0": {
                 "additionalProperties": {
-                    "stringEnum": "true"
+                    "stringEnum": true,
+                    "useTags": true
                 },
                 "generatorName": "typescript-angular",
                 "glob": "#{cwd}/output/v2.0/#{ext}/#{name}",

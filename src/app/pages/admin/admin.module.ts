@@ -10,6 +10,8 @@ import { ReplacePipe } from '../../pipes/replace.pipe';
 import { SelectComponent } from '../../components/select/select.component';
 import { ButtonComponent } from '../../components/button/button.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { IconComponent } from '../../components/icon/icon.component';
+import { ObjectPipe } from '../../pipes/object.pipe';
 
 @NgModule({
     declarations: [AdminComponent],
@@ -24,6 +26,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
         ButtonComponent,
         ReactiveFormsModule,
         FormsModule,
+        IconComponent,
+        ObjectPipe,
     ],
 })
 export class AdminModule {}

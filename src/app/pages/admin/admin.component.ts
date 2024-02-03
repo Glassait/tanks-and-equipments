@@ -20,6 +20,12 @@ import { map, share, takeWhile, timer } from 'rxjs';
 import { InventoryService } from '../../commons/services/inventory.service';
 import { ClanReserveData, ClanReservesResponse, Reserve, StrongholdService } from '../../../generated-api/stronghold';
 import { MembersService } from '../../../generated-api/members';
+import { IconColorEnum } from '../../components/icon/enums/icon-enum';
+import { FeaturesStore } from '../../commons/stores/features.store';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { FeatureDto } from '../../../generated-api/features';
+import { FeaturesApi } from '../../commons/apis/features.api';
+import { snackBarDuration } from '../../commons/variables.global';
 
 @Component({
     selector: 'app-home',
@@ -34,26 +40,21 @@ export class AdminComponent implements OnInit {
     protected updateBddLoading: boolean = false;
     protected clanReservesFormGroup: FormGroup = new FormGroup({});
     protected clanReserves: DefaultHttpType & { reserves?: ClanReserveType[] } = { ...defaultHttpType };
+    protected features: { keys?: string[]; value?: FeatureDto } = {};
     //endregion
 
     //region ENUM
     protected readonly ModeEnum = ModeEnum;
     protected readonly ButtonTypeEnum = ButtonTypeEnum;
     protected readonly ButtonThemeEnum = ButtonThemeEnum;
-    //endregion
-
-    //region PRIVATE READONLY FIELD
-    /**
-     * The duration in second of the snackbar/toast
-     * @private
-     */
-    private readonly snackBarDuration = 2000;
+    protected readonly IconColorEnum = IconColorEnum;
 
     //endregion
 
     constructor(
         // STORE
         private readonly headerStore: HeaderStore,
+        private readonly featuresStore: FeaturesStore,
         // SERVICE
         private readonly wording: WordingService,
         private readonly inventory: InventoryService,
@@ -65,10 +66,20 @@ export class AdminComponent implements OnInit {
         private readonly snackBar: MatSnackBar,
         // PIPE
         private readonly sentenceCasePipe: SentenceCasePipe,
-        // API
+        // OPEN API
         private readonly membersService: MembersService,
-        private readonly strongholdService: StrongholdService
-    ) {}
+        private readonly strongholdService: StrongholdService,
+        // API
+        protected readonly featuresApi: FeaturesApi
+    ) {
+        this.featuresStore
+            .watch()
+            .pipe(takeUntilDestroyed())
+            .subscribe((dto: FeatureDto): void => {
+                this.features.keys = Object.keys(dto);
+                this.features.value = dto;
+            });
+    }
 
     /**
      * Implementation of the {@link OnInit} interface
@@ -100,14 +111,14 @@ export class AdminComponent implements OnInit {
             error: (err: any): void => {
                 console.error(err);
                 this.snackBar.open('Une erreur est survenue lors de la mise à jour de la base de données', '', {
-                    duration: this.snackBarDuration,
+                    duration: snackBarDuration,
                 });
             },
             complete: (): void => {
                 setTimeout((): void => {
                     this.updateBddLoading = false;
                 }, 10000);
-                this.snackBar.open('La base de données a bien été mise à jour', '', { duration: this.snackBarDuration });
+                this.snackBar.open('La base de données a bien été mise à jour', '', { duration: snackBarDuration });
             },
         });
     };
@@ -120,14 +131,14 @@ export class AdminComponent implements OnInit {
         );
 
         if (!clanReserve) {
-            this.snackBar.open('Erreur lors de la recherche de la réserve', '', { duration: this.snackBarDuration });
+            this.snackBar.open('Erreur lors de la recherche de la réserve', '', { duration: snackBarDuration });
             return;
         }
 
         const option = clanReserve.options.find((option: SelectOptionType): boolean => option.value === level);
 
         if (!option) {
-            this.snackBar.open("Erreur lors de la recherche de l'option", '', { duration: this.snackBarDuration });
+            this.snackBar.open("Erreur lors de la recherche de l'option", '', { duration: snackBarDuration });
             return;
         }
 
@@ -137,10 +148,10 @@ export class AdminComponent implements OnInit {
                 next: (value: any): void => {
                     if (value.status === 'error') {
                         this.snackBar.open('La reserve ne doit plus existé, merci de recharger la page', '', {
-                            duration: this.snackBarDuration,
+                            duration: snackBarDuration,
                         });
                     } else {
-                        this.snackBar.open('La réserve a bien été activée', '', { duration: this.snackBarDuration });
+                        this.snackBar.open('La réserve a bien été activée', '', { duration: snackBarDuration });
                         this.createTimer(clanReserve, option.metadata);
                         this.checkActivatedReserves();
                     }
@@ -148,7 +159,7 @@ export class AdminComponent implements OnInit {
                 error: (err: any): void => {
                     console.error(err);
                     this.snackBar.open("Une erreur est survenue lors de l'activation de la reserve, merci de réessayer plus tard", '', {
-                        duration: this.snackBarDuration,
+                        duration: snackBarDuration,
                     });
                 },
             });

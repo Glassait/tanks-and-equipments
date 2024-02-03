@@ -1,12 +1,8 @@
 import { Component, HostListener, OnInit } from '@angular/core';
-import { CookieService } from 'ngx-cookie-service';
-import { CookieNameEnum } from './commons/enums/cookie-name.enum';
 import { AuthenticationService } from './commons/services/authentication.service';
 import { IconRegistryService } from './commons/services/icon-registry.service';
-import { FeaturesStore } from './commons/stores/features.store';
 import { MemberStore } from './commons/stores/member.store';
 import { ModeStore } from './commons/stores/mode.store';
-import { DateCustom } from './commons/utils/date.custom';
 import { chargeurIcon } from './components/icon/files/crews/chargeur.icon';
 import { commandantIcon } from './components/icon/files/crews/commandant.icon';
 import { operateurRadioIcon } from './components/icon/files/crews/operateur-radio.icon';
@@ -52,9 +48,8 @@ import { t110e5Icon } from './components/icon/files/tanks/t110e5.icon';
 import { minusIcon } from './components/icon/files/other/minus.icon';
 import { MemberInterface } from './commons/interfaces/member.interface';
 import { WindowsCustom } from './commons/utils/windows-custom.util';
-import { ConnectionSuccess } from './commons/types/connection.type';
 import { takeWhile } from 'rxjs';
-import { FeatureDto, FeaturesService } from '../generated-api/features';
+import { FeaturesApi } from './commons/apis/features.api';
 
 @Component({
     selector: 'app-root',
@@ -65,13 +60,11 @@ export class AppComponent implements OnInit {
         // SERVICE
         private readonly iconRegistry: IconRegistryService,
         private readonly auth: AuthenticationService,
-        private readonly cookie: CookieService,
         // STORE
         private readonly modeStore: ModeStore,
         private readonly memberStore: MemberStore,
-        private readonly featureStore: FeaturesStore,
         // API
-        private readonly featuresService: FeaturesService
+        private readonly featuresApi: FeaturesApi
     ) {
         if (WindowsCustom.getSearch() !== '') {
             this.auth.login();
@@ -92,9 +85,9 @@ export class AppComponent implements OnInit {
         this.memberStore
             .watch()
             .pipe(takeWhile((_value: MemberInterface) => !featureFetch))
-            .subscribe((value: MemberInterface): void => {
-                if (!value.isVisitor && value.token && value.token.status !== 'error' && !featureFetch) {
-                    this.getFeature(value.token);
+            .subscribe((member: MemberInterface): void => {
+                if (!member.isVisitor && member.token && member.token.status !== 'error' && !featureFetch) {
+                    this.featuresApi.getFeature(member.token.access_token);
                     featureFetch = true;
                 }
             });
@@ -159,32 +152,5 @@ export class AppComponent implements OnInit {
             waitingIcon,
             sendIcon,
         ]);
-    }
-
-    /**
-     * Get the feature from the server and store it in the store
-     * @param {ConnectionSuccess} token - The authentication token
-     */
-    private getFeature(token: ConnectionSuccess): void {
-        const cookie: string = this.cookie.get(CookieNameEnum.FEATURES);
-        if (cookie) {
-            this.featureStore.patch(JSON.parse(cookie));
-            return;
-        }
-
-        let feature: FeatureDto;
-
-        this.featuresService.features(token.access_token).subscribe({
-            next: (value: FeatureDto): void => {
-                this.featureStore.patch(value);
-                feature = value;
-            },
-            error: err => {
-                console.log(err);
-            },
-            complete: (): void => {
-                this.cookie.set(CookieNameEnum.FEATURES, JSON.stringify(feature), DateCustom.getMidnightDate());
-            },
-        });
     }
 }
