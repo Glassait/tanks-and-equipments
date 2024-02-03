@@ -25,6 +25,36 @@ paths:
                 401:
                     description: Access token not valid
             deprecated: false
+        post:
+            tags:
+                - features
+            description: Update the feature of the site inside de database
+            summary: Update the feature of the site inside de database
+            operationId: update-features
+            parameters:
+                -   $ref: "./wgn.yml/#/components/parameters/access_token"
+                -   name: feature
+                    in: query
+                    required: true
+                    description: The feature to change status
+                    schema:
+                        type: string
+                        minLength: 7
+                        pattern: "[a-zA-Z]"
+                        example: clanWar
+
+            responses:
+                200:
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/FeatureDto'
+                400:
+                    description: Bad request (access_token or feature not given) or feature given does not exist
+                401:
+                    description: Access token not valid
+            deprecated: false
 
 components:
     schemas:

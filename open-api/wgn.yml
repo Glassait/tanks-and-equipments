@@ -134,4 +134,4 @@ components:
                 type: string
                 minLength: 40
                 maxLength: 40
-                pattern: '[a-e0-9]{40}'
+                pattern: '[a-f0-9]{40}'
