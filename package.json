@@ -39,7 +39,7 @@
         "@angular/router": "17.0.8",
         "@elie29/store": "2.0.0",
         "@tailwindcss/container-queries": "0.1.1",
-        "@openapitools/openapi-generator-cli": "^2.9.0",
+        "@openapitools/openapi-generator-cli": "^2.13.4",
         "express": "4.18.2",
         "express-rate-limit": "7.1.5",
         "moment": "^2.30.1",
