@@ -1,0 +1,38 @@
+{
+	"tabWidth": 4,
+	"useTabs": false,
+	"singleQuote": true,
+	"semi": true,
+	"trailingComma": "es5",
+	"bracketSpacing": true,
+	"bracketSameLine": false,
+	"arrowParens": "avoid",
+	"embeddedLanguageFormatting": "auto",
+	"printWidth": 140,
+	"overrides": [
+		{
+			"files": ["*.component"],
+			"options": {
+				"parser": "angular"
+			}
+		},
+		{
+			"files": ["*.json", ".prettierrc"],
+			"options": {
+				"tabWidth": 2,
+				"useTabs": true,
+				"parser": "json5",
+				"trailingComma": "none",
+				"singleQuote": false,
+				"quoteProps": "preserve"
+			}
+		},
+		{
+			"files": ["*.YML"],
+			"options": {
+				"tabWidth": 2,
+				"parser": "yaml"
+			}
+		}
+	]
+}
