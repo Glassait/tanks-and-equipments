@@ -6,12 +6,12 @@
 		"npm": "^9.6.7"
 	},
 	"scripts": {
-		"ng": "ng",
 		"start": "npm run serve:ssr:tanks-and-equipments",
 		"build": "ng build --configuration production",
 		"serve:ssr:tanks-and-equipments": "node dist/tanks-and-equipments/server/server.mjs",
-		"start:full-mock": "ng serve --configuration development --port 4200",
-		"watch": "ng build --watch --configuration development",
+		"start:local": "ng serve --port=4200",
+		"start:external-mock": "npm run start:local -- --configuration=external-mock",
+		"start:full-mock": "npm run start:local -- --configuration=full-mock",
 		"test": "ng test"
 	},
 	"private": true,

@@ -8,7 +8,7 @@
 			"schematics": {},
 			"root": "",
 			"sourceRoot": "src",
-			"prefix": "app",
+			"prefix": "",
 			"architect": {
 				"build": {
 					"builder": "@angular-devkit/build-angular:application",
@@ -19,7 +19,7 @@
 						"polyfills": ["zone.js"],
 						"tsConfig": "tsconfig.app.json",
 						"assets": ["src/favicon.ico", "src/assets"],
-						"styles": ["src/styles.css"],
+						"styles": ["src/styles.scss"],
 						"scripts": [],
 						"server": "src/main.server.ts",
 						"prerender": true,
@@ -44,30 +44,24 @@
 							"outputHashing": "all"
 						},
 						"external-mock": {
-							"buildOptimizer": false,
 							"optimization": false,
-							"vendorChunk": true,
 							"extractLicenses": false,
 							"sourceMap": true,
-							"namedChunks": true,
 							"fileReplacements": [
 								{
 									"replace": "src/environments/environment.ts",
-									"with": "src/environments/environment.external_mock.ts"
+									"with": "src/environments/environment.external-mock.ts"
 								}
 							]
 						},
 						"full-mock": {
-							"buildOptimizer": false,
 							"optimization": false,
-							"vendorChunk": true,
 							"extractLicenses": false,
 							"sourceMap": true,
-							"namedChunks": true,
 							"fileReplacements": [
 								{
 									"replace": "src/environments/environment.ts",
-									"with": "src/environments/environment.full_mock.ts"
+									"with": "src/environments/environment.full-mock.ts"
 								}
 							]
 						}
@@ -101,7 +95,7 @@
 						"polyfills": ["zone.js", "zone.js/testing"],
 						"tsConfig": "tsconfig.spec.json",
 						"assets": ["src/favicon.ico", "src/assets"],
-						"styles": ["src/styles.css"],
+						"styles": ["src/styles.scss"],
 						"scripts": []
 					}
 				}

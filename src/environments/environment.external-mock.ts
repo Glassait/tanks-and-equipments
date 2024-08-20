@@ -1,6 +1,6 @@
 import { MockEnum } from 'core/enums/mock.enum';
 
 export const environment = {
-    production: true,
+    production: false,
     mock: MockEnum.EXTERNAL_MOCK,
 };
