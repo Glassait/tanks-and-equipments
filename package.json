@@ -1,15 +1,18 @@
 {
 	"name": "tanks-and-equipments",
 	"version": "3.0.0-0",
+	"engines": {
+		"node": "^18.18.0",
+		"npm": "^9.6.7"
+	},
 	"scripts": {
 		"ng": "ng",
-		"start": "node server.js",
-		"start:full-mock": "ng serve --configuration development --port 4200",
+		"start": "ng build && npm run serve:ssr:tanks-and-equipments",
 		"build": "ng build",
-		"heroku-postbuild": "npm run generate:api && ng build",
+		"serve:ssr:tanks-and-equipments": "node dist/tanks-and-equipments/server/server.mjs",
+		"start:full-mock": "ng serve --configuration development --port 4200",
 		"watch": "ng build --watch --configuration development",
-		"test": "ng test",
-		"serve:ssr:tanks-and-equipments": "node dist/tanks-and-equipments/server/server.mjs"
+		"test": "ng test"
 	},
 	"private": true,
 	"dependencies": {
