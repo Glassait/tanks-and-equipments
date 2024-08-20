@@ -7,8 +7,8 @@
 	},
 	"scripts": {
 		"ng": "ng",
-		"start": "ng build && npm run serve:ssr:tanks-and-equipments",
-		"build": "ng build",
+		"start": "npm run serve:ssr:tanks-and-equipments",
+		"build": "ng build --configuration production",
 		"serve:ssr:tanks-and-equipments": "node dist/tanks-and-equipments/server/server.mjs",
 		"start:full-mock": "ng serve --configuration development --port 4200",
 		"watch": "ng build --watch --configuration development",
