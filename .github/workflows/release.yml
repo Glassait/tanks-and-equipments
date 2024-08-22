@@ -23,16 +23,13 @@ jobs:
                   git config user.email '${{ secrets.MAINTAINER_EMAIL }}'
             - name: Patch version
               if: ${{ contains(github.event.head_commit.message, 'patch') }}
-              run: npm version prepatch
+              run: npm version patch
             - name: Minor version
               if: ${{ contains(github.event.head_commit.message, 'minor') }}
-              run: npm version preminor
+              run: npm version minor
             - name: Major version
               if: ${{ contains(github.event.head_commit.message, 'major') }}
-              run: npm version premajor
-            - name: Prerelease version
-              if: ${{ contains(github.event.head_commit.message, 'release') }}
-              run: npm version prerelease
+              run: npm version major
             - name: Push version
               run: |
                   git push --tags https://${{ secrets.TOKEN }}@github.com/${{ github.repository }} main
