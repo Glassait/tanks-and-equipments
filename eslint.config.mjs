@@ -3,6 +3,7 @@ import pluginJs from '@eslint/js';
 import globals from 'globals';
 import angularLint from '@angular-eslint/eslint-plugin';
 import angularTemplateLint from '@angular-eslint/eslint-plugin-template';
+import angularTemplatesParser from '@angular-eslint/template-parser';
 
 export default tsEslint.config(
     pluginJs.configs.recommended,
@@ -19,7 +20,7 @@ export default tsEslint.config(
             '@angular-eslint': angularLint,
             '@angular-eslint-template': angularTemplateLint,
         },
-        files: ['**/*.ts'],
+        files: ['**/*.ts', "**/*.js"],
         rules: {
             '@typescript-eslint/no-unsafe-call': ['off'],
             '@typescript-eslint/no-var-requires': ['off'],
@@ -190,7 +191,7 @@ export default tsEslint.config(
     {
         languageOptions: {
             globals: globals.browser,
-            parser: tsEslint.parser,
+            parser: angularTemplatesParser,
             sourceType: 'module',
             ecmaVersion: 2022,
             parserOptions: { project: './tsconfig.json' },
@@ -199,7 +200,7 @@ export default tsEslint.config(
             '@angular-eslint/template/recommended': angularTemplateLint,
             '@angular-eslint/template/accessibility': angularTemplateLint,
         },
-        files: ['*.html'],
+        files: ['**/*.html'],
         rules: {},
     }
 );
