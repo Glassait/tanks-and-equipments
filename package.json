@@ -1,6 +1,7 @@
 {
 	"name": "tanks-and-equipments",
 	"version": "3.0.0-0",
+	"private": true,
 	"engines": {
 		"node": "^18.18.0",
 		"npm": "^9.6.7"
@@ -12,10 +13,12 @@
 		"start:local": "ng serve --port=4200",
 		"start:external-mock": "npm run start:local -- --configuration=external-mock",
 		"start:full-mock": "npm run start:local -- --configuration=full-mock",
-		"test": "ng test --browsers ChromeHeadless --code-coverage --watch=false",
-		"lint": "eslint src"
+		"test": "ng test --browsers ChromeHeadless --code-coverage --watch=false"
 	},
-	"private": true,
+	"lint-staged": {
+		"*": "prettier -w",
+		"*.ts": "eslint"
+	},
 	"dependencies": {
 		"@angular/animations": "^17.3.0",
 		"@angular/common": "^17.3.0",
