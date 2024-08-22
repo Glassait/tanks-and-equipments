@@ -13,7 +13,8 @@
 		"start:local": "ng serve --port=4200",
 		"start:external-mock": "npm run start:local -- --configuration=external-mock",
 		"start:full-mock": "npm run start:local -- --configuration=full-mock",
-		"test": "ng test --browsers ChromeHeadless --code-coverage --watch=false"
+		"test": "ng test --browsers ChromeHeadless --code-coverage --watch=false",
+		"lint": "eslint src"
 	},
 	"lint-staged": {
 		"*": "prettier -w",
