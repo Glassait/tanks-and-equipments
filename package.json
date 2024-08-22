@@ -12,7 +12,7 @@
 		"start:local": "ng serve --port=4200",
 		"start:external-mock": "npm run start:local -- --configuration=external-mock",
 		"start:full-mock": "npm run start:local -- --configuration=full-mock",
-		"test": "ng test",
+		"test": "ng test --browsers ChromeHeadless --code-coverage --watch=false",
 		"lint": "eslint src"
 	},
 	"private": true,
