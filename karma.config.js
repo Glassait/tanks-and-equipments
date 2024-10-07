@@ -1,3 +1,4 @@
+// TODO Add karma in CI
 module.exports = function (config) {
     config.set({
         frameworks: ['jasmine', '@angular-devkit/build-angular'],
@@ -6,7 +7,7 @@ module.exports = function (config) {
             require('karma-chrome-launcher'),
             require('karma-jasmine-html-reporter'),
             require('karma-coverage'),
-            require('@angular-devkit/build-angular/plugins/karma')
+            require('@angular-devkit/build-angular/plugins/karma'),
         ],
         files: ['src/**/*.spec.ts'],
         // coverage reporter generates the coverage
@@ -23,9 +24,9 @@ module.exports = function (config) {
                     statements: 90,
                     branches: 90,
                     functions: 90,
-                    lines: 90
-                }
-            }
+                    lines: 90,
+                },
+            },
         },
     });
 };

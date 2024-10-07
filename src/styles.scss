@@ -1,1 +1,218 @@
-/* NOSONAR */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    @font-face {
+        font-family: RobotoCondensed;
+        font-weight: 100;
+        font-style: italic;
+        src: url(assets/font/Roboto_Condensed/RobotoCondensed-ThinItalic.ttf) format('truetype');
+    }
+    @font-face {
+        font-family: RobotoCondensed;
+        font-weight: 100;
+        src: url(assets/font/Roboto_Condensed/RobotoCondensed-Thin.ttf) format('truetype');
+    }
+    @font-face {
+        font-family: RobotoCondensed;
+        font-weight: 200;
+        src: url(assets/font/Roboto_Condensed/RobotoCondensed-ExtraLight.ttf) format('truetype');
+    }
+    @font-face {
+        font-family: RobotoCondensed;
+        font-weight: 200;
+        font-style: italic;
+        src: url(assets/font/Roboto_Condensed/RobotoCondensed-ExtraLightItalic.ttf) format('truetype');
+    }
+    @font-face {
+        font-family: RobotoCondensed;
+        font-weight: 300;
+        src: url(assets/font/Roboto_Condensed/RobotoCondensed-Light.ttf) format('truetype');
+    }
+    @font-face {
+        font-family: RobotoCondensed;
+        font-weight: 300;
+        font-style: italic;
+        src: url(assets/font/Roboto_Condensed/RobotoCondensed-LightItalic.ttf) format('truetype');
+    }
+    @font-face {
+        font-family: RobotoCondensed;
+        font-weight: 400;
+        src: url(assets/font/Roboto_Condensed/RobotoCondensed-Regular.ttf) format('truetype');
+    }
+    @font-face {
+        font-family: RobotoCondensed;
+        font-weight: 500;
+        src: url(assets/font/Roboto_Condensed/RobotoCondensed-Medium.ttf) format('truetype');
+    }
+    @font-face {
+        font-family: RobotoCondensed;
+        font-weight: 500;
+        font-style: italic;
+        src: url(assets/font/Roboto_Condensed/RobotoCondensed-MediumItalic.ttf) format('truetype');
+    }
+    @font-face {
+        font-family: RobotoCondensed;
+        font-weight: 600;
+        src: url(assets/font/Roboto_Condensed/RobotoCondensed-SemiBold.ttf) format('truetype');
+    }
+    @font-face {
+        font-family: RobotoCondensed;
+        font-weight: 600;
+        font-style: italic;
+        src: url(assets/font/Roboto_Condensed/RobotoCondensed-SemiBoldItalic.ttf) format('truetype');
+    }
+    @font-face {
+        font-family: RobotoCondensed;
+        font-weight: 700;
+        src: url(assets/font/Roboto_Condensed/RobotoCondensed-Bold.ttf) format('truetype');
+    }
+    @font-face {
+        font-family: RobotoCondensed;
+        font-weight: 700;
+        font-style: italic;
+        src: url(assets/font/Roboto_Condensed/RobotoCondensed-BoldItalic.ttf) format('truetype');
+    }
+    @font-face {
+        font-family: RobotoCondensed;
+        font-weight: 800;
+        src: url(assets/font/Roboto_Condensed/RobotoCondensed-ExtraBold.ttf) format('truetype');
+    }
+    @font-face {
+        font-family: RobotoCondensed;
+        font-weight: 800;
+        font-style: italic;
+        src: url(assets/font/Roboto_Condensed/RobotoCondensed-ExtraBoldItalic.ttf) format('truetype');
+    }
+    @font-face {
+        font-family: RobotoCondensed;
+        font-weight: 900;
+        src: url(assets/font/Roboto_Condensed/RobotoCondensed-Black.ttf) format('truetype');
+    }
+    @font-face {
+        font-family: RobotoCondensed;
+        font-weight: 900;
+        font-style: italic;
+        src: url(assets/font/Roboto_Condensed/RobotoCondensed-BlackItalic.ttf) format('truetype');
+    }
+    @font-face {
+        font-family: Roboto;
+        font-weight: 100;
+        font-style: italic;
+        src: url(assets/font/Roboto/Roboto-ThinItalic.ttf) format('truetype');
+    }
+    @font-face {
+        font-family: Roboto;
+        font-weight: 100;
+        src: url(assets/font/Roboto/Roboto-Thin.ttf) format('truetype');
+    }
+    @font-face {
+        font-family: Roboto;
+        font-weight: 300;
+        src: url(assets/font/Roboto/Roboto-Light.ttf) format('truetype');
+    }
+    @font-face {
+        font-family: Roboto;
+        font-weight: 300;
+        font-style: italic;
+        src: url(assets/font/Roboto/Roboto-LightItalic.ttf) format('truetype');
+    }
+    @font-face {
+        font-family: Roboto;
+        font-weight: 400;
+        src: url(assets/font/Roboto/Roboto-Regular.ttf) format('truetype');
+    }
+    @font-face {
+        font-family: Roboto;
+        font-weight: 500;
+        src: url(assets/font/Roboto/Roboto-Medium.ttf) format('truetype');
+    }
+    @font-face {
+        font-family: Roboto;
+        font-weight: 500;
+        font-style: italic;
+        src: url(assets/font/Roboto/Roboto-MediumItalic.ttf) format('truetype');
+    }
+    @font-face {
+        font-family: Roboto;
+        font-weight: 700;
+        src: url(assets/font/Roboto/Roboto-Bold.ttf) format('truetype');
+    }
+    @font-face {
+        font-family: Roboto;
+        font-weight: 700;
+        font-style: italic;
+        src: url(assets/font/Roboto/Roboto-BoldItalic.ttf) format('truetype');
+    }
+    @font-face {
+        font-family: Roboto;
+        font-weight: 900;
+        src: url(assets/font/Roboto/Roboto-Black.ttf) format('truetype');
+    }
+    @font-face {
+        font-family: Roboto;
+        font-weight: 900;
+        font-style: italic;
+        src: url(assets/font/Roboto/Roboto-BlackItalic.ttf) format('truetype');
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+        @apply font-roboto-condensed;
+    }
+
+    h1 {
+        @apply text-title-1;
+    }
+
+    h2 {
+        @apply text-title-2;
+    }
+
+    h3 {
+        @apply text-title-3;
+    }
+
+    h4 {
+        @apply text-subtitle-1;
+    }
+
+    *,
+    *::before,
+    *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        @apply font-roboto;
+    }
+
+    img,
+    picture,
+    svg,
+    video {
+        display: block;
+        max-width: 100%;
+    }
+
+    html {
+        color-scheme: dark;
+    }
+
+    body {
+        min-height: 100dvh;
+    }
+
+    input,
+    textarea,
+    select,
+    button {
+        font: inherit;
+    }
+
+    .grid-fold {
+        @apply grid w-full grid-cols-1 tablet:grid-cols-6 desktop:grid-cols-12;
+    }
+}

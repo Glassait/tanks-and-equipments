@@ -9,6 +9,8 @@
 	"arrowParens": "avoid",
 	"embeddedLanguageFormatting": "auto",
 	"printWidth": 140,
+	"plugins": ["prettier-plugin-tailwindcss"],
+	"tailwindConfig": "./tailwind.config.js",
 	"overrides": [
 		{
 			"files": ["*.component"],

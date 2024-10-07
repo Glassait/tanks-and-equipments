@@ -1,2 +1,8 @@
-/.husky/*
 .prettierignore
+
+/.husky/*
+
+# ASSETS
+**/*.ttf
+**/*.png
+**/*.jpg
