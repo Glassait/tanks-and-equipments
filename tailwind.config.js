@@ -1,4 +1,6 @@
-/** @type {import('tailwindcss').Config} */
+/**
+ * @type {import('tailwindcss').Config}
+ */
 module.exports = {
     content: ['./src/app/**/*.component.{html,js,ts}'],
     theme: {
@@ -10,6 +12,8 @@ module.exports = {
                 200: '#F9F5E1',
                 300: '#E9E2BF',
                 400: '#B8B8A2',
+                700: '#3D3D3D',
+                800: '#212121',
                 900: '#000000',
             },
             primary: {
@@ -29,6 +33,13 @@ module.exports = {
                 300: '#FAB81B',
                 400: '#F6861F',
                 500: '#F25322',
+                700: '#8C4A0D',
+                900: '#261404',
+            },
+            gray: {
+                200: '#6E6E75',
+                300: '#55555A',
+                400: '#3F3F46',
             },
         },
         fontFamily: {
@@ -136,27 +147,57 @@ module.exports = {
             'outer-glow-small': 'inset -1px 0 0 0 #FAB81B, inset 1px 0 0 0 #FAB81B',
         },
         screens: {
-            tablet: '768px',
+            tablet: '426px',
+            laptop: '1025px',
             desktop: '1440px',
         },
+        opacity: {
+            7: '.07',
+            25: '.25',
+            40: '.40',
+            50: '.50',
+            75: '.75',
+            80: '.80',
+        },
+        spacing: {
+            '-24': '-24px',
+            '-8': '-8px',
+            2: '2px',
+            4: '4px',
+            8: '8px',
+            12: '12px',
+            16: '16px',
+            20: '20px',
+            32: '32px',
+            40: '40px',
+            60: '60px',
+            80: '80px',
+            100: '100px',
+            200: '200px',
+        },
+        gridTemplateColumns: {
+            12: 'repeat(12, 1fr)',
+            6: 'repeat(6, 1fr)',
+            1: 'repeat(1, 1fr)',
+        },
+        backgroundImage: {
+            /**
+             * This gradiant go from {@link theme.colors.primary.500} to {@link theme.colors.neutral.900}
+             */
+            'deep-purple-fade': 'linear-gradient(#A04AC5, #000000)',
+            /**
+             * This gradiant go from {@link theme.colors.primary.700} to {@link theme.colors.primary.600}
+             */
+            'royal-purple': 'linear-gradient(to bottom, #692487, #9131BA)',
+        },
         extend: {
-            spacing: {
-                40: '2.5rem',
-            },
-            backgroundImage: {
-                /**
-                 * This gradiant go from {@link theme.colors.primary.500} to {@link theme.colors.neutral.900}
-                 */
-                'deep-purple-fade': 'linear-gradient(#A04AC5, #000000)',
-                /**
-                 * This gradiant go from {@link theme.colors.primary.700} to {@link theme.colors.primary.600}
-                 */
-                'royal-purple': 'linear-gradient(to bottom, #692487, #9131BA)',
+            width: {
+                'max-width': '1520px',
             },
         },
     },
     corePlugins: {
         preflight: false,
     },
-    plugins: ['prettier-plugin-tailwindcss'],
+    plugins: ['prettier-plugin-tailwindcss', require('@tailwindcss/container-queries')],
 };

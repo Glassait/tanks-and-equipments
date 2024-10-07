@@ -211,4 +211,8 @@
     button {
         font: inherit;
     }
+
+    .grid-fold {
+        @apply grid w-full grid-cols-1 tablet:grid-cols-6 desktop:grid-cols-12;
+    }
 }
