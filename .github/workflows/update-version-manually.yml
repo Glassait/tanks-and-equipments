@@ -1,5 +1,5 @@
 # File: .github/workflows/ci.yml
-name: CI Workflow
+name: Update Version Manually
 
 on:
   workflow_dispatch: # Allows manual trigger to update version
