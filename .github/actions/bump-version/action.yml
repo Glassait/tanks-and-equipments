@@ -13,12 +13,13 @@ runs:
     - name: Config git
       shell: bash
       run: |
-        git config user.name "github-actions[bot]"
-        git config user.email "github-actions[bot]@users.noreply.github.com"
+        git config user.name '${{ secrets.MAINTAINER_NAME }}'
+        git config user.email '${{ secrets.MAINTAINER_EMAIL }}'
     - name: Bump version
       shell: bash
       run: npm version ${{ inputs.version_type }}
     - name: Push version bump commit
       shell: bash
       run: |
-        git push origin HEAD:main --follow-tags
+        BRANCH=$(echo "${{ github.ref }}" | sed 's/refs\/heads\///')
+        git push origin HEAD:$BRANCH --follow-tags
