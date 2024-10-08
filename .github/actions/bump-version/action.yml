@@ -1,4 +1,5 @@
 name: 'Setup node for the action'
+description: 'Bump the npm version and push it on the repo'
 
 inputs:
   version_type:
@@ -9,12 +10,15 @@ inputs:
 runs:
   using: 'composite'
   steps:
-    - name: Bump version
-      run: npm version ${{ inputs.version_type }}
-      shell: bash
-    - name: Push version bump commit
+    - name: Config git
       shell: bash
       run: |
         git config user.name "github-actions[bot]"
         git config user.email "github-actions[bot]@users.noreply.github.com"
+    - name: Bump version
+      shell: bash
+      run: npm version ${{ inputs.version_type }}
+    - name: Push version bump commit
+      shell: bash
+      run: |
         git push origin HEAD:main --follow-tags

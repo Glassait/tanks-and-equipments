@@ -1,4 +1,5 @@
 name: 'Setup node for the action'
+description: 'Setup node for the workflow'
 
 runs:
   using: 'composite'

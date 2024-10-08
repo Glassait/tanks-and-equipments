@@ -16,7 +16,6 @@ concurrency:
 
 jobs:
   update-version-manually:
-    if: ${{ github.event_name == 'workflow_dispatch' }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
