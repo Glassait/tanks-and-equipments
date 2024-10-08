@@ -26,3 +26,5 @@ jobs:
         uses: ./.github/actions/bump-version
         with:
           version_type: ${{ inputs.version_type }}
+          MAINTAINER_NAME: ${{ secrets.MAINTAINER_NAME }}
+          MAINTAINER_EMAIL: ${{ secrets.MAINTAINER_EMAIL }}

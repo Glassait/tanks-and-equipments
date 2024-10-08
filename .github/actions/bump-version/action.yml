@@ -6,6 +6,14 @@ inputs:
     description: 'Type of version bump (major, minor, patch)'
     required: true
     type: string
+  MAINTAINER_NAME:
+    description: 'The git user'
+    required: true
+    type: string
+  MAINTAINER_EMAIL:
+    description: 'The git mail'
+    required: true
+    type: string
 
 runs:
   using: 'composite'
@@ -13,8 +21,8 @@ runs:
     - name: Config git
       shell: bash
       run: |
-        git config user.name '${{ secrets.MAINTAINER_NAME }}'
-        git config user.email '${{ secrets.MAINTAINER_EMAIL }}'
+        git config user.name '${{ inputs.MAINTAINER_NAME }}'
+        git config user.email '${{ inputs.MAINTAINER_EMAIL }}'
     - name: Bump version
       shell: bash
       run: npm version ${{ inputs.version_type }}
