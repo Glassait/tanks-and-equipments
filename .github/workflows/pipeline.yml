@@ -1,0 +1,56 @@
+# File: .github/workflows/ci.yml
+name: CI Workflow
+
+on:
+  push:
+    branches:
+      - '**'
+
+  workflow_dispatch: # Allows manual trigger to update version
+    inputs:
+      version_type:
+        description: 'Type of version bump (major, minor, patch)'
+        required: true
+        default: 'patch'
+        type: string
+
+concurrency:
+  group: ${{ github.ref }} # This ensures only one job per branch
+  cancel-in-progress: true # Cancels previous jobs in the group if a new job is triggered
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout and Setup Node.js
+        uses: ./.github/actions/setup-node
+      - name: Install dependencies
+        run: npm ci
+      - name: Run lint
+        run: npm run lint
+      - name: Build the project
+        run: npm run build
+      - name: Run tests
+        run: npm run test
+
+  update-version:
+    if: ${{ github.ref == 'refs/heads/main' && github.event.pull_request.merged == true && github.event_name != 'workflow_dispatch' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout and Setup Node.js
+        uses: ./.github/actions/setup-node
+      - name: Bump the npm version
+        uses: ./.github/actions/bump-version
+        with:
+          version_type: 'patch'
+
+  update-version-manually:
+    if: ${{ github.event_name == 'workflow_dispatch' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout and Setup Node.js
+        uses: ./.github/actions/setup-node
+      - name: Bump the npm version
+        uses: ./.github/actions/bump-version
+        with:
+          version_type: ${{ inputs.version_type }}

@@ -30,7 +30,7 @@
 			}
 		},
 		{
-			"files": ["*.YML"],
+			"files": ["*.yml", "*.yaml"],
 			"options": {
 				"tabWidth": 2,
 				"parser": "yaml"
