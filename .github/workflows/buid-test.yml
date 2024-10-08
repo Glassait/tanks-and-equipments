@@ -7,7 +7,7 @@ on:
       - '**'
 
 concurrency:
-  group: ${{ github.ref }} # This ensures only one job per branch
+  group: ${{ github.ref }}-build # This ensures only one job per branch
   cancel-in-progress: true # Cancels previous jobs in the group if a new job is triggered
 
 jobs:
