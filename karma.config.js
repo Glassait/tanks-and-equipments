@@ -1,24 +1,22 @@
-// TODO Add karma in CI
 module.exports = function (config) {
     config.set({
         frameworks: ['jasmine', '@angular-devkit/build-angular'],
         plugins: [
-            require('karma-jasmine'),
-            require('karma-chrome-launcher'),
-            require('karma-jasmine-html-reporter'),
-            require('karma-coverage'),
-            require('@angular-devkit/build-angular/plugins/karma'),
+            'karma-jasmine',
+            'karma-chrome-launcher',
+            'karma-jasmine-html-reporter',
+            'karma-coverage',
+            '@angular-devkit/build-angular/plugins/karma',
         ],
-        files: ['src/**/*.spec.ts'],
+        files: [{ pattern: 'src/**/*.spec.ts', type: 'js' }],
         // coverage reporter generates the coverage
         reporters: ['progress', 'kjhtml', 'coverage'],
-        preprocessors: {
-            'src/**/*.spec.ts': ['coverage'],
-        },
         // optionally, configure the reporter
         coverageReporter: {
             type: 'html',
-            dir: 'coverage/',
+            dir: require('path').join(__dirname, './coverage/'),
+            subdir: '.',
+            reporters: [{ type: 'html' }, { type: 'text-summary' }],
             check: {
                 global: {
                     statements: 90,

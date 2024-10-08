@@ -1,0 +1,29 @@
+# File: .github/workflows/ci.yml
+name: Update Version Manually
+
+on:
+  workflow_dispatch: # Allows manual trigger to update version
+    inputs:
+      version_type:
+        description: 'Type of version bump (major, minor, patch)'
+        required: true
+        default: 'patch'
+        type: string
+
+concurrency:
+  group: ${{ github.ref }} # This ensures only one job per branch
+  cancel-in-progress: true # Cancels previous jobs in the group if a new job is triggered
+
+jobs:
+  update-version-manually:
+    if: ${{ github.event_name == 'workflow_dispatch' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Setup Node.js
+        uses: ./.github/actions/setup-node
+      - name: Bump the npm version
+        uses: ./.github/actions/bump-version
+        with:
+          version_type: ${{ inputs.version_type }}
