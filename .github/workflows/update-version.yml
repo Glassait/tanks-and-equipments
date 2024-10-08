@@ -12,7 +12,6 @@ concurrency:
 
 jobs:
   update-version:
-    if: github.event.pull_request.merged
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -23,3 +22,5 @@ jobs:
         uses: ./.github/actions/bump-version
         with:
           version_type: 'patch'
+          MAINTAINER_NAME: ${{ secrets.MAINTAINER_NAME }}
+          MAINTAINER_EMAIL: ${{ secrets.MAINTAINER_EMAIL }}

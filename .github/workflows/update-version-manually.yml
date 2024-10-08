@@ -16,7 +16,6 @@ concurrency:
 
 jobs:
   update-version-manually:
-    if: ${{ github.event_name == 'workflow_dispatch' }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -27,3 +26,5 @@ jobs:
         uses: ./.github/actions/bump-version
         with:
           version_type: ${{ inputs.version_type }}
+          MAINTAINER_NAME: ${{ secrets.MAINTAINER_NAME }}
+          MAINTAINER_EMAIL: ${{ secrets.MAINTAINER_EMAIL }}
