@@ -4,8 +4,7 @@ name: Update Version
 on:
   push:
     branches:
-      - '**'
-#      - main
+      - main
 
 concurrency:
   group: ${{ github.ref }}-update # This ensures only one job per branch
