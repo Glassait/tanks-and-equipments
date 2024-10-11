@@ -1,0 +1,66 @@
+@use './abstract/font' as *;
+@use './abstract/width' as *;
+@use './abstract/grid' as *;
+@use './abstract/spacing' as *;
+
+h1,
+h2,
+h3,
+h4 {
+    @extend %font-roboto-condensed;
+}
+
+h1 {
+    @extend %title-1;
+}
+
+h2 {
+    @extend %title-2;
+}
+
+h3 {
+    @extend %title-3;
+}
+
+h4 {
+    @extend %subtitle-1;
+}
+
+*,
+*::before,
+*::after {
+    @extend %font-roboto;
+
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+img,
+picture,
+svg,
+video {
+    display: block;
+    max-width: 100%;
+}
+
+html {
+    color-scheme: dark;
+}
+
+body {
+    @extend %min-h-dvh;
+}
+
+.body-interface {
+    @extend %grid, %min-h-dvh, %gap-40;
+
+    @include grid-rows(auto 1fr auto);
+}
+
+input,
+textarea,
+select,
+button {
+    font: inherit;
+}
