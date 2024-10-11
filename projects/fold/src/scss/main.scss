@@ -1,7 +1,55 @@
-@use './abstract/font' as *;
+@use 'sass:list';
+@use './abstract/fonts' as *;
 @use './abstract/width' as *;
-@use './abstract/grid' as *;
-@use './abstract/spacing' as *;
+@use './abstract/grids' as *;
+@use './abstract/spacings' as *;
+
+$font-face: (
+    ('roboto-condensed', 100, null, 'Roboto_Condensed/RobotoCondensed-Thin'),
+    ('roboto-condensed', 100, italic, 'Roboto_Condensed/RobotoCondensed-ThinItalic'),
+    ('roboto-condensed', 200, null, 'Roboto_Condensed/RobotoCondensed-ExtraLight'),
+    ('roboto-condensed', 200, italic, 'Roboto_Condensed/RobotoCondensed-ExtraLightItalic'),
+    ('roboto-condensed', 300, null, 'Roboto_Condensed/RobotoCondensed-Light'),
+    ('roboto-condensed', 300, italic, 'Roboto_Condensed/RobotoCondensed-LightItalic'),
+    ('roboto-condensed', 400, null, 'Roboto_Condensed/RobotoCondensed-Regular'),
+    ('roboto-condensed', 500, null, 'Roboto_Condensed/RobotoCondensed-Medium'),
+    ('roboto-condensed', 500, italic, 'Roboto_Condensed/RobotoCondensed-MediumItalic'),
+    ('roboto-condensed', 600, null, 'Roboto_Condensed/RobotoCondensed-SemiBold'),
+    ('roboto-condensed', 600, italic, 'Roboto_Condensed/RobotoCondensed-SemiBoldItalic'),
+    ('roboto-condensed', 700, null, 'Roboto_Condensed/RobotoCondensed-Bold'),
+    ('roboto-condensed', 700, italic, 'Roboto_Condensed/RobotoCondensed-BoldItalic'),
+    ('roboto-condensed', 800, null, 'Roboto_Condensed/RobotoCondensed-ExtraBold'),
+    ('roboto-condensed', 800, italic, 'Roboto_Condensed/RobotoCondensed-ExtraBoldItalic'),
+    ('roboto-condensed', 900, null, 'Roboto_Condensed/RobotoCondensed-Black'),
+    ('roboto-condensed', 900, italic, 'Roboto_Condensed/RobotoCondensed-BlackItalic'),
+    ('roboto', 100, null, 'Roboto/Roboto-Thin'),
+    ('roboto', 100, italic, 'Roboto/Roboto-ThinItalic'),
+    ('roboto', 300, null, 'Roboto/Roboto-Light'),
+    ('roboto', 300, italic, 'Roboto/Roboto-LightItalic'),
+    ('roboto', 400, null, 'Roboto/Roboto-Regular'),
+    ('roboto', 500, null, 'Roboto/Roboto-Medium'),
+    ('roboto', 500, italic, 'Roboto/Roboto-MediumItalic'),
+    ('roboto', 700, null, 'Roboto/Roboto-Bold'),
+    ('roboto', 700, italic, 'Roboto/Roboto-BoldItalic'),
+    ('roboto', 900, null, 'Roboto/Roboto-Black'),
+    ('roboto', 900, italic, 'Roboto/Roboto-BlackItalic')
+);
+
+@each $properties in $font-face {
+    $name: list.nth($properties, 1);
+    $weight: list.nth($properties, 2);
+    $style: list.nth($properties, 3);
+    $url: list.nth($properties, 4);
+
+    @font-face {
+        font-family: $name;
+        font-weight: $weight;
+        @if $style {
+            font-style: $style;
+        }
+        src: url('../fonts/#{$url}.ttf') format('truetype');
+    }
+}
 
 h1,
 h2,

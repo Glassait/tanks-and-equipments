@@ -1,6 +1,6 @@
 @use './width' as *;
-@use './breakpoint' as *;
-@use './spacing' as *;
+@use './breakpoints' as *;
+@use './spacings' as *;
 
 @mixin grid-rows($templates) {
     & {
