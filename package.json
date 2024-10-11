@@ -8,19 +8,26 @@
 	},
 	"scripts": {
 		"start": "npm run serve:ssr:tanks-and-equipments",
-		"build": "ng build --configuration production",
+		"build": "npm run build:lib && ng build --configuration production",
 		"serve:ssr:tanks-and-equipments": "node dist/tanks-and-equipments/server/server.mjs",
-		"start:local": "ng serve --port=4200",
+		"start:local": "npm run build:lib && ng serve --port=4200",
 		"start:external-mock": "npm run start:local -- --configuration=external-mock",
 		"start:full-mock": "npm run start:local -- --configuration=full-mock",
-		"test": "ng test --code-coverage --watch=false",
+		"test": "ng test",
 		"test:ci": "npm run test -- --browsers=ChromeHeadless",
 		"test:local": "npm run test -- --browsers=Chrome --watch=true",
-		"lint": "eslint src"
+		"lint": "eslint src",
+		"lint:scss": "stylelint \"**/*.scss\"",
+		"build:lib": "ng build fold --configuration production",
+		"test:lib": "ng test fold",
+		"test:lib:ci": "npm run test:lib -- --browsers=ChromeHeadless",
+		"test:lib:local": "npm run test:lib -- --browsers=Chrome --watch=true",
+		"lint:lib": "eslint projects/fold/src"
 	},
 	"lint-staged": {
 		"*": "prettier -w",
-		"*.ts": "eslint"
+		"*.ts": "eslint",
+		"*.scss": "stylelint"
 	},
 	"dependencies": {
 		"@angular/animations": "^17.3.0",

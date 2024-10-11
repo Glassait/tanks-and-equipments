@@ -9,7 +9,7 @@
 	"arrowParens": "avoid",
 	"embeddedLanguageFormatting": "auto",
 	"printWidth": 140,
-	"plugins": ["prettier-plugin-tailwindcss"],
+	"plugins": ["stylelint-prettier"],
 	"tailwindConfig": "./tailwind.config.js",
 	"overrides": [
 		{

@@ -13,6 +13,7 @@
 				"build": {
 					"builder": "@angular-devkit/build-angular:application",
 					"options": {
+						"inlineStyleLanguage": "scss",
 						"outputPath": "dist/tanks-and-equipments",
 						"index": "src/index.html",
 						"browser": "src/main.ts",
@@ -25,6 +26,9 @@
 						"prerender": true,
 						"ssr": {
 							"entry": "server.ts"
+						},
+						"stylePreprocessorOptions": {
+							"includePaths": ["dist/@fold/src/scss/"]
 						}
 					},
 					"configurations": {
@@ -100,11 +104,40 @@
 						"styles": [],
 						"scripts": []
 					}
-				},
-				"lint": {
-					"builder": "@angular-eslint/builder:lint",
+				}
+			}
+		},
+		"fold": {
+			"projectType": "library",
+			"root": "projects/fold",
+			"sourceRoot": "projects/fold/src",
+			"prefix": "fold",
+			"architect": {
+				"build": {
+					"builder": "@angular-devkit/build-angular:ng-packagr",
 					"options": {
-						"lintFilePatterns": ["src/**/*.ts", "src/**/*.html"]
+						"project": "projects/fold/ng-package.json"
+					},
+					"configurations": {
+						"production": {
+							"tsConfig": "projects/fold/tsconfig.lib.prod.json"
+						},
+						"development": {
+							"tsConfig": "projects/fold/tsconfig.lib.json"
+						}
+					},
+					"defaultConfiguration": "production"
+				},
+				"test": {
+					"builder": "@angular-devkit/build-angular:karma",
+					"options": {
+						"codeCoverage": true,
+						"karmaConfig": "karma.config.js",
+						"polyfills": ["zone.js", "zone.js/testing"],
+						"tsConfig": "projects/fold/tsconfig.spec.json",
+						"assets": [],
+						"styles": [],
+						"scripts": []
 					}
 				}
 			}

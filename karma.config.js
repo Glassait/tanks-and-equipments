@@ -11,6 +11,7 @@ module.exports = function (config) {
         files: [{ pattern: 'src/**/*.spec.ts', type: 'js' }],
         // coverage reporter generates the coverage
         reporters: ['progress', 'kjhtml', 'coverage'],
+        browser: ['Chrome'],
         // optionally, configure the reporter
         coverageReporter: {
             type: 'html',
