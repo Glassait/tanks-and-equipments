@@ -84,4 +84,8 @@ describe('FoldIconComponent', () => {
         expect(svg.clientHeight).toEqual(20);
         expect(svg.clientWidth).toEqual(20);
     });
+
+    it('should be aria-hidden', () => {
+        expect(fixture.debugElement.query(By.directive(FoldIconComponent)).nativeElement.ariaHidden).toEqual('true');
+    });
 });
