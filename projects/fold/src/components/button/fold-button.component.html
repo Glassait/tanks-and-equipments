@@ -1,0 +1,10 @@
+<div class="container">
+    @if (!isIconOnly()) {
+        <span>
+            <ng-content></ng-content>
+        </span>
+    }
+    @if (icon()) {
+        <fold-icon [icon]="icon()!" [size]="20"></fold-icon>
+    }
+</div>

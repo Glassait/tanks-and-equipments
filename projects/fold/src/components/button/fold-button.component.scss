@@ -1,0 +1,111 @@
+@use 'sass:map';
+@use '../../scss/abstract/fonts' as *;
+@use '../../scss/abstract/colors';
+@use '../../scss/abstract/borders';
+@use '../../scss/abstract/spacings';
+
+.fold-button {
+    cursor: pointer;
+
+    min-width: 40px;
+    min-height: 40px;
+
+    --border: 0;
+    --fake-border: 0;
+    --border-color: transparent;
+    --fake-border-color: transparent;
+    padding: var(--fake-border);
+    border: var(--border) var(--border-color);
+    border-style: solid;
+    border-radius: #{map.get(borders.$border-radius, 4)};
+
+    @extend %caption-2;
+
+    --bow-shadow: none;
+    box-shadow: var(--bow-shadow);
+
+    --padding-h: 0px;
+    --padding-v: 0px;
+    --effect-hover: 0px;
+
+    --background-color: transparent;
+    background: var(--fake-border-color);
+
+    --text-shadow: none;
+    --text-color: #{map.get(colors.$neutral, 50)};
+    --icon-color: #{map.get(colors.$neutral, 900)};
+    color: var(--text-color);
+
+    & .container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        border-radius: inherit;
+
+        padding: var(--padding-v) calc(var(--padding-h) - var(--effect-hover));
+
+        background: var(--background-color);
+
+        & span {
+            text-shadow: var(--text-shadow);
+        }
+
+        & fold-icon {
+            color: var(--icon-color);
+        }
+    }
+
+    &--rectangle {
+        --padding-v: #{map.get(spacings.$spacings, 12)};
+        --padding-h: #{map.get(spacings.$spacings, 32)};
+    }
+
+    &--square {
+        --padding-v: #{map.get(spacings.$spacings, 8)};
+        --padding-h: #{map.get(spacings.$spacings, 8)};
+    }
+
+    &--primary#{&}--rectangle {
+        --fake-border: #{map.get(borders.$border-width, 1)};
+        --fake-border-color: #{map.get(colors.$gradient, lavender-dream)};
+        --bow-shadow: #{map.get(colors.$box-shadow, outer-glow-small)};
+        --background-color: #{map.get(colors.$gradient, violet-twilight)};
+        --text-shadow: #{0 1px 0 rgba(map.get(colors.$neutral, 900), map.get(colors.$opacity, 25))};
+
+        &:hover {
+            --bow-shadow: #{map.get(colors.$box-shadow, outer-glow-large)};
+            --background-color: #{map.get(colors.$primary, 600)};
+
+            & .container {
+                --effect-hover: 1px;
+                margin: 0 var(--effect-hover);
+            }
+        }
+    }
+
+    &--tertiary#{&}--rectangle {
+        --border: #{map.get(borders.$border-width, 1)};
+        --border-color: #{map.get(colors.$neutral, 50)};
+
+        &:hover {
+            --fake-border-color: #{map.get(colors.$neutral, 200)};
+            --border-color: #{map.get(colors.$neutral, 200)};
+            --text-color: #{map.get(colors.$neutral, 900)};
+        }
+    }
+
+    &--tertiary#{&}--square {
+        --fake-border-color: #{map.get(colors.$neutral, 50)};
+        --text-color: #{map.get(colors.$neutral, 900)};
+
+        &:hover {
+            --fake-border-color: #{map.get(colors.$neutral, 200)};
+        }
+    }
+
+    &:focus-visible {
+        outline-offset: map.get(spacings.$spacings, 2);
+        outline: map.get(colors.$neutral, 50) solid map.get(spacings.$spacings, 2);
+    }
+}

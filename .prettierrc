@@ -10,7 +10,6 @@
 	"embeddedLanguageFormatting": "auto",
 	"printWidth": 140,
 	"plugins": ["stylelint-prettier"],
-	"tailwindConfig": "./tailwind.config.js",
 	"overrides": [
 		{
 			"files": ["*.component"],

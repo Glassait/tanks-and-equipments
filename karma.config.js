@@ -8,14 +8,18 @@ module.exports = function (config) {
             'karma-coverage',
             '@angular-devkit/build-angular/plugins/karma',
         ],
-        files: [{ pattern: 'src/**/*.spec.ts', type: 'js' }],
+        files: [
+            { pattern: 'src/**/*.spec.ts', type: 'js' },
+            { pattern: 'projects/fold/src/**/*.spec.ts', type: 'js' },
+        ],
         // coverage reporter generates the coverage
         reporters: ['progress', 'kjhtml', 'coverage'],
         browser: ['Chrome'],
+        autoWatch: true,
         // optionally, configure the reporter
         coverageReporter: {
             type: 'html',
-            dir: require('path').join(__dirname, './coverage/'),
+            dir: require('path').join(__dirname, './coverage'),
             subdir: '.',
             reporters: [{ type: 'html' }, { type: 'text-summary' }],
             check: {
