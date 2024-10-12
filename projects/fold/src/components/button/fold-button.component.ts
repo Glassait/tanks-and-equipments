@@ -2,7 +2,9 @@ import {
     ChangeDetectionStrategy,
     Component,
     computed,
+    ElementRef,
     HostBinding,
+    inject,
     input,
     type InputSignal,
     type Signal,
@@ -22,7 +24,7 @@ import type { FoldIcon } from '../icon/icons-ts/icon.model';
     imports: [FoldIconComponent],
 })
 export class FoldButtonComponent {
-    public foldType: InputSignal<FoldButtonType> = input.required();
+    public variant: InputSignal<FoldButtonType> = input.required();
 
     public shape: InputSignal<FoldButtonShape> = input.required();
 
@@ -31,31 +33,32 @@ export class FoldButtonComponent {
     public icon: InputSignal<FoldIcon | undefined> = input();
 
     @HostBinding('class')
-    get getClassName(): string[] {
-        return [this.baseClassName, `${this.baseClassName}--${this.foldType()}`, `${this.baseClassName}--${this.shape()}`];
+    get cssClasses(): string[] {
+        return [this.baseCssClass, `${this.baseCssClass}--${this.variant()}`, `${this.baseCssClass}--${this.shape()}`];
     }
 
     protected readonly isIconOnly: Signal<boolean> = computed((): boolean => {
-        if (this.foldType() === 'tertiary' && this.shape() === 'square') {
-            if (!this.icon()) {
-                this.warnIconOnlyWithNoIcon();
-                return false;
-            }
+        const hasIcon: boolean = !!this.icon();
+        const isTertiarySquare: boolean = this.variant() === 'tertiary' && this.shape() === 'square';
+        const isIconOnly: boolean = isTertiarySquare || this.iconOnly();
 
-            return true;
-        }
-
-        if (this.iconOnly() && !this.icon()) {
-            this.warnIconOnlyWithNoIcon();
+        if (isIconOnly && !hasIcon) {
+            console.error(
+                `<${this.baseCssClass}> The button is icon only but no icon given, please provide icon name (ex: <button foldButton icon="accountCircle"></button>)`
+            );
             return false;
         }
 
-        return this.iconOnly();
+        if (isIconOnly && !this.elementRef.nativeElement.ariaLabel) {
+            console.error(
+                `<${this.baseCssClass}> The button is icon only, please provide ariaLabel (ex:  <button foldButton aria-label="Fermer">...</button>)`
+            );
+        }
+
+        return isIconOnly;
     });
 
-    private readonly baseClassName: string = 'fold-button';
+    private readonly baseCssClass: string = 'fold-button';
 
-    private warnIconOnlyWithNoIcon(): void {
-        console.error(`<${this.baseClassName}> The button is icon only but no icon given`);
-    }
+    private readonly elementRef: ElementRef<HTMLButtonElement | HTMLAnchorElement> = inject(ElementRef);
 }

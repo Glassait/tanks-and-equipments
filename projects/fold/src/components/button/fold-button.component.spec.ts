@@ -7,14 +7,14 @@ import type { FoldButtonShape, FoldButtonType } from './button.type';
 import type { FoldIcon } from '../icon/icons-ts/icon.model';
 
 @Component({
-    template: `<button foldButton [foldType]="foldType" [shape]="shape" [iconOnly]="iconOnly" [icon]="icon">
+    template: ` <button foldButton [variant]="variant" [shape]="shape" [iconOnly]="iconOnly" [icon]="icon">
         Je suis un bouton testé
     </button>`,
     standalone: true,
     imports: [FoldButtonComponent],
 })
 class FoldButtonComponentWrapper {
-    foldType: FoldButtonType = 'primary';
+    variant: FoldButtonType = 'primary';
     shape: FoldButtonShape = 'rectangle';
     iconOnly: boolean = false;
     icon: FoldIcon | undefined;
@@ -23,6 +23,7 @@ class FoldButtonComponentWrapper {
 describe('FoldButtonComponent', () => {
     let componentWrapper: FoldButtonComponentWrapper;
     let component: FoldButtonComponent;
+    let componentHtml: HTMLButtonElement;
     let fixture: ComponentFixture<FoldButtonComponentWrapper>;
     let consoleErrorSpy: jasmine.Spy;
 
@@ -37,6 +38,7 @@ describe('FoldButtonComponent', () => {
         fixture.detectChanges();
 
         component = fixture.debugElement.query(By.directive(FoldButtonComponent)).componentInstance;
+        componentHtml = fixture.debugElement.query(By.directive(FoldButtonComponent)).nativeElement;
     });
 
     it('should create', () => {
@@ -56,34 +58,27 @@ describe('FoldButtonComponent', () => {
     });
 
     it('should return the correct class names based on foldType and shape', () => {
-        let classNames = component.getClassName;
+        let classNames = component.cssClasses;
         expect(classNames).toContain('fold-button');
         expect(classNames).toContain('fold-button--primary');
         expect(classNames).toContain('fold-button--rectangle');
 
         componentWrapper.shape = 'square';
-        componentWrapper.foldType = 'tertiary';
+        componentWrapper.variant = 'tertiary';
         fixture.detectChanges();
 
-        classNames = component.getClassName;
+        classNames = component.cssClasses;
         expect(classNames).toContain('fold-button');
         expect(classNames).toContain('fold-button--tertiary');
         expect(classNames).toContain('fold-button--square');
 
         componentWrapper.shape = 'rectangle';
-        componentWrapper.foldType = 'tertiary';
+        componentWrapper.variant = 'tertiary';
         fixture.detectChanges();
 
-        classNames = component.getClassName;
+        classNames = component.cssClasses;
         expect(classNames).toContain('fold-button');
         expect(classNames).toContain('fold-button--tertiary');
-        expect(classNames).toContain('fold-button--rectangle');
-    });
-
-    it('should return the correct class names based on foldType and shape', () => {
-        const classNames = component.getClassName;
-        expect(classNames).toContain('fold-button');
-        expect(classNames).toContain('fold-button--primary');
         expect(classNames).toContain('fold-button--rectangle');
     });
 
@@ -91,15 +86,19 @@ describe('FoldButtonComponent', () => {
         componentWrapper.iconOnly = true;
         fixture.detectChanges();
 
-        expect(consoleErrorSpy).toHaveBeenCalledWith('<fold-button> The button is icon only but no icon given');
+        expect(consoleErrorSpy).toHaveBeenCalledWith(
+            '<fold-button> The button is icon only but no icon given, please provide icon name (ex: <button foldButton icon="accountCircle"></button>)'
+        );
     });
 
     it('should warn when shape rectangle and type tertiary but no icon is provided', () => {
         componentWrapper.shape = 'square';
-        componentWrapper.foldType = 'tertiary';
+        componentWrapper.variant = 'tertiary';
         fixture.detectChanges();
 
-        expect(consoleErrorSpy).toHaveBeenCalledWith('<fold-button> The button is icon only but no icon given');
+        expect(consoleErrorSpy).toHaveBeenCalledWith(
+            '<fold-button> The button is icon only but no icon given, please provide icon name (ex: <button foldButton icon="accountCircle"></button>)'
+        );
     });
 
     it('should not warn when iconOnly is false', () => {
@@ -108,8 +107,9 @@ describe('FoldButtonComponent', () => {
 
     it('should compute isIconOnly correctly when foldType is tertiary and shape is square with an icon', () => {
         componentWrapper.shape = 'square';
-        componentWrapper.foldType = 'tertiary';
+        componentWrapper.variant = 'tertiary';
         componentWrapper.icon = 'forest';
+        componentHtml.ariaLabel = 'Je suis un aria-label';
         fixture.detectChanges();
 
         const span = fixture.debugElement.query(By.css('span'));
@@ -117,11 +117,13 @@ describe('FoldButtonComponent', () => {
 
         expect(span).toBeNull();
         expect(svg).toBeDefined();
+        expect(consoleErrorSpy).toHaveBeenCalledTimes(0);
     });
 
     it('should compute isIconOnly correctly when iconOnly is true and foldType is not tertiary', () => {
         componentWrapper.iconOnly = true;
-        componentWrapper.icon = 'forest';
+        componentWrapper.icon = 'fieldModification';
+        componentHtml.ariaLabel = 'Je suis un aria-label';
         fixture.detectChanges();
 
         const span = fixture.debugElement.query(By.css('span'));
@@ -129,6 +131,7 @@ describe('FoldButtonComponent', () => {
 
         expect(span).toBeNull();
         expect(svg).toBeDefined();
+        expect(consoleErrorSpy).toHaveBeenCalledTimes(0);
     });
 
     it('should return false for isIconOnly when iconOnly is true but icon is missing', () => {
@@ -140,6 +143,39 @@ describe('FoldButtonComponent', () => {
 
         expect(span).toBeDefined();
         expect(svg).toBeNull();
-        expect(consoleErrorSpy).toHaveBeenCalledWith('<fold-button> The button is icon only but no icon given');
+        expect(consoleErrorSpy).toHaveBeenCalledWith(
+            '<fold-button> The button is icon only but no icon given, please provide icon name (ex: <button foldButton icon="accountCircle"></button>)'
+        );
+    });
+
+    it('should warn when icon only but not aria-label given', () => {
+        componentWrapper.iconOnly = true;
+        componentWrapper.icon = 'accountCircle';
+        fixture.detectChanges();
+
+        const span = fixture.debugElement.query(By.css('span'));
+        const svg = fixture.debugElement.query(By.css('svg'));
+
+        expect(span).toBeNull();
+        expect(svg).toBeDefined();
+        expect(fixture.debugElement.query(By.directive(FoldButtonComponent)).nativeElement.ariaLabel).toBeNull();
+        expect(consoleErrorSpy).toHaveBeenCalledWith(
+            '<fold-button> The button is icon only, please provide ariaLabel (ex:  <button foldButton aria-label="Fermer">...</button>)'
+        );
+    });
+
+    it('should no warn when icon only and aria-label given', () => {
+        componentWrapper.iconOnly = true;
+        componentWrapper.icon = 'accountCircle';
+        componentHtml.ariaLabel = 'Je suis un aria-label';
+        fixture.detectChanges();
+
+        const span = fixture.debugElement.query(By.css('span'));
+        const svg = fixture.debugElement.query(By.css('svg'));
+
+        expect(span).toBeNull();
+        expect(svg).toBeDefined();
+        expect(componentHtml.ariaLabel).toEqual('Je suis un aria-label');
+        expect(consoleErrorSpy).toHaveBeenCalledTimes(0);
     });
 });

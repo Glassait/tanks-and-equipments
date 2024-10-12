@@ -37,9 +37,16 @@ export class FoldIconComponent {
 
     private injectSVGToHtml(svgContent: string): void {
         this.elementRef.nativeElement.innerHTML = svgContent;
-        const svg: SVGSVGElement = this.elementRef.nativeElement.querySelector('svg')!;
-        svg.setAttribute('width', String(this.size()));
-        svg.setAttribute('height', String(this.size()));
-        svg.style.display = 'block';
+        const svg: SVGSVGElement | null = this.elementRef.nativeElement.querySelector('svg');
+
+        if (svg) {
+            svg.setAttribute('width', String(this.size()));
+            svg.setAttribute('height', String(this.size()));
+            svg.style.display = 'block';
+        } else {
+            console.error(
+                `<fold-icon> No svg element found, please provide correct icon contain in FoldIcon (ex: <fold-icon icon="accountCircle"></fold-icon>)`
+            );
+        }
     }
 }

@@ -33,8 +33,11 @@ describe('FoldIconComponent', () => {
     let componentWrapper: FoldIconComponentWrapper;
     let component: FoldIconComponent;
     let fixture: ComponentFixture<FoldIconComponentWrapper>;
+    let consoleErrorSpy: jasmine.Spy;
 
     beforeEach(() => {
+        consoleErrorSpy = spyOn(console, 'error');
+
         fixture = TestBed.configureTestingModule({
             imports: [FoldIconComponentWrapper],
         }).createComponent(FoldIconComponentWrapper);
@@ -51,6 +54,10 @@ describe('FoldIconComponent', () => {
         const svg = fixture.nativeElement.querySelector('svg');
         expect(svg).toBeDefined();
         expect(svg.outerHTML).toEqual(createSvg('chevronLeft').outerHTML);
+    });
+
+    it('should be aria-hidden', () => {
+        expect(fixture.debugElement.query(By.directive(FoldIconComponent)).nativeElement.ariaHidden).toEqual('true');
     });
 
     it('should change icon when input change', () => {
@@ -74,7 +81,7 @@ describe('FoldIconComponent', () => {
         expect(svg.clientWidth).toEqual(16);
     });
 
-    it('should change the size whan input change', () => {
+    it('should change the size when input change', () => {
         componentWrapper.size = 20;
         fixture.detectChanges();
 
@@ -85,7 +92,13 @@ describe('FoldIconComponent', () => {
         expect(svg.clientWidth).toEqual(20);
     });
 
-    it('should be aria-hidden', () => {
-        expect(fixture.debugElement.query(By.directive(FoldIconComponent)).nativeElement.ariaHidden).toEqual('true');
+    it('should error when icon is not FoldIcon', () => {
+        componentWrapper.icon = '' as FoldIcon;
+        fixture.detectChanges();
+
+        expect(consoleErrorSpy).toHaveBeenCalledTimes(1);
+        expect(consoleErrorSpy).toHaveBeenCalledWith(
+            '<fold-icon> No svg element found, please provide correct icon contain in FoldIcon (ex: <fold-icon icon="accountCircle"></fold-icon>)'
+        );
     });
 });
