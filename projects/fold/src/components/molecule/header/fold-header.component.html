@@ -1,5 +1,5 @@
-<header>
-    <nav role="navigation" aria-label="Menu principal" id="header-left">
+<header role="banner">
+    <nav aria-label="Menu principal" id="header-left" role="navigation">
         <ul>
             @for (nav of navigation(); track $index) {
                 <li>
@@ -15,21 +15,21 @@
         fold-link
         url="https://eu.wargaming.net/clans/wot/500312605/?utm_source=global-nav&utm_medium=link&utm_campaign=wot-portal"
     >
-        <img [height]="62" [width]="121" alt="Logo du clan fold" aria-hidden="true" ngSrc="images/fold_logo-horizontal.png" />
+        <img [height]="62" [width]="121" alt="[HEADER] Logo du clan FOLD_" aria-hidden="true" ngSrc="images/fold_logo-horizontal.png" />
     </a>
 
     <div id="header-right">
         <a
-            fold-button
-            variant="tertiary"
-            shape="rectangle"
-            fold-link
-            url="https://discord.gg/vREWQsWvMv"
             [openInNew]="true"
             aria-label="Rejoindre le discord du clan FOLD_"
+            fold-button
+            fold-link
+            shape="rectangle"
+            url="https://discord.gg/vREWQsWvMv"
+            variant="tertiary"
         >
             {{ 'rejoindre' | uppercase }}
         </a>
-        <button fold-button variant="primary" shape="rectangle" aria-hidden="true" tabindex="-1">{{ 'connexion' | uppercase }}</button>
+        <button aria-hidden="true" fold-button shape="rectangle" tabindex="-1" variant="primary">{{ 'connexion' | uppercase }}</button>
     </div>
 </header>
