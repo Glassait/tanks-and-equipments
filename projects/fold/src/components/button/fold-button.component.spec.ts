@@ -14,17 +14,19 @@ import type { FoldIcon } from '../icon/icons-ts/icon.model';
     imports: [FoldButtonComponent],
 })
 class FoldButtonComponentWrapper {
-    variant: FoldButtonType = 'primary';
-    shape: FoldButtonShape = 'rectangle';
-    iconOnly: boolean = false;
-    icon: FoldIcon | undefined;
+    variant: FoldButtonType;
+    shape: FoldButtonShape;
+    iconOnly: boolean;
+    icon: FoldIcon;
 }
 
 describe('FoldButtonComponent', () => {
     let componentWrapper: FoldButtonComponentWrapper;
-    let component: FoldButtonComponent;
+    let componentInstance: FoldButtonComponent;
     let componentHtml: HTMLButtonElement;
+
     let fixture: ComponentFixture<FoldButtonComponentWrapper>;
+
     let consoleErrorSpy: jasmine.Spy;
 
     beforeEach(() => {
@@ -37,12 +39,12 @@ describe('FoldButtonComponent', () => {
         componentWrapper = fixture.componentInstance;
         fixture.detectChanges();
 
-        component = fixture.debugElement.query(By.directive(FoldButtonComponent)).componentInstance;
+        componentInstance = fixture.debugElement.query(By.directive(FoldButtonComponent)).componentInstance;
         componentHtml = fixture.debugElement.query(By.directive(FoldButtonComponent)).nativeElement;
     });
 
     it('should create', () => {
-        expect(component).toBeTruthy();
+        expect(componentInstance).toBeTruthy();
 
         const span = fixture.debugElement.query(By.css('span'));
         const svg = fixture.debugElement.query(By.css('svg'));
@@ -53,12 +55,16 @@ describe('FoldButtonComponent', () => {
     });
 
     it('should have default values for iconOnly and icon signals', () => {
-        expect(component.iconOnly()).toBeFalse();
-        expect(component.icon()).toBeUndefined();
+        expect(componentInstance.iconOnly()).toBeFalsy();
+        expect(componentInstance.icon()).toBeUndefined();
     });
 
     it('should return the correct class names based on foldType and shape', () => {
-        let classNames = component.cssClasses;
+        componentWrapper.shape = 'rectangle';
+        componentWrapper.variant = 'primary';
+        fixture.detectChanges();
+
+        let classNames = componentInstance.cssClasses;
         expect(classNames).toContain('fold-button');
         expect(classNames).toContain('fold-button--primary');
         expect(classNames).toContain('fold-button--rectangle');
@@ -67,7 +73,7 @@ describe('FoldButtonComponent', () => {
         componentWrapper.variant = 'tertiary';
         fixture.detectChanges();
 
-        classNames = component.cssClasses;
+        classNames = componentInstance.cssClasses;
         expect(classNames).toContain('fold-button');
         expect(classNames).toContain('fold-button--tertiary');
         expect(classNames).toContain('fold-button--square');
@@ -76,13 +82,13 @@ describe('FoldButtonComponent', () => {
         componentWrapper.variant = 'tertiary';
         fixture.detectChanges();
 
-        classNames = component.cssClasses;
+        classNames = componentInstance.cssClasses;
         expect(classNames).toContain('fold-button');
         expect(classNames).toContain('fold-button--tertiary');
         expect(classNames).toContain('fold-button--rectangle');
     });
 
-    it('should warn when iconOnly is true but no icon is provided', () => {
+    it('should error when iconOnly=true but no icon is provided', () => {
         componentWrapper.iconOnly = true;
         fixture.detectChanges();
 
@@ -91,7 +97,7 @@ describe('FoldButtonComponent', () => {
         );
     });
 
-    it('should warn when shape rectangle and type tertiary but no icon is provided', () => {
+    it('should error when shape=rectangle and type=tertiary but no icon is provided', () => {
         componentWrapper.shape = 'square';
         componentWrapper.variant = 'tertiary';
         fixture.detectChanges();
@@ -105,7 +111,7 @@ describe('FoldButtonComponent', () => {
         expect(consoleErrorSpy).not.toHaveBeenCalled();
     });
 
-    it('should compute isIconOnly correctly when foldType is tertiary and shape is square with an icon', () => {
+    it('should compute isIconOnly correctly when foldType=tertiary and shape=square with an icon', () => {
         componentWrapper.shape = 'square';
         componentWrapper.variant = 'tertiary';
         componentWrapper.icon = 'forest';
@@ -120,7 +126,7 @@ describe('FoldButtonComponent', () => {
         expect(consoleErrorSpy).toHaveBeenCalledTimes(0);
     });
 
-    it('should compute isIconOnly correctly when iconOnly is true and foldType is not tertiary', () => {
+    it('should compute isIconOnly correctly when iconOnly=true and foldType!=tertiary', () => {
         componentWrapper.iconOnly = true;
         componentWrapper.icon = 'fieldModification';
         componentHtml.ariaLabel = 'Je suis un aria-label';
@@ -134,7 +140,7 @@ describe('FoldButtonComponent', () => {
         expect(consoleErrorSpy).toHaveBeenCalledTimes(0);
     });
 
-    it('should return false for isIconOnly when iconOnly is true but icon is missing', () => {
+    it('should return false for isIconOnly when iconOnly=true but icon is missing', () => {
         componentWrapper.iconOnly = true;
         fixture.detectChanges();
 
@@ -148,7 +154,7 @@ describe('FoldButtonComponent', () => {
         );
     });
 
-    it('should warn when icon only but not aria-label given', () => {
+    it('should error when iconOnly=true but no aria-label given', () => {
         componentWrapper.iconOnly = true;
         componentWrapper.icon = 'accountCircle';
         fixture.detectChanges();
@@ -164,7 +170,7 @@ describe('FoldButtonComponent', () => {
         );
     });
 
-    it('should no warn when icon only and aria-label given', () => {
+    it('should not error when iconOnly=true and aria-label given', () => {
         componentWrapper.iconOnly = true;
         componentWrapper.icon = 'accountCircle';
         componentHtml.ariaLabel = 'Je suis un aria-label';

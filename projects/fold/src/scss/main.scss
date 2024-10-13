@@ -1,8 +1,10 @@
 @use 'sass:list';
+@use 'sass:map';
 @use './abstract/fonts' as *;
 @use './abstract/width' as *;
 @use './abstract/grids' as *;
 @use './abstract/spacings' as *;
+@use './abstract/colors' as *;
 
 $font-face: (
     ('roboto-condensed', 100, null, 'Roboto_Condensed/RobotoCondensed-Thin'),
@@ -49,13 +51,6 @@ $font-face: (
         }
         src: url('../fonts/#{$url}.ttf') format('truetype');
     }
-}
-
-h1,
-h2,
-h3,
-h4 {
-    @extend %font-roboto-condensed;
 }
 
 h1 {
@@ -111,4 +106,26 @@ textarea,
 select,
 button {
     font: inherit;
+}
+
+a {
+    cursor: pointer;
+    text-decoration: none;
+    color: map.get($neutral, 50);
+
+    @extend %caption-2;
+
+    &:not([disabled='true']):hover {
+        text-decoration: underline;
+    }
+
+    &:not([disabled='true']):focus-visible {
+        outline-offset: map.get($spacings, 2);
+        outline: map.get($neutral, 50) solid map.get($spacings, 2);
+    }
+
+    &[disabled='true'] {
+        pointer-events: none;
+        color: rgba(map.get($neutral, 400), map.get($opacity, 40));
+    }
 }

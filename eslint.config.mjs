@@ -20,7 +20,7 @@ export default tsEslint.config(
             '@angular-eslint': angularLint,
             '@angular-eslint-template': angularTemplateLint,
         },
-        files: ['**/*.ts', "**/*.js"],
+        files: ['**/*.ts', '**/*.js'],
         rules: {
             '@typescript-eslint/no-unsafe-call': ['off'],
             '@typescript-eslint/no-var-requires': ['off'],
@@ -33,121 +33,6 @@ export default tsEslint.config(
             '@typescript-eslint/no-confusing-void-expression': ['error', { ignoreArrowShorthand: true }],
             '@typescript-eslint/no-unsafe-member-access': ['off'],
             '@typescript-eslint/prefer-nullish-coalescing': ['off'],
-            '@typescript-eslint/member-ordering': [
-                'error',
-                {
-                    default: {
-                        memberTypes: [
-                            // Index signature
-                            'signature',
-                            'call-signature',
-
-                            // Statics
-                            'public-static-field',
-                            'protected-static-field',
-                            'private-static-field',
-                            '#private-static-field',
-
-                            'static-initialization',
-
-                            'public-static-accessor',
-                            'protected-static-accessor',
-                            'private-static-accessor',
-                            '#private-static-accessor',
-
-                            'public-static-method',
-                            'protected-static-method',
-                            'private-static-method',
-                            '#private-static-method',
-
-                            // Fields
-                            'public-decorated-field',
-                            'protected-decorated-field',
-                            'private-decorated-field',
-
-                            'public-instance-field',
-                            'protected-instance-field',
-                            'private-instance-field',
-                            '#private-instance-field',
-
-                            'public-abstract-field',
-                            'protected-abstract-field',
-
-                            'public-field',
-                            'protected-field',
-                            'private-field',
-                            '#private-field',
-
-                            'static-field',
-                            'instance-field',
-                            'abstract-field',
-
-                            'decorated-field',
-
-                            'field',
-
-                            // Constructors
-                            'public-constructor',
-                            'protected-constructor',
-                            'private-constructor',
-
-                            'constructor',
-
-                            // Accessors
-                            'public-decorated-accessor',
-                            'protected-decorated-accessor',
-                            'private-decorated-accessor',
-
-                            'public-instance-accessor',
-                            'protected-instance-accessor',
-                            'private-instance-accessor',
-                            '#private-instance-accessor',
-
-                            'public-abstract-accessor',
-                            'protected-abstract-accessor',
-
-                            'public-accessor',
-                            'protected-accessor',
-                            'private-accessor',
-                            '#private-accessor',
-
-                            'static-accessor',
-                            'instance-accessor',
-                            'abstract-accessor',
-
-                            'decorated-accessor',
-
-                            'accessor',
-
-                            // Methods
-                            'public-decorated-method',
-                            'protected-decorated-method',
-                            'private-decorated-method',
-
-                            'public-instance-method',
-                            'protected-instance-method',
-                            'private-instance-method',
-                            '#private-instance-method',
-
-                            'public-abstract-method',
-                            'protected-abstract-method',
-
-                            'public-method',
-                            'protected-method',
-                            'private-method',
-                            '#private-method',
-
-                            'static-method',
-                            'instance-method',
-                            'abstract-method',
-
-                            'decorated-method',
-
-                            'method',
-                        ],
-                    },
-                },
-            ],
             'no-duplicate-imports': ['error'],
             'no-constructor-return': ['error'],
             'object-shorthand': ['error', 'always'],

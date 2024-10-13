@@ -3,3 +3,4 @@
  */
 
 export * from './components/components-api';
+export * from './directives/directives-api';

@@ -75,6 +75,12 @@ $font: (
     $height: list.nth($properties, 3);
 
     %#{$name} {
+        @if $name == 'body-2' {
+            @extend %font-roboto;
+        } @else {
+            @extend %font-roboto-condensed;
+        }
+
         font-size: $size;
         font-weight: $weight;
         line-height: $height;
