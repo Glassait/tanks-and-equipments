@@ -1,32 +1,32 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { FoldHeaderComponent } from './fold-header.component';
+import { FoldFooterComponent } from './fold-footer.component';
 import { Component } from '@angular/core';
-import type { FoldNavigation } from './header.type';
+import type { FoldNavigation } from '../header/header.type';
 import { By } from '@angular/platform-browser';
 
 @Component({
-    template: ` <fold-header [navigation]="navigation" />`,
-    imports: [FoldHeaderComponent],
+    template: ` <fold-footer [navigation]="navigation" />`,
+    imports: [FoldFooterComponent],
     standalone: true,
 })
-class FoldHeaderComponentWrapper {
+class FoldFooterComponentWrapper {
     navigation: FoldNavigation[];
 }
 
-describe('HeaderComponent', () => {
-    let componentWrapper: FoldHeaderComponentWrapper;
+describe('FoldFooterComponent', () => {
+    let componentWrapper: FoldFooterComponentWrapper;
     let componentHtml: HTMLHeadElement;
-    let fixture: ComponentFixture<FoldHeaderComponentWrapper>;
+    let fixture: ComponentFixture<FoldFooterComponentWrapper>;
 
     beforeEach(() => {
         fixture = TestBed.configureTestingModule({
-            imports: [FoldHeaderComponentWrapper],
-        }).createComponent(FoldHeaderComponentWrapper);
+            imports: [FoldFooterComponentWrapper],
+        }).createComponent(FoldFooterComponentWrapper);
 
         componentWrapper = fixture.componentInstance;
         fixture.detectChanges();
 
-        componentHtml = fixture.debugElement.query(By.directive(FoldHeaderComponent)).nativeElement;
+        componentHtml = fixture.debugElement.query(By.directive(FoldFooterComponent)).nativeElement;
     });
 
     it('should create', () => {

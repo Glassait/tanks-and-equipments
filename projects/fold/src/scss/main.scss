@@ -102,6 +102,39 @@ body {
     @include grid-rows(auto 1fr auto);
 }
 
+footer,
+header {
+    %display-flex-nav {
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        justify-content: start;
+    }
+
+    height: 100%;
+
+    width: 100%;
+    max-width: $max-width;
+
+    & nav {
+        @extend %display-flex-nav;
+
+        flex: 1;
+    }
+
+    & ul {
+        list-style: none;
+
+        @extend %display-flex-nav;
+
+        gap: map.get($spacings, 12);
+
+        & a {
+            font-weight: bold;
+        }
+    }
+}
+
 input,
 textarea,
 select,

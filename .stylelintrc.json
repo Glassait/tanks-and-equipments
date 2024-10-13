@@ -20,6 +20,7 @@
 		"color-hex-length": "long",
 		"declaration-empty-line-before": null,
 		"custom-property-empty-line-before": null,
-		"scss/at-extend-no-missing-placeholder": null
+		"scss/at-extend-no-missing-placeholder": null,
+		"no-descending-specificity": null
 	}
 }

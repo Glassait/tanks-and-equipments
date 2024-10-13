@@ -14,7 +14,7 @@
     max-height: 70px;
 
     width: 100%;
-    min-width: 320px;
+    min-width: width.$min-width;
 
     background: map.get(colors.$neutral, 900);
 
@@ -24,33 +24,8 @@
     padding: map.get(spacings.$spacings, 4) map.get(spacings.$spacings, 32);
 
     & header {
-        height: 100%;
-
-        width: 100%;
-        max-width: width.$max-width;
-
         @extend %display-flex;
         justify-content: space-evenly;
-    }
-
-    & nav {
-        @extend %display-flex;
-        justify-content: start;
-
-        flex: 1;
-    }
-
-    & ul {
-        list-style: none;
-
-        @extend %display-flex;
-        justify-content: start;
-
-        gap: map.get(spacings.$spacings, 12);
-
-        & a {
-            font-weight: bold;
-        }
     }
 
     & #header-right {

@@ -1,9 +1,9 @@
 <div class="body-interface">
-    <fold-header [navigation]="navigation" />
+    <fold-header [navigation]="headerNavigation" />
 
     <main role="main">
         <router-outlet />
     </main>
 
-    <!--<app-footer role="contentinfo"></app-footer>-->
+    <fold-footer [navigation]="footerNavigation" />
 </div>

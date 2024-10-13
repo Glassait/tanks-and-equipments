@@ -1,4 +1,4 @@
-export type FoldHeaderNavigation = {
+export type FoldNavigation = {
     text: string;
     url: string;
     openInNew?: boolean;
