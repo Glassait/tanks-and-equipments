@@ -1,13 +1,13 @@
 @use 'sass:list';
 
 $font-family: (
-    roboto-condensed: roboto-condensed system-ui sans-serif,
-    roboto: roboto system-ui sans-serif,
+    roboto-condensed: 'roboto-condensed, system-ui, sans-serif',
+    roboto: 'roboto, system-ui, sans-serif',
 );
 
 @each $name, $family in $font-family {
     %font-#{$name} {
-        font-family: $family;
+        font-family: #{$family};
     }
 }
 

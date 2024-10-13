@@ -26,7 +26,7 @@
 		"paths": {
 			"core/*": ["./src/app/modules/core/*"],
 			"features/*": ["./src/app/modules/features/*"],
-			"@fold": ["./dist/@fold"]
+			"@fold": ["./dist/@fold", "./dist/@fold/*"]
 		}
 	},
 	"angularCompilerOptions": {
