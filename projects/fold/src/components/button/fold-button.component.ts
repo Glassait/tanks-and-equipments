@@ -19,8 +19,8 @@ import type { FoldIcon } from '../icon/icons-ts/icon.model';
     templateUrl: './fold-button.component.html',
     styleUrl: './fold-button.component.scss',
     standalone: true,
-    encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
+    encapsulation: ViewEncapsulation.None,
     imports: [FoldIconComponent],
 })
 export class FoldButtonComponent {

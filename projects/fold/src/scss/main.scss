@@ -5,6 +5,7 @@
 @use './abstract/grids' as *;
 @use './abstract/spacings' as *;
 @use './abstract/colors' as *;
+@use './class-generator' as *;
 
 $font-face: (
     ('roboto-condensed', 100, null, 'Roboto_Condensed/RobotoCondensed-Thin'),
@@ -54,26 +55,24 @@ $font-face: (
 }
 
 h1 {
-    @extend %title-1;
+    @extend .title-1;
 }
 
 h2 {
-    @extend %title-2;
+    @extend .title-2;
 }
 
 h3 {
-    @extend %title-3;
+    @extend .title-3;
 }
 
 h4 {
-    @extend %subtitle-1;
+    @extend .subtitle-1;
 }
 
 *,
 *::before,
 *::after {
-    @extend %font-roboto;
-
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -96,7 +95,9 @@ body {
 }
 
 .body-interface {
-    @extend %grid, %min-h-dvh, %gap-40;
+    display: grid;
+
+    @extend %min-h-dvh, .gap-40;
 
     @include grid-rows(auto 1fr auto);
 }
@@ -113,7 +114,7 @@ a {
     text-decoration: none;
     color: map.get($neutral, 50);
 
-    @extend %caption-2;
+    @extend .caption-2;
 
     &:not([disabled='true']):hover {
         text-decoration: underline;

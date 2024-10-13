@@ -10,19 +10,19 @@ import {
     ViewEncapsulation,
 } from '@angular/core';
 import { default as Icons, type FoldIcon } from './icons-ts/icon.model';
-import { FoldSize } from './icon.type';
+import { FoldIconSize } from './icon.type';
 
 @Component({
     selector: 'fold-icon',
-    standalone: true,
     template: ``,
-    encapsulation: ViewEncapsulation.None,
+    standalone: true,
     changeDetection: ChangeDetectionStrategy.OnPush,
+    encapsulation: ViewEncapsulation.None,
 })
 export class FoldIconComponent {
     public icon: InputSignal<FoldIcon> = input.required();
 
-    public size: InputSignal<FoldSize> = input(16 as FoldSize);
+    public size: InputSignal<FoldIconSize> = input(16 as FoldIconSize);
 
     @HostBinding('attr.aria-hidden')
     get ariaHidden(): boolean {

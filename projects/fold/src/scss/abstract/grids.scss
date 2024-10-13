@@ -1,7 +1,3 @@
-@use './width' as *;
-@use './breakpoints' as *;
-@use './spacings' as *;
-
 @mixin grid-rows($templates) {
     & {
         grid-template-rows: $templates;
@@ -11,23 +7,5 @@
 @mixin grid-cols($templates) {
     & {
         grid-template-columns: $templates;
-    }
-}
-
-%grid {
-    display: grid;
-}
-
-.fold-grid {
-    @extend %grid, %w-full, %max-w-fold, %gap-16, %m-lr-16;
-
-    @include grid-cols(repeat(1, minmax(0, 1fr)));
-
-    @include breakpoint(tablet) {
-        @include grid-cols(repeat(6, minmax(0, 1fr)));
-    }
-
-    @include breakpoint(desktop) {
-        @include grid-cols(repeat(12, minmax(0, 1fr)));
     }
 }

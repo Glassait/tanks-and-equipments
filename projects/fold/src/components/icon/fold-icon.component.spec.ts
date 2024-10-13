@@ -3,7 +3,7 @@ import { FoldIconComponent } from './fold-icon.component';
 import { default as Icons, type FoldIcon } from './icons-ts/icon.model';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import type { FoldSize } from './icon.type';
+import type { FoldIconSize } from './icon.type';
 
 @Component({
     template: `<fold-icon [icon]="icon" [size]="size"></fold-icon>`,
@@ -12,7 +12,7 @@ import type { FoldSize } from './icon.type';
 })
 class FoldIconComponentWrapper {
     icon: FoldIcon = 'chevronLeft';
-    size: FoldSize = 16;
+    size: FoldIconSize = 16;
 }
 
 function createSvg(icon: FoldIcon, size?: number): SVGSVGElement {

@@ -1,0 +1,60 @@
+@use 'sass:list';
+@use './abstract/fonts' as *;
+@use './abstract/width' as *;
+@use './abstract/breakpoints' as *;
+@use './abstract/spacings' as *;
+@use './abstract/grids' as *;
+
+@each $name, $properties in $font {
+    $size: list.nth($properties, 1);
+    $weight: list.nth($properties, 2);
+    $height: list.nth($properties, 3);
+
+    .#{$name} {
+        @if $name == 'body-2' {
+            @extend %font-roboto;
+        } @else {
+            @extend %font-roboto-condensed;
+        }
+
+        font-size: $size;
+        font-weight: $weight;
+        line-height: $height;
+    }
+}
+
+.fold-grid {
+    display: grid;
+
+    @extend %w-full, %max-w-fold, .gap-16, .m-lr-16;
+
+    @include grid-cols(repeat(1, minmax(0, 1fr)));
+
+    @include breakpoint(tablet) {
+        @include grid-cols(repeat(6, minmax(0, 1fr)));
+    }
+
+    @include breakpoint(desktop) {
+        @include grid-cols(repeat(12, minmax(0, 1fr)));
+    }
+}
+
+@each $types-name, $type in $types {
+    @each $spacing-name, $spacing in $spacings {
+        $selector: #{$types-name}-;
+
+        @if $spacing > 0 {
+            $selector: #{$selector}#{$spacing-name};
+        } @else {
+            $selector: #{$selector}\[#{$spacing-name}\];
+        }
+
+        .#{$selector} {
+            @if $types-name == 'm-lr' {
+                #{$type}: 0 $spacing;
+            } @else {
+                #{$type}: $spacing;
+            }
+        }
+    }
+}

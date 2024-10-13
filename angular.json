@@ -111,7 +111,7 @@
 			"projectType": "library",
 			"root": "projects/fold",
 			"sourceRoot": "projects/fold/src",
-			"prefix": "fold",
+			"prefix": "",
 			"architect": {
 				"build": {
 					"builder": "@angular-devkit/build-angular:ng-packagr",
