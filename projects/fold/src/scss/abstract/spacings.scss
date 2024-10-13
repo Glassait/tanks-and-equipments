@@ -1,0 +1,41 @@
+$spacings: (
+    -24: -24px,
+    -8: -8px,
+    2: 2px,
+    4: 4px,
+    8: 8px,
+    12: 12px,
+    16: 16px,
+    20: 20px,
+    32: 32px,
+    40: 40px,
+    60: 60px,
+    80: 80px,
+    100: 100px,
+    200: 200px
+);
+
+$types: (
+    gap: 'gap',
+    m-lr: 'margin',
+);
+
+@each $types-name, $type in $types {
+    @each $spacing-name, $spacing in $spacings {
+        $selector: #{$types-name}-;
+
+        @if $spacing > 0 {
+            $selector: #{$selector}#{$spacing-name};
+        } @else {
+            $selector: #{$selector}\[#{$spacing-name}\];
+        }
+
+        %#{$selector} {
+            @if $types-name == 'm-lr' {
+                #{$type}: 0 $spacing;
+            } @else {
+                #{$type}: $spacing;
+            }
+        }
+    }
+}

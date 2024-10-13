@@ -1,0 +1,23 @@
+$border-radius: (
+    4: 0.25rem,
+    8: 0.5rem,
+    12: 0.75rem,
+    full: 9999px,
+);
+
+@each $name, $radius in $border-radius {
+    %radius-#{$name} {
+        border-radius: $radius;
+    }
+}
+
+$border-width: (
+    1: 1px,
+    2: 2px,
+);
+
+@each $name, $width in $border-width {
+    %border-#{$name} {
+        border-radius: $width;
+    }
+}

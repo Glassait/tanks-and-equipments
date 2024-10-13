@@ -1,9 +1,9 @@
-<div class="grid min-h-dvh grid-rows-[auto_1fr_auto] gap-40">
-    <!--<app-header role="banner"></app-header>-->
+<div class="body-interface">
+    <fold-header [navigation]="headerNavigation" />
 
     <main role="main">
-        <router-outlet></router-outlet>
+        <router-outlet />
     </main>
 
-    <!--<app-footer role="contentinfo"></app-footer>-->
+    <fold-footer [navigation]="footerNavigation" />
 </div>

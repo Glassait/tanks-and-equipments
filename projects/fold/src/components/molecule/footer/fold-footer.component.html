@@ -1,0 +1,13 @@
+<footer role="contentinfo">
+    <img [height]="65" [width]="65" alt="[Footer] Logo du clan FOLD_" aria-hidden="true" ngSrc="images/fold_logo-vertical.png" />
+
+    <nav role="navigation" aria-label="Menu secondaire" id="footer-nav">
+        <ul>
+            @for (nav of navigation(); track $index) {
+                <li>
+                    <a fold-link [url]="nav.url" [openInNew]="!!nav.openInNew">{{ nav.text | titlecase }}</a>
+                </li>
+            }
+        </ul>
+    </nav>
+</footer>

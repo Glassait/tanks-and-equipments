@@ -1,0 +1,9 @@
+@if (iconLeft()) {
+    <fold-icon [icon]="iconLeft()!" [size]="computedIconSize()"></fold-icon>
+}
+<span>
+    <ng-content></ng-content>
+</span>
+@if (iconRight()) {
+    <fold-icon [icon]="iconRight()!" [size]="computedIconSize()"></fold-icon>
+}

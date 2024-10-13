@@ -1,0 +1,18 @@
+@use 'sass:map';
+@use '../../../scss/abstract/colors';
+@use '../../../scss/abstract/borders';
+
+:host {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &.title-3,
+    &.subtitle-1 {
+        & > fold-icon {
+            background: map.get(colors.$neutral, 50);
+
+            border-radius: map.get(borders.$border-radius, 4);
+        }
+    }
+}

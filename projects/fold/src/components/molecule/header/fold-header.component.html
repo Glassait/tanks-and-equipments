@@ -1,0 +1,35 @@
+<header role="banner">
+    <nav aria-label="Menu principal" id="header-left" role="navigation">
+        <ul>
+            @for (nav of navigation(); track $index) {
+                <li>
+                    <a fold-link [url]="nav.url" [openInNew]="!!nav.openInNew">{{ nav.text | uppercase }}</a>
+                </li>
+            }
+        </ul>
+    </nav>
+
+    <a
+        [openInNew]="true"
+        aria-label="Redirection vers le portail officiel du clan FOLD_"
+        fold-link
+        url="https://eu.wargaming.net/clans/wot/500312605/?utm_source=global-nav&utm_medium=link&utm_campaign=wot-portal"
+    >
+        <img [height]="62" [width]="121" alt="[HEADER] Logo du clan FOLD_" aria-hidden="true" ngSrc="images/fold_logo-horizontal.png" />
+    </a>
+
+    <div id="header-right">
+        <a
+            [openInNew]="true"
+            aria-label="Rejoindre le discord du clan FOLD_"
+            fold-button
+            fold-link
+            shape="rectangle"
+            url="https://discord.gg/vREWQsWvMv"
+            variant="tertiary"
+        >
+            {{ 'rejoindre' | uppercase }}
+        </a>
+        <button aria-hidden="true" fold-button shape="rectangle" tabindex="-1" variant="primary">{{ 'connexion' | uppercase }}</button>
+    </div>
+</header>

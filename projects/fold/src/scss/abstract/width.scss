@@ -1,0 +1,14 @@
+$max-width: 1520px;
+$min-width: 320px;
+
+%max-w-fold {
+    max-width: $max-width;
+}
+
+%w-full {
+    width: 100%;
+}
+
+%min-h-dvh {
+    min-height: 100dvh;
+}

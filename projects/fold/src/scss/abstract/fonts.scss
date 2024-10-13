@@ -1,0 +1,88 @@
+@use 'sass:list';
+
+$font-family: (
+    roboto-condensed: 'roboto-condensed, system-ui, sans-serif',
+    roboto: 'roboto, system-ui, sans-serif',
+);
+
+@each $name, $family in $font-family {
+    %font-#{$name} {
+        font-family: #{$family};
+    }
+}
+
+$font: (
+    'caption-3': (
+        11px,
+        400,
+        15px,
+    ),
+    'caption-2': (
+        12px,
+        400,
+        19px,
+    ),
+    'caption-1': (
+        14px,
+        400,
+        19px,
+    ),
+    'body-2': (
+        16px,
+        400,
+        24px,
+    ),
+    'body-1': (
+        19px,
+        400,
+        23px,
+    ),
+    'subtitle-1': (
+        24px,
+        400,
+        24px,
+    ),
+    'title-3': (
+        32px,
+        700,
+        42px,
+    ),
+    'title-2': (
+        44px,
+        700,
+        48px,
+    ),
+    'title-1': (
+        48px,
+        700,
+        53px,
+    ),
+    'large-title': (
+        55px,
+        700,
+        66px,
+    ),
+    'display': (
+        72px,
+        700,
+        84px,
+    ),
+);
+
+@each $name, $properties in $font {
+    $size: list.nth($properties, 1);
+    $weight: list.nth($properties, 2);
+    $height: list.nth($properties, 3);
+
+    %#{$name} {
+        @if $name == 'body-2' {
+            @extend %font-roboto;
+        } @else {
+            @extend %font-roboto-condensed;
+        }
+
+        font-size: $size;
+        font-weight: $weight;
+        line-height: $height;
+    }
+}
