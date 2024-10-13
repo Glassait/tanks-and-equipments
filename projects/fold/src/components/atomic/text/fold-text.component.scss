@@ -1,6 +1,6 @@
 @use 'sass:map';
-@use '../../scss/abstract/colors';
-@use '../../scss/abstract/borders';
+@use '../../../scss/abstract/colors';
+@use '../../../scss/abstract/borders';
 
 :host {
     display: flex;

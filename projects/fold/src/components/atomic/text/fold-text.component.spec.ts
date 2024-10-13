@@ -4,9 +4,13 @@ import { Component } from '@angular/core';
 import type { FoldTextSize } from './text.type';
 import { By } from '@angular/platform-browser';
 import type { FoldIcon } from '../icon/icons-ts/icon.model';
+import type { FoldIconSize } from '../icon/icon.type';
+import { FoldIconComponent } from '../icon/fold-icon.component';
 
 @Component({
-    template: ` <button foldText [size]="size" [iconLeft]="iconLeft" [iconRight]="iconRight">Je suis un bouton</button>`,
+    template: ` <button foldText [size]="size" [iconLeft]="iconLeft" [iconRight]="iconRight" [overrideIconSize]="overrideIconSize">
+        Je suis un bouton
+    </button>`,
     standalone: true,
     imports: [FoldTextComponent],
 })
@@ -14,6 +18,7 @@ class FoldTextComponentWrapper {
     size: FoldTextSize;
     iconLeft: FoldIcon | undefined;
     iconRight: FoldIcon | undefined;
+    overrideIconSize: FoldIconSize | undefined;
 }
 
 describe('FoldTextComponent', () => {
@@ -104,5 +109,16 @@ describe('FoldTextComponent', () => {
         const span = componentHtml.querySelector('span')!;
         expect(span.nextElementSibling?.localName).toBe('fold-icon');
         expect(span.previousElementSibling?.localName).toBe('fold-icon');
+    });
+
+    it('should override icon size when overrideIconSize is given', () => {
+        componentWrapper.size = 'small';
+        componentWrapper.iconRight = 'chevronLeft';
+        componentWrapper.overrideIconSize = 72;
+        fixture.detectChanges();
+
+        const foldIcon = fixture.debugElement.query(By.directive(FoldIconComponent)).componentInstance;
+        const size = foldIcon.size();
+        expect(size).toEqual(72);
     });
 });

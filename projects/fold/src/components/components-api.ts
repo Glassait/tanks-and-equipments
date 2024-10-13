@@ -1,3 +1,2 @@
-export * from './button/button-api';
-export * from './icon/icon-api';
-export * from './text/text-api';
+export * from './atomic/atomic-api';
+export * from './molecule/molecule-api';

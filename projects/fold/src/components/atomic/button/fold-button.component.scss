@@ -1,8 +1,8 @@
 @use 'sass:map';
-@use '../../scss/abstract/fonts' as *;
-@use '../../scss/abstract/colors';
-@use '../../scss/abstract/borders';
-@use '../../scss/abstract/spacings';
+@use '../../../scss/abstract/fonts' as *;
+@use '../../../scss/abstract/colors';
+@use '../../../scss/abstract/borders';
+@use '../../../scss/abstract/spacings';
 
 .fold-button {
     cursor: pointer;
