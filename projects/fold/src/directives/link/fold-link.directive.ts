@@ -2,7 +2,7 @@ import { Directive, ElementRef, HostBinding, HostListener, inject, input, type I
 import { Router } from '@angular/router';
 
 @Directive({
-    selector: 'button[foldLink], a[foldLink]',
+    selector: 'button[fold-link], a[fold-link]',
     standalone: true,
 })
 export class FoldLinkDirective {

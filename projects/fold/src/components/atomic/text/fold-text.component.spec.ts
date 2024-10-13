@@ -8,7 +8,7 @@ import type { FoldIconSize } from '../icon/icon.type';
 import { FoldIconComponent } from '../icon/fold-icon.component';
 
 @Component({
-    template: ` <button foldText [size]="size" [iconLeft]="iconLeft" [iconRight]="iconRight" [overrideIconSize]="overrideIconSize">
+    template: ` <button fold-text [size]="size" [iconLeft]="iconLeft" [iconRight]="iconRight" [overrideIconSize]="overrideIconSize">
         Je suis un bouton
     </button>`,
     standalone: true,

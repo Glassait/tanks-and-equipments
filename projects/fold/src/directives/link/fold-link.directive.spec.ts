@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 import { lastValueFrom, of } from 'rxjs';
 
 @Component({
-    template: `<a foldLink [url]="url" [disabled]="disabled" [openInNew]="openInNew">Je suis un lien</a>`,
+    template: `<a fold-link [url]="url" [disabled]="disabled" [openInNew]="openInNew">Je suis un lien</a>`,
     imports: [FoldLinkDirective],
     standalone: true,
 })
@@ -18,7 +18,7 @@ class MockAnchorComponent {
 }
 
 @Component({
-    template: `<button foldLink [url]="url" [disabled]="disabled" [openInNew]="openInNew">Je suis un lien</button>`,
+    template: `<button fold-link [url]="url" [disabled]="disabled" [openInNew]="openInNew">Je suis un lien</button>`,
     imports: [FoldLinkDirective],
     standalone: true,
 })

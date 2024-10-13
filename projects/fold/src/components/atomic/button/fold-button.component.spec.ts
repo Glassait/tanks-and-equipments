@@ -7,7 +7,7 @@ import type { FoldButtonShape, FoldButtonType } from './button.type';
 import type { FoldIcon } from '../icon/icons-ts/icon.model';
 
 @Component({
-    template: ` <button foldButton [variant]="variant" [shape]="shape" [iconOnly]="iconOnly" [icon]="icon">
+    template: ` <button fold-button [variant]="variant" [shape]="shape" [iconOnly]="iconOnly" [icon]="icon">
         Je suis un bouton testé
     </button>`,
     standalone: true,

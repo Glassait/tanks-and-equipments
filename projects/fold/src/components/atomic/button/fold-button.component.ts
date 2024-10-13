@@ -15,7 +15,7 @@ import type { FoldButtonShape, FoldButtonType } from './button.type';
 import type { FoldIcon } from '../icon/icons-ts/icon.model';
 
 @Component({
-    selector: 'button[foldButton], a[foldButton]',
+    selector: 'button[fold-button], a[fold-button]',
     templateUrl: './fold-button.component.html',
     styleUrl: './fold-button.component.scss',
     standalone: true,

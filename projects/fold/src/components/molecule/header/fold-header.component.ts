@@ -5,7 +5,7 @@ import { NgOptimizedImage, UpperCasePipe } from '@angular/common';
 import { FoldButtonComponent } from '../../atomic/button/fold-button.component';
 
 @Component({
-    selector: 'foldHeader',
+    selector: 'fold-header',
     templateUrl: './fold-header.component.html',
     styleUrl: './fold-header.component.scss',
     standalone: true,
