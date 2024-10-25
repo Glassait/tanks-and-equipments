@@ -25,8 +25,7 @@
 		"strictPropertyInitialization": false,
 		"paths": {
 			"core/*": ["./src/app/modules/core/*"],
-			"features/*": ["./src/app/modules/features/*"],
-			"@fold": ["./dist/@fold", "./dist/@fold/*"]
+			"features/*": ["./src/app/modules/features/*"]
 		}
 	},
 	"angularCompilerOptions": {
