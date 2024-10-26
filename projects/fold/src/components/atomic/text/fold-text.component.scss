@@ -1,11 +1,17 @@
 @use 'sass:map';
 @use '../../../scss/abstract/colors';
 @use '../../../scss/abstract/borders';
+@use '../../../scss/mixins/flex' as *;
 
 :host {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @include flex-container(
+        (
+            align: center,
+            justify: center,
+        )
+    );
+
+    width: max-content;
 
     &.title-3,
     &.subtitle-1 {

@@ -1,0 +1,76 @@
+@use 'sass:map';
+@use '../../../scss/abstract/spacings';
+@use '../../../scss/abstract/colors';
+@use '../../../scss/abstract/borders';
+@use '../../../scss/mixins/flex' as *;
+
+:host {
+    display: block;
+    position: relative;
+
+    min-width: 320px;
+    max-width: 400px;
+
+    .img-wrapper {
+        overflow: hidden;
+        max-width: max-content;
+        max-height: max-content;
+    }
+
+    &:hover img {
+        transform: scale(1.3);
+    }
+
+    img {
+        max-height: 300px;
+
+        object-fit: cover;
+        background-position: 50% 50%;
+        background-repeat: no-repeat;
+
+        border-radius: map.get(borders.$border-radius, 4) map.get(borders.$border-radius, 4) 0 0;
+
+        transform: scale(1);
+        transition: 0.3s ease-in-out;
+    }
+
+    .tag-wrapper {
+        position: absolute;
+        z-index: 1;
+
+        top: map.get(spacings.$spacings, 8);
+        left: map.get(spacings.$spacings, 8);
+    }
+
+    a {
+        @include flex-container(
+            (
+                direction: column,
+            )
+        );
+
+        gap: map.get(spacings.$spacings, 12);
+
+        > div {
+            @include flex-container(
+                (
+                    direction: column,
+                )
+            );
+
+            gap: map.get(spacings.$spacings, 4);
+        }
+
+        color: map.get(colors.$neutral, 300);
+        fill: map.get(colors.$neutral, 300);
+    }
+
+    .body-1 {
+        font-weight: bold;
+
+        color: map.get(colors.$neutral, 200);
+
+        text-wrap: balance;
+        text-decoration: none;
+    }
+}
