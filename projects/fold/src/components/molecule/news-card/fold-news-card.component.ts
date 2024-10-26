@@ -15,8 +15,6 @@ import { SentenceCasePipe } from '../../../pipes/sentence-case/sentence-case.pip
 export class FoldNewsCardComponent implements OnInit {
     public static id: number = 0; // NOSONAR
 
-    @ViewChild(FoldLinkDirective, { static: true }) linkDirective: FoldLinkDirective;
-
     public title: InputSignal<string> = input.required();
 
     public url: InputSignal<string> = input.required();
