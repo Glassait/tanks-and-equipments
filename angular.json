@@ -24,7 +24,7 @@
 							"src/assets",
 							{
 								"glob": "**/*",
-								"input": "dist/@fold/images",
+								"input": "node_modules/fold/images",
 								"output": "/images/"
 							}
 						],
@@ -36,7 +36,7 @@
 							"entry": "server.ts"
 						},
 						"stylePreprocessorOptions": {
-							"includePaths": ["dist/@fold/scss/"]
+							"includePaths": ["node_modules/fold/scss/"]
 						}
 					},
 					"configurations": {
