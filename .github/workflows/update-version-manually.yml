@@ -14,17 +14,27 @@ concurrency:
   group: ${{ github.ref }}-update # This ensures only one job per branch
   cancel-in-progress: true # Cancels previous jobs in the group if a new job is triggered
 
+env:
+  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 jobs:
-  update-version-manually:
+  update-version:
     runs-on: ubuntu-latest
     steps:
+      - name: Create github app token
+        uses: actions/create-github-app-token@v1
+        id: app-token
+        with:
+          app-id: ${{ vars.VERSION_BUMPER_APPID }}
+          private-key: ${{ secrets.VERSION_BUMPER_SECRET }}
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ steps.app-token.outputs.token }}
       - name: Setup Node.js
         uses: ./.github/actions/setup-node
-      - name: Bump the npm version
+      - name: Bump the node version
         uses: ./.github/actions/bump-version
         with:
           version_type: ${{ inputs.version_type }}
-          MAINTAINER_NAME: ${{ secrets.MAINTAINER_NAME }}
-          MAINTAINER_EMAIL: ${{ secrets.MAINTAINER_EMAIL }}
+          TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -163,3 +163,21 @@ a {
         color: rgba(map.get($neutral, 400), map.get($opacity, 40));
     }
 }
+
+.overlap {
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr;
+
+    * {
+        grid-row: 1;
+        grid-column: 1;
+    }
+}
+
+.separator {
+    width: 1px;
+    height: auto;
+
+    background: map.get($warning, 700);
+}

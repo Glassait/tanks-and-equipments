@@ -5,7 +5,7 @@ import type { FoldNavigation } from './header.type';
 import { By } from '@angular/platform-browser';
 
 @Component({
-    template: ` <fold-header [navigation]="navigation" />`,
+    template: `<fold-header [navigation]="navigation" />`,
     imports: [FoldHeaderComponent],
     standalone: true,
 })
