@@ -1,0 +1,26 @@
+@use 'sass:map';
+@use '../../../scss/abstract/spacings';
+@use '../../../scss/abstract/borders';
+@use '../../../scss/abstract/colors';
+@use '../../../scss/abstract/fonts';
+@use '../../../scss/mixins/flex' as *;
+
+:host {
+    @include flex-container(
+        (
+            alight: center,
+            justify: center,
+        )
+    );
+    @extend %caption-2;
+
+    background: map.get(colors.$neutral, 900);
+
+    border-radius: map.get(borders.$border-radius, 4);
+
+    padding: map.get(spacings.$spacings, 4) map.get(spacings.$spacings, 12);
+
+    color: map.get(colors.$warning, 300);
+
+    width: max-content;
+}
