@@ -1,0 +1,93 @@
+@use 'sass:map';
+@use '../../../scss/abstract/colors';
+@use '../../../scss/abstract/borders';
+@use '../../../scss/abstract/spacings';
+@use '../../../scss/mixins/flex' as *;
+
+$card-width: 240px;
+$warning-gradient-start: map.get(colors.$warning, 900);
+$warning-gradient-end: map.get(colors.$warning, 700);
+$border-radius: map.get(borders.$border-radius, 4);
+$border-width: map.get(borders.$border-width, 1);
+$hover-background: map.get(colors.$warning, 500);
+$reward-color: map.get(colors.$warning, 300);
+
+:host {
+    display: block;
+
+    max-width: $card-width;
+    min-width: $card-width;
+
+    background: linear-gradient(to bottom, $warning-gradient-start, $warning-gradient-end);
+
+    border-radius: $border-radius;
+    padding: $border-width;
+
+    &:hover {
+        background: $hover-background;
+    }
+
+    a {
+        @include flex-container(
+            (
+                direction: column,
+            )
+        );
+        gap: map.get(spacings.$spacings, 12);
+
+        border-radius: $border-radius;
+
+        background: map.get(colors.$neutral, 900);
+
+        &:has(div[data-isReward='true']) {
+            color: $reward-color;
+        }
+
+        > div:first-child {
+            @include flex-container(
+                (
+                    direction: column,
+                    align: center,
+                    justify: center,
+                )
+            );
+
+            span {
+                margin: map.get(spacings.$spacings, -24) 0 0 0;
+            }
+        }
+
+        > div:last-child {
+            @include flex-container(
+                (
+                    align: center,
+                    justify: space-between,
+                )
+            );
+
+            border-top: 1px solid $warning-gradient-end;
+            padding: map.get(spacings.$spacings, 8) map.get(spacings.$spacings, 20);
+
+            fold-icon {
+                @include flex-container(
+                    (
+                        align: center,
+                        justify: center,
+                    )
+                );
+            }
+
+            .separator {
+                height: 16px;
+            }
+
+            &[data-isReward='false'] .recolor {
+                fill: map.get(colors.$neutral, 50);
+            }
+
+            &[data-isReward='true'] .recolor {
+                fill: map.get(colors.$warning, 300);
+            }
+        }
+    }
+}

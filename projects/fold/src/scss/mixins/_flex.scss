@@ -1,0 +1,19 @@
+/* stylelint-disable */
+@use 'sass:map';
+
+// Mixin for Flex Container
+@mixin flex-container($settings: ()) {
+    display: flex;
+    flex-direction: map.get($settings, direction);
+    justify-content: map.get($settings, justify);
+    align-items: map.get($settings, align);
+    flex-wrap: map.get($settings, wrap);
+}
+
+// Mixin for Flex Item
+@mixin flex-item($settings: ()) {
+    flex-grow: map.get($settings, grow);
+    flex-shrink: map.get($settings, shrink);
+    flex-basis: map.get($settings, basis);
+    align-self: map.get($settings, align);
+}

@@ -144,7 +144,7 @@
 						"polyfills": ["zone.js", "zone.js/testing"],
 						"tsConfig": "projects/fold/tsconfig.spec.json",
 						"assets": [],
-						"styles": [],
+						"styles": ["projects/fold/src/scss/main.scss"],
 						"scripts": []
 					}
 				}

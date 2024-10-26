@@ -12,7 +12,7 @@ export const routes: Routes = [
         loadComponent: () => import('./modules/features/home/home.component').then(c => c.HomeComponent),
     },
     {
-        path: 'chars-et-equipement',
+        path: 'chars-et-equipements',
         pathMatch: 'full',
         redirectTo: '/',
     },
