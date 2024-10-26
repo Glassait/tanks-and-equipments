@@ -1,5 +1,5 @@
 name: 'Setup Maven for the action'
-description: 'Bump the Maven version (stored in properties.revision) and push it on the repo'
+description: 'Bump the NPM version and push it on the repo'
 
 inputs:
   version_type:
