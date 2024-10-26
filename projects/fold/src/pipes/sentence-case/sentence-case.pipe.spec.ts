@@ -1,7 +1,7 @@
 import { SentenceCasePipe } from './sentence-case.pipe';
 
-describe('SentenceCasePipe', (): void => {
-    it('create an instance', (): void => {
+describe('SentenceCasePipe', () => {
+    it('create an instance', () => {
         const pipe = new SentenceCasePipe();
         expect(pipe).toBeTruthy();
     });
