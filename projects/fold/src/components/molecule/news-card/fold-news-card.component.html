@@ -1,0 +1,16 @@
+<div class="tag-wrapper" id="news-{{ componentId }}-tags">
+    @for (tag of tags(); track $index) {
+        <span foldTag>{{ tag | sentenceCase }}</span>
+    }
+</div>
+
+<a [openInNew]="true" [url]="url()" [attr.aria-label]="'Redirection vers l\'article : ' + title()" fold-link id="news-{{ componentId }}">
+    <div class="img-wrapper">
+        <img [src]="imageUrl()" alt="Image de la nouvelle : {{ title() }}" aria-hidden="true" />
+    </div>
+
+    <div>
+        <span id="news-title-{{ componentId }}" class="body-1">{{ title() | sentenceCase }}.</span>
+        <span fold-text iconRight="redirect" size="small">Voir l'article</span>
+    </div>
+</a>
