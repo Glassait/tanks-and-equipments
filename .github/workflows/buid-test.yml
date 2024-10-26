@@ -20,12 +20,12 @@ jobs:
         uses: ./.github/actions/setup-node
       - name: Install dependencies
         run: npm ci
+      - name: Build the project
+        run: npm run build
       - name: Run lint
         run: npm run lint
       - name: Run stylelint
         run: npm run lint:scss
-      - name: Build the project
-        run: npm run build
       - name: Run tests
         run: npm run test:ci
 
@@ -38,6 +38,8 @@ jobs:
         uses: ./.github/actions/setup-node
       - name: Install dependencies
         run: npm ci
+      - name: Install lib
+        run: npm run install:lib:ci
       - name: Run lint
         run: npm run lint:lib
       - name: Build the project
