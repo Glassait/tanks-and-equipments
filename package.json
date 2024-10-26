@@ -1,6 +1,6 @@
 {
 	"name": "tanks-and-equipments",
-	"version": "3.0.4",
+	"version": "3.0.5",
 	"private": true,
 	"engines": {
 		"node": "18.18.0 || 18.20.4",
@@ -34,13 +34,17 @@
 		"*.scss": "stylelint"
 	},
 	"svg-to-ts": {
-		"srcFiles": ["./projects/fold/src/icons-svg/**/*.svg"],
+		"srcFiles": [
+			"./projects/fold/src/icons-svg/**/*.svg"
+		],
 		"outputDirectory": "./projects/fold/src/components/icon/icons-ts",
 		"typeName": "FoldIcon",
 		"fileName": "icon.model",
 		"compileSources": true,
 		"svgoConfig": {
-			"plugins": ["cleanupAttrs"]
+			"plugins": [
+				"cleanupAttrs"
+			]
 		}
 	},
 	"dependencies": {
