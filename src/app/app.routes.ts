@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { PathEnum } from 'core/enums/path.enum';
 
 /**
  * Contain all the path of the website.
@@ -12,7 +13,7 @@ export const routes: Routes = [
         loadComponent: () => import('./modules/features/home/home.component').then(c => c.HomeComponent),
     },
     {
-        path: 'chars-et-equipements',
+        path: PathEnum.CHARS_EQUIPMENT,
         pathMatch: 'full',
         redirectTo: '/',
     },

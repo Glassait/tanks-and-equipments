@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, computed, inject, type Signal } fro
 import { Router, RouterOutlet } from '@angular/router';
 import { FoldFooterComponent, FoldHeaderComponent, type FoldNavigation } from 'fold';
 import { NgClass } from '@angular/common';
+import { PathEnum } from 'core/enums/path.enum';
 
 @Component({
     selector: 'root',
@@ -22,7 +23,7 @@ export class AppComponent {
         },
         {
             text: 'chars & équipements',
-            url: '/chars-et-equipement',
+            url: `/${PathEnum.CHARS_EQUIPMENT}`,
         },
         {
             text: 'wot officiel',
@@ -37,7 +38,7 @@ export class AppComponent {
         },
         {
             text: 'chars & équipements',
-            url: '/chars-et-equipement',
+            url: `/${PathEnum.CHARS_EQUIPMENT}`,
         },
     ];
 }
