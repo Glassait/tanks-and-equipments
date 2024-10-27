@@ -81,7 +81,7 @@ $reward-color: map.get(colors.$warning, 300);
                 height: 16px;
             }
 
-            &[data-isReward='false'] .recolor {
+            &:not([data-isReward='true']) .recolor {
                 fill: map.get(colors.$neutral, 50);
             }
 

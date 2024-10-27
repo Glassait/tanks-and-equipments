@@ -130,7 +130,7 @@
                     @if $i <= 6 and $j <= 6 {
                         grid-column: $i / span $j;
                     } @else {
-                        grid-column: 6;
+                        grid-column: $i / span 6;
                     }
                 }
 
