@@ -22,6 +22,7 @@
 						"assets": [
 							"src/favicon.ico",
 							"src/assets",
+							"src/mocks",
 							{
 								"glob": "**/*",
 								"input": "node_modules/fold/images",

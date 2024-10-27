@@ -1,0 +1,21 @@
+[
+	{
+		"name": "object 260",
+		"wotName": "r110_object_260",
+		"type": "heavy",
+		"level": 10,
+		"role": "heavyPush",
+		"nation": "USSR",
+		"priority": 5,
+		"is_reward": true
+	},
+	{
+		"name": "bz-75",
+		"wotName": "ch48_bz_75",
+		"type": "heavy",
+		"level": 10,
+		"role": "assault",
+		"nation": "China",
+		"priority": 5
+	}
+]
