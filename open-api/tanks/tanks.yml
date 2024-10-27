@@ -1,0 +1,107 @@
+openapi: 3.0.3
+info:
+  title: Tanks API
+  description: All apis related to the tanks
+  version: 1.0.3
+
+paths:
+  /api/private/v1/tanks/overview:
+    get:
+      tags:
+        - tanks-overview
+      description: Return the overview of all tank stored in the database who are meta
+      operationId: tanks-overview
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TanksOverview'
+        500:
+          description: Internal server error
+      deprecated: false
+
+components:
+  schemas:
+    TanksOverview:
+      title: TanksOverviewDto
+      description: The array of TankOverviewDto
+      type: array
+      items:
+        $ref: '#/components/schemas/TankOverview'
+    TankOverview:
+      title: TankOverviewDto
+      description: The object representing the overview of a tank
+      type: object
+      required:
+        - name
+        - wotName
+        - type
+        - level
+        - role
+        - nation
+        - priority
+      properties:
+        name:
+          type: string
+          description: The name of the tank
+          example: Object 260
+          minLength: 1
+        wotName:
+          type: string
+          description: The wargaming name of the tank
+          example: r110_object_260
+          minLength: 1
+        type:
+          type: string
+          description: The type of the tank
+          example: heavy
+          enum:
+            - light
+            - medium
+            - heavy
+            - anti-tank
+        level:
+          type: number
+          description: The level of the tank
+          maximum: 10
+          minimum: 6
+          example: 10
+        role:
+          type: string
+          description: The role of the tank
+          example: assault
+          enum:
+            - assault
+            - heavy-push
+            - sniper
+            - supports
+            - versatile
+            - wheels
+        nation:
+          type: string
+          description: The nation of the tank
+          example: URSS
+          enum:
+            - China
+            - Italy
+            - Sweden
+            - Japan
+            - Czech
+            - France
+            - USA
+            - UK
+            - Poland
+            - Germany
+            - USSR
+        priority:
+          type: number
+          description: The priority of the tank
+          minimum: 1
+          maximum: 5
+          example: 5
+        is_reward:
+          type: boolean
+          description: If the tank is a reward tank
+          example: true
