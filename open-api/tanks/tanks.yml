@@ -2,7 +2,10 @@ openapi: 3.0.3
 info:
   title: Tanks API
   description: All apis related to the tanks
-  version: 1.0.3
+  version: 1.0.4
+
+servers:
+  - url: https://fold-backend-5e6c2cf7c25c.herokuapp.com
 
 paths:
   /api/private/v1/tanks/overview:
@@ -61,7 +64,7 @@ components:
             - light
             - medium
             - heavy
-            - anti-tank
+            - tankDestroyer
         level:
           type: number
           description: The level of the tank
@@ -74,7 +77,7 @@ components:
           example: assault
           enum:
             - assault
-            - heavy-push
+            - heavyPush
             - sniper
             - supports
             - versatile

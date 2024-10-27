@@ -24,7 +24,7 @@
 		"test:lib:ci": "npm run test:lib -- --browsers=ChromeHeadless --no-watch --no-progress",
 		"test:lib:local": "npm run test:lib -- --browsers=Chrome --watch=true",
 		"lint:lib": "eslint projects/fold/src",
-		"install:lib": "del /s /q *.tgz && npm run install:lib:ci",
+		"install:lib": "find . -name \"*.tgz\" -type f -delete && npm run install:lib:ci",
 		"install:lib:ci": "npm run build:lib && npm run pack:lib && npm i fold-1.0.0.tgz -f",
 		"generate-icons": "npx -p svg-to-ts svg-to-ts-object",
 		"open-api": "openapi-generator-cli generate -g typescript-angular",
