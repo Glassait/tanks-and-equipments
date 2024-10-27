@@ -2,20 +2,29 @@
 @use 'abstract/spacings';
 @use 'abstract/colors';
 @use 'abstract/borders';
+@use 'mixins/flex' as *;
 
 #most-priority-tanks {
-    background-image: url('../../../../assets/is-7-background.jpeg');
+    background-image: linear-gradient(to bottom, transparent, map.get(colors.$neutral, 900) 65%),
+        url('../../../../assets/is-7-background.jpeg');
     background-repeat: no-repeat;
-    background-position: 0 40%;
+    background-size: cover;
+    background-position: 0 111%;
 
     padding: map.get(spacings.$spacings, 200) 0 map.get(spacings.$spacings, 60) 0;
-    gap: map.get(spacings.$spacings, 80);
 }
 
 header {
-    gap: map.get(spacings.$spacings, 12);
-
     padding: 0 0 map.get(spacings.$spacings, 80) 0;
 
     border-bottom: map.get(borders.$border-width, 1) solid rgba(map.get(colors.$neutral, 50), map.get(colors.$opacity, 25));
+}
+
+#title-main-most-priority-tanks,
+#content-main-most-priority-tanks {
+    @include flex-container(
+        (
+            align: center,
+        )
+    );
 }

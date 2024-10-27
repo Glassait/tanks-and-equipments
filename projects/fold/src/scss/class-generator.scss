@@ -48,7 +48,7 @@
     > *:not(.breakout, .full-width) {
         display: grid;
 
-        @extend %w-full, .gap-16;
+        @extend %w-full;
 
         @include grid-cols(repeat(1, minmax(0, 1fr)));
 
@@ -165,4 +165,8 @@
     height: auto;
 
     background: map.get($warning, 700);
+}
+
+.space-between {
+    justify-content: space-between;
 }
