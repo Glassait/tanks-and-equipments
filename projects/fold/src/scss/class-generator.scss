@@ -1,9 +1,11 @@
 @use 'sass:list';
+@use 'sass:map';
 @use './abstract/fonts' as *;
 @use './abstract/width' as *;
 @use './abstract/breakpoints' as *;
 @use './abstract/spacings' as *;
-@use './abstract/grids' as *;
+@use './abstract/colors' as *;
+@use './mixins/grids' as *;
 
 @each $name, $properties in $font {
     $size: list.nth($properties, 1);
@@ -23,19 +25,48 @@
     }
 }
 
-.fold-grid {
+@each $name, $properties in $neutral {
+    .neutral-#{$name} {
+        color: $properties;
+        fill: $properties;
+    }
+}
+
+.fold-grid,
+.full-width {
+    @extend %w-full;
+
     display: grid;
+    $grid-breakout: minmax(4px, 1fr);
 
-    @extend %w-full, %max-w-fold, .gap-16, .m-lr-16;
+    grid-template-columns: [full-width-start] $grid-breakout [breakout-start] $grid-breakout [content-start] minmax(320px, 1520px) [content-end] $grid-breakout [breakout-end] $grid-breakout [full-width-end];
 
-    @include grid-cols(repeat(1, minmax(0, 1fr)));
-
-    @include breakpoint(tablet) {
-        @include grid-cols(repeat(6, minmax(0, 1fr)));
+    > * {
+        grid-column: content;
     }
 
-    @include breakpoint(desktop) {
-        @include grid-cols(repeat(12, minmax(0, 1fr)));
+    > *:not(.breakout, .full-width) {
+        display: grid;
+
+        @extend %w-full, .gap-16;
+
+        @include grid-cols(repeat(1, minmax(0, 1fr)));
+
+        @include breakpoint(tablet) {
+            @include grid-cols(repeat(6, minmax(0, 1fr)));
+        }
+
+        @include breakpoint(desktop) {
+            @include grid-cols(repeat(12, minmax(0, 1fr)));
+        }
+    }
+
+    > .breakout {
+        grid-column: breakout;
+    }
+
+    > .full-width {
+        grid-column: full-width;
     }
 }
 
@@ -57,4 +88,81 @@
             }
         }
     }
+}
+
+@for $i from 1 through 12 {
+    // Base grid-row class for rows 1 through 12
+    .grid-row-#{$i} {
+        grid-row: $i;
+    }
+
+    // Grid-column handling for each $i and $j combination within 1 to 12
+    @for $j from 1 through 12 {
+        // Single column class when $i equals $j
+        @if $i == $j {
+            .grid-column-#{$i} {
+                grid-column: 1;
+
+                @if $i > 1 and $j > 1 {
+                    @include breakpoint(tablet) {
+                        @if $i <= 6 and $j <= 6 {
+                            grid-column: $i;
+                        } @else {
+                            grid-column: 6;
+                        }
+                    }
+                }
+
+                // Desktop breakpoint: Apply full span only if $i > 6
+                @if $i > 6 {
+                    @include breakpoint(desktop) {
+                        grid-column: $i;
+                    }
+                }
+            }
+        } @else {
+            // General column class for all other $i and $j pairs
+            .grid-column-#{$i}-#{$j} {
+                grid-column: 1;
+
+                // Tablet breakpoint: Set span only if both $i and $j are <= 6
+                @include breakpoint(tablet) {
+                    @if $i <= 6 and $j <= 6 {
+                        grid-column: $i / span $j;
+                    } @else {
+                        grid-column: 6;
+                    }
+                }
+
+                // Desktop breakpoint: Apply full span only if $i > 6 or $j > 6
+                @if $i > 6 or $j > 6 {
+                    @include breakpoint(desktop) {
+                        grid-column: $i / span $j;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.balance {
+    text-wrap: balance;
+}
+
+.overlap {
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr;
+
+    * {
+        grid-row: 1;
+        grid-column: 1;
+    }
+}
+
+.separator {
+    width: 1px;
+    height: auto;
+
+    background: map.get($warning, 700);
 }

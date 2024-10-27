@@ -1,0 +1,21 @@
+@use 'sass:map';
+@use 'abstract/spacings';
+@use 'abstract/colors';
+@use 'abstract/borders';
+
+#most-priority-tanks {
+    background-image: url('../../../../assets/is-7-background.jpeg');
+    background-repeat: no-repeat;
+    background-position: 0 40%;
+
+    padding: map.get(spacings.$spacings, 200) 0 map.get(spacings.$spacings, 60) 0;
+    gap: map.get(spacings.$spacings, 80);
+}
+
+header {
+    gap: map.get(spacings.$spacings, 12);
+
+    padding: 0 0 map.get(spacings.$spacings, 80) 0;
+
+    border-bottom: map.get(borders.$border-width, 1) solid rgba(map.get(colors.$neutral, 50), map.get(colors.$opacity, 25));
+}
