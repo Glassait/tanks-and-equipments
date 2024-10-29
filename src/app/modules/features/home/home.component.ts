@@ -3,10 +3,10 @@ import { FoldButtonComponent, FoldLinkDirective, FoldNewsCardComponent, FoldTank
 import { TanksOverviewProxy } from 'shared/proxy/tanks-overview.proxy';
 import { isPlatformBrowser, isPlatformServer, JsonPipe, NgClass } from '@angular/common';
 import { TransferState } from '@angular/platform-browser';
-import type { TankOverview } from 'generated-api/tank';
 import { PathEnum } from 'core/enums/path.enum';
 import type { WotNews } from 'generated-api/wot';
 import { WotNewsProxy } from 'shared/proxy/wot-news.proxy';
+import type { TankOverview } from 'generated-api/tanks';
 
 const TANKS_OVERVIEW_KEY = makeStateKey<TankOverview[]>('tankOverviews');
 const WOT_NEWS_KEY = makeStateKey<WotNews[]>('wotNews');

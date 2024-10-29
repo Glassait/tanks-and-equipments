@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
-import { type TankOverview, TanksOverviewService } from 'generated-api/tank';
 import type { Observable } from 'rxjs';
+import { type TankOverview, TanksOverviewService } from 'generated-api/tanks';
 
 @Injectable({
     providedIn: 'root',
