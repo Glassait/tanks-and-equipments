@@ -1,4 +1,4 @@
-<section id="most-priority-tanks" class="full-width gap-80">
+<section id="most-priority-tanks" class="full-width">
     <header class="gap-12">
         <h1 class="display grid-column-1-2 grid-row-1">FOLD_</h1>
         <span class="grid-column-1-6 grid-row-2 balance body-1 neutral-400">
@@ -31,7 +31,7 @@
     </main>
 </section>
 
-<section id="wot-news" class="full-width gap-20">
+<section id="wot-news" class="full-width">
     <header>
         <h2 fold-text size="title-3" iconLeft="newspaper">Nouveautés sur World Of Tanks</h2>
     </header>
@@ -59,4 +59,30 @@
             Tout voir
         </button>
     </footer>
+</section>
+
+<section id="about-us" class="full-width">
+    <div>
+        <div class="grid-column-1-5 gap-20">
+            <h2 fold-text size="title-3" class="neutral-300">A propos du clan FOLD_</h2>
+            <p class="neutral-400">
+                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna
+                aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
+                takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
+                eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo
+                dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor
+                sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed
+                diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus
+                est Lorem ipsum dolor sit amet.
+            </p>
+        </div>
+        <div class="grid-column-7-12 gap-20">
+            <h3 fold-text size="title-3" class="neutral-300">Résultat Compétitif</h3>
+            <div class="gap-16">
+                @for (result of foldResults; track $index) {
+                    <fold-news-card [title]="result.description" [tags]="[result.tag]" [imageUrl]="result.image_url" [url]="''" />
+                }
+            </div>
+        </div>
+    </div>
 </section>

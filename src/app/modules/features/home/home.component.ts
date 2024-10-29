@@ -7,9 +7,12 @@ import { PathEnum } from 'core/enums/path.enum';
 import type { WotNews } from 'generated-api/wot';
 import { WotNewsProxy } from 'shared/proxy/wot-news.proxy';
 import type { TankOverview } from 'generated-api/tanks';
+import type { FoldResult } from 'generated-api/fold';
+import { FoldResultsProxy } from 'shared/proxy/fold-results.proxy';
 
 const TANKS_OVERVIEW_KEY = makeStateKey<TankOverview[]>('tankOverviews');
 const WOT_NEWS_KEY = makeStateKey<WotNews[]>('wotNews');
+const FOLD_RESULTS_KEY = makeStateKey<FoldResult[]>('foldResults');
 
 @Component({
     selector: 'home',
@@ -28,6 +31,7 @@ export class HomeComponent implements OnInit {
     //region INJECTION
     private readonly tanksOverviewService: TanksOverviewProxy = inject(TanksOverviewProxy);
     private readonly wotNewsService: WotNewsProxy = inject(WotNewsProxy);
+    private readonly foldResultsService: FoldResultsProxy = inject(FoldResultsProxy);
     private readonly platformId = inject(PLATFORM_ID);
     private readonly transferState = inject(TransferState);
     //endregion
@@ -36,6 +40,7 @@ export class HomeComponent implements OnInit {
 
     protected tanksOverview: TankOverview[] = [];
     protected wotNews: WotNews[] = [];
+    protected foldResults: FoldResult[] = [];
 
     ngOnInit(): void {
         if (isPlatformServer(this.platformId)) {
@@ -58,11 +63,24 @@ export class HomeComponent implements OnInit {
                     console.error(err);
                 },
             });
+
+            this.foldResultsService.foldResults().subscribe({
+                next: (foldResults: FoldResult[]): void => {
+                    this.foldResults = foldResults;
+                    this.transferState.set(FOLD_RESULTS_KEY, this.foldResults);
+                },
+                error: err => {
+                    console.error(err);
+                },
+            });
         }
 
         if (isPlatformBrowser(this.platformId)) {
             this.tanksOverview = this.transferState.get(TANKS_OVERVIEW_KEY, []);
             this.wotNews = this.transferState.get(WOT_NEWS_KEY, []);
+            this.foldResults = this.transferState.get(FOLD_RESULTS_KEY, []);
         }
     }
+
+    protected readonly require = require;
 }
