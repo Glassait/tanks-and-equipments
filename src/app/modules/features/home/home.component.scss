@@ -12,19 +12,36 @@
     background-position: 0 111%;
 
     padding: map.get(spacings.$spacings, 200) 0 map.get(spacings.$spacings, 60) 0;
+
+    header {
+        padding: 0 0 map.get(spacings.$spacings, 80) 0;
+
+        border-bottom: map.get(borders.$border-width, 1) solid rgba(map.get(colors.$neutral, 50), map.get(colors.$opacity, 25));
+    }
+
+    div {
+        @include flex-container(
+            (
+                align: center,
+            )
+        );
+    }
 }
 
-header {
-    padding: 0 0 map.get(spacings.$spacings, 80) 0;
+#wot-news {
+    main {
+        gap: map.get(spacings.$spacings, 40) map.get(spacings.$spacings, 16);
 
-    border-bottom: map.get(borders.$border-width, 1) solid rgba(map.get(colors.$neutral, 50), map.get(colors.$opacity, 25));
-}
+        > * {
+            grid-column: span 3;
+        }
+    }
 
-#title-main-most-priority-tanks,
-#content-main-most-priority-tanks {
-    @include flex-container(
-        (
-            align: center,
-        )
-    );
+    footer {
+        @include flex-container(
+            (
+                justify: center,
+            )
+        );
+    }
 }

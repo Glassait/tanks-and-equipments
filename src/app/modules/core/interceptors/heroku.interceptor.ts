@@ -7,7 +7,7 @@ export const httpHerokuinterceptor: HttpInterceptorFn = (req: HttpRequest<unknow
         return next(req);
     }
 
-    const endPoint: string[] = req.url.split('herokuapp.com/api/');
+    const endPoint: string[] = req.url.split('herokuapp.com/');
 
     if (endPoint.length < 2) {
         return next(req);

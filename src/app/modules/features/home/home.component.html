@@ -8,17 +8,13 @@
     </header>
 
     <main class="gap-20">
-        <div
-            id="title-main-most-priority-tanks"
-            class="grid-row-1 grid-column-1-12"
-            [ngClass]="this.tanksOverview.length < 6 ? 'gap-40' : 'space-between'"
-        >
+        <div class="grid-row-1 grid-column-1-12" [ngClass]="this.tanksOverview.length < 6 ? 'gap-40' : 'space-between'">
             <h2 fold-text size="title-3" iconLeft="equipment">Configurations des chars prioritaires</h2>
             <a fold-link url="/{{ PathEnum.CHARS_EQUIPMENT }}" class="neutral-100">
                 <span fold-text size="large" iconRight="redirect">Tout voir</span>
             </a>
         </div>
-        <div id="content-main-most-priority-tanks" class="gris-row-2 grid-column-1-12 gap-16">
+        <div class="gris-row-2 grid-column-1-12 gap-16">
             @for (tank of tanksOverview; track $index) {
                 <fold-tank-card
                     [name]="tank.name"
@@ -33,4 +29,34 @@
             }
         </div>
     </main>
+</section>
+
+<section id="wot-news" class="full-width gap-20">
+    <header>
+        <h2 fold-text size="title-3" iconLeft="newspaper">Nouveautés sur World Of Tanks</h2>
+    </header>
+    <main>
+        @for (news of wotNews; track $index) {
+            <fold-news-card
+                class="grid-row-{{ $index < 4 ? 1 : 2 }}"
+                [url]="news.url"
+                [imageUrl]="news.image_url"
+                [tags]="news.tags"
+                [title]="news.title"
+            />
+        }
+    </main>
+    <footer>
+        <button
+            [openInNew]="true"
+            fold-button
+            fold-link
+            icon="redirect"
+            shape="rectangle"
+            url="https://worldoftanks.eu/fr/news/"
+            variant="tertiary"
+        >
+            Tout voir
+        </button>
+    </footer>
 </section>
