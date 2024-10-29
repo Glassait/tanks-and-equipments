@@ -22,11 +22,10 @@
     }
 
     img {
+        min-height: 300px;
         max-height: 300px;
 
         object-fit: cover;
-        background-position: 50% 50%;
-        background-repeat: no-repeat;
 
         border-radius: map.get(borders.$border-radius, 4) map.get(borders.$border-radius, 4) 0 0;
 
