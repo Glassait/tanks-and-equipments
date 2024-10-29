@@ -14,20 +14,22 @@
                 <span fold-text size="large" iconRight="redirect">Tout voir</span>
             </a>
         </div>
-        <div class="gris-row-2 grid-column-1-12 gap-16">
+        <ul class="gris-row-2 grid-column-1-12 gap-16">
             @for (tank of tanksOverview; track $index) {
-                <fold-tank-card
-                    [name]="tank.name"
-                    [wotName]="tank.wotName"
-                    [role]="tank.role"
-                    [level]="tank.level"
-                    [type]="tank.type"
-                    [nation]="tank.nation"
-                    [priority]="tank.priority"
-                    [isReward]="tank.is_reward"
-                />
+                <li id="fold-tank-{{ $index + 1 }}">
+                    <fold-tank-card
+                        [name]="tank.name"
+                        [wotName]="tank.wotName"
+                        [role]="tank.role"
+                        [level]="tank.level"
+                        [type]="tank.type"
+                        [nation]="tank.nation"
+                        [priority]="tank.priority"
+                        [isReward]="tank.is_reward"
+                    />
+                </li>
             }
-        </div>
+        </ul>
     </main>
 </section>
 
@@ -35,17 +37,19 @@
     <header>
         <h2 fold-text size="title-3" iconLeft="newspaper">Nouveautés sur World Of Tanks</h2>
     </header>
-    <main>
+    <ul>
         @for (news of wotNews; track $index) {
-            <fold-news-card
-                class="grid-row-{{ $index < 4 ? 1 : 2 }}"
-                [url]="news.url"
-                [imageUrl]="news.image_url"
-                [tags]="news.tags"
-                [title]="news.title"
-            />
+            <li>
+                <fold-news-card
+                    class="grid-row-{{ $index < 4 ? 1 : 2 }}"
+                    [url]="news.url"
+                    [imageUrl]="news.image_url"
+                    [tags]="news.tags"
+                    [title]="news.title"
+                />
+            </li>
         }
-    </main>
+    </ul>
     <footer>
         <button
             [openInNew]="true"
@@ -78,11 +82,13 @@
         </div>
         <div class="grid-column-7-12 gap-20">
             <h3 fold-text size="title-3" class="neutral-300">Résultat Compétitif</h3>
-            <div class="gap-16">
+            <ul class="gap-16">
                 @for (result of foldResults; track $index) {
-                    <fold-news-card [title]="result.description" [tags]="[result.tag]" [imageUrl]="result.image_url" [url]="''" />
+                    <li>
+                        <fold-news-card [title]="result.description" [tags]="[result.tag]" [imageUrl]="result.image_url" [url]="''" />
+                    </li>
                 }
-            </div>
+            </ul>
         </div>
     </div>
 </section>

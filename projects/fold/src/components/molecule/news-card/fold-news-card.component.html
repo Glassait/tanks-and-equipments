@@ -6,7 +6,7 @@
 
 <a [openInNew]="true" [url]="url()" [attr.aria-label]="'Redirection vers l\'article : ' + title()" fold-link id="news-{{ componentId }}">
     <div class="img-wrapper">
-        <img [src]="imageUrl()" alt="Image de la nouvelle : {{ title() }}" aria-hidden="true" />
+        <img [src]="imageUrl()" alt="Image de la nouvelle n°{{ componentId }}" aria-hidden="true" />
     </div>
 
     <div>

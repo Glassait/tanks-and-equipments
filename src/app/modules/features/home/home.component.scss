@@ -9,6 +9,11 @@
     padding: 0 0 map.get(spacings.$spacings, 40) 0;
 }
 
+ul,
+li {
+    list-style: none;
+}
+
 #most-priority-tanks {
     background-image: linear-gradient(to bottom, transparent, map.get(colors.$neutral, 900) 65%),
         url('../../../../assets/is-7-background.jpeg');
@@ -25,7 +30,8 @@
         border-bottom: map.get(borders.$border-width, 1) solid rgba(map.get(colors.$neutral, 50), map.get(colors.$opacity, 25));
     }
 
-    div {
+    div,
+    ul {
         @include flex-container(
             (
                 align: center,
@@ -37,7 +43,7 @@
 #wot-news {
     gap: map.get(spacings.$spacings, 20) 0;
 
-    main {
+    ul {
         gap: map.get(spacings.$spacings, 40) map.get(spacings.$spacings, 16);
 
         > * {
@@ -78,7 +84,7 @@
         );
     }
 
-    .grid-column-7-12 > div {
+    .grid-column-7-12 > ul {
         @include flex-container(
             (
                 justify: end,
