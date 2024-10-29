@@ -55,6 +55,10 @@ $reward-color: map.get(colors.$warning, 300);
             span {
                 margin: map.get(spacings.$spacings, -24) 0 0 0;
             }
+
+            img {
+                object-fit: cover;
+            }
         }
 
         > div:last-child {
