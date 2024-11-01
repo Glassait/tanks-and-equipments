@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, inject, type Signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostBinding, inject } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
 import { FoldFooterComponent, FoldHeaderComponent, type FoldNavigation } from 'fold';
 import { AsyncPipe, NgClass } from '@angular/common';
@@ -14,8 +14,15 @@ import { ResizeService } from 'shared/services/resize.service';
     imports: [RouterOutlet, FoldHeaderComponent, FoldFooterComponent, NgClass, AsyncPipe],
 })
 export class AppComponent {
-    private readonly router: Router = inject(Router);
+    @HostBinding('class')
+    get cssClasses(): string[] {
+        return ['body-interface', this.router.url === '/' && this.resizeService.isDesktop.getValue() ? '' : 'gap-40'];
+    }
+
+    //region INJECTION
     protected readonly resizeService: ResizeService = inject(ResizeService);
+    private readonly router: Router = inject(Router);
+    //endregion
 
     protected readonly headerNavigation: FoldNavigation[] = [
         {
@@ -43,7 +50,4 @@ export class AppComponent {
             url: `/${PathEnum.CHARS_EQUIPMENT}`,
         },
     ];
-    protected cssClasses: Signal<string> = computed((): string =>
-        this.router.url === '/' && this.resizeService.isDesktop.getValue() ? '' : 'gap-40'
-    );
 }

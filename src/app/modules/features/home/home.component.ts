@@ -81,6 +81,4 @@ export class HomeComponent implements OnInit {
             this.foldResults = this.transferState.get(FOLD_RESULTS_KEY, []);
         }
     }
-
-    protected readonly require = require;
 }
