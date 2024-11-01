@@ -85,7 +85,12 @@
             <ul class="gap-16">
                 @for (result of foldResults; track $index) {
                     <li>
-                        <fold-news-card [title]="result.description" [tags]="[result.tag]" [imageUrl]="result.image_url" [url]="''" />
+                        <fold-news-card
+                            [isArticle]="false"
+                            [description]="result.description"
+                            [tags]="[result.tag]"
+                            [imageUrl]="result.image_url"
+                        />
                     </li>
                 }
             </ul>

@@ -4,13 +4,30 @@
     }
 </div>
 
-<a [openInNew]="true" [url]="url()" [attr.aria-label]="'Redirection vers l\'article : ' + title()" fold-link id="news-{{ componentId }}">
+<a
+    [attr.aria-label]="'Redirection vers l\'article : ' + title()"
+    [disabled]="!isArticle()"
+    [openInNew]="true"
+    [url]="url()"
+    fold-link
+    id="news-{{ componentId }}"
+>
     <div class="img-wrapper">
-        <img [src]="imageUrl()" alt="Image de la nouvelle n°{{ componentId }}" aria-hidden="true" />
+        <img
+            [attr.aria-labelledby]="isArticle() ? 'news-title-' + componentId : ''"
+            [src]="imageUrl()"
+            alt=""
+            aria-hidden="true"
+            loading="lazy"
+        />
     </div>
 
     <div>
-        <span id="news-title-{{ componentId }}" class="body-1">{{ title() | sentenceCase }}.</span>
-        <span fold-text iconRight="redirect" size="small">Voir l'article</span>
+        @if (isArticle()) {
+            <span id="news-title-{{ componentId }}" class="body-1">{{ title() | sentenceCase }}.</span>
+            <span fold-text iconRight="redirect" size="small">Voir l'article</span>
+        } @else {
+            <p class="neutral-400 body-1">{{ description() | sentenceCase }}</p>
+        }
     </div>
 </a>
