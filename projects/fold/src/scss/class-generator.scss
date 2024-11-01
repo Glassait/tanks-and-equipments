@@ -45,7 +45,7 @@
         grid-column: content;
     }
 
-    > *:not(.breakout, .full-width) {
+    > *:not(.breakout, .full-width, .content) {
         display: grid;
 
         @extend %w-full;
