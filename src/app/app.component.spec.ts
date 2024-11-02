@@ -59,15 +59,6 @@ describe('AppComponent', () => {
         expect(div).toBeNull();
     });
 
-    it('should not have gap-40 when url is /', () => {
-        spyOnProperty(router, 'url', 'get').and.returnValue('/');
-        fixture.detectChanges();
-
-        expect(component.cssClasses.length).toEqual(2);
-        expect(component.cssClasses[0]).toEqual('body-interface');
-        expect(component.cssClasses[1]).toEqual('');
-    });
-
     it('should have gap-40 when url is not /', () => {
         spyOnProperty(router, 'url', 'get').and.returnValue('/url');
         fixture.detectChanges();

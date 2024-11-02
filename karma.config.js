@@ -9,8 +9,9 @@ module.exports = function (config) {
             '@angular-devkit/build-angular/plugins/karma',
         ],
         files: [
-            { pattern: 'src/**/*.spec.ts', type: 'js' },
+            { pattern: 'src/app/**/*.spec.ts', type: 'js' },
             { pattern: 'projects/fold/src/**/*.spec.ts', type: 'js' },
+            { pattern: 'src/generated-api/**/*.ts', type: 'js', included: false, watched: false, served: false },
         ],
         // coverage reporter generates the coverage
         reporters: ['progress', 'kjhtml', 'coverage'],
@@ -22,6 +23,7 @@ module.exports = function (config) {
             dir: require('path').join(__dirname, './coverage'),
             subdir: '.',
             reporters: [{ type: 'html' }, { type: 'text-summary' }],
+            exclude: ['src/generated-api/**/*.ts'],
             check: {
                 global: {
                     statements: 90,

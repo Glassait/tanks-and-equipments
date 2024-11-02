@@ -24,7 +24,7 @@ const FOLD_RESULTS_KEY = makeStateKey<FoldResult[]>('foldResults');
 })
 export class HomeComponent implements OnInit {
     @HostBinding('class')
-    get cssClasses(): string[] {
+    public get cssClasses(): string[] {
         return ['fold-grid', 'gap-80'];
     }
 

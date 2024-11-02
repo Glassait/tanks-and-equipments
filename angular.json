@@ -100,10 +100,20 @@
 					"builder": "@angular-devkit/build-angular:karma",
 					"options": {
 						"codeCoverage": true,
+						"codeCoverageExclude": ["src/generated-api/**"],
 						"karmaConfig": "karma.config.js",
 						"polyfills": ["zone.js", "zone.js/testing"],
 						"tsConfig": "tsconfig.spec.json",
-						"assets": [],
+						"assets": [
+							"src/favicon.ico",
+							"src/assets",
+							"src/mocks",
+							{
+								"glob": "**/*",
+								"input": "node_modules/fold/images",
+								"output": "/images/"
+							}
+						],
 						"styles": ["src/styles.scss"],
 						"scripts": [],
 						"stylePreprocessorOptions": {

@@ -39,7 +39,7 @@
     </header>
     <ul>
         @for (news of wotNews; track $index) {
-            <li>
+            <li id="wot-news-{{ $index + 1 }}">
                 <fold-news-card
                     class="grid-row-{{ $index < 4 ? 1 : 2 }}"
                     [url]="news.url"
@@ -78,7 +78,7 @@
             <h3 fold-text size="title-3" class="neutral-300">Résultat Compétitif</h3>
             <ul class="gap-16">
                 @for (result of foldResults; track $index) {
-                    <li>
+                    <li id="about-us-{{ $index + 1 }}">
                         <fold-news-card
                             [isArticle]="false"
                             [description]="result.description"
