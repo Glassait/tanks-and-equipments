@@ -1,5 +1,5 @@
 <a
-    [attr.aria-labelledby]="'tank-name-{{ componentId }}'"
+    [attr.aria-labelledby]="'tank-name-' + componentId"
     [url]="'/chars-et-equipements/' + (name() | lowercase | replace: ' ' : '_')"
     fold-link
     id="tank-card-{{ componentId }}"

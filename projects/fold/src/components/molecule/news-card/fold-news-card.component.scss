@@ -11,22 +11,21 @@
     min-width: 320px;
     max-width: 400px;
 
-    .img-wrapper {
+    div.img-wrapper {
         overflow: hidden;
         max-width: max-content;
         max-height: max-content;
     }
 
-    &:hover img {
+    &:not(:has(a[disabled='true'])):hover img {
         transform: scale(1.3);
     }
 
     img {
+        min-height: 300px;
         max-height: 300px;
 
         object-fit: cover;
-        background-position: 50% 50%;
-        background-repeat: no-repeat;
 
         border-radius: map.get(borders.$border-radius, 4) map.get(borders.$border-radius, 4) 0 0;
 
@@ -34,7 +33,7 @@
         transition: 0.3s ease-in-out;
     }
 
-    .tag-wrapper {
+    div.tag-wrapper {
         position: absolute;
         z-index: 1;
 
@@ -51,6 +50,9 @@
 
         gap: map.get(spacings.$spacings, 12);
 
+        color: map.get(colors.$neutral, 300);
+        fill: map.get(colors.$neutral, 300);
+
         > div {
             @include flex-container(
                 (
@@ -60,12 +62,9 @@
 
             gap: map.get(spacings.$spacings, 4);
         }
-
-        color: map.get(colors.$neutral, 300);
-        fill: map.get(colors.$neutral, 300);
     }
 
-    .body-1 {
+    span.body-1 {
         font-weight: bold;
 
         color: map.get(colors.$neutral, 200);

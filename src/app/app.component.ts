@@ -1,15 +1,29 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { ChangeDetectionStrategy, Component, HostBinding, inject } from '@angular/core';
+import { Router, RouterOutlet } from '@angular/router';
 import { FoldFooterComponent, FoldHeaderComponent, type FoldNavigation } from 'fold';
+import { AsyncPipe, NgClass } from '@angular/common';
+import { PathEnum } from 'core/enums/path.enum';
+import { ResizeService } from 'shared/services/resize.service';
 
 @Component({
     selector: 'root',
     templateUrl: './app.component.html',
+    styles: ['h1, p { text-align: center }'],
     standalone: true,
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [RouterOutlet, FoldHeaderComponent, FoldFooterComponent],
+    imports: [RouterOutlet, FoldHeaderComponent, FoldFooterComponent, NgClass, AsyncPipe],
 })
 export class AppComponent {
+    @HostBinding('class')
+    get cssClasses(): string[] {
+        return ['body-interface', this.router.url === '/' && this.resizeService.isDesktop.getValue() ? '' : 'gap-40'];
+    }
+
+    //region INJECTION
+    protected readonly resizeService: ResizeService = inject(ResizeService);
+    private readonly router: Router = inject(Router);
+    //endregion
+
     protected readonly headerNavigation: FoldNavigation[] = [
         {
             text: 'accueil',
@@ -17,7 +31,7 @@ export class AppComponent {
         },
         {
             text: 'chars & équipements',
-            url: '/chars-et-equipement',
+            url: `/${PathEnum.CHARS_EQUIPMENT}`,
         },
         {
             text: 'wot officiel',
@@ -25,14 +39,15 @@ export class AppComponent {
             openInNew: true,
         },
     ];
-    footerNavigation: FoldNavigation[] = [
+
+    protected readonly footerNavigation: FoldNavigation[] = [
         {
             text: 'accueil',
             url: '/',
         },
         {
             text: 'chars & équipements',
-            url: '/chars-et-equipement',
+            url: `/${PathEnum.CHARS_EQUIPMENT}`,
         },
     ];
 }

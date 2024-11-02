@@ -17,7 +17,6 @@ $spacings: (
 
 $types: (
     gap: 'gap',
-    m-lr: 'margin',
 );
 
 @each $types-name, $type in $types {
@@ -31,11 +30,7 @@ $types: (
         }
 
         %#{$selector} {
-            @if $types-name == 'm-lr' {
-                #{$type}: 0 $spacing;
-            } @else {
-                #{$type}: $spacing;
-            }
+            #{$type}: $spacing;
         }
     }
 }

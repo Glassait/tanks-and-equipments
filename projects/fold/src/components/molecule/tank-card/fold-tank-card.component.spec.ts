@@ -13,7 +13,7 @@ import { FoldLinkDirective } from '../../../directives/link/fold-link.directive'
         [type]="type"
         [nation]="nation"
         [name]="name"
-        [wotTankName]="wotTankName"
+        [wotName]="wotTankName"
     />`,
     standalone: true,
     imports: [FoldTankCardComponent],

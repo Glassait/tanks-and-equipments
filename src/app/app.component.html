@@ -1,9 +1,18 @@
-<div class="body-interface">
-    <fold-header [navigation]="headerNavigation" />
+<fold-header [navigation]="headerNavigation" />
 
-    <main role="main">
+<main role="main">
+    @if ((resizeService.isTablet | async) || (resizeService.isMobile | async)) {
+        <div class="fold-grid gap-12">
+            <img class="content" src="assets/get_off_your_phone.gif" loading="lazy" alt="" aria-hidden="true" />
+            <h1 class="content balance">Site non disponible</h1>
+            <p class="content balance">
+                Le site n'est malheureusement pas optimisé pour les petits écrans. Merci de l’ouvrir sur un ordinateur avec la fenêtre en
+                plein écran pour une meilleure expérience.
+            </p>
+        </div>
+    } @else {
         <router-outlet />
-    </main>
+    }
+</main>
 
-    <fold-footer [navigation]="footerNavigation" />
-</div>
+<fold-footer [navigation]="footerNavigation" />

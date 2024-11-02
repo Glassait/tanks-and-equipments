@@ -22,6 +22,7 @@
 						"assets": [
 							"src/favicon.ico",
 							"src/assets",
+							"src/mocks",
 							{
 								"glob": "**/*",
 								"input": "node_modules/fold/images",
@@ -95,22 +96,29 @@
 					},
 					"defaultConfiguration": "development"
 				},
-				"extract-i18n": {
-					"builder": "@angular-devkit/build-angular:extract-i18n",
-					"options": {
-						"buildTarget": "tanks-and-equipments:build"
-					}
-				},
 				"test": {
 					"builder": "@angular-devkit/build-angular:karma",
 					"options": {
 						"codeCoverage": true,
+						"codeCoverageExclude": ["src/generated-api/**"],
 						"karmaConfig": "karma.config.js",
 						"polyfills": ["zone.js", "zone.js/testing"],
 						"tsConfig": "tsconfig.spec.json",
-						"assets": [],
-						"styles": [],
-						"scripts": []
+						"assets": [
+							"src/favicon.ico",
+							"src/assets",
+							"src/mocks",
+							{
+								"glob": "**/*",
+								"input": "node_modules/fold/images",
+								"output": "/images/"
+							}
+						],
+						"styles": ["src/styles.scss"],
+						"scripts": [],
+						"stylePreprocessorOptions": {
+							"includePaths": ["node_modules/fold/scss/"]
+						}
 					}
 				}
 			}

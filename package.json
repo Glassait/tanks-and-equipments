@@ -8,7 +8,7 @@
 	},
 	"scripts": {
 		"start": "npm run serve:ssr:tanks-and-equipments",
-		"build": "npm run install:lib:ci && ng build --configuration production",
+		"build": "npm run install:lib:ci && npm run generate-api && ng build --configuration production",
 		"serve:ssr:tanks-and-equipments": "npm run install:lib && node dist/tanks-and-equipments/server/server.mjs",
 		"start:local": "npm run install:lib && ng serve --port=4200",
 		"start:external-mock": "npm run start:local -- --configuration=external-mock",
@@ -24,9 +24,11 @@
 		"test:lib:ci": "npm run test:lib -- --browsers=ChromeHeadless --no-watch --no-progress",
 		"test:lib:local": "npm run test:lib -- --browsers=Chrome --watch=true",
 		"lint:lib": "eslint projects/fold/src",
-		"install:lib": "del /s /q *.tgz && npm run install:lib:ci",
+		"install:lib": "find . -name \"*.tgz\" -type f -delete && npm run install:lib:ci",
 		"install:lib:ci": "npm run build:lib && npm run pack:lib && npm i fold-1.0.0.tgz -f",
-		"generate-icons": "npx -p svg-to-ts svg-to-ts-object"
+		"generate-icons": "npx -p svg-to-ts svg-to-ts-object",
+		"open-api": "openapi-generator-cli generate -g typescript-angular",
+		"generate-api": "chmod +x -R ./open-api && ./open-api/generate-api.sh"
 	},
 	"lint-staged": {
 		"*": "prettier -w",
@@ -34,17 +36,13 @@
 		"*.scss": "stylelint"
 	},
 	"svg-to-ts": {
-		"srcFiles": [
-			"./projects/fold/src/icons-svg/**/*.svg"
-		],
+		"srcFiles": ["./projects/fold/src/icons-svg/**/*.svg"],
 		"outputDirectory": "./projects/fold/src/components/icon/icons-ts",
 		"typeName": "FoldIcon",
 		"fileName": "icon.model",
 		"compileSources": true,
 		"svgoConfig": {
-			"plugins": [
-				"cleanupAttrs"
-			]
+			"plugins": ["cleanupAttrs"]
 		}
 	},
 	"dependencies": {
@@ -58,8 +56,9 @@
 		"@angular/platform-server": "^17.3.0",
 		"@angular/router": "^17.3.0",
 		"@angular/ssr": "^17.3.10",
+		"@openapitools/openapi-generator-cli": "^2.15.0",
 		"express": "^4.21.1",
-		"express-rate-limit": "^5.5.1",
+		"express-rate-limit": "^7.4.1",
 		"rxjs": "~7.8.0",
 		"svg-to-ts": "^12.0.0",
 		"tslib": "^2.7.0",
@@ -70,12 +69,11 @@
 	},
 	"devDependencies": {
 		"@angular-devkit/build-angular": "^17.3.10",
-		"@angular-eslint/builder": "17.5.2",
 		"@angular-eslint/eslint-plugin": "17.5.2",
-		"@angular-eslint/eslint-plugin-template": "17.5.2",
+		"@angular-eslint/eslint-plugin-template": "17.5.3",
 		"@angular-eslint/schematics": "17.5.2",
 		"@angular-eslint/template-parser": "17.5.2",
-		"@angular/cli": "^17.3.10",
+		"@angular/cli": "^17.3.11",
 		"@angular/compiler-cli": "^17.3.0",
 		"@eslint/js": "^9.12.0",
 		"@types/express": "^4.17.17",
@@ -87,7 +85,7 @@
 		"eslint": "^8.57.1",
 		"globals": "^15.9.0",
 		"husky": "^9.1.5",
-		"jasmine-core": "^5.3.0",
+		"jasmine-core": "^5.4.0",
 		"karma": "~6.4.0",
 		"karma-chrome-launcher": "~3.2.0",
 		"karma-coverage": "~2.2.0",

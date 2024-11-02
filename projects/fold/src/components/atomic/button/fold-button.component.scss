@@ -9,6 +9,7 @@
 
     min-width: 40px;
     min-height: 40px;
+    width: max-content;
 
     --border: 0;
     --fake-border: 0;
@@ -33,13 +34,14 @@
 
     --text-shadow: none;
     --text-color: #{map.get(colors.$neutral, 50)};
-    --icon-color: #{map.get(colors.$neutral, 900)};
+    --icon-color: #{map.get(colors.$neutral, 50)};
     color: var(--text-color);
 
     & .container {
         display: flex;
         align-items: center;
         justify-content: center;
+        gap: map.get(spacings.$spacings, 4);
 
         border-radius: inherit;
 
@@ -92,6 +94,7 @@
             --fake-border-color: #{map.get(colors.$neutral, 200)};
             --border-color: #{map.get(colors.$neutral, 200)};
             --text-color: #{map.get(colors.$neutral, 900)};
+            --icon-color: #{map.get(colors.$neutral, 900)};
         }
     }
 

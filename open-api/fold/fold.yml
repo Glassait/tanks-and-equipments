@@ -1,0 +1,59 @@
+openapi: 3.0.3
+info:
+  title: Fold API
+  description: All api related to the Fold clan
+  version: 1.0.1
+
+servers:
+  - url: https://fold-backend-5e6c2cf7c25c.herokuapp.com
+
+paths:
+  /api/private/v1/fold/results:
+    get:
+      tags:
+        - fold-result
+      description: Return the last competitive result in the database
+      operationId: fold-result
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FoldResults'
+        500:
+          description: Internal server error
+      deprecated: false
+
+components:
+  schemas:
+    FoldResults:
+      title: FoldResults
+      description: The array of FoldResult
+      type: array
+      items:
+        $ref: '#/components/schemas/FoldResult'
+    FoldResult:
+      title: FoldResult
+      description: Object representing the competitive result of clan FOLD
+      type: object
+      required:
+        - description
+        - image_url
+        - tag
+      properties:
+        description:
+          type: string
+          description: A shot description of the result
+          example: 'Durant l’événement Manoeuvres en mars 2024, le clan FOLD_ a obtenu 14 chars.'
+          minLength: 1
+          maxLength: 100
+        image_url:
+          type: string
+          description: The image url of the news
+          example: https://eu-wotp.wgcdn.co/dcont/fb/image/1.26.1_1022x360_thumbnail.jpg
+          minLength: 23
+        tag:
+          type: string
+          description: The tag of the competitive result
+          example: 'Manoeuvres (mars 2024)'

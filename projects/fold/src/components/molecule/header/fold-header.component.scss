@@ -19,7 +19,7 @@
     background: map.get(colors.$neutral, 900);
 
     @extend %display-flex;
-    justify-content: start;
+    justify-content: center;
 
     padding: map.get(spacings.$spacings, 4) map.get(spacings.$spacings, 32);
 

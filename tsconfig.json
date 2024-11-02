@@ -24,8 +24,11 @@
 		"removeComments": true,
 		"strictPropertyInitialization": false,
 		"paths": {
+			"env/*": ["./src/environments/*"],
 			"core/*": ["./src/app/modules/core/*"],
-			"features/*": ["./src/app/modules/features/*"]
+			"features/*": ["./src/app/modules/features/*"],
+			"generated-api/*": ["./src/generated-api/*"],
+			"shared/*": ["./src/app/modules/shared/*"]
 		}
 	},
 	"angularCompilerOptions": {
