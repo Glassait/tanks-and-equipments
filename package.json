@@ -9,7 +9,7 @@
 	"scripts": {
 		"start": "npm run serve:ssr:tanks-and-equipments",
 		"build": "npm run install:lib:ci && npm run generate-api && ng build --configuration production",
-		"serve:ssr:tanks-and-equipments": "npm run install:lib && node dist/tanks-and-equipments/server/server.mjs",
+		"serve:ssr:tanks-and-equipments": "npm run build && node dist/tanks-and-equipments/server/server.mjs",
 		"start:local": "npm run install:lib && ng serve --port=4200",
 		"start:external-mock": "npm run start:local -- --configuration=external-mock",
 		"start:full-mock": "npm run start:local -- --configuration=full-mock",
@@ -36,17 +36,13 @@
 		"*.scss": "stylelint"
 	},
 	"svg-to-ts": {
-		"srcFiles": [
-			"./projects/fold/src/icons-svg/**/*.svg"
-		],
+		"srcFiles": ["./projects/fold/src/icons-svg/**/*.svg"],
 		"outputDirectory": "./projects/fold/src/components/icon/icons-ts",
 		"typeName": "FoldIcon",
 		"fileName": "icon.model",
 		"compileSources": true,
 		"svgoConfig": {
-			"plugins": [
-				"cleanupAttrs"
-			]
+			"plugins": ["cleanupAttrs"]
 		}
 	},
 	"dependencies": {
