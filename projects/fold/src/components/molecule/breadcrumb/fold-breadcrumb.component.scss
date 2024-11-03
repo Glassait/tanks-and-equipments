@@ -1,0 +1,18 @@
+@use 'sass:map';
+@use '../../../scss/abstract/spacings';
+@use '../../../scss/abstract/colors';
+@use '../../../scss/mixins/flex' as *;
+
+:host {
+    @include flex-container(
+        (
+            align: center,
+        )
+    );
+
+    gap: map.get(spacings.$spacings, 12);
+
+    > fold-icon[data-last='true'] {
+        fill: rgba(map.get(colors.$neutral, 300), map.get(colors.$opacity, 40));
+    }
+}
