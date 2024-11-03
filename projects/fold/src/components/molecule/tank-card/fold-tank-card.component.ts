@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, computed, input, type InputSignal, type OnInit, type Signal } from '@angular/core';
 import { FoldLinkDirective } from '../../../directives/link/fold-link.directive';
-import { LowerCasePipe, NgOptimizedImage, TitleCasePipe } from '@angular/common';
+import { LowerCasePipe, NgOptimizedImage } from '@angular/common';
 import { FoldIconComponent } from '../../atomic/icon/fold-icon.component';
 import type { FoldIcon } from '../../atomic/icon/icons-ts/icon.model';
 import { SentenceCasePipe } from '../../../pipes/sentence-case/sentence-case.pipe';
@@ -12,7 +12,7 @@ import { ReplacePipe } from '../../../pipes/replace/replace.pipe';
     styleUrl: './fold-tank-card.component.scss',
     standalone: true,
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [FoldLinkDirective, NgOptimizedImage, TitleCasePipe, FoldIconComponent, ReplacePipe, LowerCasePipe],
+    imports: [FoldLinkDirective, NgOptimizedImage, FoldIconComponent, ReplacePipe, LowerCasePipe, SentenceCasePipe],
     providers: [SentenceCasePipe],
 })
 export class FoldTankCardComponent implements OnInit {

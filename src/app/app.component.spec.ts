@@ -72,9 +72,8 @@ describe('AppComponent', () => {
         resizeService.isDesktop.next(true);
         fixture.detectChanges();
 
-        expect(component.cssClasses.length).toEqual(2);
+        expect(component.cssClasses.length).toEqual(1);
         expect(component.cssClasses[0]).toEqual('body-interface');
-        expect(component.cssClasses[1]).toEqual('');
     });
 
     it('should have gap-40 when url is / and isDesktop is fasle', () => {

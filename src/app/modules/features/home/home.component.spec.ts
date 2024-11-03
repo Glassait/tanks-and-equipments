@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, DeferBlockState, TestBed } from '@angular/core/testing';
 import { HomeComponent } from './home.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { makeStateKey, PLATFORM_ID, TransferState } from '@angular/core';
@@ -141,7 +141,10 @@ describe('HomeComponent', () => {
             expect(tankCard.isReward()).toBeTrue();
         });
 
-        it('should have 1 wot news', () => {
+        it('should have 1 wot news', async () => {
+            const defer = (await fixture.getDeferBlocks())[0];
+            await defer.render(DeferBlockState.Complete);
+
             const html = fixture.debugElement.query(By.css('#wot-news ul'));
 
             const wotNewsCard = html.children[0].children[0].injector.get(FoldNewsCardComponent);
@@ -158,7 +161,10 @@ describe('HomeComponent', () => {
             expect(wotNewsCard.isArticle()).toBeTrue();
         });
 
-        it('should have 1 fold result', () => {
+        it('should have 1 fold result', async () => {
+            const defer = (await fixture.getDeferBlocks())[1];
+            await defer.render(DeferBlockState.Complete);
+
             const html = fixture.debugElement.query(By.css('#about-us ul'));
 
             const wotNewsCard = html.children[0].children[0].injector.get(FoldNewsCardComponent);

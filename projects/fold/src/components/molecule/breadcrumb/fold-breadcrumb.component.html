@@ -1,0 +1,8 @@
+@for (link of links(); track $index; let last = $last) {
+    @if ($index) {
+        <fold-icon class="neutral-300" [attr.data-last]="last" icon="chevronRight" />
+    }
+    <a class="neutral-300 caption-2" fold-link [url]="link.url" [disabled]="last">
+        {{ link.name | titlecase }}
+    </a>
+}

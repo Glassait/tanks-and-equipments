@@ -11,6 +11,7 @@ export const routes: Routes = [
     {
         path: '',
         loadComponent: () => import('./modules/features/home/home.component').then(c => c.HomeComponent),
+        title: "Page d'accueil",
     },
     {
         path: PathEnum.CHARS_EQUIPMENT,

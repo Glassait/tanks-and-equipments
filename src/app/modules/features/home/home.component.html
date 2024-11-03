@@ -1,4 +1,4 @@
-<section id="most-priority-tanks" class="full-width">
+<article id="most-priority-tanks" class="full-width">
     <header class="gap-12">
         <h1 class="display grid-column-1-2 grid-row-1">FOLD_</h1>
         <span class="grid-column-1-6 grid-row-2 balance body-1 neutral-400">
@@ -7,10 +7,10 @@
         </span>
     </header>
 
-    <main class="gap-20">
+    <section class="gap-20">
         <div class="grid-row-1 grid-column-1-12" [ngClass]="this.tanksOverview.length < 6 ? 'gap-40' : 'space-between'">
             <h2 fold-text size="title-3" iconLeft="equipment">Configurations des chars prioritaires</h2>
-            <a fold-link url="/{{ PathEnum.CHARS_EQUIPMENT }}" class="neutral-100">
+            <a fold-link url="/{{ PathEnum.CHARS_EQUIPMENT }}" class="neutral-100" aria-label="Voir l'ensemble des chars">
                 <span fold-text size="large" iconRight="redirect">Tout voir</span>
             </a>
         </div>
@@ -30,64 +30,73 @@
                 </li>
             }
         </ul>
-    </main>
-</section>
+    </section>
+</article>
 
-<section id="wot-news" class="full-width">
-    <header>
-        <h2 fold-text size="title-3" iconLeft="newspaper">Nouveautés sur World Of Tanks</h2>
-    </header>
-    <ul>
-        @for (news of wotNews; track $index) {
-            <li id="wot-news-{{ $index + 1 }}">
-                <fold-news-card
-                    class="grid-row-{{ $index < 4 ? 1 : 2 }}"
-                    [url]="news.url"
-                    [imageUrl]="news.image_url"
-                    [tags]="news.tags"
-                    [title]="news.title"
-                />
-            </li>
-        }
-    </ul>
-    <footer>
-        <button
-            [openInNew]="true"
-            fold-button
-            fold-link
-            icon="redirect"
-            shape="rectangle"
-            url="https://worldoftanks.eu/fr/news/"
-            variant="tertiary"
-        >
-            Tout voir
-        </button>
-    </footer>
-</section>
+@defer (on viewport) {
+    <article id="wot-news" class="full-width">
+        <header>
+            <h2 fold-text size="title-3" iconLeft="newspaper">Nouveautés sur World Of Tanks</h2>
+        </header>
+        <ul>
+            @for (news of wotNews; track $index) {
+                <li id="wot-news-{{ $index + 1 }}">
+                    <fold-news-card
+                        class="grid-row-{{ $index < 4 ? 1 : 2 }}"
+                        [url]="news.url"
+                        [imageUrl]="news.image_url"
+                        [tags]="news.tags"
+                        [title]="news.title"
+                    />
+                </li>
+            }
+        </ul>
+        <footer>
+            <button
+                [openInNew]="true"
+                fold-button
+                fold-link
+                icon="redirect"
+                shape="rectangle"
+                url="https://worldoftanks.eu/fr/news/"
+                variant="tertiary"
+                aria-label="Voir l'ensemble des articles sur le portail officiel"
+            >
+                Tout voir
+            </button>
+        </footer>
+    </article>
+} @placeholder {
+    <a href="#">Waiting viewport</a>
+}
 
-<section id="about-us" class="full-width">
-    <div>
-        <div class="grid-column-1-5 gap-20">
-            <h2 fold-text size="title-3" class="neutral-300">A propos du clan FOLD_</h2>
-            <p class="neutral-400">
-                <strong class="neutral-100">FOLD_</strong> est un clan français, affichant un classement Elo en tier X situé entre 1200 et
-                1400 points. Nous recherchons une ambiance conviviale et détendue, tout en préservant un niveau de jeu compétitif.
-            </p>
+@defer (on viewport) {
+    <article id="about-us" class="full-width">
+        <div>
+            <div class="grid-column-1-5 gap-20">
+                <h2 fold-text size="title-3" class="neutral-300">A propos du clan FOLD_</h2>
+                <p class="neutral-400">
+                    <strong class="neutral-100">FOLD_</strong> est un clan français, affichant un classement Elo en tier X situé entre 1200
+                    et 1400 points. Nous recherchons une ambiance conviviale et détendue, tout en préservant un niveau de jeu compétitif.
+                </p>
+            </div>
+            <div class="grid-column-7-12 gap-20">
+                <h3 fold-text size="title-3" class="neutral-300">Résultat Compétitif</h3>
+                <ul class="gap-16">
+                    @for (result of foldResults; track $index) {
+                        <li id="about-us-{{ $index + 1 }}">
+                            <fold-news-card
+                                [isArticle]="false"
+                                [description]="result.description"
+                                [tags]="[result.tag]"
+                                [imageUrl]="result.image_url"
+                            />
+                        </li>
+                    }
+                </ul>
+            </div>
         </div>
-        <div class="grid-column-7-12 gap-20">
-            <h3 fold-text size="title-3" class="neutral-300">Résultat Compétitif</h3>
-            <ul class="gap-16">
-                @for (result of foldResults; track $index) {
-                    <li id="about-us-{{ $index + 1 }}">
-                        <fold-news-card
-                            [isArticle]="false"
-                            [description]="result.description"
-                            [tags]="[result.tag]"
-                            [imageUrl]="result.image_url"
-                        />
-                    </li>
-                }
-            </ul>
-        </div>
-    </div>
-</section>
+    </article>
+} @placeholder {
+    <a href="#">Waiting viewport</a>
+}

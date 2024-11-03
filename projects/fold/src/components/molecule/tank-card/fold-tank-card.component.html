@@ -1,5 +1,5 @@
 <a
-    [attr.aria-labelledby]="'tank-name-' + componentId"
+    [attr.aria-label]="'Voir la configuration du char : ' + name()"
     [url]="'/chars-et-equipements/' + (name() | lowercase | replace: ' ' : '_')"
     fold-link
     id="tank-card-{{ componentId }}"
@@ -9,7 +9,7 @@
             <img [height]="184" [ngSrc]="flagImageUrl()" [width]="240" alt="Drapeau de {{ nation() }}" aria-hidden="true" />
             <img [height]="184" [ngSrc]="tankImageUrl()" [width]="240" alt="Image du char {{ name() }}" aria-hidden="true" />
         </div>
-        <span class="body-2" id="tank-name-{{ componentId }}">{{ name() | titlecase }}</span>
+        <span class="body-2" id="tank-name-{{ componentId }}">{{ name() | sentenceCase }}</span>
     </div>
 
     <div [attr.data-isReward]="isReward()" id="footer-tank-card-{{ componentId }}">
