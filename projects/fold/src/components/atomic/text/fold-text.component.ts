@@ -20,8 +20,8 @@ export class FoldTextComponent {
     public overrideIconSize: InputSignal<FoldIconSize | undefined> = input();
 
     @HostBinding('class')
-    get cssClasses(): string {
-        return this.mapSizeCssClasses[this.size()];
+    get cssClasses(): string[] {
+        return [this.mapSizeCssClasses[this.size()], 'flex', 'align-center', 'justify-center'];
     }
 
     protected computedIconSize: Signal<FoldIconSize> = computed(

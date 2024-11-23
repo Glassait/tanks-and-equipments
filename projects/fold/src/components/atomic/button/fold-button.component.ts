@@ -34,7 +34,7 @@ export class FoldButtonComponent {
 
     @HostBinding('class')
     get cssClasses(): string[] {
-        return [this.baseCssClass, `${this.baseCssClass}--${this.variant()}`, `${this.baseCssClass}--${this.shape()}`];
+        return [this.baseCssClass, `${this.baseCssClass}--${this.variant()}`, `${this.baseCssClass}--${this.shape()}`, 'caption-2'];
     }
 
     protected readonly isIconOnly: Signal<boolean> = computed((): boolean => {

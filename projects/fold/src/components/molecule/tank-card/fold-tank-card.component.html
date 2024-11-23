@@ -3,8 +3,9 @@
     [url]="'/chars-et-equipements/' + (name() | lowercase | replace: ' ' : '_')"
     fold-link
     id="tank-card-{{ componentId }}"
+    class="flex direction-column gap-12"
 >
-    <div id="header-tank-card-{{ componentId }}">
+    <div id="header-tank-card-{{ componentId }}" class="flex direction-column align-center justify-center">
         <div class="overlap">
             <img [height]="184" [ngSrc]="flagImageUrl()" [width]="240" alt="Drapeau de {{ nation() }}" aria-hidden="true" />
             <img [height]="184" [ngSrc]="tankImageUrl()" [width]="240" alt="Image du char {{ name() }}" aria-hidden="true" />
@@ -12,14 +13,14 @@
         <span class="body-2" id="tank-name-{{ componentId }}">{{ name() | sentenceCase }}</span>
     </div>
 
-    <div [attr.data-isReward]="isReward()" id="footer-tank-card-{{ componentId }}">
-        <fold-icon [icon]="typeIcon()" class="recolor"></fold-icon>
+    <div [attr.data-isReward]="isReward()" id="footer-tank-card-{{ componentId }}" class="flex align-center justify-between">
+        <fold-icon [icon]="typeIcon()" class="recolor flex align-center justify-center"></fold-icon>
         <div class="separator"></div>
-        <fold-icon [icon]="levelIcon()" class="recolor"></fold-icon>
+        <fold-icon [icon]="levelIcon()" class="recolor flex align-center justify-center"></fold-icon>
         <div class="separator"></div>
-        <fold-icon [icon]="roleIcon()" class="recolor"></fold-icon>
+        <fold-icon [icon]="roleIcon()" class="recolor flex align-center justify-center"></fold-icon>
         <div class="separator"></div>
-        <fold-icon [icon]="priorityIcon()"></fold-icon>
+        <fold-icon [icon]="priorityIcon()" class="flex align-center justify-center"></fold-icon>
         @if (isReward()) {
             <div class="separator"></div>
             <fold-icon [icon]="'reward'"></fold-icon>

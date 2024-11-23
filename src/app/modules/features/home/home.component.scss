@@ -1,8 +1,8 @@
 @use 'sass:map';
+
 @use 'abstract/spacings';
 @use 'abstract/colors';
 @use 'abstract/borders';
-@use 'mixins/flex' as *;
 
 :host {
     padding: 0 0 map.get(spacings.$spacings, 40) 0;
@@ -26,16 +26,7 @@ li {
     header {
         padding: 0 0 map.get(spacings.$spacings, 80) 0;
 
-        border-bottom: map.get(borders.$border-width, 1) solid rgba(map.get(colors.$neutral, 50), map.get(colors.$opacity, 25));
-    }
-
-    div,
-    ul {
-        @include flex-container(
-            (
-                align: center,
-            )
-        );
+        border-bottom: map.get(borders.$border-width, 1) solid rgba(map.get(colors.$neutral, 50), map.get(colors.$opacities, 25));
     }
 }
 
@@ -49,14 +40,6 @@ li {
             grid-column: span 3;
         }
     }
-
-    footer {
-        @include flex-container(
-            (
-                justify: center,
-            )
-        );
-    }
 }
 
 #about-us {
@@ -64,29 +47,4 @@ li {
 
     background-image: url('../../../../assets/specials-bg.png');
     background-repeat: no-repeat;
-
-    .grid-column-1-5 {
-        @include flex-container(
-            (
-                direction: column,
-            )
-        );
-    }
-
-    .grid-column-7-12 {
-        @include flex-container(
-            (
-                direction: column,
-                align: end,
-            )
-        );
-    }
-
-    .grid-column-7-12 > ul {
-        @include flex-container(
-            (
-                justify: end,
-            )
-        );
-    }
 }

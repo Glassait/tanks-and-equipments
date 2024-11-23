@@ -3,17 +3,8 @@
 @use '../../../scss/abstract/borders';
 @use '../../../scss/abstract/colors';
 @use '../../../scss/abstract/fonts';
-@use '../../../scss/mixins/flex' as *;
 
 :host {
-    @include flex-container(
-        (
-            alight: center,
-            justify: center,
-        )
-    );
-    @extend %caption-2;
-
     background: map.get(colors.$neutral, 900);
 
     border-radius: map.get(borders.$border-radius, 4);

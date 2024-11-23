@@ -2,7 +2,6 @@
 @use '../../../scss/abstract/colors';
 @use '../../../scss/abstract/borders';
 @use '../../../scss/abstract/spacings';
-@use '../../../scss/mixins/flex' as *;
 
 $card-width: 240px;
 $warning-gradient-start: map.get(colors.$warning, 900);
@@ -28,13 +27,6 @@ $reward-color: map.get(colors.$warning, 300);
     }
 
     a {
-        @include flex-container(
-            (
-                direction: column,
-            )
-        );
-        gap: map.get(spacings.$spacings, 12);
-
         border-radius: $border-radius;
 
         background: map.get(colors.$neutral, 900);
@@ -44,14 +36,6 @@ $reward-color: map.get(colors.$warning, 300);
         }
 
         > div:first-child {
-            @include flex-container(
-                (
-                    direction: column,
-                    align: center,
-                    justify: center,
-                )
-            );
-
             span {
                 margin: map.get(spacings.$spacings, -24) 0 0 0;
             }
@@ -62,24 +46,8 @@ $reward-color: map.get(colors.$warning, 300);
         }
 
         > div:last-child {
-            @include flex-container(
-                (
-                    align: center,
-                    justify: space-between,
-                )
-            );
-
             border-top: 1px solid $warning-gradient-end;
             padding: map.get(spacings.$spacings, 8) map.get(spacings.$spacings, 20);
-
-            fold-icon {
-                @include flex-container(
-                    (
-                        align: center,
-                        justify: center,
-                    )
-                );
-            }
 
             .separator {
                 height: 16px;
