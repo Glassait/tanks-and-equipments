@@ -1,36 +1,7 @@
-@use 'sass:list';
-@use 'sass:map';
-@use './abstract/fonts' as *;
-@use './abstract/width' as *;
-@use './abstract/breakpoints' as *;
-@use './abstract/spacings' as *;
-@use './abstract/colors' as *;
-@use './mixins/grids' as *;
+@use '../abstract/width' as *;
 
-@each $name, $properties in $font {
-    $size: list.nth($properties, 1);
-    $weight: list.nth($properties, 2);
-    $height: list.nth($properties, 3);
-
-    .#{$name} {
-        @if $name == 'body-2' {
-            @extend %font-roboto;
-        } @else {
-            @extend %font-roboto-condensed;
-        }
-
-        font-size: $size;
-        font-weight: $weight;
-        line-height: $height;
-    }
-}
-
-@each $name, $properties in $neutral {
-    .neutral-#{$name} {
-        color: $properties;
-        fill: $properties;
-    }
-}
+@use '../mixins/grids' as *;
+@use '../mixins/breakpoints' as *;
 
 .fold-grid,
 .full-width {
@@ -67,26 +38,6 @@
 
     > .full-width {
         grid-column: full-width;
-    }
-}
-
-@each $types-name, $type in $types {
-    @each $spacing-name, $spacing in $spacings {
-        $selector: #{$types-name}-;
-
-        @if $spacing > 0 {
-            $selector: #{$selector}#{$spacing-name};
-        } @else {
-            $selector: #{$selector}\[#{$spacing-name}\];
-        }
-
-        .#{$selector} {
-            @if $types-name == 'm-lr' {
-                #{$type}: 0 $spacing;
-            } @else {
-                #{$type}: $spacing;
-            }
-        }
     }
 }
 
@@ -145,10 +96,6 @@
     }
 }
 
-.balance {
-    text-wrap: balance;
-}
-
 .overlap {
     display: grid;
     grid-template-rows: 1fr;
@@ -160,13 +107,10 @@
     }
 }
 
-.separator {
-    width: 1px;
-    height: auto;
+.body-interface {
+    @extend %min-h-dvh;
 
-    background: map.get($warning, 700);
-}
+    @include grid-rows(auto 1fr auto);
 
-.space-between {
-    justify-content: space-between;
+    display: grid;
 }

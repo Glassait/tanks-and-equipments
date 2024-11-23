@@ -5,31 +5,3 @@ $breakpoints: (
     laptop: 1025px,
     desktop: 1441px,
 );
-
-@mixin breakpoint($breakpoint-arbitrary...) {
-    @each $breakpoint in $breakpoint-arbitrary {
-        @if $breakpoint == tablet {
-            @media screen and (width >= map.get($breakpoints, 'tablet')) {
-                & {
-                    @content;
-                }
-            }
-        }
-
-        @if $breakpoint == laptop {
-            @media screen and (width >= map.get($breakpoints, 'laptop')) {
-                & {
-                    @content;
-                }
-            }
-        }
-
-        @if $breakpoint == desktop {
-            @media screen and (width >= map.get($breakpoints, 'desktop')) {
-                & {
-                    @content;
-                }
-            }
-        }
-    }
-}

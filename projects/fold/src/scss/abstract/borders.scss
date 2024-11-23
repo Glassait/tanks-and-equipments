@@ -5,19 +5,7 @@ $border-radius: (
     full: 9999px,
 );
 
-@each $name, $radius in $border-radius {
-    %radius-#{$name} {
-        border-radius: $radius;
-    }
-}
-
 $border-width: (
     1: 1px,
     2: 2px,
 );
-
-@each $name, $width in $border-width {
-    %border-#{$name} {
-        border-radius: $width;
-    }
-}

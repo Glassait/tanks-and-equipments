@@ -1,0 +1,21 @@
+@use '../abstract/spacings' as *;
+
+@each $types-name, $type in $types {
+    @each $spacing-name, $spacing in $spacings {
+        $selector: #{$types-name}-;
+
+        @if $spacing > 0 {
+            $selector: #{$selector}#{$spacing-name};
+        } @else {
+            $selector: #{$selector}\[#{$spacing-name}\];
+        }
+
+        .#{$selector} {
+            @if $types-name == 'm-lr' {
+                #{$type}: 0 $spacing;
+            } @else {
+                #{$type}: $spacing;
+            }
+        }
+    }
+}

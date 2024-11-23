@@ -1,0 +1,41 @@
+@use 'sass:list';
+
+@use '../abstract/fonts' as *;
+
+@each $name, $properties in $font {
+    $size: list.nth($properties, 1);
+    $weight: list.nth($properties, 2);
+    $height: list.nth($properties, 3);
+
+    .#{$name} {
+        @if $name == 'body-2' {
+            @extend %font-roboto;
+        } @else {
+            @extend %font-roboto-condensed;
+        }
+
+        font-size: $size;
+        font-weight: $weight;
+        line-height: $height;
+    }
+}
+
+.balance {
+    text-wrap: balance;
+}
+
+$decoration: (underline, none);
+
+@each $property in $decoration {
+    .text-decoration-#{$property} {
+        text-decoration: $property;
+    }
+}
+
+$weight: (100, 200, 300, 400, 500, 600, 700, 800, 900);
+
+@each $property in $weight {
+    .weight-#{$property} {
+        font-weight: $property;
+    }
+}

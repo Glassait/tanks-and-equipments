@@ -1,0 +1,9 @@
+@use 'sass:map';
+@use '../abstract/colors' as *;
+
+.separator {
+    width: 1px;
+    height: auto;
+
+    background: map.get($warning, 700);
+}

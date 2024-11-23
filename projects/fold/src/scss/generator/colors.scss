@@ -1,0 +1,15 @@
+@use '../abstract/colors' as *;
+
+@each $name, $properties in $neutral {
+    .neutral-#{$name} {
+        color: $properties;
+        fill: $properties;
+    }
+
+    @each $nameOp, $opacity in $opacities {
+        .neutral-#{$name}-#{$nameOp} {
+            color: rgba($properties, $opacity);
+            fill: rgba($properties, $opacity);
+        }
+    }
+}
