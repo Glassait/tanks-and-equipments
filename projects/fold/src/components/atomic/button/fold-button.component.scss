@@ -20,8 +20,6 @@
     border-style: solid;
     border-radius: #{map.get(borders.$border-radius, 4)};
 
-    @extend %caption-2;
-
     --bow-shadow: none;
     box-shadow: var(--bow-shadow);
 
@@ -73,7 +71,7 @@
         --fake-border-color: #{map.get(colors.$gradient, lavender-dream)};
         --bow-shadow: #{map.get(colors.$box-shadow, outer-glow-small)};
         --background-color: #{map.get(colors.$gradient, violet-twilight)};
-        --text-shadow: #{0 1px 0 rgba(map.get(colors.$neutral, 900), map.get(colors.$opacity, 25))};
+        --text-shadow: #{0 1px 0 rgba(map.get(colors.$neutral, 900), map.get(colors.$opacities, 25))};
 
         &:hover {
             --bow-shadow: #{map.get(colors.$box-shadow, outer-glow-large)};

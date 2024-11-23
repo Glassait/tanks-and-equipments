@@ -2,7 +2,6 @@
 @use '../../../scss/abstract/spacings';
 @use '../../../scss/abstract/colors';
 @use '../../../scss/abstract/borders';
-@use '../../../scss/mixins/flex' as *;
 
 :host {
     display: block;
@@ -39,37 +38,5 @@
 
         top: map.get(spacings.$spacings, 8);
         left: map.get(spacings.$spacings, 8);
-    }
-
-    a {
-        @include flex-container(
-            (
-                direction: column,
-            )
-        );
-
-        gap: map.get(spacings.$spacings, 12);
-
-        color: map.get(colors.$neutral, 300);
-        fill: map.get(colors.$neutral, 300);
-
-        > div {
-            @include flex-container(
-                (
-                    direction: column,
-                )
-            );
-
-            gap: map.get(spacings.$spacings, 4);
-        }
-    }
-
-    span.body-1 {
-        font-weight: bold;
-
-        color: map.get(colors.$neutral, 200);
-
-        text-wrap: balance;
-        text-decoration: none;
     }
 }

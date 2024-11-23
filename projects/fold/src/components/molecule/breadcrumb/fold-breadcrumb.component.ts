@@ -1,7 +1,7 @@
-import { ChangeDetectionStrategy, Component, input, type InputSignal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostBinding, input, type InputSignal } from '@angular/core';
 import type { BreadcrumbModel } from './breadcrumb.model';
 import { FoldIconComponent } from '../../atomic/icon/fold-icon.component';
-import { NgClass, TitleCasePipe } from '@angular/common';
+import { TitleCasePipe } from '@angular/common';
 import { FoldLinkDirective } from '../../../directives/link/fold-link.directive';
 
 @Component({
@@ -10,8 +10,13 @@ import { FoldLinkDirective } from '../../../directives/link/fold-link.directive'
     styleUrl: './fold-breadcrumb.component.scss',
     standalone: true,
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [FoldIconComponent, NgClass, FoldLinkDirective, TitleCasePipe],
+    imports: [FoldIconComponent, FoldLinkDirective, TitleCasePipe],
 })
 export class FoldBreadcrumbComponent {
+    @HostBinding('class')
+    get cssClasses(): string[] {
+        return ['flex', 'align-center'];
+    }
+
     public links: InputSignal<BreadcrumbModel[]> = input.required();
 }

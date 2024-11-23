@@ -11,8 +11,9 @@
     [url]="url()"
     fold-link
     id="news-{{ componentId }}"
+    class="flex direction-column neutral-300 gap-12"
 >
-    <div class="img-wrapper">
+    <div class="img-wrapper flex direction-column gap-4">
         <img
             [attr.aria-labelledby]="isArticle() ? 'news-title-' + componentId : ''"
             [src]="imageUrl()"
@@ -22,9 +23,11 @@
         />
     </div>
 
-    <div>
+    <div class="flex direction-column gap-4">
         @if (isArticle()) {
-            <span id="news-title-{{ componentId }}" class="body-1">{{ title() | sentenceCase }}.</span>
+            <span id="news-title-{{ componentId }}" class="body-1 neutral-200 balance text-decoration-none weight-700"
+                >{{ title() | sentenceCase }}.</span
+            >
             <span fold-text iconRight="redirect" size="small">Voir l'article</span>
         } @else {
             <p class="neutral-400 body-1">{{ description() | sentenceCase }}</p>

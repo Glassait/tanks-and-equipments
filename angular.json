@@ -15,7 +15,7 @@
 					"options": {
 						"inlineStyleLanguage": "scss",
 						"outputPath": "dist/tanks-and-equipments",
-						"polyfills": ["zone.js"],
+						"polyfills": ["zone.js", "@oddbird/popover-polyfill"],
 						"tsConfig": "tsconfig.app.json",
 						"assets": [
 							"src/favicon.ico",

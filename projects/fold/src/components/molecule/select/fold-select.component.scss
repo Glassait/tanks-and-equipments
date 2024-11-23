@@ -1,0 +1,118 @@
+@use 'sass:map';
+@use '../../../scss/abstract/borders';
+@use '../../../scss/abstract/colors';
+@use '../../../scss/abstract/spacings';
+
+:host:has(div:popover-open) {
+    .select {
+        background: map.get(colors.$neutral, 700);
+        border-radius: map.get(spacings.$spacings, 4) map.get(spacings.$spacings, 4) 0 0;
+
+        fold-icon {
+            animation: 0.5s rotating 0s ease-in-out forwards;
+        }
+    }
+}
+
+li {
+    list-style: none;
+}
+
+.select,
+.dropdown-item {
+    cursor: pointer;
+
+    border: 0;
+
+    width: 100%;
+
+    padding: map.get(spacings.$spacings, 12) map.get(spacings.$spacings, 16);
+
+    background: map.get(colors.$neutral, 800);
+
+    &:focus-visible {
+        outline-offset: map.get(spacings.$spacings, 2);
+        outline: map.get(colors.$neutral, 50) solid map.get(spacings.$spacings, 2);
+    }
+
+    &:hover {
+        background: map.get(colors.$neutral, 900);
+    }
+}
+
+.select {
+    anchor-name: --select-button;
+
+    fold-icon {
+        animation: 0.5s rotating-back 0s ease-in-out forwards;
+    }
+}
+
+.dropdown {
+    overflow-y: auto;
+
+    background: map.get(colors.$neutral, 700);
+
+    border-radius: 0 0 map.get(spacings.$spacings, 4) map.get(spacings.$spacings, 4);
+    border: 0;
+
+    padding: map.get(spacings.$spacings, 8);
+
+    max-height: 0;
+
+    position-anchor: --select-button;
+    position: absolute;
+    inset: auto;
+    top: anchor(bottom);
+    right: anchor(right);
+
+    transition:
+        display 0.4s,
+        max-height 0.5s;
+    transition-behavior: allow-discrete;
+
+    &:popover-open {
+        max-height: 263px;
+
+        @starting-style {
+            max-height: 0;
+        }
+    }
+}
+
+.dropdown-item {
+    height: fit-content;
+
+    &.selected {
+        color: map.get(colors.$neutral, 900);
+        background: map.get(colors.$neutral, 400);
+
+        pointer-events: none;
+
+        font-weight: bold;
+
+        &:focus-visible {
+            outline: none;
+        }
+    }
+}
+
+@keyframes rotating {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(180deg);
+    }
+}
+
+@keyframes rotating-back {
+    from {
+        transform: rotate(180deg);
+    }
+
+    to {
+        transform: rotate(0deg);
+    }
+}

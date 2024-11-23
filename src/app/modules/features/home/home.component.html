@@ -8,13 +8,13 @@
     </header>
 
     <section class="gap-20">
-        <div class="grid-row-1 grid-column-1-12" [ngClass]="this.tanksOverview.length < 6 ? 'gap-40' : 'space-between'">
+        <div class="flex align-center grid-row-1 grid-column-1-12" [ngClass]="this.tanksOverview.length < 6 ? 'gap-40' : 'justify-between'">
             <h2 fold-text size="title-3" iconLeft="equipment">Configurations des chars prioritaires</h2>
             <a fold-link url="/{{ PathEnum.CHARS_EQUIPMENT }}" class="neutral-100" aria-label="Voir l'ensemble des chars">
                 <span fold-text size="large" iconRight="redirect">Tout voir</span>
             </a>
         </div>
-        <ul class="gris-row-2 grid-column-1-12 gap-16">
+        <ul class="flex align-center gris-row-2 grid-column-1-12 gap-16">
             @for (tank of tanksOverview; track $index) {
                 <li id="fold-tank-{{ $index + 1 }}">
                     <fold-tank-card
@@ -51,7 +51,7 @@
                 </li>
             }
         </ul>
-        <footer>
+        <footer class="flex justify-center content">
             <button
                 [openInNew]="true"
                 fold-button
@@ -73,16 +73,17 @@
 @defer (on viewport) {
     <article id="about-us" class="full-width">
         <div>
-            <div class="grid-column-1-5 gap-20">
+            <div class="flex direction-column grid-column-1-5 gap-20">
                 <h2 fold-text size="title-3" class="neutral-300">A propos du clan FOLD_</h2>
                 <p class="neutral-400">
-                    <strong class="neutral-100">FOLD_</strong> est un clan français, affichant un classement Elo en tier X situé entre 1200
-                    et 1400 points. Nous recherchons une ambiance conviviale et détendue, tout en préservant un niveau de jeu compétitif.
+                    <strong class="neutral-100 body-1 balance">FOLD_</strong> est un clan français, affichant un classement Elo en tier X
+                    situé entre 1200 et 1400 points. Nous recherchons une ambiance conviviale et détendue, tout en préservant un niveau de
+                    jeu compétitif.
                 </p>
             </div>
-            <div class="grid-column-7-12 gap-20">
+            <div class="flex direction-column align-end grid-column-7-12 gap-20">
                 <h3 fold-text size="title-3" class="neutral-300">Résultat Compétitif</h3>
-                <ul class="gap-16">
+                <ul class="flex justify-end gap-16">
                     @for (result of foldResults; track $index) {
                         <li id="about-us-{{ $index + 1 }}">
                             <fold-news-card

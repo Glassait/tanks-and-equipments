@@ -46,41 +46,42 @@ describe('FoldTextComponent', () => {
     });
 
     it('should have the right css class in relation to the size', () => {
+        const defaultClasses = 'flex align-center justify-center';
         componentWrapper.size = 'small';
         fixture.detectChanges();
 
         let cssClasses = componentInstance.cssClasses;
-        expect(cssClasses).toEqual('caption-2 gap-4');
+        expect(cssClasses.join(' ')).toEqual(`caption-2 gap-4 ${defaultClasses}`);
 
         componentWrapper.size = 'medium';
         fixture.detectChanges();
 
         cssClasses = componentInstance.cssClasses;
-        expect(cssClasses).toEqual('caption-1 gap-8');
+        expect(cssClasses.join(' ')).toEqual(`caption-1 gap-8 ${defaultClasses}`);
 
         componentWrapper.size = 'large';
         fixture.detectChanges();
 
         cssClasses = componentInstance.cssClasses;
-        expect(cssClasses).toEqual('body-2 gap-8');
+        expect(cssClasses.join(' ')).toEqual(`body-2 gap-8 ${defaultClasses}`);
 
         componentWrapper.size = 'x-large';
         fixture.detectChanges();
 
         cssClasses = componentInstance.cssClasses;
-        expect(cssClasses).toEqual('body-1 gap-8');
+        expect(cssClasses.join(' ')).toEqual(`body-1 gap-8 ${defaultClasses}`);
 
         componentWrapper.size = 'subtitle';
         fixture.detectChanges();
 
         cssClasses = componentInstance.cssClasses;
-        expect(cssClasses).toEqual('subtitle-1 gap-12');
+        expect(cssClasses.join(' ')).toEqual(`subtitle-1 gap-12 ${defaultClasses}`);
 
         componentWrapper.size = 'title-3';
         fixture.detectChanges();
 
         cssClasses = componentInstance.cssClasses;
-        expect(cssClasses).toEqual('title-3 gap-12');
+        expect(cssClasses.join(' ')).toEqual(`title-3 gap-12 ${defaultClasses}`);
     });
 
     it('should have svg before span when iconLeft', () => {

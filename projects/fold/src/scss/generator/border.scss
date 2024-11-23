@@ -1,0 +1,14 @@
+@use 'sass:map';
+@use '../abstract/borders';
+
+@each $name, $radius in borders.$border-radius {
+    .radius-#{$name} {
+        border-radius: $radius;
+    }
+}
+
+@each $name, $width in borders.$border-width {
+    .border-#{$name} {
+        border-radius: $width;
+    }
+}

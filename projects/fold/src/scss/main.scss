@@ -1,12 +1,19 @@
 @use 'sass:list';
 @use 'sass:map';
+
 @use './abstract/fonts' as *;
 @use './abstract/width' as *;
 @use './abstract/spacings' as *;
 @use './abstract/colors' as *;
 @use './mixins/grids' as *;
-@use './mixins/flex' as *;
-@use './class-generator' as *;
+
+@forward './generator/border';
+@forward './generator/colors';
+@forward './generator/flex';
+@forward './generator/fonts';
+@forward './generator/grid';
+@forward './generator/other';
+@forward './generator/spacing';
 
 $font-face: (
     ('roboto-condensed', 100, null, 'Roboto_Condensed/RobotoCondensed-Thin'),
@@ -97,36 +104,22 @@ body {
     @extend %min-h-dvh;
 }
 
-.body-interface {
-    @extend %min-h-dvh;
-
-    @include grid-rows(auto 1fr auto);
-
-    display: grid;
-}
-
 footer,
 header {
-    %display-flex-nav {
-        @include flex-container(
-            (
-                align: center,
-            )
-        );
-    }
+    @extend .flex, .align-center;
 
     height: 100%;
     width: 100%;
     max-width: $max-width;
 
     & nav {
-        @extend %display-flex-nav;
+        @extend .flex, .align-center;
 
         flex: 1;
     }
 
     & ul {
-        @extend %display-flex-nav;
+        @extend .flex, .align-center;
 
         list-style: none;
 
@@ -146,9 +139,9 @@ button {
 }
 
 a {
+    @extend .neutral-50;
     cursor: pointer;
     text-decoration: none;
-    color: map.get($neutral, 50);
 
     @extend .caption-2;
 
@@ -163,6 +156,6 @@ a {
 
     &[disabled='true'] {
         pointer-events: none;
-        color: rgba(map.get($neutral, 400), map.get($opacity, 40));
+        color: rgba(map.get($neutral, 400), map.get($opacities, 40));
     }
 }

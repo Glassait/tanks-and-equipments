@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostBinding } from '@angular/core';
 
 @Component({
     selector: 'span[foldTag]',
@@ -7,4 +7,9 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
     standalone: true,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FoldTagComponent {}
+export class FoldTagComponent {
+    @HostBinding('class')
+    get cssClasses() {
+        return ['flex', 'align-center', 'justify-center', 'caption-2'];
+    }
+}

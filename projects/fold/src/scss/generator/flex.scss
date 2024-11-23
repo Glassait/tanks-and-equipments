@@ -1,0 +1,40 @@
+.flex {
+    display: flex;
+}
+
+$align: (
+    align-start: flex-start,
+    align-end: flex-end,
+    align-center: center,
+    align-stretch: stretch,
+    align-baseline: baseline,
+);
+
+@each $name, $property in $align {
+    .flex.#{$name} {
+        align-items: $property;
+    }
+}
+
+$justify: (
+    justify-start: flex-start,
+    justify-end: flex-end,
+    justify-center: center,
+    justify-between: space-between,
+    justify-around: space-around,
+    justify-evenly: space-evenly,
+);
+
+@each $name, $property in $justify {
+    .flex.#{$name} {
+        justify-content: $property;
+    }
+}
+
+$direction: (row, column);
+
+@each $property in $direction {
+    .flex.direction-#{$property} {
+        flex-direction: $property;
+    }
+}
