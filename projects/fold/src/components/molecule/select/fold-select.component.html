@@ -1,0 +1,29 @@
+<button
+    [attr.aria-label]="'Liste déroulante de sélection des ' + (selectTitle() | lowercase)"
+    [attr.popovertarget]="'filter-popover-' + componentId"
+    class="select flex justify-between align-center neutral-50 radius-4 caption-1"
+    id="fold-select-{{ componentId }}"
+>
+    <p fold-text size="medium" class="flex align-center gap-8" [iconRight]="selected()?.item?.icon">
+        {{ selectTitle() }} {{ selected() && !selected()?.item?.selectedByDefault ? ' :' : '' }}
+    </p>
+    <fold-icon [size]="20" icon="chevronBottom"></fold-icon>
+</button>
+
+<div popover class="dropdown" role="menu" id="filter-popover-{{ componentId }}" [ngStyle]="{ 'width.px': dropdownWidth }">
+    <ul class="flex direction-column gap-8">
+        @for (item of selectItems(); track $index) {
+            <li>
+                <button
+                    (click)="select($index)"
+                    [ngClass]="{ selected: selected()?.index === $index }"
+                    [tabindex]="selected()?.index !== $index ? null : -1"
+                    [attr.aria-label]="selectTitle() + ' ' + (item.text | lowercase)"
+                    class="dropdown-item radius-4 caption-1"
+                >
+                    <p fold-text size="medium" class="gap-8" [iconLeft]="item.icon">{{ item.text | sentenceCase }}</p>
+                </button>
+            </li>
+        }
+    </ul>
+</div>
