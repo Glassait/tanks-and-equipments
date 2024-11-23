@@ -20,7 +20,7 @@ function getNonceValue() {
     return hex;
 }
 
-let NONCE_VALUE = getNonceValue();
+const NONCE_VALUE = getNonceValue();
 
 appConfig.providers.push({
     provide: CSP_NONCE,
@@ -29,7 +29,7 @@ appConfig.providers.push({
 
 const meta: HTMLMetaElement = document.createElement('meta');
 meta.httpEquiv = 'Content-Security-Policy';
-meta.content = `default-src 'self'; script-src 'self'; style-src 'self' 'nonce-${NONCE_VALUE}'; img-src 'self' https://eu-wotp.wgcdn.co; connect-src 'self'; font-src 'self';`;
+meta.content = `default-src 'self'; script-src 'self'; style-src 'self' 'nonce-${NONCE_VALUE}'; img-src 'self' https://eu-wotp.wgcdn.co data:; connect-src 'self'; font-src 'self';`;
 
 document.querySelector('head')?.appendChild(meta);
 

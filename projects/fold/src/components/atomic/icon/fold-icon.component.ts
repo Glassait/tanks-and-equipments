@@ -22,6 +22,9 @@ import { FoldIconSize } from './icon.type';
 export class FoldIconComponent {
     public icon: InputSignal<FoldIcon> = input.required();
 
+    /**
+     * @default 16
+     */
     public size: InputSignal<FoldIconSize> = input(16 as FoldIconSize);
 
     @HostBinding('attr.aria-hidden')
