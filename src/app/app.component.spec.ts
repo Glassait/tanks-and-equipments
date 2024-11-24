@@ -9,7 +9,6 @@ describe('AppComponent', () => {
     let component: AppComponent;
     let fixture: ComponentFixture<AppComponent>;
 
-    let router: Router;
     let resizeService: ResizeService;
 
     beforeEach(() => {
@@ -20,7 +19,6 @@ describe('AppComponent', () => {
         component = fixture.componentInstance;
         fixture.detectChanges();
 
-        router = TestBed.inject(Router);
         resizeService = TestBed.inject(ResizeService);
     });
 
@@ -54,35 +52,8 @@ describe('AppComponent', () => {
         expect(footer.navigation()[0].openInNew).toBeUndefined();
     });
 
-    it('should not have gap-40', () => {
-        const div = fixture.debugElement.query(By.css('gap-40'));
-        expect(div).toBeNull();
-    });
-
-    it('should have gap-40 when url is not /', () => {
-        spyOnProperty(router, 'url', 'get').and.returnValue('/url');
-        fixture.detectChanges();
-
-        expect(component.cssClasses.length).toEqual(2);
-        expect(component.cssClasses[1]).toEqual('gap-40');
-    });
-
-    it('should not have gap-40 when isDesktop is true', () => {
-        spyOnProperty(router, 'url', 'get').and.returnValue('/');
-        resizeService.isDesktop.next(true);
-        fixture.detectChanges();
-
-        expect(component.cssClasses.length).toEqual(1);
-        expect(component.cssClasses[0]).toEqual('body-interface');
-    });
-
-    it('should have gap-40 when url is / and isDesktop is fasle', () => {
-        spyOnProperty(router, 'url', 'get').and.returnValue('/');
-        resizeService.isDesktop.next(false);
-        fixture.detectChanges();
-
-        expect(component.cssClasses.length).toEqual(2);
-        expect(component.cssClasses[1]).toEqual('gap-40');
+    it('should have the right classes', () => {
+        expect(component.cssClasses.join()).toEqual('body-interface');
     });
 
     it('should have router-outlet when isDesktop', () => {

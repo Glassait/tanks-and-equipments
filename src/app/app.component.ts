@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, HostBinding, inject, PLATFORM_ID } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
 import { FoldFooterComponent, FoldHeaderComponent, type FoldNavigation } from 'fold';
-import { AsyncPipe, isPlatformBrowser, NgClass } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import { PathEnum } from 'core/enums/path.enum';
 import { ResizeService } from 'shared/services/resize.service';
 
@@ -10,23 +10,12 @@ import { ResizeService } from 'shared/services/resize.service';
     templateUrl: './app.component.html',
     standalone: true,
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [RouterOutlet, FoldHeaderComponent, FoldFooterComponent, NgClass, AsyncPipe],
+    imports: [RouterOutlet, FoldHeaderComponent, FoldFooterComponent, AsyncPipe],
 })
 export class AppComponent {
     @HostBinding('class')
     get cssClasses(): string[] {
-        const classes = ['body-interface'];
-
-        if (isPlatformBrowser(this.platformId)) {
-            const isHomePage = this.router.url === '/';
-            const isDesktop = this.resizeService.isDesktop.getValue();
-
-            if (!(isHomePage && isDesktop)) {
-                classes.push('gap-40');
-            }
-        }
-
-        return classes;
+        return ['body-interface'];
     }
 
     //region INJECTION
