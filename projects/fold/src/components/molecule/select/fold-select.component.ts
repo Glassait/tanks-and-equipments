@@ -1,4 +1,5 @@
 import {
+    type AfterViewInit,
     ChangeDetectionStrategy,
     Component,
     ElementRef,
@@ -25,8 +26,9 @@ import type { SelectItem } from './select.model';
     standalone: true,
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [NgClass, FoldTextComponent, FoldIconComponent, LowerCasePipe, SentenceCasePipe, NgStyle],
+    host: { ngSkipHydration: 'true' },
 })
-export class FoldSelectComponent implements OnInit {
+export class FoldSelectComponent implements OnInit, AfterViewInit {
     public static id: number = 0; // NOSONAR
 
     public selectTitle: InputSignal<string> = input.required();
@@ -34,8 +36,10 @@ export class FoldSelectComponent implements OnInit {
 
     public selectedItem: OutputEmitterRef<SelectItem> = output();
 
+    //region INJECTION
     private readonly elementRef: ElementRef<HTMLElement> = inject(ElementRef);
     private readonly platformId = inject(PLATFORM_ID);
+    //endregion
 
     protected componentId: number = 0;
     protected dropdownWidth: number = 0;
@@ -46,13 +50,15 @@ export class FoldSelectComponent implements OnInit {
 
     ngOnInit(): void {
         this.componentId = ++FoldSelectComponent.id;
-        this.dropdownWidth = this.elementRef.nativeElement.children[0].clientWidth;
 
+        this.dropdownWidth = this.elementRef.nativeElement.children[0].clientWidth;
+    }
+
+    ngAfterViewInit(): void {
         if (isPlatformBrowser(this.platformId)) {
             this.dialog = document.getElementById(`filter-popover-${this.componentId}`);
+            this.selectItems().forEach(({ selectedByDefault }, index) => (selectedByDefault ? this.select(index) : null));
         }
-
-        this.selectItems().forEach(({ selectedByDefault }, index) => (selectedByDefault ? this.select(index) : null));
     }
 
     protected select(index: number) {
