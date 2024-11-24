@@ -35,7 +35,8 @@ export class FoldTankCardComponent implements OnInit {
     public isReward: InputSignal<boolean | undefined> = input();
 
     protected tankImageUrl: Signal<string> = computed(
-        (): string => `https://eu-wotp.wgcdn.co/dcont/tankopedia_images/${this.wotName()}/${this.wotName()}_image_resized.png`
+        (): string =>
+            `https://eu-wotp.wgcdn.co/dcont/tankopedia_images/${this.wotName().toLowerCase()}/${this.wotName().toLowerCase()}_image_resized.png`
     );
 
     protected flagImageUrl: Signal<string> = computed((): string => `images/nation/flag-${this.nation().toLowerCase()}.png`);
