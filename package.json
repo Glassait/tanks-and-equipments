@@ -36,17 +36,13 @@
 		"*.scss": "stylelint"
 	},
 	"svg-to-ts": {
-		"srcFiles": [
-			"./projects/fold/src/icons-svg/**/*.svg"
-		],
+		"srcFiles": ["./projects/fold/src/icons-svg/**/*.svg"],
 		"outputDirectory": "./projects/fold/src/components/atomic/icon/icons-ts",
 		"typeName": "FoldIcon",
 		"fileName": "icon.model",
 		"compileSources": true,
 		"svgoConfig": {
-			"plugins": [
-				"cleanupAttrs"
-			]
+			"plugins": ["cleanupAttrs"]
 		}
 	},
 	"dependencies": {
@@ -54,57 +50,57 @@
 		"@angular/common": "^17.3.0",
 		"@angular/compiler": "^17.3.0",
 		"@angular/core": "^17.3.0",
-		"@angular/forms": "^17.3.0",
+		"@angular/forms": "^17.3.12",
 		"@angular/platform-browser": "^17.3.0",
-		"@angular/platform-browser-dynamic": "^17.3.0",
-		"@angular/platform-server": "^17.3.0",
-		"@angular/router": "^17.3.0",
-		"@angular/ssr": "^17.3.10",
+		"@angular/platform-browser-dynamic": "^17.3.12",
+		"@angular/platform-server": "^17.3.12",
+		"@angular/router": "^17.3.12",
+		"@angular/ssr": "^17.3.11",
 		"@oddbird/popover-polyfill": "^0.5.2",
-		"@openapitools/openapi-generator-cli": "^2.15.0",
+		"@openapitools/openapi-generator-cli": "^2.15.3",
 		"express": "^4.21.1",
 		"express-rate-limit": "^7.4.1",
 		"rxjs": "~7.8.0",
 		"svg-to-ts": "^12.0.0",
 		"tslib": "^2.7.0",
-		"zone.js": "~0.14.3"
+		"zone.js": "^0.14.10"
 	},
 	"optionalDependencies": {
 		"fold": "file:fold-1.0.0.tgz"
 	},
 	"devDependencies": {
-		"@angular-devkit/build-angular": "^17.3.10",
+		"@angular-devkit/build-angular": "^17.3.11",
 		"@angular-eslint/eslint-plugin": "17.5.2",
 		"@angular-eslint/eslint-plugin-template": "17.5.3",
 		"@angular-eslint/schematics": "17.5.2",
 		"@angular-eslint/template-parser": "17.5.2",
 		"@angular/cli": "^17.3.11",
-		"@angular/compiler-cli": "^17.3.0",
-		"@eslint/js": "^9.12.0",
-		"@types/express": "^4.17.17",
+		"@angular/compiler-cli": "^17.3.12",
+		"@eslint/js": "^9.15.0",
+		"@types/express": "^4.17.21",
 		"@types/jasmine": "~5.1.0",
-		"@types/node": "^22.7.5",
+		"@types/node": "^22.9.3",
 		"@typescript-eslint/eslint-plugin": "^8.8.1",
 		"@typescript-eslint/parser": "^8.8.1",
 		"create-stylelint": "^0.4.0",
 		"eslint": "^8.57.1",
-		"globals": "^15.9.0",
-		"husky": "^9.1.5",
+		"globals": "^15.12.0",
+		"husky": "^9.1.7",
 		"jasmine-core": "^5.4.0",
 		"karma": "~6.4.0",
 		"karma-chrome-launcher": "~3.2.0",
 		"karma-coverage": "~2.2.0",
 		"karma-jasmine": "^4.0.2",
 		"karma-jasmine-html-reporter": "^1.7.0",
-		"lint-staged": "^15.2.9",
+		"lint-staged": "^15.2.10",
 		"ng-packagr": "^17.3.0",
 		"prettier": "^3.3.3",
-		"stylelint": "^16.9.0",
+		"stylelint": "^16.10.0",
 		"stylelint-config-standard": "^36.0.1",
 		"stylelint-config-standard-scss": "^13.1.0",
 		"stylelint-prettier": "^5.0.2",
-		"stylelint-scss": "^6.7.0",
+		"stylelint-scss": "^6.10.0",
 		"typescript": "~5.4.2",
-		"typescript-eslint": "^8.2.0"
+		"typescript-eslint": "^8.15.0"
 	}
 }
