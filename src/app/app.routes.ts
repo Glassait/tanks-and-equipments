@@ -15,7 +15,7 @@ export const routes: Routes = [
     },
     {
         path: PathEnum.CHARS_EQUIPMENT,
-        pathMatch: 'full',
-        redirectTo: '/',
+        loadComponent: () => import('./modules/features/tank-equipments/tank-equipments.component').then(c => c.TankEquipmentsComponent),
+        title: 'Chars et Équipements',
     },
 ];
