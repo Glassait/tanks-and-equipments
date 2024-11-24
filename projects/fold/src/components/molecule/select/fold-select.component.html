@@ -28,7 +28,16 @@
                     [attr.aria-label]="selectTitle() + ' ' + (item.text | lowercase)"
                     class="dropdown-item radius-4 caption-1"
                 >
-                    <p fold-text size="medium" class="gap-8" [iconLeft]="item.icon">{{ item.text | sentenceCase }}</p>
+                    <p
+                        fold-text
+                        size="medium"
+                        class="gap-8"
+                        [ngClass]="{ 'neutral-50': selected()?.index !== $index }"
+                        [iconLeft]="item.icon"
+                        [overrideIconSize]="20"
+                    >
+                        {{ item.text | sentenceCase }}
+                    </p>
                 </button>
             </li>
         }
