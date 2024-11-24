@@ -1,6 +1,7 @@
 <button
     [attr.aria-label]="'Liste déroulante de sélection des ' + (selectTitle() | lowercase)"
     [attr.popovertarget]="'filter-popover-' + componentId"
+    [ngStyle]="{ 'anchor-name': '--select-button-' + componentId }"
     class="select flex justify-between align-center neutral-50 radius-4 caption-1"
     id="fold-select-{{ componentId }}"
 >
@@ -10,7 +11,13 @@
     <fold-icon [size]="20" icon="chevronBottom"></fold-icon>
 </button>
 
-<div popover class="dropdown" role="menu" id="filter-popover-{{ componentId }}" [ngStyle]="{ 'width.px': dropdownWidth }">
+<div
+    [ngStyle]="{ 'width.px': dropdownWidth, 'position-anchor': '--select-button-' + componentId }"
+    class="dropdown"
+    id="filter-popover-{{ componentId }}"
+    popover
+    role="menu"
+>
     <ul class="flex direction-column gap-8">
         @for (item of selectItems(); track $index) {
             <li>
