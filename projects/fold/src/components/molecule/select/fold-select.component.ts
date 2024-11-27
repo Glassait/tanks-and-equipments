@@ -34,7 +34,7 @@ export class FoldSelectComponent implements OnInit, AfterViewInit {
     public selectTitle: InputSignal<string> = input.required();
     public selectItems: InputSignal<SelectItem[]> = input.required();
 
-    public selectedItem: OutputEmitterRef<SelectItem> = output();
+    public selectedItem: OutputEmitterRef<SelectItem['value']> = output();
 
     //region INJECTION
     private readonly elementRef: ElementRef<HTMLElement> = inject(ElementRef);
@@ -66,6 +66,6 @@ export class FoldSelectComponent implements OnInit, AfterViewInit {
             this.dialog?.hidePopover();
         }
         this.selected.set({ item: this.selectItems()[index], index });
-        this.selectedItem.emit(this.selected()?.item!);
+        this.selectedItem.emit(this.selected()?.item?.value!);
     }
 }
