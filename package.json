@@ -27,7 +27,7 @@
 		"install:lib": "find . -name \"*.tgz\" -type f -delete && npm run install:lib:ci",
 		"install:lib:ci": "npm run build:lib && npm run pack:lib && npm i fold-1.0.0.tgz -f",
 		"generate-icons": "npx -p svg-to-ts svg-to-ts-object",
-		"open-api": "openapi-generator-cli generate -g typescript-angular",
+		"open-api": "openapi-generator-cli generate -g typescript-angular -c config.json",
 		"generate-api": "chmod +x -R ./open-api && ./open-api/generate-api.sh"
 	},
 	"lint-staged": {
