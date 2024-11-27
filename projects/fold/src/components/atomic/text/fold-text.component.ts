@@ -21,7 +21,7 @@ export class FoldTextComponent {
 
     @HostBinding('class')
     get cssClasses(): string[] {
-        return [this.mapSizeCssClasses[this.size()], 'flex', 'align-center', 'justify-center'];
+        return [...this.mapSizeCssClasses[this.size()], 'flex', 'align-center', 'justify-center'];
     }
 
     protected computedIconSize: Signal<FoldIconSize> = computed(
@@ -37,12 +37,12 @@ export class FoldTextComponent {
         'title-3': 24,
     };
 
-    private readonly mapSizeCssClasses: { [k in FoldTextSize]: string } = {
-        small: 'caption-2 gap-4',
-        medium: 'caption-1 gap-8',
-        large: 'body-2 gap-8',
-        'x-large': 'body-1 gap-8',
-        subtitle: 'subtitle-1 gap-12',
-        'title-3': 'title-3 gap-12',
+    private readonly mapSizeCssClasses: { [k in FoldTextSize]: string[] } = {
+        small: ['caption-2', 'gap-4'],
+        medium: ['caption-1', 'gap-8'],
+        large: ['body-2', 'gap-8'],
+        'x-large': ['body-2', 'gap-8'],
+        subtitle: ['subtitle-1', 'gap-12'],
+        'title-3': ['title-3', 'gap-12'],
     };
 }
