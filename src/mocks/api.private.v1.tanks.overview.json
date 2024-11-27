@@ -22,7 +22,7 @@
 	{
 		"name": "T110E3",
 		"wotName": "A85_T110E3",
-		"type": "anti-tank",
+		"type": "tankDestroyer",
 		"level": 10,
 		"role": "assault",
 		"nation": "USA",
@@ -64,7 +64,7 @@
 		"wotName": "R110_Object_260",
 		"type": "heavy",
 		"level": 10,
-		"role": "heavy-push",
+		"role": "heavyPush",
 		"nation": "USSR",
 		"priority": 5,
 		"is_reward": true
