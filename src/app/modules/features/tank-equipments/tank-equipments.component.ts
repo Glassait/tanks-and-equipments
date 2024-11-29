@@ -1,14 +1,4 @@
-import {
-    ChangeDetectionStrategy,
-    Component,
-    computed,
-    inject,
-    makeStateKey,
-    type OnInit,
-    PLATFORM_ID,
-    signal,
-    type WritableSignal,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, type OnInit, PLATFORM_ID, signal, type WritableSignal } from '@angular/core';
 import {
     BreadcrumbModel,
     FoldBreadcrumbComponent,
@@ -21,14 +11,9 @@ import { PathEnum } from 'core/enums/path.enum';
 import { type TankOverview, TankOverviewNationEnum, TankOverviewRoleEnum, TankOverviewTypeEnum } from 'generated-api/tanks';
 import { TransferState } from '@angular/platform-browser';
 import { isPlatformBrowser, isPlatformServer, TitleCasePipe } from '@angular/common';
+import { NATIONS_KEY, PRIORITIES_KEY, ROLES_KEY, TANKS_OVERVIEW_KEY, TIERS_KEY, TYPES_KEY } from 'shared/variables/transfer.key';
 import { TanksOverviewProxy } from 'shared/proxy/tanks-overview.proxy';
-
-const TANKS_OVERVIEW_KEY = makeStateKey<TankOverview[]>('tankOverviews');
-const NATIONS_KEY = makeStateKey<SelectItem[]>('nations');
-const TIERS_KEY = makeStateKey<SelectItem[]>('tiers');
-const TYPES_KEY = makeStateKey<SelectItem[]>('types');
-const PRIORITIES_KEY = makeStateKey<SelectItem[]>('priorities');
-const ROLES_KEY = makeStateKey<SelectItem[]>('roles');
+import { CacheManagerService } from 'shared/services/cache-manager.service';
 
 @Component({
     selector: 'tank-equipments',
@@ -44,8 +29,9 @@ export class TankEquipmentsComponent implements OnInit {
     private readonly tanksOverviewService: TanksOverviewProxy = inject(TanksOverviewProxy);
     private readonly platformId = inject(PLATFORM_ID);
     private readonly transferState = inject(TransferState);
-    private readonly titleCase = inject(TitleCasePipe);
-    private readonly sentenceCase = inject(SentenceCasePipe);
+    private readonly titleCase: TitleCasePipe = inject(TitleCasePipe);
+    private readonly sentenceCase: SentenceCasePipe = inject(SentenceCasePipe);
+    private readonly cacheManager: CacheManagerService = inject(CacheManagerService);
     //endregion
 
     protected breadcrumb: BreadcrumbModel[] = [
@@ -145,31 +131,40 @@ export class TankEquipmentsComponent implements OnInit {
 
     ngOnInit() {
         if (isPlatformServer(this.platformId)) {
-            this.tanksOverviewService.tanksOverview().subscribe({
-                next: (tankOverviews: TankOverview[]): void => {
-                    this.tanksOverview = tankOverviews.sort((a, b) => b.priority - a.priority); //NOSONAR
-                    this.transferState.set(TANKS_OVERVIEW_KEY, this.tanksOverview);
-
-                    this.extractNation();
-                    this.extractTiers();
-                    this.extractTypes();
-                    this.extractPriorities();
-                    this.extractRoles();
-                },
-                error: err => {
-                    console.error(err);
-                },
-            });
+            if (this.cacheManager.hasKey(TANKS_OVERVIEW_KEY)) {
+                this.tanksOverview = this.sortTanksOverview(this.cacheManager.getData(TANKS_OVERVIEW_KEY)!);
+            } else {
+                this.tanksOverviewService.tanksOverview().subscribe({
+                    next: (tankOverviews: TankOverview[]): void => {
+                        this.tanksOverview = this.sortTanksOverview(tankOverviews);
+                        this.cacheManager.addData(TANKS_OVERVIEW_KEY, tankOverviews);
+                    },
+                    error: err => {
+                        console.error(err);
+                    },
+                });
+            }
         }
 
         if (isPlatformBrowser(this.platformId)) {
-            this.tanksOverview = this.transferState.get(TANKS_OVERVIEW_KEY, []);
+            this.tanksOverview = this.sortTanksOverview(this.transferState.get(TANKS_OVERVIEW_KEY, []));
+
+            this.extractNation();
+            this.extractTiers();
+            this.extractTypes();
+            this.extractPriorities();
+            this.extractRoles();
+
             this.nations = this.transferState.get(NATIONS_KEY, []);
             this.level = this.transferState.get(TIERS_KEY, []);
             this.types = this.transferState.get(TYPES_KEY, []);
             this.priorities = this.transferState.get(PRIORITIES_KEY, []);
             this.roles = this.transferState.get(ROLES_KEY, []);
         }
+    }
+
+    private sortTanksOverview(tanksOverview: TankOverview[]): TankOverview[] {
+        return tanksOverview.sort((a: TankOverview, b: TankOverview) => b.priority - a.priority); // NOSONAR
     }
 
     private extractNation(): void {
