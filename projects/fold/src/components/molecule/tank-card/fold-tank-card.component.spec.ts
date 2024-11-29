@@ -89,7 +89,7 @@ describe('FoldTankCardComponent', () => {
         expect(foldLinkDirectiveInstance.openInNew()).toBeFalse();
         expect(foldLinkDirectiveInstance.target).toBeNull();
         expect(foldLinkDirectiveInstance.rel).toBeNull();
-        expect(foldLinkDirectiveInstance.href).toBeNull();
+        expect(foldLinkDirectiveInstance.href).toEqual('/chars-et-equipements/object_260');
         expect(a.text).toEqual('Object 260');
     });
 
