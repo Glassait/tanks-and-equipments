@@ -36,16 +36,13 @@ describe('FoldLinkDirective', () => {
         let directiveInstance: FoldLinkDirective;
         let directiveHtml: HTMLAnchorElement;
 
-        let routerSpy: jasmine.SpyObj<Router>;
         let windowOpenSpy: jasmine.Spy;
 
         beforeEach(() => {
-            routerSpy = jasmine.createSpyObj('Router', ['navigateByUrl']);
             windowOpenSpy = spyOn(window, 'open');
 
             fixture = TestBed.configureTestingModule({
                 imports: [MockAnchorComponent],
-                providers: [{ provide: Router, useValue: routerSpy }],
             }).createComponent(MockAnchorComponent);
 
             componentWrapper = fixture.componentInstance;
@@ -74,13 +71,13 @@ describe('FoldLinkDirective', () => {
             expect(directiveHtml.href.startsWith('http')).toBeTrue();
         });
 
-        it('should not have href when url has not http(s)', () => {
+        it('should have href when url has not http(s)', () => {
             componentWrapper.url = '/test';
             fixture.detectChanges();
 
             expect(directiveInstance.url).toEqual('/test');
-            expect(directiveHtml.href).toEqual('');
-            expect(directiveHtml.href.startsWith('http')).toBeFalse();
+            expect(directiveHtml.href.endsWith('/test')).toBeTrue();
+            expect(directiveHtml.href.startsWith('http')).toBeTrue();
         });
 
         it('should not have href when disabled', () => {
@@ -127,8 +124,8 @@ describe('FoldLinkDirective', () => {
 
             expect(directiveInstance.url).toEqual('/test');
             expect(directiveInstance.openInNew).toBeTrue();
-            expect(directiveHtml.href).toEqual('');
-            expect(directiveHtml.target).toEqual('');
+            expect(directiveHtml.href.endsWith('/test')).toBeTrue();
+            expect(directiveHtml.target).toEqual('_blank');
         });
 
         it('should have rel=noreferrer when openInNew=true', () => {
@@ -165,8 +162,8 @@ describe('FoldLinkDirective', () => {
 
             expect(directiveInstance.url).toEqual('/test');
             expect(directiveInstance.openInNew).toBeTrue();
-            expect(directiveHtml.href).toEqual('');
-            expect(directiveHtml.rel).toEqual('');
+            expect(directiveHtml.href.endsWith('/test')).toBeTrue();
+            expect(directiveHtml.rel).toEqual('noreferrer');
         });
 
         it('should not be disabled by default', () => {
@@ -225,11 +222,9 @@ describe('FoldLinkDirective', () => {
             spyOn(directiveHtml, 'click').and.stub();
             directiveHtml.click();
             expect(directiveHtml.click).toHaveBeenCalledTimes(1);
-            expect(routerSpy.navigateByUrl).toHaveBeenCalledTimes(0);
             expect(windowOpenSpy).toHaveBeenCalledTimes(0);
 
             directiveDebug.triggerEventHandler('click', new MouseEvent('click'));
-            expect(routerSpy.navigateByUrl).toHaveBeenCalledTimes(0);
             expect(windowOpenSpy).toHaveBeenCalledTimes(0);
         });
 
@@ -243,51 +238,10 @@ describe('FoldLinkDirective', () => {
             spyOn(directiveHtml, 'click').and.stub();
             directiveHtml.click();
             expect(directiveHtml.click).toHaveBeenCalledTimes(1);
-            expect(routerSpy.navigateByUrl).toHaveBeenCalledTimes(0);
             expect(windowOpenSpy).toHaveBeenCalledTimes(0);
 
             directiveDebug.triggerEventHandler('click', new MouseEvent('click'));
-            expect(routerSpy.navigateByUrl).toHaveBeenCalledTimes(0);
             expect(windowOpenSpy).toHaveBeenCalledTimes(0);
-        });
-
-        it('should navigate when url not http(s) on click', () => {
-            componentWrapper.url = '/test';
-            fixture.detectChanges();
-
-            routerSpy.navigateByUrl.withArgs('/test').and.returnValue(lastValueFrom(of(true)));
-            directiveHtml.click();
-            expect(routerSpy.navigateByUrl).toHaveBeenCalledOnceWith('/test');
-
-            fixture.whenStable().then(() => {
-                expect(spyOn(console, 'error')).toHaveBeenCalledTimes(0);
-            });
-        });
-
-        it("should throw error when angular url doesn't exist on click", () => {
-            componentWrapper.url = '/not-exist';
-            fixture.detectChanges();
-
-            routerSpy.navigateByUrl.withArgs('/not-exist').and.returnValue(Promise.reject('Does not exist'));
-            directiveHtml.click();
-            expect(routerSpy.navigateByUrl).toHaveBeenCalledOnceWith('/not-exist');
-
-            fixture.whenStable().then(() => {
-                expect(spyOn(console, 'error')).toHaveBeenCalledOnceWith('Does not exist');
-            });
-        });
-
-        it('should navigate when url has not http(s) by pressing enter', () => {
-            componentWrapper.url = '/test';
-            fixture.detectChanges();
-
-            routerSpy.navigateByUrl.withArgs('/test').and.returnValue(lastValueFrom(of(true)));
-            directiveDebug.triggerEventHandler('keydown.enter', new KeyboardEvent('enter'));
-            expect(routerSpy.navigateByUrl).toHaveBeenCalledOnceWith('/test');
-
-            fixture.whenStable().then(() => {
-                expect(spyOn(console, 'error')).toHaveBeenCalledTimes(0);
-            });
         });
     });
 
@@ -298,16 +252,13 @@ describe('FoldLinkDirective', () => {
         let directiveInstance: FoldLinkDirective;
         let directiveHtml: HTMLButtonElement & { href: string; target: number; rel: string };
 
-        let routerSpy: jasmine.SpyObj<Router>;
         let windowOpenSpy: jasmine.Spy;
 
         beforeEach(() => {
-            routerSpy = jasmine.createSpyObj('Router', ['navigateByUrl']);
             windowOpenSpy = spyOn(window, 'open');
 
             fixture = TestBed.configureTestingModule({
                 imports: [MockButtonComponent],
-                providers: [{ provide: Router, useValue: routerSpy }],
             }).createComponent(MockButtonComponent);
 
             componentWrapper = fixture.componentInstance;
@@ -489,11 +440,9 @@ describe('FoldLinkDirective', () => {
             spyOn(directiveHtml, 'click').and.stub();
             directiveHtml.click();
             expect(directiveHtml.click).toHaveBeenCalledTimes(1);
-            expect(routerSpy.navigateByUrl).toHaveBeenCalledTimes(0);
             expect(windowOpenSpy).toHaveBeenCalledTimes(0);
 
             directiveDebug.triggerEventHandler('click', new MouseEvent('click'));
-            expect(routerSpy.navigateByUrl).toHaveBeenCalledTimes(0);
             expect(windowOpenSpy).toHaveBeenCalledTimes(0);
         });
 
@@ -504,7 +453,6 @@ describe('FoldLinkDirective', () => {
             windowOpenSpy.and.stub();
 
             directiveDebug.triggerEventHandler('click', new MouseEvent('click'));
-            expect(routerSpy.navigateByUrl).toHaveBeenCalledTimes(0);
             expect(windowOpenSpy).toHaveBeenCalledOnceWith('https://search.brave.com/', '_self');
 
             fixture.whenStable().then(() => {
@@ -522,52 +470,7 @@ describe('FoldLinkDirective', () => {
             windowOpenSpy.and.stub();
 
             directiveDebug.triggerEventHandler('click', new MouseEvent('click'));
-            expect(routerSpy.navigateByUrl).toHaveBeenCalledTimes(0);
             expect(windowOpenSpy).toHaveBeenCalledOnceWith('https://search.brave.com/', '_blank');
-
-            fixture.whenStable().then(() => {
-                expect(spyOn(console, 'error')).toHaveBeenCalledTimes(0);
-            });
-        });
-
-        it('should navigate when url has not http(s) on click', () => {
-            componentWrapper.url = '/test';
-            fixture.detectChanges();
-
-            routerSpy.navigateByUrl.withArgs('/test').and.returnValue(lastValueFrom(of(true)));
-            directiveDebug.triggerEventHandler('click', new MouseEvent('click'));
-            expect(routerSpy.navigateByUrl).toHaveBeenCalledOnceWith('/test');
-
-            fixture.whenStable().then(() => {
-                expect(spyOn(console, 'error')).toHaveBeenCalledTimes(0);
-            });
-        });
-
-        it("should throw error when angular url doesn't exist on click", () => {
-            componentWrapper.url = '/not-exist';
-            fixture.detectChanges();
-
-            routerSpy.navigateByUrl.withArgs('/not-exist').and.returnValue(Promise.reject('Does not exist'));
-            directiveHtml.click();
-            expect(routerSpy.navigateByUrl).toHaveBeenCalledOnceWith('/not-exist');
-            expect(windowOpenSpy).toHaveBeenCalledTimes(0);
-
-            fixture.whenStable().then(() => {
-                expect(spyOn(console, 'error')).toHaveBeenCalledOnceWith('Does not exist');
-            });
-        });
-
-        it('should navigate when url not http(s) by pressing enter', () => {
-            componentWrapper.url = '/test';
-            fixture.detectChanges();
-
-            expect(directiveInstance.url).toEqual('/test');
-            expect(directiveHtml.href).toBeUndefined();
-
-            routerSpy.navigateByUrl.withArgs('/test').and.returnValue(lastValueFrom(of(true)));
-            directiveDebug.triggerEventHandler('keydown.enter', new KeyboardEvent('enter'));
-            expect(routerSpy.navigateByUrl).toHaveBeenCalledOnceWith('/test');
-            expect(windowOpenSpy).toHaveBeenCalledTimes(0);
 
             fixture.whenStable().then(() => {
                 expect(spyOn(console, 'error')).toHaveBeenCalledTimes(0);
