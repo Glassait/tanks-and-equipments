@@ -32,7 +32,7 @@ export class CacheManagerService {
             cacheData = { data: this.transferState.get(key, undefined), date: new Date() };
         }
 
-        if (cacheData?.date && new Date().getTime() - cacheData.date.getTime() > 1000 * 60 * 60) {
+        if (cacheData?.date && Date.now() - cacheData.date.getTime() > 1000 * 60 * 60) {
             cache.delete(key);
             cacheData = undefined;
         }
