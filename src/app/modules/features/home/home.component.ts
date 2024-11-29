@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, HostBinding, inject, type OnInit, PLATFORM_ID } from '@angular/core';
 import { FoldButtonComponent, FoldLinkDirective, FoldNewsCardComponent, FoldTankCardComponent, FoldTextComponent } from 'fold';
 import { TanksOverviewProxy } from 'shared/proxy/tanks-overview.proxy';
-import { isPlatformBrowser, NgClass } from '@angular/common';
+import { isPlatformBrowser, isPlatformServer, NgClass } from '@angular/common';
 import { TransferState } from '@angular/platform-browser';
 import { PathEnum } from 'core/enums/path.enum';
 import type { WotNews } from 'generated-api/wot';
@@ -42,46 +42,50 @@ export class HomeComponent implements OnInit {
     protected foldResults: FoldResult[] = [];
 
     ngOnInit(): void {
-        if (this.cacheManager.hasKey(TANKS_OVERVIEW_KEY)) {
-            this.tanksOverview = this.filterTanksOverview(this.cacheManager.getData(TANKS_OVERVIEW_KEY)!);
-        } else {
-            this.tanksOverviewService.tanksOverview().subscribe({
-                next: (tanksOverview: TankOverview[]): void => {
-                    this.tanksOverview = this.filterTanksOverview(tanksOverview);
-                    this.cacheManager.addData(TANKS_OVERVIEW_KEY, tanksOverview);
-                },
-                error: err => {
-                    console.error(err);
-                },
-            });
-        }
+        if (isPlatformServer(this.platformId)) {
+            if (this.cacheManager.hasKey(TANKS_OVERVIEW_KEY)) {
+                this.tanksOverview = this.filterTanksOverview(this.cacheManager.getData(TANKS_OVERVIEW_KEY)!);
+            } else {
+                this.tanksOverviewService.tanksOverview().subscribe({
+                    next: (tanksOverview: TankOverview[]): void => {
+                        this.tanksOverview = this.filterTanksOverview(tanksOverview);
+                        this.cacheManager.addData(TANKS_OVERVIEW_KEY, tanksOverview);
+                    },
+                    error: err => {
+                        console.error(err);
+                    },
+                });
+            }
 
-        if (this.cacheManager.hasKey(WOT_NEWS_KEY)) {
-            this.wotNews = this.cacheManager.getData(WOT_NEWS_KEY)!;
-        } else {
-            this.wotNewsService.wotNews().subscribe({
-                next: (wotNews: WotNews[]): void => {
-                    this.wotNews = wotNews;
-                    this.cacheManager.addData(WOT_NEWS_KEY, wotNews);
-                },
-                error: err => {
-                    console.error(err);
-                },
-            });
-        }
+            if (this.cacheManager.hasKey(WOT_NEWS_KEY)) {
+                this.wotNews = this.cacheManager.getData(WOT_NEWS_KEY)!;
+            } else {
+                this.wotNewsService.wotNews().subscribe({
+                    next: (wotNews: WotNews[]): void => {
+                        this.wotNews = wotNews;
+                        this.cacheManager.addData(WOT_NEWS_KEY, wotNews);
+                    },
+                    error: err => {
+                        console.error(err);
+                    },
+                });
+            }
 
-        if (this.cacheManager.hasKey(FOLD_RESULTS_KEY)) {
-            this.foldResults = this.cacheManager.getData(FOLD_RESULTS_KEY)!;
-        } else {
-            this.foldResultsService.foldResults().subscribe({
-                next: (foldResults: FoldResult[]): void => {
-                    this.foldResults = foldResults;
-                    this.cacheManager.addData(FOLD_RESULTS_KEY, foldResults);
-                },
-                error: err => {
-                    console.error(err);
-                },
-            });
+            if (this.cacheManager.hasKey(FOLD_RESULTS_KEY)) {
+                this.foldResults = this.cacheManager.getData(FOLD_RESULTS_KEY)!;
+            } else {
+                this.foldResultsService.foldResults().subscribe({
+                    next: (foldResults: FoldResult[]): void => {
+                        this.foldResults = foldResults;
+                        this.cacheManager.addData(FOLD_RESULTS_KEY, foldResults);
+                    },
+                    error: err => {
+                        console.error(err);
+                    },
+                });
+            }
+
+            return;
         }
 
         if (isPlatformBrowser(this.platformId)) {
