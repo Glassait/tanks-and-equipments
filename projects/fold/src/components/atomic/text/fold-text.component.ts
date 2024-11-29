@@ -41,7 +41,7 @@ export class FoldTextComponent {
         small: ['caption-2', 'gap-4'],
         medium: ['caption-1', 'gap-8'],
         large: ['body-2', 'gap-8'],
-        'x-large': ['body-2', 'gap-8'],
+        'x-large': ['body-1', 'gap-8'],
         subtitle: ['subtitle-1', 'gap-12'],
         'title-3': ['title-3', 'gap-12'],
     };

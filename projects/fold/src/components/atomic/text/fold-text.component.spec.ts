@@ -15,7 +15,7 @@ import { FoldIconComponent } from '../icon/fold-icon.component';
     imports: [FoldTextComponent],
 })
 class FoldTextComponentWrapper {
-    size: FoldTextSize;
+    size: FoldTextSize = 'small';
     iconLeft: FoldIcon | undefined;
     iconRight: FoldIcon | undefined;
     overrideIconSize: FoldIconSize | undefined;
