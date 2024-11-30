@@ -1,8 +1,8 @@
 import { ComponentFixture, DeferBlockState, TestBed } from '@angular/core/testing';
 import { HomeComponent } from './home.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { makeStateKey, PLATFORM_ID, TransferState } from '@angular/core';
-import { TankOverview } from 'generated-api/tanks';
+import { PLATFORM_ID, TransferState } from '@angular/core';
+import { TankOverview, TankOverviewNationEnum, TankOverviewRoleEnum, TankOverviewTypeEnum } from 'generated-api/tanks';
 import { WotNews } from 'generated-api/wot';
 import { FoldResult } from 'generated-api/fold';
 import { FoldNewsCardComponent, FoldTankCardComponent } from 'fold';
@@ -11,16 +11,15 @@ import { TanksOverviewProxy } from 'shared/proxy/tanks-overview.proxy';
 import { WotNewsProxy } from 'shared/proxy/wot-news.proxy';
 import { FoldResultsProxy } from 'shared/proxy/fold-results.proxy';
 import { of, throwError } from 'rxjs';
-
-const TANKS_OVERVIEW_KEY = makeStateKey<TankOverview[]>('tankOverviews');
-const WOT_NEWS_KEY = makeStateKey<WotNews[]>('wotNews');
-const FOLD_RESULTS_KEY = makeStateKey<FoldResult[]>('foldResults');
+import { FOLD_RESULTS_KEY, TANKS_OVERVIEW_KEY, WOT_NEWS_KEY } from 'shared/variables/transfer.key';
+import { CacheManagerService } from 'shared/services/cache-manager.service';
 
 describe('HomeComponent', () => {
     let component: HomeComponent;
     let fixture: ComponentFixture<HomeComponent>;
 
     let transferStateSpy: jasmine.SpyObj<TransferState>;
+    let cacheManagerSpy: jasmine.SpyObj<CacheManagerService>;
     let tanksOverviewServiceSpy: jasmine.SpyObj<TanksOverviewProxy>;
     let wotNewsServiceSpy: jasmine.SpyObj<WotNewsProxy>;
     let foldResultsServiceSpy: jasmine.SpyObj<FoldResultsProxy>;
@@ -29,20 +28,20 @@ describe('HomeComponent', () => {
         {
             name: 'object 260',
             wotName: 'object 260',
-            role: 'heavyPush',
+            role: TankOverviewRoleEnum.HeavyPush,
             level: 10,
-            type: 'heavy',
-            nation: 'USSR',
+            type: TankOverviewTypeEnum.Heavy,
+            nation: TankOverviewNationEnum.Ussr,
             priority: 5,
             is_reward: true,
         },
         {
             name: 'object 260',
             wotName: 'object 260',
-            role: 'heavyPush',
+            role: TankOverviewRoleEnum.HeavyPush,
             level: 10,
-            type: 'heavy',
-            nation: 'USSR',
+            type: TankOverviewTypeEnum.Heavy,
+            nation: TankOverviewNationEnum.Ussr,
             priority: 1,
             is_reward: true,
         },
@@ -96,7 +95,7 @@ describe('HomeComponent', () => {
                 ],
             }).createComponent(HomeComponent);
 
-            transferStateSpy.get.withArgs(TANKS_OVERVIEW_KEY, []).and.returnValue(tanksOverview.filter(({ priority }) => priority === 5));
+            transferStateSpy.get.withArgs(TANKS_OVERVIEW_KEY, []).and.returnValue(tanksOverview);
             transferStateSpy.get.withArgs(WOT_NEWS_KEY, []).and.returnValue(wotNews);
             transferStateSpy.get.withArgs(FOLD_RESULTS_KEY, []).and.returnValue(foldResults);
 
@@ -190,7 +189,7 @@ describe('HomeComponent', () => {
 
     describe('Server', () => {
         beforeEach(() => {
-            transferStateSpy = jasmine.createSpyObj('TransferState', ['set']);
+            cacheManagerSpy = jasmine.createSpyObj('CacheManagerService', ['addData', 'hasKey']);
             tanksOverviewServiceSpy = jasmine.createSpyObj('TanksOverviewProxy', ['tanksOverview']);
             wotNewsServiceSpy = jasmine.createSpyObj('WotNewsProxy', ['wotNews']);
             foldResultsServiceSpy = jasmine.createSpyObj('FoldResultsProxy', ['foldResults']);
@@ -203,8 +202,8 @@ describe('HomeComponent', () => {
                         useValue: 'server',
                     },
                     {
-                        provide: TransferState,
-                        useValue: transferStateSpy,
+                        provide: CacheManagerService,
+                        useValue: cacheManagerSpy,
                     },
                     {
                         provide: TanksOverviewProxy,
@@ -225,6 +224,14 @@ describe('HomeComponent', () => {
             wotNewsServiceSpy.wotNews.and.returnValue(of(wotNews));
             foldResultsServiceSpy.foldResults.and.returnValue(of(foldResults));
 
+            cacheManagerSpy.hasKey.withArgs(TANKS_OVERVIEW_KEY).and.returnValue(false);
+            cacheManagerSpy.hasKey.withArgs(WOT_NEWS_KEY).and.returnValue(false);
+            cacheManagerSpy.hasKey.withArgs(FOLD_RESULTS_KEY).and.returnValue(false);
+
+            cacheManagerSpy.addData.withArgs(TANKS_OVERVIEW_KEY, tanksOverview);
+            cacheManagerSpy.addData.withArgs(WOT_NEWS_KEY, wotNews);
+            cacheManagerSpy.addData.withArgs(FOLD_RESULTS_KEY, foldResults);
+
             component = fixture.componentInstance;
             fixture.detectChanges();
         });
@@ -239,20 +246,17 @@ describe('HomeComponent', () => {
             expect(foldResultsServiceSpy.foldResults).toHaveBeenCalledOnceWith();
         });
 
-        it('should transfer state', () => {
-            expect(transferStateSpy.set).toHaveBeenCalledTimes(3);
-            expect(transferStateSpy.set).toHaveBeenCalledWith(
-                TANKS_OVERVIEW_KEY,
-                tanksOverview.filter(({ priority }) => priority === 5)
-            );
-            expect(transferStateSpy.set).toHaveBeenCalledWith(WOT_NEWS_KEY, wotNews);
-            expect(transferStateSpy.set).toHaveBeenCalledWith(FOLD_RESULTS_KEY, foldResults);
+        it('should store data', () => {
+            expect(cacheManagerSpy.addData).toHaveBeenCalledTimes(3);
+            expect(cacheManagerSpy.addData).toHaveBeenCalledWith(TANKS_OVERVIEW_KEY, tanksOverview);
+            expect(cacheManagerSpy.addData).toHaveBeenCalledWith(WOT_NEWS_KEY, wotNews);
+            expect(cacheManagerSpy.addData).toHaveBeenCalledWith(FOLD_RESULTS_KEY, foldResults);
         });
     });
 
-    describe('Server Error', () => {
+    describe('Server with cache', () => {
         beforeEach(() => {
-            transferStateSpy = jasmine.createSpyObj('TransferState', ['set']);
+            cacheManagerSpy = jasmine.createSpyObj('CacheManagerService', ['hasKey', 'getData']);
             tanksOverviewServiceSpy = jasmine.createSpyObj('TanksOverviewProxy', ['tanksOverview']);
             wotNewsServiceSpy = jasmine.createSpyObj('WotNewsProxy', ['wotNews']);
             foldResultsServiceSpy = jasmine.createSpyObj('FoldResultsProxy', ['foldResults']);
@@ -265,8 +269,71 @@ describe('HomeComponent', () => {
                         useValue: 'server',
                     },
                     {
-                        provide: TransferState,
-                        useValue: transferStateSpy,
+                        provide: CacheManagerService,
+                        useValue: cacheManagerSpy,
+                    },
+                    {
+                        provide: TanksOverviewProxy,
+                        useValue: tanksOverviewServiceSpy,
+                    },
+                    {
+                        provide: WotNewsProxy,
+                        useValue: wotNewsServiceSpy,
+                    },
+                    {
+                        provide: FoldResultsProxy,
+                        useValue: foldResultsServiceSpy,
+                    },
+                ],
+            }).createComponent(HomeComponent);
+
+            cacheManagerSpy.hasKey.withArgs(TANKS_OVERVIEW_KEY).and.returnValue(true);
+            cacheManagerSpy.hasKey.withArgs(WOT_NEWS_KEY).and.returnValue(true);
+            cacheManagerSpy.hasKey.withArgs(FOLD_RESULTS_KEY).and.returnValue(true);
+
+            cacheManagerSpy.getData.withArgs(TANKS_OVERVIEW_KEY).and.returnValue(tanksOverview);
+            cacheManagerSpy.getData.withArgs(WOT_NEWS_KEY).and.returnValue(wotNews);
+            cacheManagerSpy.getData.withArgs(FOLD_RESULTS_KEY).and.returnValue(foldResults);
+
+            component = fixture.componentInstance;
+            fixture.detectChanges();
+        });
+
+        it('should create', (): void => {
+            expect(component).toBeTruthy();
+        });
+
+        it('should not have call api', () => {
+            expect(tanksOverviewServiceSpy.tanksOverview).toHaveBeenCalledTimes(0);
+            expect(wotNewsServiceSpy.wotNews).toHaveBeenCalledTimes(0);
+            expect(foldResultsServiceSpy.foldResults).toHaveBeenCalledTimes(0);
+        });
+
+        it('should get data from cache', () => {
+            expect(cacheManagerSpy.getData).toHaveBeenCalledTimes(3);
+            expect(cacheManagerSpy.getData).toHaveBeenCalledWith(TANKS_OVERVIEW_KEY);
+            expect(cacheManagerSpy.getData).toHaveBeenCalledWith(WOT_NEWS_KEY);
+            expect(cacheManagerSpy.getData).toHaveBeenCalledWith(FOLD_RESULTS_KEY);
+        });
+    });
+
+    describe('Server Error', () => {
+        beforeEach(() => {
+            cacheManagerSpy = jasmine.createSpyObj('CacheManagerService', ['addData', 'hasKey']);
+            tanksOverviewServiceSpy = jasmine.createSpyObj('TanksOverviewProxy', ['tanksOverview']);
+            wotNewsServiceSpy = jasmine.createSpyObj('WotNewsProxy', ['wotNews']);
+            foldResultsServiceSpy = jasmine.createSpyObj('FoldResultsProxy', ['foldResults']);
+
+            fixture = TestBed.configureTestingModule({
+                imports: [HomeComponent, HttpClientTestingModule, FoldTankCardComponent, FoldNewsCardComponent],
+                providers: [
+                    {
+                        provide: PLATFORM_ID,
+                        useValue: 'server',
+                    },
+                    {
+                        provide: CacheManagerService,
+                        useValue: cacheManagerSpy,
                     },
                     {
                         provide: TanksOverviewProxy,
@@ -287,6 +354,14 @@ describe('HomeComponent', () => {
             wotNewsServiceSpy.wotNews.and.returnValue(throwError(() => new Error()));
             foldResultsServiceSpy.foldResults.and.returnValue(throwError(() => new Error()));
 
+            cacheManagerSpy.hasKey.withArgs(TANKS_OVERVIEW_KEY).and.returnValue(false);
+            cacheManagerSpy.hasKey.withArgs(WOT_NEWS_KEY).and.returnValue(false);
+            cacheManagerSpy.hasKey.withArgs(FOLD_RESULTS_KEY).and.returnValue(false);
+
+            cacheManagerSpy.addData.withArgs(TANKS_OVERVIEW_KEY, tanksOverview);
+            cacheManagerSpy.addData.withArgs(WOT_NEWS_KEY, wotNews);
+            cacheManagerSpy.addData.withArgs(FOLD_RESULTS_KEY, foldResults);
+
             component = fixture.componentInstance;
             fixture.detectChanges();
         });
@@ -301,8 +376,8 @@ describe('HomeComponent', () => {
             expect(foldResultsServiceSpy.foldResults).toHaveBeenCalledOnceWith();
         });
 
-        it('should not transfer state', () => {
-            expect(transferStateSpy.set).toHaveBeenCalledTimes(0);
+        it('should not add data to cache', () => {
+            expect(cacheManagerSpy.addData).toHaveBeenCalledTimes(0);
         });
     });
 });

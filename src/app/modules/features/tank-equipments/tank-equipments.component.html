@@ -1,0 +1,31 @@
+<section class="full-width gap-40">
+    <div class="content flex direction-column">
+        <header id="introduction" class="flex direction-column gap-12 align-start">
+            <fold-breadcrumb [links]="breadcrumb" />
+            <h1 class="large-title neutral-200">Chars et Équipements</h1>
+        </header>
+
+        <div id="filter-bar" class="flex align-center gap-32">
+            <fold-select selectTitle="Nation" [selectItems]="nations" (selectedItem)="this.filterNation.set($event)" />
+            <fold-select selectTitle="Tier" [selectItems]="level" (selectedItem)="this.filterLevel.set($event)" />
+            <fold-select selectTitle="Type" [selectItems]="types" (selectedItem)="this.filterType.set($event)" />
+            <fold-select selectTitle="Priorité" [selectItems]="priorities" (selectedItem)="this.filterPriority.set($event)" />
+            <fold-select selectTitle="Rôle" [selectItems]="roles" (selectedItem)="this.filterRole.set($event)" />
+        </div>
+    </div>
+
+    <div id="tanks-carousel" class="content flex align-start">
+        @for (tank of carrousel(); track $index) {
+            <fold-tank-card
+                [isReward]="tank.is_reward"
+                [level]="tank.level"
+                [name]="tank.name"
+                [nation]="tank.nation"
+                [priority]="tank.priority"
+                [role]="tank.role"
+                [type]="tank.type"
+                [wotName]="tank.wotName"
+            />
+        }
+    </div>
+</section>

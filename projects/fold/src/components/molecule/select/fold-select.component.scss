@@ -41,8 +41,6 @@ li {
 }
 
 .select {
-    anchor-name: --select-button;
-
     fold-icon {
         animation: 0.5s rotating-back 0s ease-in-out forwards;
     }
@@ -60,7 +58,6 @@ li {
 
     max-height: 0;
 
-    position-anchor: --select-button;
     position: absolute;
     inset: auto;
     top: anchor(bottom);

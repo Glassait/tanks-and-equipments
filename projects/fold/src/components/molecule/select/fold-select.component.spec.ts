@@ -17,14 +17,17 @@ class FoldSelectComponentWrapperWithDefault {
     items: SelectItem[] = [
         {
             text: 'Item 1',
+            value: '1',
             selectedByDefault: true,
         },
         {
             text: 'Item 2',
+            value: '2',
             icon: 'filterCzech',
         },
         {
             text: 'Item 3',
+            value: '3',
             icon: 'filterChina',
         },
     ];
@@ -40,10 +43,12 @@ class FoldSelectComponentWrapper {
     items: SelectItem[] = [
         {
             text: 'Item 1',
+            value: '1',
             icon: 'filterUsa',
         },
         {
             text: 'Item 2',
+            value: '2',
             icon: 'filterCzech',
         },
     ];
@@ -91,6 +96,7 @@ describe('FoldSelectComponent', () => {
             component.items = [
                 {
                     text: 'Item 4',
+                    value: '4',
                     icon: 'check',
                 },
             ];
@@ -115,7 +121,7 @@ describe('FoldSelectComponent', () => {
 
         it('should selected the right item when clicked', () => {
             selectComponent.selectedItem.subscribe(value => {
-                expect(value.text).toEqual('Item 2');
+                expect(value).toEqual('2');
             });
 
             let list = fixture.debugElement.query(By.css('ul')).nativeElement;
@@ -182,6 +188,7 @@ describe('FoldSelectComponent', () => {
             component.items = [
                 {
                     text: 'Item 4',
+                    value: '4',
                     icon: 'check',
                 },
             ];
@@ -206,7 +213,7 @@ describe('FoldSelectComponent', () => {
 
         it('should selected the right item when clicked', () => {
             selectComponent.selectedItem.subscribe(value => {
-                expect(value.text).toEqual('Item 2');
+                expect(value).toEqual('2');
             });
 
             let list = fixture.debugElement.query(By.css('ul')).nativeElement;

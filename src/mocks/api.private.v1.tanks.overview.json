@@ -1,68 +1,72 @@
 [
 	{
-		"name": "object 260",
-		"wotName": "r110_object_260",
+		"name": "amx 50 b",
+		"wotName": "F10_AMX_50B",
 		"type": "heavy",
 		"level": 10,
-		"role": "heavyPush",
-		"nation": "USSR",
-		"priority": 5,
-		"is_reward": true
-	},
-	{
-		"name": "bZ-75",
-		"wotName": "ch48_bz_75",
-		"type": "heavy",
-		"level": 10,
-		"role": "assault",
-		"nation": "China",
-		"priority": 5
-	},
-	{
-		"name": "object 260",
-		"wotName": "r110_object_260",
-		"type": "heavy",
-		"level": 10,
-		"role": "heavyPush",
-		"nation": "USSR",
-		"priority": 5,
-		"is_reward": true
+		"role": "versatile",
+		"nation": "France",
+		"priority": 3,
+		"is_reward": false
 	},
 	{
 		"name": "bz-75",
-		"wotName": "ch48_bz_75",
+		"wotName": "Ch48_BZ_75",
 		"type": "heavy",
 		"level": 10,
 		"role": "assault",
 		"nation": "China",
-		"priority": 5
+		"priority": 4,
+		"is_reward": false
+	},
+	{
+		"name": "T110E3",
+		"wotName": "A85_T110E3",
+		"type": "tankDestroyer",
+		"level": 10,
+		"role": "assault",
+		"nation": "USA",
+		"priority": 2,
+		"is_reward": false
+	},
+	{
+		"name": "object 907",
+		"wotName": "R95_Object_907",
+		"type": "medium",
+		"level": 10,
+		"role": "assault",
+		"nation": "USSR",
+		"priority": 5,
+		"is_reward": true
+	},
+	{
+		"name": "panhard ebr 105",
+		"wotName": "F108_Panhard_EBR_105",
+		"type": "light",
+		"level": 10,
+		"role": "wheels",
+		"nation": "France",
+		"priority": 3,
+		"is_reward": false
+	},
+	{
+		"name": "kampfpanzer 07 p(e)",
+		"wotName": "G162_Project_Kpz_07P_E",
+		"type": "heavy",
+		"level": 10,
+		"role": "supports",
+		"nation": "Germany",
+		"priority": 4,
+		"is_reward": true
 	},
 	{
 		"name": "object 260",
-		"wotName": "r110_object_260",
+		"wotName": "R110_Object_260",
 		"type": "heavy",
 		"level": 10,
 		"role": "heavyPush",
 		"nation": "USSR",
 		"priority": 5,
 		"is_reward": true
-	},
-	{
-		"name": "bz-75",
-		"wotName": "ch48_bz_75",
-		"type": "heavy",
-		"level": 10,
-		"role": "assault",
-		"nation": "China",
-		"priority": 5
-	},
-	{
-		"name": "not",
-		"wotName": "ch48_bz_75",
-		"type": "heavy",
-		"level": 10,
-		"role": "assault",
-		"nation": "China",
-		"priority": 4
 	}
 ]

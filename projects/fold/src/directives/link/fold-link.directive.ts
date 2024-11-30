@@ -1,5 +1,4 @@
 import { Directive, ElementRef, HostBinding, HostListener, inject, input, type InputSignal } from '@angular/core';
-import { Router } from '@angular/router';
 
 @Directive({
     selector: 'button[fold-link], a[fold-link]',
@@ -14,17 +13,17 @@ export class FoldLinkDirective {
 
     @HostBinding('attr.href')
     get href(): string | null {
-        return !this.disabled() && !this.isButton() && this.url()?.startsWith('http') ? this.url() : null;
+        return !this.disabled() && !this.isButton() ? this.url() : null;
     }
 
     @HostBinding('attr.target')
     get target(): string | null {
-        return !this.disabled() && !this.isButton() && this.url()?.startsWith('http') && this.openInNew() ? '_blank' : null;
+        return !this.disabled() && !this.isButton() && this.openInNew() ? '_blank' : null;
     }
 
     @HostBinding('attr.rel')
     get rel(): string | null {
-        return !this.disabled() && !this.isButton() && this.url()?.startsWith('http') && this.openInNew() ? 'noreferrer' : null;
+        return !this.disabled() && !this.isButton() && this.openInNew() ? 'noreferrer' : null;
     }
 
     @HostBinding('attr.disabled')
@@ -54,8 +53,6 @@ export class FoldLinkDirective {
 
     private readonly elementRef: ElementRef<HTMLButtonElement | HTMLAnchorElement> = inject(ElementRef);
 
-    private readonly router: Router = inject(Router);
-
     private isButton(): boolean {
         return this.elementRef.nativeElement.localName === 'button';
     }
@@ -66,14 +63,6 @@ export class FoldLinkDirective {
         }
 
         event.preventDefault();
-
-        if (this.url()?.startsWith('http') && this.isButton()) {
-            window.open(this.url(), this.openInNew() ? '_blank' : '_self');
-            return;
-        }
-
-        this.router.navigateByUrl(this.url()).catch(reason => {
-            console.error(reason);
-        });
+        window.open(this.url(), this.openInNew() ? '_blank' : '_self');
     }
 }

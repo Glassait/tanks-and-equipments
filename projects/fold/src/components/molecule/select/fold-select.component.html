@@ -1,16 +1,23 @@
 <button
     [attr.aria-label]="'Liste déroulante de sélection des ' + (selectTitle() | lowercase)"
     [attr.popovertarget]="'filter-popover-' + componentId"
+    [ngStyle]="{ 'anchor-name': '--select-button-' + componentId }"
     class="select flex justify-between align-center neutral-50 radius-4 caption-1"
     id="fold-select-{{ componentId }}"
 >
-    <p fold-text size="medium" class="flex align-center gap-8" [iconRight]="selected()?.item?.icon">
+    <p fold-text size="medium" class="flex align-center gap-8" [iconRight]="selected()?.item?.icon" [overrideIconSize]="20">
         {{ selectTitle() }} {{ selected() && !selected()?.item?.selectedByDefault ? ' :' : '' }}
     </p>
     <fold-icon [size]="20" icon="chevronBottom"></fold-icon>
 </button>
 
-<div popover class="dropdown" role="menu" id="filter-popover-{{ componentId }}" [ngStyle]="{ 'width.px': dropdownWidth }">
+<div
+    [ngStyle]="{ 'width.px': dropdownWidth, 'position-anchor': '--select-button-' + componentId }"
+    class="dropdown"
+    id="filter-popover-{{ componentId }}"
+    popover
+    role="menu"
+>
     <ul class="flex direction-column gap-8">
         @for (item of selectItems(); track $index) {
             <li>
@@ -21,7 +28,16 @@
                     [attr.aria-label]="selectTitle() + ' ' + (item.text | lowercase)"
                     class="dropdown-item radius-4 caption-1"
                 >
-                    <p fold-text size="medium" class="gap-8" [iconLeft]="item.icon">{{ item.text | sentenceCase }}</p>
+                    <p
+                        fold-text
+                        size="medium"
+                        class="gap-8"
+                        [ngClass]="{ 'neutral-50': selected()?.index !== $index }"
+                        [iconLeft]="item.icon"
+                        [overrideIconSize]="20"
+                    >
+                        {{ item.text | sentenceCase }}
+                    </p>
                 </button>
             </li>
         }

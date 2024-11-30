@@ -6,7 +6,7 @@
 	"assets": [
 		{ "input": "src/scss", "glob": "**/*.scss", "output": "scss" },
 		{ "input": "src/fonts", "glob": "**/*.ttf", "output": "fonts" },
-		{ "input": "src/images", "glob": "**/*.(png)", "output": "images" }
+		{ "input": "src/images", "glob": "**/*.(png|jpg)", "output": "images" }
 	],
 	"lib": {
 		"entryFile": "src/public-api.ts"
