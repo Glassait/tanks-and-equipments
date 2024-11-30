@@ -97,7 +97,24 @@ video {
 html {
     color-scheme: dark;
 
-    background-image: url('../images/sparks.png');
+    &:not(.christmas) {
+        background-image: url('../images/sparks.png');
+    }
+
+    &.christmas {
+        background-image: url('../images/snowflakes.png');
+        animation: christmas-snow 90s linear infinite;
+    }
+}
+
+@keyframes christmas-snow {
+    0% {
+        background-position-y: 0;
+    }
+
+    100% {
+        background-position-y: 1252px;
+    }
 }
 
 body {

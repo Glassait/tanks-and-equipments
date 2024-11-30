@@ -43,56 +43,75 @@ export class HomeComponent implements OnInit {
 
     ngOnInit(): void {
         if (isPlatformServer(this.platformId)) {
-            if (this.cacheManager.hasKey(TANKS_OVERVIEW_KEY)) {
-                this.tanksOverview = this.filterTanksOverview(this.cacheManager.getData(TANKS_OVERVIEW_KEY)!);
-            } else {
-                this.tanksOverviewService.tanksOverview().subscribe({
-                    next: (tanksOverview: TankOverview[]): void => {
-                        this.tanksOverview = this.filterTanksOverview(tanksOverview);
-                        this.cacheManager.addData(TANKS_OVERVIEW_KEY, tanksOverview);
-                    },
-                    error: err => {
-                        console.error(err);
-                    },
-                });
-            }
-
-            if (this.cacheManager.hasKey(WOT_NEWS_KEY)) {
-                this.wotNews = this.cacheManager.getData(WOT_NEWS_KEY)!;
-            } else {
-                this.wotNewsService.wotNews().subscribe({
-                    next: (wotNews: WotNews[]): void => {
-                        this.wotNews = wotNews;
-                        this.cacheManager.addData(WOT_NEWS_KEY, wotNews);
-                    },
-                    error: err => {
-                        console.error(err);
-                    },
-                });
-            }
-
-            if (this.cacheManager.hasKey(FOLD_RESULTS_KEY)) {
-                this.foldResults = this.cacheManager.getData(FOLD_RESULTS_KEY)!;
-            } else {
-                this.foldResultsService.foldResults().subscribe({
-                    next: (foldResults: FoldResult[]): void => {
-                        this.foldResults = foldResults;
-                        this.cacheManager.addData(FOLD_RESULTS_KEY, foldResults);
-                    },
-                    error: err => {
-                        console.error(err);
-                    },
-                });
-            }
+            this.getTanksOverviewData();
+            this.getWotNewsData();
+            this.getFoldResultsData();
 
             return;
         }
 
         if (isPlatformBrowser(this.platformId)) {
+            const today = new Date();
+
+            if ([10, 11].includes(today.getMonth())) {
+                document.getElementsByTagName('html')?.item(0)?.classList.add('christmas');
+            }
+
             this.tanksOverview = this.filterTanksOverview(this.transferState.get(TANKS_OVERVIEW_KEY, []));
             this.wotNews = this.transferState.get(WOT_NEWS_KEY, []);
             this.foldResults = this.transferState.get(FOLD_RESULTS_KEY, []);
         }
+    }
+
+    private getFoldResultsData(): void {
+        if (this.cacheManager.hasKey(FOLD_RESULTS_KEY)) {
+            this.foldResults = this.cacheManager.getData(FOLD_RESULTS_KEY)!;
+            return;
+        }
+
+        this.foldResultsService.foldResults().subscribe({
+            next: (foldResults: FoldResult[]): void => {
+                this.foldResults = foldResults;
+                this.cacheManager.addData(FOLD_RESULTS_KEY, foldResults);
+            },
+            error: err => {
+                console.error(err);
+            },
+        });
+    }
+
+    private getWotNewsData(): void {
+        if (this.cacheManager.hasKey(WOT_NEWS_KEY)) {
+            this.wotNews = this.cacheManager.getData(WOT_NEWS_KEY)!;
+            return;
+        }
+
+        this.wotNewsService.wotNews().subscribe({
+            next: (wotNews: WotNews[]): void => {
+                this.wotNews = wotNews;
+                this.cacheManager.addData(WOT_NEWS_KEY, wotNews);
+            },
+            error: err => {
+                console.error(err);
+            },
+        });
+    }
+
+    private getTanksOverviewData(): void {
+        if (this.cacheManager.hasKey(TANKS_OVERVIEW_KEY)) {
+            this.tanksOverview = this.filterTanksOverview(this.cacheManager.getData(TANKS_OVERVIEW_KEY)!);
+            return;
+        }
+
+        this.tanksOverviewService.tanksOverview().subscribe({
+            next: (tanksOverview: TankOverview[]): void => {
+                this.tanksOverview = this.filterTanksOverview(tanksOverview);
+                this.cacheManager.addData(TANKS_OVERVIEW_KEY, tanksOverview);
+            },
+            error: err => {
+                console.error(err);
+            },
+        });
     }
 
     private filterTanksOverview(tanksOverview: TankOverview[]) {

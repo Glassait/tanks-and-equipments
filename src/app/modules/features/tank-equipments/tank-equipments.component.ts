@@ -11,9 +11,9 @@ import { PathEnum } from 'core/enums/path.enum';
 import { type TankOverview, TankOverviewNationEnum, TankOverviewRoleEnum, TankOverviewTypeEnum } from 'generated-api/tanks';
 import { TransferState } from '@angular/platform-browser';
 import { isPlatformBrowser, isPlatformServer, TitleCasePipe } from '@angular/common';
-import { NATIONS_KEY, PRIORITIES_KEY, ROLES_KEY, TANKS_OVERVIEW_KEY, TIERS_KEY, TYPES_KEY } from 'shared/variables/transfer.key';
 import { TanksOverviewProxy } from 'shared/proxy/tanks-overview.proxy';
 import { CacheManagerService } from 'shared/services/cache-manager.service';
+import { TANKS_OVERVIEW_KEY } from 'shared/variables/transfer.key';
 
 @Component({
     selector: 'tank-equipments',
@@ -131,19 +131,7 @@ export class TankEquipmentsComponent implements OnInit {
 
     ngOnInit() {
         if (isPlatformServer(this.platformId)) {
-            if (this.cacheManager.hasKey(TANKS_OVERVIEW_KEY)) {
-                this.tanksOverview = this.sortTanksOverview(this.cacheManager.getData(TANKS_OVERVIEW_KEY)!);
-            } else {
-                this.tanksOverviewService.tanksOverview().subscribe({
-                    next: (tankOverviews: TankOverview[]): void => {
-                        this.tanksOverview = this.sortTanksOverview(tankOverviews);
-                        this.cacheManager.addData(TANKS_OVERVIEW_KEY, tankOverviews);
-                    },
-                    error: err => {
-                        console.error(err);
-                    },
-                });
-            }
+            this.getTanksOverview();
         }
 
         if (isPlatformBrowser(this.platformId)) {
@@ -154,12 +142,22 @@ export class TankEquipmentsComponent implements OnInit {
             this.extractTypes();
             this.extractPriorities();
             this.extractRoles();
+        }
+    }
 
-            this.nations = this.transferState.get(NATIONS_KEY, []);
-            this.level = this.transferState.get(TIERS_KEY, []);
-            this.types = this.transferState.get(TYPES_KEY, []);
-            this.priorities = this.transferState.get(PRIORITIES_KEY, []);
-            this.roles = this.transferState.get(ROLES_KEY, []);
+    private getTanksOverview() {
+        if (this.cacheManager.hasKey(TANKS_OVERVIEW_KEY)) {
+            this.tanksOverview = this.sortTanksOverview(this.cacheManager.getData(TANKS_OVERVIEW_KEY)!);
+        } else {
+            this.tanksOverviewService.tanksOverview().subscribe({
+                next: (tankOverviews: TankOverview[]): void => {
+                    this.tanksOverview = this.sortTanksOverview(tankOverviews);
+                    this.cacheManager.addData(TANKS_OVERVIEW_KEY, tankOverviews);
+                },
+                error: err => {
+                    console.error(err);
+                },
+            });
         }
     }
 
@@ -185,8 +183,6 @@ export class TankEquipmentsComponent implements OnInit {
         });
 
         this.nations.sort(this.sort);
-
-        this.transferState.set(NATIONS_KEY, this.nations);
     }
 
     private extractTiers(): void {
@@ -207,8 +203,6 @@ export class TankEquipmentsComponent implements OnInit {
         });
 
         this.level.sort(this.sort);
-
-        this.transferState.set(TIERS_KEY, this.level);
     }
 
     private extractTypes(): void {
@@ -229,8 +223,6 @@ export class TankEquipmentsComponent implements OnInit {
         });
 
         this.types.sort(this.sort);
-
-        this.transferState.set(TYPES_KEY, this.types);
     }
 
     private extractPriorities(): void {
@@ -251,8 +243,6 @@ export class TankEquipmentsComponent implements OnInit {
         });
 
         this.priorities.sort(this.reverseSort);
-
-        this.transferState.set(PRIORITIES_KEY, this.priorities);
     }
 
     private extractRoles(): void {
@@ -273,8 +263,6 @@ export class TankEquipmentsComponent implements OnInit {
         });
 
         this.roles.sort(this.sort);
-
-        this.transferState.set(ROLES_KEY, this.roles);
     }
 
     private sort(a: SelectItem, b: SelectItem): number {

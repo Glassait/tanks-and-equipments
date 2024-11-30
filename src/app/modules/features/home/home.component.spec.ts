@@ -287,10 +287,6 @@ describe('HomeComponent', () => {
                 ],
             }).createComponent(HomeComponent);
 
-            tanksOverviewServiceSpy.tanksOverview.and.returnValue(of(tanksOverview));
-            wotNewsServiceSpy.wotNews.and.returnValue(of(wotNews));
-            foldResultsServiceSpy.foldResults.and.returnValue(of(foldResults));
-
             cacheManagerSpy.hasKey.withArgs(TANKS_OVERVIEW_KEY).and.returnValue(true);
             cacheManagerSpy.hasKey.withArgs(WOT_NEWS_KEY).and.returnValue(true);
             cacheManagerSpy.hasKey.withArgs(FOLD_RESULTS_KEY).and.returnValue(true);
