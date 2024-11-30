@@ -152,7 +152,7 @@ describe('TankEquipmentsComponent', () => {
                 expect(value).toBe('5');
             });
 
-            expect(select.selectItems().length).toEqual(4);
+            expect(select.selectItems().length).toEqual(3);
 
             const ul = fixture.debugElement.query(By.css('fold-select[selectTitle="Priorité"] div ul')).nativeElement;
             const button = ul.children[1].children[0] as HTMLButtonElement;
