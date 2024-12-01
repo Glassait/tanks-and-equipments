@@ -105,6 +105,6 @@
 		"stylelint-prettier": "^5.0.2",
 		"stylelint-scss": "^6.10.0",
 		"typescript": "~5.4.2",
-		"typescript-eslint": "^8.15.0"
+		"typescript-eslint": "^8.16.0"
 	}
 }
