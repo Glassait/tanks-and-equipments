@@ -1,12 +1,6 @@
 @use 'sass:map';
-@use '../../../scss/abstract/colors';
 @use '../../../scss/abstract/spacings';
 @use '../../../scss/abstract/width';
-
-%display-flex {
-    display: flex;
-    align-items: center;
-}
 
 :host {
     height: 100%;
@@ -15,19 +9,5 @@
     width: 100%;
     min-width: width.$min-width;
 
-    background: map.get(colors.$neutral, 900);
-
-    @extend %display-flex;
-    justify-content: center;
-    flex-direction: row;
-
     padding: map.get(spacings.$spacings, 32);
-
-    & footer {
-        @extend %display-flex;
-        justify-content: center;
-        flex-direction: column;
-
-        gap: map.get(spacings.$spacings, 8);
-    }
 }

@@ -1,15 +1,29 @@
 @use '../abstract/colors' as *;
 
-@each $name, $properties in $neutral {
-    .neutral-#{$name} {
-        color: $properties;
-        fill: $properties;
-    }
+$colors: (
+    neutral: $neutral,
+    primary: $primary,
+    success: $success,
+    warning: $warning,
+    gray: $gray,
+);
 
-    @each $nameOp, $opacity in $opacities {
-        .neutral-#{$name}-#{$nameOp} {
-            color: rgba($properties, $opacity);
-            fill: rgba($properties, $opacity);
+@each $color, $colorData in $colors {
+    @each $name, $properties in $colorData {
+        .#{$color}-#{$name} {
+            color: $properties;
+            fill: $properties;
+        }
+
+        .bg-#{$color}-#{$name} {
+            background: $properties;
+        }
+
+        @each $nameOp, $opacity in $opacities {
+            .#{$color}-#{$name}-#{$nameOp} {
+                color: rgba($properties, $opacity);
+                fill: rgba($properties, $opacity);
+            }
         }
     }
 }

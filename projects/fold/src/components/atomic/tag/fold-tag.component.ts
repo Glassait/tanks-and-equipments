@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, HostBinding } from '@angular/core';
 
 @Component({
-    selector: 'span[foldTag]',
+    selector: 'span[fold-tag]',
     template: '<ng-content></ng-content>',
     styleUrl: './fold-tag.component.scss',
     standalone: true,
@@ -9,7 +9,7 @@ import { ChangeDetectionStrategy, Component, HostBinding } from '@angular/core';
 })
 export class FoldTagComponent {
     @HostBinding('class')
-    get cssClasses() {
-        return ['flex', 'align-center', 'justify-center', 'caption-2'];
+    get cssClasses(): string {
+        return 'flex align-center justify-center caption-2 bg-neutral-900 warning-300';
     }
 }

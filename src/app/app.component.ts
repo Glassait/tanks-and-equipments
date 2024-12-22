@@ -1,5 +1,5 @@
-import { ChangeDetectionStrategy, Component, HostBinding, inject, PLATFORM_ID } from '@angular/core';
-import { Router, RouterOutlet } from '@angular/router';
+import { ChangeDetectionStrategy, Component, HostBinding, inject } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
 import { FoldFooterComponent, FoldHeaderComponent, type FoldNavigation } from 'fold';
 import { AsyncPipe } from '@angular/common';
 import { PathEnum } from 'core/enums/path.enum';
@@ -20,8 +20,6 @@ export class AppComponent {
 
     //region INJECTION
     protected readonly resizeService: ResizeService = inject(ResizeService);
-    private readonly router: Router = inject(Router);
-    private readonly platformId = inject(PLATFORM_ID);
     //endregion
 
     protected readonly headerNavigation: FoldNavigation[] = [
