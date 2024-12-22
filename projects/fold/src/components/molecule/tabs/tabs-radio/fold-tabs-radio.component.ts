@@ -25,6 +25,4 @@ export class FoldTabsRadioComponent implements OnInit {
     ngOnInit(): void {
         this.componentId = ++FoldTabsRadioComponent.id;
     }
-
-    protected readonly input = input;
 }
