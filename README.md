@@ -11,3 +11,17 @@ Run `npm run start:external-mock` or `npm run start:full-mock` for a dev server.
 ## Running unit tests
 
 Run `npm run test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+
+## Generate a new component
+
+```shell
+ng g c --dry-run <path> --style=scss -c=OnPush --standalone
+```
+
+Remove `--dry-run` when the pass is good.  
+
+More detail with :
+
+```shell
+ng g c --help
+```
