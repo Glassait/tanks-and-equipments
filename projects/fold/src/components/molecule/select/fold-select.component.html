@@ -2,7 +2,7 @@
     [attr.aria-label]="'Liste déroulante de sélection des ' + (selectTitle() | lowercase)"
     [attr.popovertarget]="'filter-popover-' + componentId"
     [ngStyle]="{ 'anchor-name': '--select-button-' + componentId }"
-    class="select flex justify-between align-center neutral-50 radius-4 caption-1"
+    class="select flex justify-between align-center neutral-50 radius-4 caption-1 bg-neutral-800"
     id="fold-select-{{ componentId }}"
 >
     <p fold-text size="medium" class="flex align-center gap-8" [iconRight]="selected()?.item?.icon">
@@ -13,7 +13,7 @@
 
 <div
     [ngStyle]="{ 'width.px': dropdownWidth, 'position-anchor': '--select-button-' + componentId }"
-    class="dropdown"
+    class="dropdown bg-neutral-700"
     id="filter-popover-{{ componentId }}"
     popover
     role="menu"
@@ -23,7 +23,10 @@
             <li>
                 <button
                     (click)="select($index)"
-                    [ngClass]="{ selected: selected()?.index === $index }"
+                    [ngClass]="{
+                        'selected neutral-900 bg-neutral-400': selected()?.index === $index,
+                        'bg-neutral-800': selected()?.index !== $index,
+                    }"
                     [tabindex]="selected()?.index !== $index ? null : -1"
                     [attr.aria-label]="selectTitle() + ' ' + (item.text | lowercase)"
                     class="dropdown-item radius-4 caption-1"

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input, type InputSignal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostBinding, input, type InputSignal } from '@angular/core';
 import { FoldLinkDirective } from '../../../directives/link/fold-link.directive';
 import { NgOptimizedImage, UpperCasePipe } from '@angular/common';
 import { FoldButtonComponent } from '../../atomic/button/fold-button.component';
@@ -14,4 +14,9 @@ import type { FoldNavigation } from './header.type';
 })
 export class FoldHeaderComponent {
     public navigation: InputSignal<FoldNavigation[]> = input.required();
+
+    @HostBinding('class')
+    get cssClasses() {
+        return 'flex items-center justify-center bg-neutral-900';
+    }
 }

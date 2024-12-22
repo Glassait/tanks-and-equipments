@@ -26,7 +26,9 @@ describe('FoldTabsRadioComponent', () => {
     let componentHtml: HTMLElement;
 
     beforeEach(() => {
-        fixture = TestBed.configureTestingModule({}).createComponent(FoldTabsRadioWrapper);
+        fixture = TestBed.configureTestingModule({
+            imports: [FoldTabsRadioWrapper]
+        }).createComponent(FoldTabsRadioWrapper);
 
         wrapper = fixture.componentInstance;
         fixture.detectChanges();

@@ -16,8 +16,6 @@ label {
 
     border-radius: map.get(borders.$border-radius, 4);
 
-    background: map.get(colors.$neutral, 700);
-
     &:hover {
         box-shadow: #{map.get(colors.$box-shadow, outer-glow-small)};
     }

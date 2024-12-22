@@ -1,4 +1,4 @@
-<header role="banner">
+<header role="banner" class="flex items-center justify-space-evenly">
     <nav aria-label="Menu principal" id="header-left" role="navigation">
         <ul>
             @for (nav of navigation(); track $index) {
@@ -18,7 +18,7 @@
         <img [height]="62" [width]="121" alt="[HEADER] Logo du clan FOLD_" aria-hidden="true" ngSrc="images/fold_logo-horizontal.png" />
     </a>
 
-    <div id="header-right">
+    <div id="header-right" class="flex items-center justify-end">
         <a
             [openInNew]="true"
             aria-label="Rejoindre le discord du clan FOLD_"
@@ -30,6 +30,6 @@
         >
             {{ 'rejoindre' | uppercase }}
         </a>
-        <button aria-hidden="true" fold-button shape="rectangle" tabindex="-1" variant="primary">{{ 'connexion' | uppercase }}</button>
+<!--        <button aria-hidden="true" fold-button shape="rectangle" tabindex="-1" variant="primary">{{ 'connexion' | uppercase }}</button>-->
     </div>
 </header>

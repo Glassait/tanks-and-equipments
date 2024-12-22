@@ -1,4 +1,4 @@
-<fieldset id="fieldset-fold-tabs-{{ componentId }}" class="flex gap-8">
+<fieldset id="fieldset-fold-tabs-{{ componentId }}" class="flex gap-8 bg-neutral-800">
     @for (radio of radios(); track $index) {
         <fold-tabs-radio
             [checked]="selected() === radio.value"
@@ -13,6 +13,6 @@
     }
 </fieldset>
 
-<div class="flex direction-column gap-16" id="container-fold-tabs-{{ componentId }}">
+<div class="flex direction-column gap-16 bg-neutral-800" id="container-fold-tabs-{{ componentId }}">
     <ng-content></ng-content>
 </div>

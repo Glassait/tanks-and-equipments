@@ -14,27 +14,35 @@ class FoldFooterComponentWrapper {
 }
 
 describe('FoldFooterComponent', () => {
-    let componentWrapper: FoldFooterComponentWrapper;
-    let componentHtml: HTMLHeadElement;
+    let wrapper: FoldFooterComponentWrapper;
     let fixture: ComponentFixture<FoldFooterComponentWrapper>;
+
+    let component: FoldFooterComponent;
+    let componentHtml: HTMLHeadElement;
 
     beforeEach(() => {
         fixture = TestBed.configureTestingModule({
             imports: [FoldFooterComponentWrapper],
         }).createComponent(FoldFooterComponentWrapper);
 
-        componentWrapper = fixture.componentInstance;
+        wrapper = fixture.componentInstance;
         fixture.detectChanges();
 
-        componentHtml = fixture.debugElement.query(By.directive(FoldFooterComponent)).nativeElement;
+        const debugElement = fixture.debugElement.query(By.directive(FoldFooterComponent));
+        componentHtml = debugElement.nativeElement;
+        component = debugElement.componentInstance;
     });
 
     it('should create', () => {
-        expect(componentWrapper).toBeTruthy();
+        expect(component).toBeTruthy();
+    });
+
+    it('should have the right css classes', () => {
+        expect(component.cssClasses).toBe('bg-neutral-900 flex items-center justify-center')
     });
 
     it('should have 1 link', () => {
-        componentWrapper.navigation = [
+        wrapper.navigation = [
             {
                 text: 'text',
                 url: '/test',
@@ -47,7 +55,7 @@ describe('FoldFooterComponent', () => {
     });
 
     it('should have 2 links', () => {
-        componentWrapper.navigation = [
+        wrapper.navigation = [
             {
                 text: 'text',
                 url: '/test',

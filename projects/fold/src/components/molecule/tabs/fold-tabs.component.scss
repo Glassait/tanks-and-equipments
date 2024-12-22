@@ -1,6 +1,5 @@
 @use 'sass:map';
 @use '../../../scss/abstract/spacings';
-@use '../../../scss/abstract/colors';
 @use '../../../scss/abstract/borders';
 
 fieldset {
@@ -14,8 +13,6 @@ div, fieldset {
     width: fit-content;
 
     padding: map.get(spacings.$spacings, 8);
-
-    background: map.get(colors.$neutral, 800);
 }
 
 div {

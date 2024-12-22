@@ -18,6 +18,10 @@ li {
     list-style: none;
 }
 
+.select {
+    background: map.get(colors.$neutral, 800);
+}
+
 .select,
 .dropdown-item {
     cursor: pointer;
@@ -27,8 +31,6 @@ li {
     width: 100%;
 
     padding: map.get(spacings.$spacings, 12) map.get(spacings.$spacings, 16);
-
-    background: map.get(colors.$neutral, 800);
 
     &:focus-visible {
         outline-offset: map.get(spacings.$spacings, 2);
@@ -40,16 +42,12 @@ li {
     }
 }
 
-.select {
-    fold-icon {
-        animation: 0.5s rotating-back 0s ease-in-out forwards;
-    }
+.select fold-icon {
+    animation: 0.5s rotating-back 0s ease-in-out forwards;
 }
 
 .dropdown {
     overflow-y: auto;
-
-    background: map.get(colors.$neutral, 700);
 
     border-radius: 0 0 map.get(spacings.$spacings, 4) map.get(spacings.$spacings, 4);
     border: 0;
@@ -81,9 +79,6 @@ li {
     height: fit-content;
 
     &.selected {
-        color: map.get(colors.$neutral, 900);
-        background: map.get(colors.$neutral, 400);
-
         pointer-events: none;
 
         font-weight: bold;

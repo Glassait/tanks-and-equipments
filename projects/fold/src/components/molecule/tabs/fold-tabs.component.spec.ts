@@ -79,7 +79,9 @@ describe('FoldTabsComponent', () => {
 
     describe('Without autoSelectedFirst', () => {
         beforeEach(() => {
-            fixture = TestBed.configureTestingModule({}).createComponent(FoldTabsWrapper);
+            fixture = TestBed.configureTestingModule({
+                imports: [FoldTabsWrapper]
+            }).createComponent(FoldTabsWrapper);
 
             wrapper = fixture.componentInstance;
             fixture.detectChanges();
@@ -171,7 +173,9 @@ describe('FoldTabsComponent', () => {
 
     describe('With autoSelectedFirst', () => {
         beforeEach(() => {
-            fixture = TestBed.configureTestingModule({}).createComponent(FoldTabsWrapperWithAutoSelectFirst);
+            fixture = TestBed.configureTestingModule({
+                imports: [FoldTabsWrapper]
+            }).createComponent(FoldTabsWrapperWithAutoSelectFirst);
 
             wrapper = fixture.componentInstance;
             fixture.detectChanges();
