@@ -102,13 +102,13 @@ export class TankEquipmentsComponent implements OnInit {
     private readonly typesTraduction: { [k in TankOverviewTypeEnum]: string } = {
         heavy: 'Lourd',
         medium: 'Moyen',
-        light: 'Leger',
+        light: 'Léger',
         tankDestroyer: 'Chasseur de chars',
     };
 
     private readonly rolesTraduction: { [k in TankOverviewRoleEnum]: string } = {
         assault: "Chars d'assaut",
-        heavyPush: 'Chars lourds de percé',
+        heavyPush: 'Chars de percé',
         sniper: 'Chars tireurs de précision',
         supports: 'Chars de soutien',
         versatile: 'Chars polyvalent',

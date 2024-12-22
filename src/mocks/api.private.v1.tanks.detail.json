@@ -1,0 +1,329 @@
+{
+	"description": "Une version du char lourd Object 260. Les plans de conception ont été terminés en septembre 1945, mais aucun prototype n'a été fabriqué.",
+	"configurations": [
+		{
+			"equipments": [
+				{
+					"name": "Gamme d'amélioration de la survie",
+					"wotName": "modernizedExtraHealthReserveAntifragmentationLining",
+					"isModernized": true
+				},
+				{
+					"name": "Fouloir de canon",
+					"wotName": "rammer",
+					"isModernized": false
+				},
+				{
+					"name": "Système d'amélioration de la mobilité",
+					"wotName": "modernizedTurbochargerRotationMechanism",
+					"isModernized": true
+				}
+			],
+			"directive": {
+				"name": "Râtelier de munitions en ordre",
+				"wotName": "rammerBattleBooster"
+			},
+			"consumables": [
+				{
+					"name": "Grande trousse de premiers secours",
+					"wotName": "largeMedkit"
+				},
+				{
+					"name": "Grand kit de réparation",
+					"wotName": "largeRepairkit"
+				},
+				{
+					"name": "Rations de combat supplémentaires",
+					"wotName": "ration"
+				}
+			],
+			"priority": "principal"
+		},
+		{
+			"equipments": [
+				{
+					"name": "Durcissant amélioré",
+					"wotName": "extraHealthReserve",
+					"isModernized": false
+				},
+				{
+					"name": "Fouloir de canon",
+					"wotName": "rammer",
+					"isModernized": false
+				},
+				{
+					"name": "Turbocompresseur",
+					"wotName": "turbocharger",
+					"isModernized": false
+				}
+			],
+			"directive": {
+				"name": "Râtelier de munitions en ordre",
+				"wotName": "rammerBattleBooster"
+			},
+			"consumables": [
+				{
+					"name": "Grande trousse de premiers secours",
+					"wotName": "largeMedkit"
+				},
+				{
+					"name": "Grand kit de réparation",
+					"wotName": "largeRepairkit"
+				},
+				{
+					"name": "Rations de combat supplémentaires",
+					"wotName": "ration"
+				}
+			],
+			"priority": "secondaire"
+		}
+	],
+	"crew": [
+		{
+			"name": "commander",
+			"skills": [
+				{
+					"level": 1,
+					"name": "Frères d'armes",
+					"wotName": "brotherhood"
+				},
+				{
+					"level": 2,
+					"name": "Réparations",
+					"wotName": "repair"
+				},
+				{
+					"level": 3,
+					"name": "Urgence",
+					"wotName": "commander_emergency"
+				},
+				{
+					"level": 4,
+					"name": "Œil de lynx",
+					"wotName": "commander_eagleEye"
+				},
+				{
+					"level": 5,
+					"name": "Praticité",
+					"wotName": "commander_practical"
+				},
+				{
+					"level": 6,
+					"name": "Mentor",
+					"wotName": "commander_tutor"
+				}
+			],
+			"secondary_roles": [
+				{
+					"name": "radioman",
+					"skills": [
+						{
+							"level": 1,
+							"name": "Pompier",
+							"wotName": "fireFighting"
+						},
+						{
+							"level": 2,
+							"name": "Côte à côte",
+							"wotName": "radioman_sideBySide"
+						},
+						{
+							"level": 3,
+							"name": "Longue-vue",
+							"wotName": "radioman_finder"
+						}
+					],
+					"secondary_roles": null
+				}
+			]
+		},
+		{
+			"name": "gunner",
+			"skills": [
+				{
+					"level": 1,
+					"name": "Frères d'armes",
+					"wotName": "brotherhood"
+				},
+				{
+					"level": 2,
+					"name": "Réparations",
+					"wotName": "repair"
+				},
+				{
+					"level": 3,
+					"name": "Précision",
+					"wotName": "gunner_smoothTurret"
+				},
+				{
+					"level": 4,
+					"name": "Armurier",
+					"wotName": "gunner_armorer"
+				},
+				{
+					"level": 5,
+					"name": "Visée rapide",
+					"wotName": "gunner_quickAiming"
+				},
+				{
+					"level": 6,
+					"name": "Coup mortel",
+					"wotName": "gunner_sniper"
+				}
+			],
+			"secondary_roles": []
+		},
+		{
+			"name": "driver",
+			"skills": [
+				{
+					"level": 1,
+					"name": "Frères d'armes",
+					"wotName": "brotherhood"
+				},
+				{
+					"level": 2,
+					"name": "Réparations",
+					"wotName": "repair"
+				},
+				{
+					"level": 3,
+					"name": "Conduite souple",
+					"wotName": "driver_smoothDriving"
+				},
+				{
+					"level": 4,
+					"name": "Pilote tout-terrain",
+					"wotName": "driver_badRoadsKing"
+				},
+				{
+					"level": 5,
+					"name": "Ingénieur",
+					"wotName": "driver_motorExpert"
+				},
+				{
+					"level": 6,
+					"name": "As du volant",
+					"wotName": "driver_virtuoso"
+				}
+			],
+			"secondary_roles": []
+		},
+		{
+			"name": "loader",
+			"skills": [
+				{
+					"level": 1,
+					"name": "Frères d'armes",
+					"wotName": "brotherhood"
+				},
+				{
+					"level": 2,
+					"name": "Réparations",
+					"wotName": "repair"
+				},
+				{
+					"level": 3,
+					"name": "Râtelier sécurisé",
+					"wotName": "loader_pedant"
+				},
+				{
+					"level": 4,
+					"name": "Intuition",
+					"wotName": "loader_intuition"
+				},
+				{
+					"level": 5,
+					"name": "Combat rapproché",
+					"wotName": "loader_melee"
+				},
+				{
+					"level": 6,
+					"name": "Réglage des munitions",
+					"wotName": "loader_ammunitionImprove"
+				}
+			],
+			"secondary_roles": []
+		}
+	],
+	"fieldsModification": [
+		{
+			"left": {
+				"name": "Suspension tout-terrain",
+				"wotName": "additionalGrousers",
+				"isActive": true
+			},
+			"right": {
+				"name": "Suspension légère",
+				"wotName": "betterFriction",
+				"isActive": false
+			},
+			"level": 2
+		},
+		{
+			"left": {
+				"name": "Ajustement parallaxe",
+				"wotName": "improvedScope",
+				"isActive": true
+			},
+			"right": {
+				"name": "Rodage des mécanismes de visée",
+				"wotName": "improvedAimingHandling",
+				"isActive": false
+			},
+			"level": 4
+		},
+		{
+			"left": {
+				"name": "Isolation sonore",
+				"wotName": "improvedSpallingResistance",
+				"isActive": false
+			},
+			"right": {
+				"name": "Motorisation électrique du périscope",
+				"wotName": "improvedObservationDevice",
+				"isActive": true
+			},
+			"level": 5
+		},
+		{
+			"left": {
+				"name": "Mobilité",
+				"wotName": "mobility",
+				"isActive": false
+			},
+			"right": {
+				"name": "Puissance de feu",
+				"wotName": "firepower",
+				"isActive": true
+			},
+			"level": 6
+		},
+		{
+			"left": {
+				"name": "Recâblage de l'alimentation électrique (Réglage 1)",
+				"wotName": "improvedSpeedIndicator",
+				"isActive": true
+			},
+			"right": {
+				"name": "Recâblage de l'alimentation électrique (Réglage 2)",
+				"wotName": "improvedTurretTurningWheels",
+				"isActive": false
+			},
+			"level": 7
+		},
+		{
+			"left": {
+				"name": "Plateforme renforcée",
+				"wotName": "increasedThickness",
+				"isActive": true
+			},
+			"right": {
+				"name": "Plateform légère",
+				"wotName": "improvedChassisStability",
+				"isActive": false
+			},
+			"level": 8
+		}
+	]
+}
