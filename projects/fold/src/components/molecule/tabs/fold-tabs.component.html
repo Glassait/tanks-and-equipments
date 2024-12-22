@@ -7,8 +7,8 @@
             [value]="radio.value"
             [icon]="radio.icon"
             (change)="selected.set(radio.value); selectionEvent.emit(radio.value)"
-            (keyup.enter)="selected.set(radio.value); selectionEvent.emit(radio.value)"
-            (keyup.space)="selected.set(radio.value); selectionEvent.emit(radio.value)"
+            (keydown.enter)="selected.set(radio.value); selectionEvent.emit(radio.value)"
+            (keydown.space)="selected.set(radio.value); selectionEvent.emit(radio.value)"
         />
     }
 </fieldset>
