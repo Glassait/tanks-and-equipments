@@ -1,0 +1,34 @@
+@use 'sass:map';
+@use '../../../../scss/abstract/spacings';
+@use '../../../../scss/abstract/borders';
+@use '../../../../scss/abstract/colors';
+
+input {
+    display: none;
+    visibility: hidden;
+    opacity: 0;
+}
+
+label {
+    cursor: pointer;
+
+    padding: map.get(spacings.$spacings, 12);
+
+    border-radius: map.get(borders.$border-radius, 4);
+
+    background: map.get(colors.$neutral, 700);
+
+    &:hover {
+        box-shadow: #{map.get(colors.$box-shadow, outer-glow-small)};
+    }
+
+    &[selected='true'] {
+        cursor: default;
+        box-shadow: #{map.get(colors.$box-shadow, outer-glow-large)};
+    }
+
+    &:focus-visible {
+        outline-offset: map.get(spacings.$spacings, 2);
+        outline: map.get(colors.$neutral, 50) solid map.get(spacings.$spacings, 2);
+    }
+}

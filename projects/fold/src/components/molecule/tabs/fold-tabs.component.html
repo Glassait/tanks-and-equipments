@@ -1,1 +1,18 @@
-<p>fold-tabs works!</p>
+<fieldset id="fieldset-fold-tabs-{{ componentId }}" class="flex gap-8">
+    @for (radio of radios(); track $index) {
+        <fold-tabs-radio
+            [checked]="selected() === radio.value"
+            [label]="radio.label"
+            [radioGroupName]="radioGroupName()"
+            [value]="radio.value"
+            [icon]="radio.icon"
+            (change)="selected.set(radio.value); selectionEvent.emit(radio.value)"
+            (keyup.enter)="selected.set(radio.value); selectionEvent.emit(radio.value)"
+            (keyup.space)="selected.set(radio.value); selectionEvent.emit(radio.value)"
+        />
+    }
+</fieldset>
+
+<div class="flex direction-column gap-16" id="container-fold-tabs-{{ componentId }}">
+    <ng-content></ng-content>
+</div>

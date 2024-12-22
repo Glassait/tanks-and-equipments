@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FoldTabsButtonComponent } from './fold-tabs-button.component';
+import { FoldTabsRadioComponent } from './fold-tabs-radio.component';
 
 describe('FoldTabsButtonComponent', () => {
-  let component: FoldTabsButtonComponent;
-  let fixture: ComponentFixture<FoldTabsButtonComponent>;
+  let component: FoldTabsRadioComponent;
+  let fixture: ComponentFixture<FoldTabsRadioComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FoldTabsButtonComponent]
+      imports: [FoldTabsRadioComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(FoldTabsButtonComponent);
+    fixture = TestBed.createComponent(FoldTabsRadioComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
