@@ -1,0 +1,11 @@
+@use "sass:map";
+@use "../../../scss/abstract/spacings";
+@use "../../../scss/abstract/borders";
+
+:host {
+    width: fit-content;
+
+    padding: 0 map.get(spacings.$spacings, 4);
+
+    border-radius: map.get(borders.$border-radius, 4);
+}
