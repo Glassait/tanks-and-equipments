@@ -1,0 +1,12 @@
+<input [checked]="checked()" [name]="radioGroupName()" [value]="value()" id="fold-tabs-button-{{ componentId }}" type="radio" />
+<label
+    [attr.selected]="checked()"
+    [iconLeft]="icon()"
+    class="neutral-100"
+    fold-text
+    for="fold-tabs-button-{{ componentId }}"
+    size="large"
+    tabindex="{{ checked() ? -1 : 0 }}"
+>
+    {{ label() }}
+</label>

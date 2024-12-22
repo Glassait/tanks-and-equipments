@@ -5,7 +5,7 @@
     class="select flex justify-between align-center neutral-50 radius-4 caption-1"
     id="fold-select-{{ componentId }}"
 >
-    <p fold-text size="medium" class="flex align-center gap-8" [iconRight]="selected()?.item?.icon" [overrideIconSize]="20">
+    <p fold-text size="medium" class="flex align-center gap-8" [iconRight]="selected()?.item?.icon">
         {{ selectTitle() }} {{ selected() && !selected()?.item?.selectedByDefault ? ' :' : '' }}
     </p>
     <fold-icon [size]="20" icon="chevronBottom"></fold-icon>
@@ -34,7 +34,6 @@
                         class="gap-8"
                         [ngClass]="{ 'neutral-50': selected()?.index !== $index }"
                         [iconLeft]="item.icon"
-                        [overrideIconSize]="20"
                     >
                         {{ item.text | sentenceCase }}
                     </p>

@@ -6,7 +6,7 @@ import type { FoldIconSize } from '../icon/icon.type';
 
 @Component({
     selector:
-        'button[fold-text], a[fold-text], span[fold-text], div[fold-text], p[fold-text], h1[fold-text], h2[fold-text], h3[fold-text], h4[fold-text]',
+        'button[fold-text], a[fold-text], span[fold-text], div[fold-text], p[fold-text], label[fold-text], h1[fold-text], h2[fold-text], h3[fold-text], h4[fold-text]',
     templateUrl: './fold-text.component.html',
     styleUrl: './fold-text.component.scss',
     standalone: true,
