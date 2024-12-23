@@ -15,7 +15,7 @@ Run `npm run test` to execute the unit tests via [Karma](https://karma-runner.gi
 ## Generate a new component
 
 ```shell
-ng g c --dry-run <path> --style=scss -c=OnPush --standalone
+ng g c <path> --style=scss -c=OnPush --standalone --dry-run
 ```
 
 Remove `--dry-run` when the pass is good.  
