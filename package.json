@@ -8,7 +8,7 @@
 	},
 	"scripts": {
 		"start": "npm run serve:ssr:tanks-and-equipments",
-		"build": "npm run install:lib:ci && npm run generate-api && ng build --configuration production",
+		"build": "npm run install:lib:ci && ng build --configuration production",
 		"serve:ssr:tanks-and-equipments": "npm run build && node dist/tanks-and-equipments/server/server.mjs",
 		"start:local": "npm run install:lib && ng serve --port=4200",
 		"start:local:no-lib": "ng serve --port=4200",
@@ -20,7 +20,7 @@
 		"test:local": "npm run test -- --browsers=Chrome --watch=true",
 		"lint": "eslint src",
 		"lint:scss": "stylelint \"**/*.scss\"",
-		"build:lib": "ng build fold --configuration production",
+		"build:lib": "npm run generate-api && ng build fold --configuration production",
 		"pack:lib": "cd ./dist/@fold && npm pack --pack-destination=../../",
 		"test:lib": "ng test fold",
 		"test:lib:ci": "npm run test:lib -- --browsers=ChromeHeadless --no-watch --no-progress",
