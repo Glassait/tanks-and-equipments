@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { type WotNews, WotNewsService } from 'generated-api/wot';
+import { WotNews, WotNewsService } from 'fold';
 import type { Observable } from 'rxjs';
 
 @Injectable({

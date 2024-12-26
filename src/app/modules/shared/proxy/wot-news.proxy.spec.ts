@@ -1,8 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { of } from 'rxjs';
-import { WotNewsService } from 'generated-api/wot';
 import { WotNewsProxy } from 'shared/proxy/wot-news.proxy';
+import { WotNewsService } from 'fold';
 
 describe('Tanks Overview Proxy', () => {
     let service: WotNewsProxy;

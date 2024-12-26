@@ -3,10 +3,15 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TankEquipmentsComponent } from './tank-equipments.component';
 import { TanksOverviewProxy } from 'shared/proxy/tanks-overview.proxy';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { FoldSelectComponent } from 'fold';
+import {
+    FoldSelectComponent,
+    TankOverview,
+    TankOverviewNationEnum,
+    TankOverviewRoleEnum,
+    TankOverviewTypeEnum,
+} from 'fold';
 import { PLATFORM_ID, TransferState } from '@angular/core';
 import { TANKS_OVERVIEW_KEY } from 'shared/variables/transfer.key';
-import { TankOverview, TankOverviewNationEnum, TankOverviewRoleEnum, TankOverviewTypeEnum } from 'generated-api/tanks';
 import { By } from '@angular/platform-browser';
 import { CacheManagerService } from 'shared/services/cache-manager.service';
 import { of, throwError } from 'rxjs';
@@ -21,6 +26,7 @@ describe('TankEquipmentsComponent', () => {
 
     const tanksOverview: TankOverview[] = [
         {
+            id: 1,
             name: 'object 907',
             wotName: 'object 260',
             role: TankOverviewRoleEnum.Assault,
@@ -31,6 +37,7 @@ describe('TankEquipmentsComponent', () => {
             is_reward: true,
         },
         {
+            id: 2,
             name: 'object 260',
             wotName: 'object 260',
             role: TankOverviewRoleEnum.HeavyPush,
@@ -41,6 +48,7 @@ describe('TankEquipmentsComponent', () => {
             is_reward: true,
         },
         {
+            id: 3,
             name: 'bz-75',
             wotName: 'object 260',
             role: TankOverviewRoleEnum.Assault,
@@ -51,6 +59,7 @@ describe('TankEquipmentsComponent', () => {
             is_reward: true,
         },
         {
+            id: 4,
             name: '60Tp',
             wotName: 'object 260',
             role: TankOverviewRoleEnum.Sniper,

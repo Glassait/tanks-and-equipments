@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { of } from 'rxjs';
 import { TanksOverviewProxy } from 'shared/proxy/tanks-overview.proxy';
-import { TanksOverviewService } from 'generated-api/tanks';
+import { TanksOverviewService } from 'fold';
 
 describe('Tanks Overview Proxy', () => {
     let service: TanksOverviewProxy;

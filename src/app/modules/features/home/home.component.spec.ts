@@ -2,10 +2,13 @@ import { ComponentFixture, DeferBlockState, TestBed } from '@angular/core/testin
 import { HomeComponent } from './home.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { PLATFORM_ID, TransferState } from '@angular/core';
-import { TankOverview, TankOverviewNationEnum, TankOverviewRoleEnum, TankOverviewTypeEnum } from 'generated-api/tanks';
-import { WotNews } from 'generated-api/wot';
-import { FoldResult } from 'generated-api/fold';
-import { FoldNewsCardComponent, FoldTankCardComponent } from 'fold';
+import {
+    FoldNewsCardComponent, FoldResult,
+    FoldTankCardComponent,
+    TankOverview, TankOverviewNationEnum,
+    TankOverviewRoleEnum,
+    TankOverviewTypeEnum, WotNews,
+} from 'fold';
 import { By } from '@angular/platform-browser';
 import { TanksOverviewProxy } from 'shared/proxy/tanks-overview.proxy';
 import { WotNewsProxy } from 'shared/proxy/wot-news.proxy';
@@ -26,6 +29,7 @@ describe('HomeComponent', () => {
 
     const tanksOverview: TankOverview[] = [
         {
+            id: 1,
             name: 'object 260',
             wotName: 'object 260',
             role: TankOverviewRoleEnum.HeavyPush,
@@ -36,6 +40,7 @@ describe('HomeComponent', () => {
             is_reward: true,
         },
         {
+            id: 2,
             name: 'object 260',
             wotName: 'object 260',
             role: TankOverviewRoleEnum.HeavyPush,

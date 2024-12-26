@@ -4,12 +4,12 @@ import { routes } from './app.routes';
 import { provideClientHydration } from '@angular/platform-browser';
 import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
 import { environment } from 'env/environment';
-import { httpHerokuinterceptor } from 'core/interceptors/heroku.interceptor';
+import { httpHerokuInterceptor } from 'core/interceptors/heroku.interceptor';
 
 export const appConfig: ApplicationConfig = {
     providers: [
         provideRouter(routes),
         provideClientHydration(),
-        provideHttpClient(withFetch(), withInterceptors(environment.production ? [] : [httpHerokuinterceptor])),
+        provideHttpClient(withFetch(), withInterceptors(environment.production ? [] : [httpHerokuInterceptor])),
     ],
 };

@@ -2,17 +2,18 @@ openapi: 3.0.3
 info:
   title: Tanks API
   description: All apis related to the tanks
-  version: 1.0.4
+  version: 1.1.1
 
 servers:
   - url: https://fold-backend-5e6c2cf7c25c.herokuapp.com
+  - url: http://localhost:8080
 
 paths:
   /api/private/v1/tanks/overview:
     get:
       tags:
         - tanks-overview
-      description: Return the overview of all tank stored in the database who are meta
+      description: Return the overview of all tanks stored in the database who are meta
       operationId: tanks-overview
       responses:
         200:
@@ -24,20 +25,45 @@ paths:
         500:
           description: Internal server error
       deprecated: false
+  /api/private/v1/tanks/detail/{tank_id}:
+    get:
+      tags:
+        - tanks-detail
+      description: Return the detail configuration of the tank stored in the database
+      operationId: tanks-detail
+      parameters:
+        - name: tank_id
+          in: path
+          description: The id of the tank
+          required: true
+          example: 58369
+          schema:
+            type: integer
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TankDetail'
+        404:
+          description: Not Found
+        500:
+          description: Internal server error
+      deprecated: false
 
 components:
   schemas:
     TanksOverview:
-      title: TanksOverviewDto
       description: The array of TankOverviewDto
       type: array
       items:
         $ref: '#/components/schemas/TankOverview'
     TankOverview:
-      title: TankOverviewDto
       description: The object representing the overview of a tank
       type: object
       required:
+        - id
         - name
         - wotName
         - type
@@ -46,6 +72,10 @@ components:
         - nation
         - priority
       properties:
+        id:
+          type: integer
+          description: The wot id of the tank
+          example: 58369
         name:
           type: string
           description: The name of the tank
@@ -85,7 +115,7 @@ components:
         nation:
           type: string
           description: The nation of the tank
-          example: URSS
+          example: USSR
           enum:
             - China
             - Italy
@@ -107,4 +137,314 @@ components:
         is_reward:
           type: boolean
           description: If the tank is a reward tank
+          example: true
+
+    TankDetail:
+      description: The object representing the detail configuration of a tank
+      type: object
+      required:
+        - description
+        - configuration
+        - crew
+        - fieldModification
+      properties:
+        description:
+          type: string
+          description: The tankopedia description of the tank
+          example: "Une version du char lourd Object 260. Les plans de conception ont été terminés en septembre 1945, mais aucun prototype n'a été fabriqué."
+        configurations:
+          type: array
+          description: The list of equipments configuration
+          minItems: 1
+          items:
+            $ref: '#/components/schemas/TankConfiguration'
+        crew:
+          type: array
+          description: The array of crew members of the tank
+          minItems: 2
+          maxItems: 6
+          items:
+            $ref: '#/components/schemas/CrewMember'
+        fieldsModification:
+          type: array
+          description: The array of field modification of the tank order by level
+          minItems: 6
+          maxItems: 6
+          items:
+            $ref: '#/components/schemas/FieldRow'
+    TankConfiguration:
+      description: The object representing one equipment configuration for a tank
+      type: object
+      properties:
+        equipments:
+          type: array
+          description: The list of equipment
+          minItems: 3
+          maxItems: 3
+          items:
+            $ref: '#/components/schemas/Equipment'
+        directive:
+          $ref: '#/components/schemas/Directive'
+        consumables:
+          type: array
+          description: The list of equipment
+          minItems: 3
+          maxItems: 3
+          items:
+            $ref: '#/components/schemas/Consumable'
+        priority:
+          type: string
+          description: The priority of the configuration
+          enum:
+            - principal
+            - secondaire
+            - alternatif
+    Equipment:
+      description: The representation of one equipment
+      type: object
+      required:
+        - name
+        - wotName
+        - isModernized
+      properties:
+        name:
+          type: string
+          description: The french name of the equipment
+          example: Configuration modifiée
+        wotName:
+          type: string
+          description: The name of the equipment
+          example: improvedConfiguration
+          enum:
+            - improvedConfiguration
+            - grousers
+            - extraHealthReserve
+            - camouflageNet
+            - rammer
+            - improvedRotationMechanism
+            - coatedOptics
+            - antifragmentationLining
+            - additionalInvisibilityDevice
+            - aimingStabilizer
+            - enhancedAimDrives
+            - commandersView
+            - stereoscope
+            - turbocharger
+            - improvedVentilation
+            - improvedSights
+            - modernizedAimDrivesAimingStabilizer
+            - modernizedExtraHealthReserveAntifragmentationLining
+            - modernizedTurbochargerRotationMechanism
+            - modernizedImprovedSightsEnhancedAimDrives
+        isModernized:
+          type: boolean
+          description: Define if the equipment is a modernized equipment or not
+          example: false
+    Directive:
+      description: The representation of one directive
+      type: object
+      required:
+        - name
+        - wotName
+      properties:
+        name:
+          type: string
+          description: The french name of the directive
+          example: Remplacement du filtre à carburant
+        wotName:
+          type: string
+          description: The image name of the directive
+          example: turbochargerBattleBooster
+          enum:
+            - enhancedAimDrivesBattleBooster
+            - coatedOpticsBattleBooster
+            - additInvisibilityDeviceBattleBooster
+            - aimingStabilizerBattleBooster
+            - improvedSightsBattleBooster
+            - improvedConfigurationBattleBooster
+            - improvedVentilationBattleBooster
+            - rammerBattleBooster
+            - turbochargerBattleBooster
+            - camouflageBattleBooster
+            - smoothTurretBattleBooster
+            - virtuosoBattleBooster
+            - smoothDrivingBattleBooster
+            - fireFightingBattleBooster
+            - rancorousBattleBooster
+            - pedantBattleBooster
+    Consumable:
+      description: The representation of one consumable
+      type: object
+      required:
+        - name
+        - wotName
+      properties:
+        name:
+          type: string
+          description: The french name of the consumable
+          example: Café avec brioches à la cannelle
+        wotName:
+          type: string
+          description: The image name of the consumable
+          example: ration_sweden
+          enum:
+            - ration_sweden
+            - hotCoffee
+            - cocacola
+            - chocolate
+            - qualityFuel
+            - excellentFuel
+            - ration_uk
+            - ration_poland
+            - ration_czech
+            - ration_japan
+            - ration_italy
+            - autoExtinguishers
+            - handExtinguishers
+            - ration
+            - largeMedkit
+            - smallMedkit
+            - largeRepairkit
+            - smallRepairkit
+            - ration_china
+            - OLD_removedRpmLimiter
+    CrewMember:
+      description: The representation of a crew member
+      type: object
+      required:
+        - name
+        - roles
+      properties:
+        name:
+          type: string
+          description: The name of the member
+          example: commander
+          pattern: '[\w]+'
+        skills:
+          type: array
+          description: The list of skill of the crew member
+          items:
+            $ref: '#/components/schemas/Skill'
+        secondary_roles:
+          type: array
+          description: The other roles the member can take
+          minItems: 0
+          maxItems: 4
+          items:
+            $ref: '#/components/schemas/CrewMember'
+    Skill:
+      description: The representation of one skill
+      type: object
+      required:
+        - wotName
+        - level
+        - name
+      properties:
+        level:
+          type: integer
+          description: The level of the skill
+          example: 1
+          minimum: 1
+          maximum: 6
+        name:
+          type: string
+          description: The french name of the skill
+          example: Frères d'armes
+        wotName:
+          type: string
+          description: The name of the skill
+          example: brotherhood
+          enum:
+            - repair
+            - camouflage
+            - brotherhood
+            - commander_tutor
+            - commander_enemyShotPredictor
+            - commander_eagleEye
+            - commander_emergency
+            - commander_coordination
+            - commander_practical
+            - gunner_rancorous
+            - gunner_sniper
+            - gunner_quickAiming
+            - gunner_focus
+            - gunner_armorer
+            - gunner_smoothTurret
+            - driver_badRoadsKing
+            - driver_rammingMaster
+            - driver_smoothDriving
+            - driver_motorExpert
+            - driver_reliablePlacement
+            - driver_virtuoso
+            - loader_ammunitionImprove
+            - loader_intuition
+            - loader_perfectCharge
+            - loader_melee
+            - loader_desperado
+            - loader_pedant
+            - radioman_finder
+            - fireFighting
+            - radioman_interference
+            - radioman_signalInterception
+            - radioman_sideBySide
+            - radioman_expert
+    FieldRow:
+      description: The object represent a row of field modification
+      required:
+        - left
+        - right
+        - level
+      properties:
+        left:
+          $ref: '#/components/schemas/Field'
+        right:
+          $ref: '#/components/schemas/Field'
+        level:
+          type: integer
+          description: 'The level of the field row'
+          minimum: 2
+          maximum: 8
+          example: 2
+    Field:
+      description: The representation of one field modification
+      required:
+        - name
+        - isActive
+        - wotName
+      properties:
+        name:
+          type: string
+          description: The name of the field
+          example: 'Suspension tout-terrain'
+        wotName:
+          type: string
+          description: The wot name of the field
+          example: additionalGrousers
+          enum:
+            - survivability
+            - additionalGrousers
+            - betterFriction
+            - firepower
+            - improvedAimingHandling
+            - improvedChassisStability
+            - improvedEnginePower
+            - improvedGunBreech
+            - improvedLightFilters
+            - improvedMuzzleBreak
+            - improvedObservationDevice
+            - improvedScope
+            - improvedSelfRepairingTracks
+            - improvedSelfRepairingWheels
+            - improvedSpallingResistance
+            - improvedSpeedIndicator
+            - improvedSpeedIndicatorBackwards
+            - improvedTurretTurningWheels
+            - increasedSensitivityOptics
+            - increasedThickness
+            - mobility
+            - reinforcedStructure
+            - stealth
+        isActive:
+          type: boolean
+          description: If the field modification if active or not
           example: true

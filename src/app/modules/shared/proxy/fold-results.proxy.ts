@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { type FoldResult, FoldResultService } from 'generated-api/fold';
+import { FoldResult, FoldResultService } from 'fold';
 import type { Observable } from 'rxjs';
 
 @Injectable({

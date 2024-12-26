@@ -21,7 +21,7 @@ export default tsEslint.config(
             '@angular-eslint-template': angularTemplateLint,
         },
         files: ['**/*.ts', '**/*.js'],
-        ignores: ['src/generated-api/**/*.ts', '**/*.spec.ts'],
+        ignores: ['projects/fold/src/generated-api/**/*.ts', '**/*.spec.ts'],
         rules: {
             '@typescript-eslint/no-unsafe-call': ['off'],
             '@typescript-eslint/no-var-requires': ['off'],

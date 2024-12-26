@@ -1,8 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { FoldResultService } from 'generated-api/fold';
 import { FoldResultsProxy } from 'shared/proxy/fold-results.proxy';
 import { of } from 'rxjs';
+import { FoldResultService } from 'fold';
 
 describe('Fold Results Proxy', () => {
     let service: FoldResultsProxy;

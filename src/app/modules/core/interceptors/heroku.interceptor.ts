@@ -2,7 +2,7 @@ import { type HttpHandlerFn, type HttpInterceptorFn, HttpParams, HttpRequest } f
 import { MockEnum } from '../enums/mock.enum';
 import { environment } from 'env/environment';
 
-export const httpHerokuinterceptor: HttpInterceptorFn = (req: HttpRequest<unknown>, next: HttpHandlerFn) => {
+export const httpHerokuInterceptor: HttpInterceptorFn = (req: HttpRequest<unknown>, next: HttpHandlerFn) => {
     if ([MockEnum.NO_MOCK].includes(environment.mock)) {
         return next(req);
     }
@@ -15,7 +15,7 @@ export const httpHerokuinterceptor: HttpInterceptorFn = (req: HttpRequest<unknow
 
     let mockReq: HttpRequest<unknown>;
 
-    if (environment.mock === MockEnum.EXTERNAL_MOCK) {
+    if ([MockEnum.EXTERNAL_MOCK].includes(environment.mock)) {
         mockReq = req.clone({
             url: `http://localhost:8080/api/${endPoint[1]}`,
             method: req.method,
