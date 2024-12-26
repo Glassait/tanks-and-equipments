@@ -1,9 +1,7 @@
-import { makeStateKey } from '@angular/core';
-import type { TankOverview } from 'generated-api/tanks';
-import type { WotNews } from 'generated-api/wot';
-import type { FoldResult } from 'generated-api/fold';
+import { makeStateKey, StateKey } from '@angular/core';
+import { FoldResult, TankOverview, WotNews } from 'fold';
 
 // HOME
-export const TANKS_OVERVIEW_KEY = makeStateKey<TankOverview[]>('tanksOverview');
-export const WOT_NEWS_KEY = makeStateKey<WotNews[]>('wotNews');
-export const FOLD_RESULTS_KEY = makeStateKey<FoldResult[]>('foldResults');
+export const TANKS_OVERVIEW_KEY: StateKey<TankOverview[]> = makeStateKey('tanksOverview');
+export const WOT_NEWS_KEY: StateKey<WotNews[]>  = makeStateKey('wotNews');
+export const FOLD_RESULTS_KEY: StateKey<FoldResult[]>  = makeStateKey('foldResults');

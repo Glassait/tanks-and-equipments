@@ -6,9 +6,10 @@ import {
     FoldTankCardComponent,
     type SelectItem,
     SentenceCasePipe,
+    TankOverviewTypeEnum,
+    TankOverview, TankOverviewRoleEnum, TankOverviewNationEnum,
 } from 'fold';
 import { PathEnum } from 'core/enums/path.enum';
-import { type TankOverview, TankOverviewNationEnum, TankOverviewRoleEnum, TankOverviewTypeEnum } from 'generated-api/tanks';
 import { TransferState } from '@angular/platform-browser';
 import { isPlatformBrowser, isPlatformServer, TitleCasePipe } from '@angular/common';
 import { TanksOverviewProxy } from 'shared/proxy/tanks-overview.proxy';

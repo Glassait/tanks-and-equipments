@@ -1,1 +1,14 @@
-<p>fold-config works!</p>
+<div id="header-config-{{ componentId }}" class="flex justify-between items-center">
+    <span [iconLeft]="iconFromPriority()" fold-text size="large">{{ title() | sentenceCase }}</span>
+    <span [bgColor]="bgColorFromPriority()" fold-badge textColor="neutral-100">{{ priority() | uppercase }}</span>
+</div>
+
+<div id="content-config-{{ componentId }}">
+    <ng-content />
+</div>
+
+@if (showFooter()) {
+    <div id="footer-config" class="flex justify-between items-center">
+        <ng-content select="[footer-config]" />
+    </div>
+}

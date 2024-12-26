@@ -1,13 +1,17 @@
 import { ChangeDetectionStrategy, Component, HostBinding, inject, type OnInit, PLATFORM_ID } from '@angular/core';
-import { FoldButtonComponent, FoldLinkDirective, FoldNewsCardComponent, FoldTankCardComponent, FoldTextComponent } from 'fold';
+import {
+    FoldButtonComponent,
+    FoldLinkDirective,
+    FoldNewsCardComponent, FoldResult,
+    FoldTankCardComponent,
+    FoldTextComponent,
+    TankOverview, WotNews,
+} from 'fold';
 import { TanksOverviewProxy } from 'shared/proxy/tanks-overview.proxy';
 import { isPlatformBrowser, isPlatformServer, NgClass } from '@angular/common';
 import { TransferState } from '@angular/platform-browser';
 import { PathEnum } from 'core/enums/path.enum';
-import type { WotNews } from 'generated-api/wot';
 import { WotNewsProxy } from 'shared/proxy/wot-news.proxy';
-import type { TankOverview } from 'generated-api/tanks';
-import type { FoldResult } from 'generated-api/fold';
 import { FoldResultsProxy } from 'shared/proxy/fold-results.proxy';
 import { FOLD_RESULTS_KEY, TANKS_OVERVIEW_KEY, WOT_NEWS_KEY } from 'shared/variables/transfer.key';
 import { CacheManagerService } from 'shared/services/cache-manager.service';

@@ -1,4 +1,5 @@
 export * from './breadcrumb/breadcrumb-api';
+export * from './config/config-api';
 export * from './footer/footer-api';
 export * from './header/header-api';
 export * from './news-card/news-card-api';

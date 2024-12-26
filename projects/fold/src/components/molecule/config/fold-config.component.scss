@@ -1,0 +1,25 @@
+@use 'sass:map';
+@use '../../../scss/abstract/spacings';
+@use '../../../scss/abstract/borders';
+@use '../../../scss/abstract/colors';
+
+:host {
+    min-width: 496px;
+    width: fit-content;
+
+    padding: map.get(spacings.$spacings, 12);
+
+    border-radius: map.get(borders.$border-radius, 4);
+
+    div:nth-child(1) {
+        padding: 0 0 map.get(spacings.$spacings, 12) 0;
+
+        border-bottom: solid map.get(borders.$border-width, 1) rgba(map.get(colors.$neutral, 50), map.get(colors.$opacities, 7));
+    }
+
+    div:nth-child(3) {
+        padding: map.get(spacings.$spacings, 4) 0 0 0;
+
+        border-top: solid map.get(borders.$border-width, 1) rgba(map.get(colors.$neutral, 50), map.get(colors.$opacities, 7));
+    }
+}

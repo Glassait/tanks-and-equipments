@@ -1,5 +1,5 @@
 echo "Delete generated api"
-rm -rf ./src/generated-api
+rm -rf ./projects/fold/src/generated-api
 
 echo "Sleeping !"
 sleep 5
