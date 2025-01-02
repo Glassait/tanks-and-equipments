@@ -1,0 +1,35 @@
+<div id="equipments-config-{{ componentId }}" class="flex direction-column gap-4 align-center justify-center">
+    <div class="flex gap-4 align-center">
+        @for (equipment of equipments(); track $index) {
+            <div class="overlap">
+                <fold-icon [icon]="equipment.wotName" [size]="48" class="bg-neutral-900" [title]="equipment.name" />
+
+                @if (equipment.isModernized) {
+                    <fold-icon [size]="20" icon="modernize" />
+                } @else if (showDeluxe()) {
+                    <fold-icon [size]="20" icon="deluxe" />
+                }
+            </div>
+        }
+    </div>
+
+    <span fold-text size="medium" class="neutral-400">Équipement</span>
+</div>
+
+<div id="directive-config-{{ componentId }}" class="flex direction-column gap-4 align-center justify-center">
+    <div class="flex gap-4 align-center">
+        <fold-icon [icon]="directive().wotName" [size]="48" class="bg-neutral-900" [title]="directive().name" />
+    </div>
+
+    <span fold-text size="medium" class="neutral-400">Directive</span>
+</div>
+
+<div id="consumables-config-{{ componentId }}" class="flex direction-column gap-4 align-center justify-center">
+    <div class="flex gap-4 align-center">
+        @for (consumable of consumables(); track $index) {
+            <fold-icon [icon]="consumable.wotName" [size]="48" class="bg-neutral-900" [title]="consumable.name" />
+        }
+    </div>
+
+    <span fold-text size="medium" class="neutral-400">Consommable</span>
+</div>

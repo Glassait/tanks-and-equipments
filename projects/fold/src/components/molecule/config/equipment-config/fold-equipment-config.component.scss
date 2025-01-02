@@ -1,0 +1,17 @@
+@use 'sass:map';
+@use '../../../../scss/abstract/spacings';
+@use '../../../../scss/abstract/borders';
+
+fold-icon:not([ng-reflect-icon='modernize'], [ng-reflect-icon='deluxe']) {
+    padding: map.get(spacings.$spacings, 4);
+
+    border-radius: map.get(borders.$border-radius, 4);
+}
+
+fold-icon[ng-reflect-icon='modernize'],
+fold-icon[ng-reflect-icon='deluxe'] {
+    padding: 3px;
+
+    width: max-content;
+    height: max-content;
+}
