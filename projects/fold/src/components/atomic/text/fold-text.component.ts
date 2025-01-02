@@ -14,6 +14,17 @@ import type { FoldIconSize } from '../icon/icon.type';
     imports: [FoldIconComponent],
 })
 export class FoldTextComponent {
+    /**
+     * This input define the size of the font and the gap between the icon (if there is some icons) and the text
+     *
+     * @size-x-font
+     * small    <--> caption-2<br>
+     * medium   <--> caption-1<br>
+     * large    <--> body-2<br>
+     * x-large  <--> body-1<br>
+     * subtitle <--> subtitle-1<br>
+     * title-3  <--> title-3
+     */
     public size: InputSignal<FoldTextSize> = input.required();
     public iconLeft: InputSignal<FoldIcon | undefined> = input();
     public iconRight: InputSignal<FoldIcon | undefined> = input();
