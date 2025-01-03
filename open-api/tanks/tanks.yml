@@ -2,11 +2,10 @@ openapi: 3.0.3
 info:
   title: Tanks API
   description: All apis related to the tanks
-  version: 1.1.1
+  version: 1.1.2
 
 servers:
   - url: https://fold-backend-5e6c2cf7c25c.herokuapp.com
-  - url: http://localhost:8080
 
 paths:
   /api/private/v1/tanks/overview:
@@ -144,9 +143,9 @@ components:
       type: object
       required:
         - description
-        - configuration
+        - configurations
         - crew
-        - fieldModification
+        - fieldsModification
       properties:
         description:
           type: string
@@ -175,6 +174,11 @@ components:
     TankConfiguration:
       description: The object representing one equipment configuration for a tank
       type: object
+      required:
+        - equipments
+        - consumables
+        - directive
+        - priority
       properties:
         equipments:
           type: array
@@ -286,19 +290,19 @@ components:
         wotName:
           type: string
           description: The image name of the consumable
-          example: ration_sweden
+          example: rationSweden
           enum:
-            - ration_sweden
+            - rationSweden
             - hotCoffee
             - cocacola
             - chocolate
             - qualityFuel
             - excellentFuel
-            - ration_uk
-            - ration_poland
-            - ration_czech
-            - ration_japan
-            - ration_italy
+            - rationUK
+            - rationPoland
+            - rationCzech
+            - rationJapan
+            - rationItaly
             - autoExtinguishers
             - handExtinguishers
             - ration
@@ -306,14 +310,15 @@ components:
             - smallMedkit
             - largeRepairkit
             - smallRepairkit
-            - ration_china
-            - OLD_removedRpmLimiter
+            - rationChina
+            - OLDRemovedRpmLimiter
     CrewMember:
       description: The representation of a crew member
       type: object
       required:
         - name
-        - roles
+        - skills
+        - secondary_roles
       properties:
         name:
           type: string
@@ -336,9 +341,9 @@ components:
       description: The representation of one skill
       type: object
       required:
+        - name
         - wotName
         - level
-        - name
       properties:
         level:
           type: integer
@@ -358,36 +363,36 @@ components:
             - repair
             - camouflage
             - brotherhood
-            - commander_tutor
-            - commander_enemyShotPredictor
-            - commander_eagleEye
-            - commander_emergency
-            - commander_coordination
-            - commander_practical
-            - gunner_rancorous
-            - gunner_sniper
-            - gunner_quickAiming
-            - gunner_focus
-            - gunner_armorer
-            - gunner_smoothTurret
-            - driver_badRoadsKing
-            - driver_rammingMaster
-            - driver_smoothDriving
-            - driver_motorExpert
-            - driver_reliablePlacement
-            - driver_virtuoso
-            - loader_ammunitionImprove
-            - loader_intuition
-            - loader_perfectCharge
-            - loader_melee
-            - loader_desperado
-            - loader_pedant
-            - radioman_finder
+            - commanderTutor
+            - commanderEnemyShotPredictor
+            - commanderEagleEye
+            - commanderEmergency
+            - commanderCoordination
+            - commanderPractical
+            - gunnerRancorous
+            - gunnerSniper
+            - gunnerQuickAiming
+            - gunnerFocus
+            - gunnerArmorer
+            - gunnerSmoothTurret
+            - driverBadRoadsKing
+            - driverRammingMaster
+            - driverSmoothDriving
+            - driverMotorExpert
+            - driverReliablePlacement
+            - driverVirtuoso
+            - loaderAmmunitionImprove
+            - loaderIntuition
+            - loaderPerfectCharge
+            - loaderMelee
+            - loaderDesperado
+            - loaderPedant
+            - radiomanFinder
             - fireFighting
-            - radioman_interference
-            - radioman_signalInterception
-            - radioman_sideBySide
-            - radioman_expert
+            - radiomanInterference
+            - radiomanSignalInterception
+            - radiomanSideBySide
+            - radiomanExpert
     FieldRow:
       description: The object represent a row of field modification
       required:
@@ -409,8 +414,8 @@ components:
       description: The representation of one field modification
       required:
         - name
-        - isActive
         - wotName
+        - isActive
       properties:
         name:
           type: string

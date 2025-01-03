@@ -1,0 +1,26 @@
+<div id="header-crew-config-{{ componentId }}" class="flex direction-column align-center justify-center">
+    <img
+        [title]="nameToFrench() | titlecase"
+        alt="{{ nameToFrench() }}"
+        height="48"
+        src="https://eu-wotp.wgcdn.co/static/6.2.8_cfaf5d/wotp_static/img/tankopedia_new/frontend/scss/tankopedia-detail/img/crew/{{
+            nation() | lowercase
+        }}-face-{{ nameToWotId() }}.png"
+    />
+    <span class="bg-background body-2 neutral-200">{{ nameToFrench() | titlecase }}</span>
+</div>
+
+<div id="skills-crew-config-{{ componentId }}" class="flex direction-column justify-center gap-8">
+    @for (config of roles(); track $index) {
+        <div id="{{ config.name }}-{{ componentId }}" class="flex align-center gap-4">
+            <fold-icon [icon]="config.name" [size]="24" />
+
+            @for (skill of config.skills; track $index) {
+                <div class="overlap bg-neutral-900">
+                    <fold-icon [icon]="skill.wotName" [size]="48" />
+                    <span class="caption-3 neutral-50">{{ $index }}</span>
+                </div>
+            }
+        </div>
+    }
+</div>

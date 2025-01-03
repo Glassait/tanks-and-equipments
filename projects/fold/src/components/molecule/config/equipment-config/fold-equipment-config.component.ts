@@ -15,7 +15,7 @@ import type { FoldIcon } from '../../../atomic/icon/icons-ts/icon.model';
 type ConsumableOverride = Omit<Consumable, 'wotName'> & { wotName: FoldIcon };
 
 @Component({
-    selector: 'fold-config fold-equipment-config',
+    selector: 'fold-equipment-config',
     templateUrl: './fold-equipment-config.component.html',
     styleUrl: './fold-equipment-config.component.scss',
     standalone: true,

@@ -93,12 +93,12 @@ describe('FoldIconComponent', () => {
     });
 
     it('should error when icon is not FoldIcon', () => {
-        componentWrapper.icon = '' as FoldIcon;
+        componentWrapper.icon = 'imNotAFoldIcon' as FoldIcon;
         fixture.detectChanges();
 
         expect(consoleErrorSpy).toHaveBeenCalledTimes(1);
         expect(consoleErrorSpy).toHaveBeenCalledWith(
-            '<fold-icon> No svg element found, please provide correct icon contain in FoldIcon (ex: <fold-icon icon="accountCircle"></fold-icon>)'
+            '<fold-icon> No svg element found, imNotAFoldIcon does not exist, please provide correct icon contain in FoldIcon (ex: <fold-icon icon="accountCircle"></fold-icon>)'
         );
     });
 });

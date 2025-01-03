@@ -95,22 +95,22 @@
 				{
 					"level": 3,
 					"name": "Urgence",
-					"wotName": "commander_emergency"
+					"wotName": "commanderEmergency"
 				},
 				{
 					"level": 4,
 					"name": "Œil de lynx",
-					"wotName": "commander_eagleEye"
+					"wotName": "commanderEagleEye"
 				},
 				{
 					"level": 5,
 					"name": "Praticité",
-					"wotName": "commander_practical"
+					"wotName": "commanderPractical"
 				},
 				{
 					"level": 6,
 					"name": "Mentor",
-					"wotName": "commander_tutor"
+					"wotName": "commanderTutor"
 				}
 			],
 			"secondary_roles": [
@@ -125,15 +125,15 @@
 						{
 							"level": 2,
 							"name": "Côte à côte",
-							"wotName": "radioman_sideBySide"
+							"wotName": "radiomanSideBySide"
 						},
 						{
 							"level": 3,
 							"name": "Longue-vue",
-							"wotName": "radioman_finder"
+							"wotName": "radiomanFinder"
 						}
 					],
-					"secondary_roles": null
+					"secondary_roles": []
 				}
 			]
 		},
@@ -153,22 +153,22 @@
 				{
 					"level": 3,
 					"name": "Précision",
-					"wotName": "gunner_smoothTurret"
+					"wotName": "gunnerSmoothTurret"
 				},
 				{
 					"level": 4,
 					"name": "Armurier",
-					"wotName": "gunner_armorer"
+					"wotName": "gunnerArmorer"
 				},
 				{
 					"level": 5,
 					"name": "Visée rapide",
-					"wotName": "gunner_quickAiming"
+					"wotName": "gunnerQuickAiming"
 				},
 				{
 					"level": 6,
 					"name": "Coup mortel",
-					"wotName": "gunner_sniper"
+					"wotName": "gunnerSniper"
 				}
 			],
 			"secondary_roles": []
@@ -189,22 +189,22 @@
 				{
 					"level": 3,
 					"name": "Conduite souple",
-					"wotName": "driver_smoothDriving"
+					"wotName": "driverSmoothDriving"
 				},
 				{
 					"level": 4,
 					"name": "Pilote tout-terrain",
-					"wotName": "driver_badRoadsKing"
+					"wotName": "driverBadRoadsKing"
 				},
 				{
 					"level": 5,
 					"name": "Ingénieur",
-					"wotName": "driver_motorExpert"
+					"wotName": "driverMotorExpert"
 				},
 				{
 					"level": 6,
 					"name": "As du volant",
-					"wotName": "driver_virtuoso"
+					"wotName": "driverVirtuoso"
 				}
 			],
 			"secondary_roles": []
@@ -225,22 +225,22 @@
 				{
 					"level": 3,
 					"name": "Râtelier sécurisé",
-					"wotName": "loader_pedant"
+					"wotName": "loaderPedant"
 				},
 				{
 					"level": 4,
 					"name": "Intuition",
-					"wotName": "loader_intuition"
+					"wotName": "loaderIntuition"
 				},
 				{
 					"level": 5,
 					"name": "Combat rapproché",
-					"wotName": "loader_melee"
+					"wotName": "loaderMelee"
 				},
 				{
 					"level": 6,
 					"name": "Réglage des munitions",
-					"wotName": "loader_ammunitionImprove"
+					"wotName": "loaderAmmunitionImprove"
 				}
 			],
 			"secondary_roles": []

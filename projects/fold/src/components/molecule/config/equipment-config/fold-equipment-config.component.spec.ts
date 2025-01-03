@@ -15,14 +15,16 @@ import {
 import { By } from '@angular/platform-browser';
 
 @Component({
-    template: `<fold-config [title]="'This is a title'" [priority]="TankConfigurationPriorityEnum.Principal"
-        ><fold-equipment-config [equipments]="equipments" [directive]="directive" [consumables]="consumables" [showDeluxe]="showDeluxe" />
-    </fold-config>`,
+    template: `<fold-equipment-config
+        [equipments]="equipments"
+        [directive]="directive"
+        [consumables]="consumables"
+        [showDeluxe]="showDeluxe"
+    />`,
     standalone: true,
-    imports: [FoldConfigComponent, FoldEquipmentConfigComponent],
+    imports: [FoldEquipmentConfigComponent],
 })
 class FoldEquipmentConfigComponentWrapper {
-    protected readonly TankConfigurationPriorityEnum = TankConfigurationPriorityEnum;
     equipments: Equipment[] = [
         {
             name: "Gamme d'amélioration de la survie",

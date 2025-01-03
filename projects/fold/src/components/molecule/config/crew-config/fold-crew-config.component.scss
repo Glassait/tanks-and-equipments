@@ -1,0 +1,19 @@
+@use 'sass:map';
+@use '../../../../scss/abstract/borders';
+@use '../../../../scss/abstract/spacings';
+
+:host > div > span {
+    width: 100%;
+
+    border-radius: map.get(borders.$border-radius, 4);
+
+    text-align: center;
+}
+
+.overlap {
+    border-radius: map.get(borders.$border-radius, 4);
+
+    span {
+        padding: 0 0 0 map.get(spacings.$spacings, 2);
+    }
+}

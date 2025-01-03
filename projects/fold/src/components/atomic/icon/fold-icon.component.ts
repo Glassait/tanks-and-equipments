@@ -48,7 +48,7 @@ export class FoldIconComponent {
             svg.style.display = 'block';
         } else {
             console.error(
-                `<fold-icon> No svg element found, please provide correct icon contain in FoldIcon (ex: <fold-icon icon="accountCircle"></fold-icon>)`
+                `<fold-icon> No svg element found, ${this.icon()} does not exist, please provide correct icon contain in FoldIcon (ex: <fold-icon icon="accountCircle"></fold-icon>)`
             );
         }
     }
