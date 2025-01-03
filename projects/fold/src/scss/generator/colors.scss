@@ -8,6 +8,15 @@ $colors: (
     gray: $gray,
 );
 
+.background {
+    color: $background;
+    fill: $background;
+}
+
+.bg-background {
+    background: $background;
+}
+
 @each $color, $colorData in $colors {
     @each $name, $properties in $colorData {
         .#{$color}-#{$name} {
